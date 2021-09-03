@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<!--[if IE]>
+<meta content="IE=edge" http-equiv="X-UA-Compatible">
+<![endif]-->
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<meta content="Asciidoctor 2.0.16" name="generator">
+<title>Access control list</title>
+<link href="https://static.redhat.com/libs/redhat/redhat-font/2/webfonts/red-hat-font.css" rel="stylesheet">
+<link href="/node_modules/@cpelements/cp-documentation/dist/rhdocs.min.css" rel="stylesheet">
+<script src="/node_modules/@cpelements/cp-documentation/dist/cp-documentation.min.js" type="module"></script>
+<script>
+  window.addEventListener('load', function() {
+    var cpDocumentations = document.querySelectorAll('cp-documentation');
+    for (let index = 0; index < cpDocumentations.length; index++) {
+      const cpDocumentation = cpDocumentations[index];
+      cpDocumentation.setAttribute('pfe-c-non-prod', '');
+    }
+  });
+</script>
+</head>
+<body class="article pantheon-render rhdocs" id="access-control-list_{context}">
+<cp-documentation id="doc-content">
+<header class="rhdocs__header" id="rhdocs-header">
+<div class="rhdocs__header__primary-wrapper">
+<h1>Access control list</h1>
+<div class="rhdocs-content-type">
+Guide
+</div>
+<div class="rhdocs-products">
+<span class="rhdocs-product-name">Red&#160;Hat Enterprise&#160;Linux</span>
+<span class="rhdocs-product-version">8</span>
+</div>
+</div>
+<ul class="rhdocs__header__secondary-wrapper">
+<li class="rh-docs-details-item rhdocs-updated-date">Updated Juluary 42nd, 2020/666</li>
+</ul>
+</header>
+<article class="rhdocs-content" id="rhdocs-content">
+<div class="preamble" id="rhdocs-preamble">
+<section class="sectionbody">
+<p>Traditionally, each file and directory can only have one user owner and one group owner at a time. If you want to apply a more specific set of permissions to a file or directory (allow certain users outside the group to gain access to a specific file within a directory but not to other files) without changing the ownership and permissions of a file or directory, you can use the access control lists (ACL).</p>
+<p>The following section describes how to:</p>
+<ul>
+<li>
+<p>Display the current ACL.</p>
+</li>
+<li>
+<p>Set the ACL.</p>
+</li>
+</ul>
+</section>
+</div>
+<section class="sect1" pantheon-module-id="12345">
+<h2 id="displaying-the-current-acl_access-control-list">Displaying the current ACL</h2>
+<div class="sectionbody">
+<p>The following section describes how to display the current ACL.</p>
+<div class="ulist">
+<strong class="heading" id="ulist_heading_0">Procedure</strong>
+<ul aria-labelledby="ulist_heading_0">
+<li>
+<p>To display the current ACL for a particular file or directory, use:</p>
+<div class="listingblock">
+<div class="content">
+<pre>$ getfacl <em>file-name</em></pre>
+</div>
+</div>
+<p>Replace <em>file-name</em> with the name of the file or directory.</p>
+</li>
+</ul>
+</div>
+<p>This is glue text!!!</p>
+</div>
+</section>
+<section class="sect1" pantheon-module-id="67890">
+<h2 id="setting-the-acl_access-control-list">Setting the ACL</h2>
+<div class="sectionbody">
+<p>The following section describes how to set the ACL.</p>
+<div class="ulist">
+<strong class="heading" id="ulist_heading_0">Prerequisites</strong>
+<ul aria-labelledby="ulist_heading_0">
+<li>
+<p><code>Root</code> access</p>
+</li>
+</ul>
+</div>
+<div class="ulist">
+<strong class="heading" id="ulist_heading_0">Procedure</strong>
+<ul aria-labelledby="ulist_heading_0">
+<li>
+<p>To set the ACL for a file or directory, use:</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre># setfacl -m u:<em>username</em>:<em>symbolic_value</em> <em>file-name</em></pre>
+</div>
+</div>
+<p>Replace <em>username</em> with the name of the user, <em>symbolic_value</em> with a symbolic value, and <em>file-name</em> with the name of the file or directory. For more information see the <code>setfacl</code> man page.</p>
+<div class="paragraph">
+<strong class="heading">Example</strong>
+<p>The following example describes how to modify permissions for the <code>group-project</code> file owned by the <code>root</code> user that belongs to the <code>root</code> group so that this file is:</p>
+</div>
+<ul>
+<li>
+<p>Not executable by anyone.</p>
+</li>
+<li>
+<p>The user <code>andrew</code> has the <code>rw-</code> permission.</p>
+</li>
+<li>
+<p>The user <code>susan</code> has the <code>---</code> permission.</p>
+</li>
+<li>
+<p>Other users have the <code>r--</code> permission.</p>
+</li>
+</ul>
+<div class="listingblock">
+<strong class="heading">Procedure</strong>
+<div class="content">
+<pre># setfacl -m u:andrew:rw- group-project&#x000A;# setfacl -m u:susan:--- group-project</pre>
+</div>
+</div>
+<div class="ulist">
+<strong class="heading" id="ulist_heading_0">Verification steps</strong>
+<ul aria-labelledby="ulist_heading_0">
+<li>
+<p>To verify that the user <code>andrew</code> has the <code>rw-</code> permission, the user <code>susan</code> has the <code>---</code> permission, and other users have the <code>r--</code> permission, use:</p>
+<div class="listingblock">
+<div class="content">
+<pre>$ getfacl group-project</pre>
+</div>
+</div>
+<p>The output returns:</p>
+<div class="listingblock">
+<div class="content">
+<pre># file: group-project&#x000A;# owner: root&#x000A;# group: root&#x000A;user:andrew:rw-&#x000A;user:susan:---&#x000A;group::r--&#x000A;mask::rw-&#x000A;other::r--</pre>
+</div>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</section>
+<section class="sect1 _additional-resources" pantheon-module-id="67890">
+<h2 id="_additional_resources">Additional resources</h2>
+<div class="sectionbody">
+<ul>
+<li>
+<p><a href="https://access.redhat.com/articles/3131341">Support Policies for RHEL High Availability Clusters - Microsoft Azure Virtual Machines as Cluster Members</a></p>
+</li>
+<li>
+<p><a href="https://access.redhat.com/articles/3071021">Support Policies for RHEL High Availability clusters - Transport Protocols</a></p>
+</li>
+<li>
+<p><a href="https://cloud.google.com/vpc/docs/vpc">VPC network overview</a></p>
+</li>
+<li>
+<p><a href="https://access.redhat.com/articles/2679211">Exploring RHEL High Availability&#8217;s Components, Concepts, and Features - Overview of Transport Protocols</a></p>
+</li>
+<li>
+<p><a href="https://access.redhat.com/articles/2679251">Design Guidance for RHEL High Availability Clusters - Selecting the Transport Protocol</a></p>
+</li>
+</ul>
+</div>
+</section>
+<div class="rh-docs-legal-notice">
+<a class="rh-docs-legal-notice__link" href="https://access.redhat.com/docs-legal-notice">Legal Notices for Trademarks</a>
+</div>
+</article>
+<footer class="rhdocs-footer" id="rhdocs-footer">
+<div class="rhdocs-footer-text" id="rhdocs-footer-text">
+Last updated 2021-09-03 10:36:34 -0400
+</div>
+</footer>
+</cp-documentation>
+</body>
+</html>
