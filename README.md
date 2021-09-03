@@ -1,4 +1,4 @@
-# Front-end build for Pantheon
+# Ascii Doc Templates for Red Hat Documentation
 
 ## Installing tools for building CSS
 
