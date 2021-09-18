@@ -25,7 +25,7 @@ const asciiDocTemplates = 'templates';
 const startBrowserSync = (done) => {
   browserSync.init({
     'server': './',
-    'index': './examples/ascii-doc-styleguide.html',
+    'index': './index.html',
     'ui': false,
   });
   done();
@@ -40,19 +40,18 @@ const compileAsciiDoc = (path, env) =>  {
   return shell.task(`asciidoctor -T ${asciiDocTemplates} -a pantheonenv=${env} ${path}`);
 }
 
-const compileAllAsciiDocs = (env) => {
-  return [
-    compileAsciiDoc('examples/ascii-doc-styleguide.adoc', env),
-    compileAsciiDoc('examples/assembly_access-control-list.adoc', env),
-  ]
-}
+const compileAllAsciiDocs = (env) => series(
+  compileAsciiDoc('examples/ascii-doc-styleguide.adoc', env),
+  compileAsciiDoc('examples/code-samples.adoc', env),
+  compileAsciiDoc('examples/assembly_access-control-list.adoc', env),
+);
 
 
 const watchTasks = () => {
   watch(
     `${asciiDocTemplates}/**/*.haml`,
     series(
-      compileAllAsciiDocs,
+      compileAllAsciiDocs('localdev'),
       reloadBrowserSync
     )
   );
@@ -60,7 +59,7 @@ const watchTasks = () => {
   watch(
     'examples/**/*.adoc',
     series(
-      compileAllAsciiDocs,
+      compileAllAsciiDocs('localdev'),
       reloadBrowserSync
     )
   );
@@ -71,18 +70,18 @@ const watchTasks = () => {
  */
 // Will use frontend assets from prod
 task('default',
-  parallel(...compileAllAsciiDocs('prod'))
+  compileAllAsciiDocs('prod')
 );
 
 // Will use local frontend assets
 task('build:dev',
-  parallel(...compileAllAsciiDocs('localdev'))
+  compileAllAsciiDocs('localdev')
 );
 
 // Starts browsersync, watches project for changes and reloads all browsers
 task('watch',
   series(
-    'build:dev',
+    compileAllAsciiDocs('localdev'),
     parallel(
       startBrowserSync,
       watchTasks

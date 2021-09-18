@@ -39,49 +39,6 @@ v1.0.3, 2014-12-28
 // Stolen and modified from:
 // https://gist.github.com/mojavelinux/8198e5a5ac2570a0cf30
 
-[source,xml]
---
-<topology>
-  <cells num="2">
-    <cell id="0">
-      <memory unit="KiB">15624346</memory>
-      <pages unit="KiB" size="4">3906086</pages>
-      <pages unit="KiB" size="2048">0</pages>
-      <pages unit="KiB" size="1048576">0</pages>
-      <distances>
-        <sibling id="0" value="10" />
-        <sibling id="1" value="21" />
-      </distances>
-      <cpus num="6">
-        <cpu id="0" socket_id="0" core_id="0" siblings="0,3" />
-        <cpu id="1" socket_id="0" core_id="1" siblings="1,4" />
-        <cpu id="2" socket_id="0" core_id="2" siblings="2,5" />
-        <cpu id="3" socket_id="0" core_id="0" siblings="0,3" />
-        <cpu id="4" socket_id="0" core_id="1" siblings="1,4" />
-        <cpu id="5" socket_id="0" core_id="2" siblings="2,5" />
-      </cpus>
-    </cell>
-    <cell id="1">
-      <memory unit="KiB">15624346</memory>
-      <pages unit="KiB" size="4">3906086</pages>
-      <pages unit="KiB" size="2048">0</pages>
-      <pages unit="KiB" size="1048576">0</pages>
-      <distances>
-        <sibling id="0" value="21" />
-        <sibling id="1" value="10" />
-      </distances>
-      <cpus num="6">
-        <cpu id="6" socket_id="1" core_id="3" siblings="6,9" />
-        <cpu id="7" socket_id="1" core_id="4" siblings="7,10" />
-        <cpu id="8" socket_id="1" core_id="5" siblings="8,11" />
-        <cpu id="9" socket_id="1" core_id="3" siblings="6,9" />
-        <cpu id="10" socket_id="1" core_id="4" siblings="7,10" />
-        <cpu id="11" socket_id="1" core_id="5" siblings="8,11" />
-      </cpus>
-    </cell>
-  </cells>
-</topology>
---
 
 AsciiDoc is a mature, lightweight markup language for authoring notes, articles, documentation, books, web pages, slide decks and man pages in plain text.
 {description}
@@ -489,20 +446,21 @@ image:sunset.jpg[Sunset,150,150,role="right"] What a beautiful sunset!
 TIP: There are a variety of attributes available to {image-attributes}[position and frame images].
 
 .Inline
-Click image:icons/play.png[Play, title="Play"] to get the party started.
+Click image:play.png[Play, title="Play"] to get the party started.
 
-Click image:icons/pause.png[title="Pause"] when you need a break.
-====
+Click image:play.png[title="Play"] again to pause.
 
 .Embedded
 ----
-= Document Title
+== Document Title
 :data-uri:
 ----
 
 NOTE: When the `data-uri` attribute is set, all images in the document--including admonition icons--are embedded into the document as https://developer.mozilla.org/en-US/docs/data_URIs[data URIs].
 
 TIP: Instead of declaring the `data-uri` attribute in the document, you can pass it as a command-line argument using `-a data-uri`.
+
+Fancy.
 
 == Videos
 
@@ -556,33 +514,28 @@ DEPENDENCIES
   asciidoctor (~> 0.1.4)
 ----
 
-[listing]
 .Code block with title and syntax highlighting
-[source,ruby]
-.app.rb
-----
-require 'sinatra'
-
-get '/hi' do
-  "Hello World!"
-end
+[source,html]
+<p>
+  <a href="https://www.redhat.com/">Red Hat</a>
+</p>
 ----
 
-[listing, subs="specialcharacters"]
 .Code block with callouts
-[source,ruby]
-----
-require 'sinatra' <1>
 
-get '/hi' do      <2>
-  "Hello World!"  <3>
-end
+[source,yml]
 ----
-<1> Library import
-<2> URL mapping
-<3> Content for response
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: <storage-class> <1>
+  annotations:
+    storageclass.kubernetes.io/is-default-class: "true"
+provisioner: <provisioner-name> <2>
+----
+<1> The name of the storage class that will be created.
+<2> The name of the CSI driver that has been installed.
 
-[listing, subs="specialcharacters"]
 .Code block with non-selectable callouts
 ----
 line of code  // <1>
@@ -593,7 +546,6 @@ line of code  ;; <3>
 <2> A callout behind a line comment for Ruby, Python, Perl, etc.
 <3> A callout behind a line comment for Clojure.
 
-[listing, subs="specialcharacters"]
 .XML code block with a non-selectable callout
 [source,xml]
 ----

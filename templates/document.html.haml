@@ -10,7 +10,7 @@
   - portalUrl = 'access.stage.redhat.com'
 
 - if (@document.attr :pantheonenv) == 'localdev'
-  - assetsPrefix = "/node_modules"
+  - assetsPrefix = "../node_modules"
 - else
   - assetsPrefix = "//#{portalUrl}/webassets/avalon/j/public_modules/node_modules"
 
@@ -25,6 +25,7 @@
     /[if IE]
       %meta(http-equiv="X-UA-Compatible" content="IE=edge")
     %meta(name='viewport' content='width=device-width, initial-scale=1.0')
+    %meta(name='robots' content='noindex')
     %meta(name='generator' content="Asciidoctor #{attr 'asciidoctor-version'}")
     - { 'app-name'=>'application-name', 'description'=>nil, 'keywords'=>nil, 'authors'=>'author', 'copyright'=>nil }.each do |key, meta|
       - if attr? key
@@ -35,7 +36,10 @@
 
     %link(rel="stylesheet" href=rhDocsPath)
 
-    %script(src="#{assetsPrefix}/@cpelements/cp-documentation/dist/cp-documentation.min.js" type="module")
+    - if (@document.attr :pantheonenv) == 'localdev'
+      %script(src="#{assetsPrefix}/@cpelements/cp-documentation/dist/cp-documentation.js" type="module")
+    - else
+      %script(src="#{assetsPrefix}/@cpelements/cp-documentation/dist/cp-documentation.min.js" type="module")
 
     :javascript
       window.addEventListener('load', function() {

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <!--[if IE]>
+  <meta content="IE=edge" http-equiv="X-UA-Compatible">
+  <![endif]-->
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <meta content="Asciidoctor 2.0.16" name="generator">
+  <meta content="This guide is a quick reference for the common formatting markup and document elements in the AsciiDoc syntax." name="description">
+  <meta content="AsciiDoc, Asciidoctor, syntax, reference, cheatsheet" name="keywords">
+  <meta content="Dan Allen, Sarah White" name="author">
+  <meta name="robots" content="noindex">
+  <title>Red Hat AsciiDoc Templates</title>
+  <link href="https://static.redhat.com/libs/redhat/redhat-font/2/webfonts/red-hat-font.css" rel="stylesheet">
+  <link href="node_modules/@cpelements/cp-documentation/dist/rhdocs.min.css" rel="stylesheet">
+  <script src="node_modules/@cpelements/cp-documentation/dist/cp-documentation.js" type="module"></script>
+  <script>
+    window.addEventListener('load', function() {
+      var cpDocumentations = document.querySelectorAll('cp-documentation');
+      for (let index = 0; index < cpDocumentations.length; index++) {
+        const cpDocumentation = cpDocumentations[index];
+        cpDocumentation.setAttribute('pfe-c-non-prod', '');
+      }
+    });
+  </script>
+</head>
+<body class="article pantheon-render rhdocs">
+  <cp-documentation id="doc-content">
+    <header class="rhdocs__header" id="rhdocs-header">
+      <div class="rhdocs__header__primary-wrapper">
+        <h1>Red Hat AsciiDoc Templates</h1>
+      </div>
+    </header>
+    <article class="rhdocs-content" id="rhdocs-content">
+      <p>
+        This repo is used to create and test the AsciiDoc templates used by Red Hat's documentation platform. <a href="https://github.com/redhataccess/adoc-templates">See the repo for more information</a>.
+      </p>
+      <h2 id="demo-pages-yo">Here are some demo pages:</h2>
+      <ul aria-labelledby="demo-pages-yo">
+        <li>
+          <a href="examples/ascii-doc-styleguide.html">AsciiDoc Styleguide</a> - A listing of all elements that can show up in an AsciiDoc.
+        </li>
+        <li>
+          <a href="examples/code-samples.html">Code Samples</a> - A list of all of the supported code formats and what they look like when syntax highlighting is applied.
+        </li>
+        <li>
+          <a href="examples/assembly_access-control-list.html">A Sample 'Assembly'</a> - A sample document that has been modified for testing purposes.
+        </li>
+      </ul>
+    </article>
+  </cp-documentation>
+</body>
+</html>

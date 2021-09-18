@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<!--[if IE]>
+<meta content="IE=edge" http-equiv="X-UA-Compatible">
+<![endif]-->
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<meta content="noindex" name="robots">
+<meta content="Asciidoctor 2.0.16" name="generator">
+<title>Code Sample Page</title>
+<link href="https://static.redhat.com/libs/redhat/redhat-font/2/webfonts/red-hat-font.css" rel="stylesheet">
+<link href="../node_modules/@cpelements/cp-documentation/dist/rhdocs.min.css" rel="stylesheet">
+<script src="../node_modules/@cpelements/cp-documentation/dist/cp-documentation.js" type="module"></script>
+<script>
+  window.addEventListener('load', function() {
+    var cpDocumentations = document.querySelectorAll('cp-documentation');
+    for (let index = 0; index < cpDocumentations.length; index++) {
+      const cpDocumentation = cpDocumentations[index];
+      cpDocumentation.setAttribute('pfe-c-non-prod', '');
+    }
+  });
+</script>
+</head>
+<body class="article pantheon-render rhdocs">
+<cp-documentation id="doc-content">
+<header class="rhdocs__header" id="rhdocs-header">
+<div class="rhdocs__header__primary-wrapper">
+<h1>Code Sample Page</h1>
+</div>
+</header>
+<article class="rhdocs-content" id="rhdocs-content">
+<section class="sect1">
+<h2 id="_syntax_highlighting_features">Syntax Highlighting Features</h2>
+<div class="sectionbody">
+<section class="sect2">
+<h3 id="_line_annotation">Line Annotation</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-yml" data-lang="yml">apiVersion: storage.k8s.io/v1&#x000A;kind: StorageClass&#x000A;metadata:&#x000A;  name: &lt;storage-class&gt; <span class="colist-num"><i aria-label="See #1 in list below" class="conum">1</i></span>&#x000A;  annotations:&#x000A;    storageclass.kubernetes.io/is-default-class: "true"&#x000A;provisioner: &lt;provisioner-name&gt; <span class="colist-num"><i aria-label="See #2 in list below" class="conum">2</i></span></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<ol>
+<li>The name of the storage class that will be created.</li>
+<li>The name of the CSI driver that has been installed.</li>
+</ol>
+</div>
+</section>
+</div>
+</section>
+<section class="sect1">
+<h2 id="_code_languages">Code Languages</h2>
+<div class="sectionbody">
+<section class="sect2">
+<h3 id="_txt"><code>txt</code></h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-txt" data-lang="txt">... [SNIP]&#x000A;Wrote: /home/mirek/rpmbuild/SRPMS/hello-world-1-1.src.rpm&#x000A;Wrote: /home/mirek/rpmbuild/RPMS/x86_64/hello-world-1-1.x86_64.rpm&#x000A;Executing(%clean): /bin/sh -e /var/tmp/rpm-tmp.wgaJzv&#x000A;+ umask 022&#x000A;+ cd /home/mirek/rpmbuild/BUILD&#x000A;+ /usr/bin/rm -rf /home/mirek/rpmbuild/BUILDROOT/hello-world-1-1.x86_64&#x000A;+ exit 0</code></pre>
+</div>
+</div>
+</section>
+<section class="sect2">
+<h3 id="_text"><code>text</code></h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-text" data-lang="text">You have new non-redundant VPN connections&#x000A;&#x000A;One or more of your vpn connections are not using both tunnels. This mode of&#x000A;operation is not highly available and we strongly recommend you configure your&#x000A;second tunnel. View your non-redundant VPN connections.</code></pre>
+</div>
+</div>
+</section>
+<section class="sect2">
+<h3 id="_config"><code>config</code></h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-config" data-lang="config">kernel.sched_migration_cost_ns=60000</code></pre>
+</div>
+</div>
+</section>
+<section class="sect2">
+<h3 id="_adoc"><code>adoc</code></h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-adoc" data-lang="adoc">.Sample document&#x000A;====&#x000A;Here's a sample AsciiDoc document:&#x000A;&#x000A;[listing]&#x000A;....&#x000A;= Title of Document&#x000A;Doc Writer&#x000A;:toc:&#x000A;&#x000A;This guide provides...&#x000A;....&#x000A;&#x000A;The document header is useful, but not required.&#x000A;====</code></pre>
+</div>
+</div>
+</section>
+<section class="sect2">
+<h3 id="_asciidoc"><code>asciidoc</code></h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-asciidoc" data-lang="asciidoc">.Sample document&#x000A;====&#x000A;Here's a sample AsciiDoc document:&#x000A;&#x000A;[listing]&#x000A;....&#x000A;= Title of Document&#x000A;Doc Writer&#x000A;:toc:&#x000A;&#x000A;This guide provides...&#x000A;....&#x000A;&#x000A;The document header is useful, but not required.&#x000A;====</code></pre>
+</div>
+</div>
+</section>
+<section class="sect2">
+<h3 id="_bash"><code>bash</code></h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">#!/bin/bash&#x000A;&#x000A;# optional argument handling&#x000A;if [[ "$1" == "version" ]]&#x000A;then&#x000A;    echo "1.0.0"&#x000A;    exit 0&#x000A;fi&#x000A;&#x000A;# optional argument handling&#x000A;if [[ "$1" == "config" ]]&#x000A;then&#x000A;    echo $KUBECONFIG&#x000A;    exit 0&#x000A;fi&#x000A;&#x000A;echo "I am a plugin named kubectl-foo"</code></pre>
+</div>
+</div>
+</section>
+<section class="sect2">
+<h3 id="_shell"><code>shell</code></h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-shell" data-lang="shell"># oc create -f - &lt;&lt; EOF&#x000A;apiVersion: storage.k8s.io/v1&#x000A;kind: StorageClass&#x000A;metadata:&#x000A;  name: &lt;storage-class&gt;&#x000A;  annotations:&#x000A;    storageclass.kubernetes.io/is-default-class: "true"&#x000A;provisioner: &lt;provisioner-name&gt;&#x000A;parameters:&#x000A;EOF</code></pre>
+</div>
+</div>
+</section>
+<section class="sect2">
+<h3 id="_terminal"><code>terminal</code></h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ SECRET=`oc get secret -n openshift-user-workload-monitoring | grep  prometheus-user-workload-token | head -n 1 | awk '{print $1 }'`</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-terminal" data-lang="terminal">$ cat &lt;&lt; EOF| oc create -f -&#x000A;apiVersion: v1&#x000A;kind: Namespace&#x000A;metadata:&#x000A;  name: openshift-ptp&#x000A;  annotations:&#x000A;    workload.openshift.io/allowed: management&#x000A;  labels:&#x000A;    name: openshift-ptp&#x000A;    openshift.io/cluster-monitoring: "true"&#x000A;EOF</code></pre>
+</div>
+</div>
+</section>
+<section class="sect2">
+<h3 id="_c"><code>c</code></h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-c" data-lang="c">#include &lt;stdio.h&gt;&#x000A;&#x000A;int main(int argc, char *argv[]) {&#x000A;  printf("Hello, World!\n");&#x000A;  return 0;&#x000A;}</code></pre>
+</div>
+</div>
+</section>
+<section class="sect2">
+<h3 id="_dns"><code>dns</code></h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-dns" data-lang="dns">api.&lt;cluster_name&gt;.&lt;base_domain&gt;.  IN  A  &lt;API_FIP&gt;&#x000A;*.apps.&lt;cluster_name&gt;.&lt;base_domain&gt;. IN  A &lt;apps_FIP&gt;</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-dns" data-lang="dns">api.my-cluster.virtlab.example.com	10.35.1.19&#x000A;*.apps.my-cluster.virtlab.example.com	10.35.1.20</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-dns" data-lang="dns">&lt;apps_FIP&gt; console-openshift-console.apps.&lt;cluster name&gt;.&lt;base domain&gt;&#x000A;&lt;apps_FIP&gt; integrated-oauth-server-openshift-authentication.apps.&lt;cluster name&gt;.&lt;base domain&gt;&#x000A;&lt;apps_FIP&gt; oauth-openshift.apps.&lt;cluster name&gt;.&lt;base domain&gt;&#x000A;&lt;apps_FIP&gt; prometheus-k8s-openshift-monitoring.apps.&lt;cluster name&gt;.&lt;base domain&gt;&#x000A;&lt;apps_FIP&gt; grafana-openshift-monitoring.apps.&lt;cluster name&gt;.&lt;base domain&gt;&#x000A;&lt;apps_FIP&gt; &lt;app name&gt;.apps.&lt;cluster name&gt;.&lt;base domain&gt;</code></pre>
+</div>
+</div>
+</section>
+<section class="sect2">
+<h3 id="_dns_zone_file"><code>dns-zone-file</code></h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-dns-zone-file" data-lang="dns-zone-file">$ORIGIN localhost.&#x000A;@  86400  IN  SOA   @  root (&#x000A;                  1999010100 ; serial&#x000A;                       10800 ; refresh (3 hours)&#x000A;                         900 ; retry (15 minutes)&#x000A;                      604800 ; expire (1 week)&#x000A;                       86400 ; minimum (1 day)&#x000A;                    )&#x000A;@  86400  IN  NS    @&#x000A;@  86400  IN  A     127.0.0.1&#x000A;@  86400  IN  AAAA  ::1</code></pre>
+</div>
+</div>
+</section>
+<section class="sect2">
+<h3 id="_dns_zone"><code>dns-zone</code></h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-dns-zone" data-lang="dns-zone">$ORIGIN localhost.&#x000A;@  86400  IN  SOA   @  root (&#x000A;                  1999010100 ; serial&#x000A;                       10800 ; refresh (3 hours)&#x000A;                         900 ; retry (15 minutes)&#x000A;                      604800 ; expire (1 week)&#x000A;                       86400 ; minimum (1 day)&#x000A;                    )&#x000A;@  86400  IN  NS    @&#x000A;@  86400  IN  A     127.0.0.1&#x000A;@  86400  IN  AAAA  ::1</code></pre>
+</div>
+</div>
+</section>
+<section class="sect2">
+<h3 id="_go"><code>go</code></h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-go" data-lang="go">type MemcachedSpec struct {&#x000A;	// Size is the size of the memcached deployment&#x000A;	Size int32 `json:"size"`&#x000A;}&#x000A;type MemcachedStatus struct {&#x000A;	// Nodes are the names of the memcached pods&#x000A;	Nodes []string `json:"nodes"`&#x000A;}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-go" data-lang="go">func (r *ReconcileMemcached) Reconcile(request reconcile.Request) (reconcile.Result, error) {&#x000A;  // Lookup the Memcached instance for this reconcile request&#x000A;  memcached := &amp;cachev1alpha1.Memcached{}&#x000A;  err := r.client.Get(context.TODO(), request.NamespacedName, memcached)&#x000A;  ...&#x000A;}</code></pre>
+</div>
+</div>
+</section>
+<section class="sect2">
+<h3 id="_golang"><code>golang</code></h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-go" data-lang="go">type MemcachedSpec struct {&#x000A;	// Size is the size of the memcached deployment&#x000A;	Size int32 `json:"size"`&#x000A;}&#x000A;type MemcachedStatus struct {&#x000A;	// Nodes are the names of the memcached pods&#x000A;	Nodes []string `json:"nodes"`&#x000A;}</code></pre>
+</div>
+</div>
+</section>
+<section class="sect2">
+<h3 id="_json"><code>json</code></h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-json" data-lang="json">{&#x000A;  "cluster_name" : "elasticsearch",&#x000A;  "status" : "yellow",&#x000A;  "timed_out" : false,&#x000A;  "number_of_nodes" : 3,&#x000A;  "number_of_data_nodes" : 3,&#x000A;  "active_primary_shards" : 8,&#x000A;  "active_shards" : 16,&#x000A;  "relocating_shards" : 0,&#x000A;  "initializing_shards" : 0,&#x000A;  "unassigned_shards" : 1,&#x000A;  "delayed_unassigned_shards" : 0,&#x000A;  "number_of_pending_tasks" : 0,&#x000A;  "number_of_in_flight_fetch" : 0,&#x000A;  "task_max_waiting_in_queue_millis" : 0,&#x000A;  "active_shards_percent_as_number" : 100.0&#x000A;}</code></pre>
+</div>
+</div>
+</section>
+</div>
+</section>
+<section class="sect1">
+<h2 id="_webmanifest">webmanifest</h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-webmanifest" data-lang="webmanifest">{&#x000A;  "name": "HackerWeb",&#x000A;  "short_name": "HackerWeb",&#x000A;  "start_url": ".",&#x000A;  "display": "standalone",&#x000A;  "background_color": "#fff",&#x000A;  "description": "A readable Hacker News app.",&#x000A;  "icons": [{&#x000A;    "src": "images/touch/homescreen48.png",&#x000A;    "sizes": "48x48",&#x000A;    "type": "image/png"&#x000A;  }, {&#x000A;    "src": "images/touch/homescreen72.png",&#x000A;    "sizes": "72x72",&#x000A;    "type": "image/png"&#x000A;  }, {&#x000A;    "src": "images/touch/homescreen96.png",&#x000A;    "sizes": "96x96",&#x000A;    "type": "image/png"&#x000A;  }, {&#x000A;    "src": "images/touch/homescreen144.png",&#x000A;    "sizes": "144x144",&#x000A;    "type": "image/png"&#x000A;  }, {&#x000A;    "src": "images/touch/homescreen168.png",&#x000A;    "sizes": "168x168",&#x000A;    "type": "image/png"&#x000A;  }, {&#x000A;    "src": "images/touch/homescreen192.png",&#x000A;    "sizes": "192x192",&#x000A;    "type": "image/png"&#x000A;  }],&#x000A;  "related_applications": [{&#x000A;    "platform": "play",&#x000A;    "url": "https://play.google.com/store/apps/details?id=cheeaun.hackerweb"&#x000A;  }]&#x000A;}</code></pre>
+</div>
+</div>
+<section class="sect2">
+<h3 id="_make"><code>make</code></h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-makefile" data-lang="makefile">CC=gcc&#x000A;CFLAGS=-c -Wall&#x000A;SOURCE=hello.c&#x000A;OBJ=$(SOURCE:.c=.o)&#x000A;EXE=hello&#x000A;&#x000A;all: $(SOURCE) $(EXE)&#x000A;&#x000A;$(EXE): $(OBJ)&#x000A;        $(CC) $(OBJ) -o $@&#x000A;&#x000A;%.o: %.c&#x000A;        $(CC) $(CFLAGS) $&lt; -o $@&#x000A;&#x000A;clean:&#x000A;        rm -rf $(OBJ) $(EXE)</code></pre>
+</div>
+</div>
+</section>
+<section class="sect2">
+<h3 id="_makefile"><code>makefile</code></h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-makefile" data-lang="makefile">CC=gcc&#x000A;CFLAGS=-c -Wall&#x000A;SOURCE=hello.c&#x000A;OBJ=$(SOURCE:.c=.o)&#x000A;EXE=hello&#x000A;&#x000A;all: $(SOURCE) $(EXE)&#x000A;&#x000A;$(EXE): $(OBJ)&#x000A;        $(CC) $(OBJ) -o $@&#x000A;&#x000A;%.o: %.c&#x000A;        $(CC) $(CFLAGS) $&lt; -o $@&#x000A;&#x000A;clean:&#x000A;        rm -rf $(OBJ) $(EXE)</code></pre>
+</div>
+</div>
+</section>
+<section class="sect2">
+<h3 id="_markup"><code>markup</code></h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-markup" data-lang="markup">&lt;h1 id="page-title" class="new red wow"&gt;This is some markup!&lt;/h1&gt;&#x000A;&lt;p&gt;Et eiusmod id dolore nulla cillum eiusmod deserunt. Pariatur Lorem est voluptate adipisicing nulla ullamco cupidatat labore anim. Dolore dolor occaecat pariatur ut id. Nulla do veniam sint ex commodo reprehenderit Lorem nostrud occaecat aute nulla excepteur.&lt;br&gt;&#x000A;Do sint tempor cupidatat quis officia eu culpa aute consectetur id.&lt;/p&gt;&#x000A;&#x000A;&lt;ul&gt;&#x000A;  &lt;li&gt;Sit pariatur nisi&lt;/li&gt;&#x000A;  &lt;li&gt;Ut esse excepteur aliquip&lt;/li&gt;&#x000A;  &lt;li&gt;amet non deserunt laborum proident&lt;/li&gt;&#x000A;&lt;/ul&gt;</code></pre>
+</div>
+</div>
+</section>
+<section class="sect2">
+<h3 id="_html"><code>html</code></h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-html" data-lang="html">&lt;h1 id="page-title" class="new red wow"&gt;This is some markup!&lt;/h1&gt;&#x000A;&lt;p&gt;Et eiusmod id dolore nulla cillum eiusmod deserunt. Pariatur Lorem est voluptate adipisicing nulla ullamco cupidatat labore anim. Dolore dolor occaecat pariatur ut id. Nulla do veniam sint ex commodo reprehenderit Lorem nostrud occaecat aute nulla excepteur.&lt;br&gt;&#x000A;Do sint tempor cupidatat quis officia eu culpa aute consectetur id.&lt;/p&gt;&#x000A;&#x000A;&lt;ul&gt;&#x000A;  &lt;li&gt;Sit pariatur nisi&lt;/li&gt;&#x000A;  &lt;li&gt;Ut esse excepteur aliquip&lt;/li&gt;&#x000A;  &lt;li&gt;amet non deserunt laborum proident&lt;/li&gt;&#x000A;&lt;/ul&gt;</code></pre>
+</div>
+</div>
+</section>
+<section class="sect2">
+<h3 id="_xml"><code>xml</code></h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-xml" data-lang="xml">&lt;topology&gt;&#x000A;  &lt;cells num="2"&gt;&#x000A;    &lt;cell id="0"&gt;&#x000A;      &lt;memory unit="KiB"&gt;15624346&lt;/memory&gt;&#x000A;      &lt;pages unit="KiB" size="4"&gt;3906086&lt;/pages&gt;&#x000A;      &lt;pages unit="KiB" size="2048"&gt;0&lt;/pages&gt;&#x000A;      &lt;pages unit="KiB" size="1048576"&gt;0&lt;/pages&gt;&#x000A;      &lt;distances&gt;&#x000A;        &lt;sibling id="0" value="10" /&gt;&#x000A;        &lt;sibling id="1" value="21" /&gt;&#x000A;      &lt;/distances&gt;&#x000A;      &lt;cpus num="6"&gt;&#x000A;        &lt;cpu id="0" socket_id="0" core_id="0" siblings="0,3" /&gt;&#x000A;        &lt;cpu id="1" socket_id="0" core_id="1" siblings="1,4" /&gt;&#x000A;        &lt;cpu id="2" socket_id="0" core_id="2" siblings="2,5" /&gt;&#x000A;        &lt;cpu id="3" socket_id="0" core_id="0" siblings="0,3" /&gt;&#x000A;        &lt;cpu id="4" socket_id="0" core_id="1" siblings="1,4" /&gt;&#x000A;        &lt;cpu id="5" socket_id="0" core_id="2" siblings="2,5" /&gt;&#x000A;      &lt;/cpus&gt;&#x000A;    &lt;/cell&gt;&#x000A;    &lt;cell id="1"&gt;&#x000A;      &lt;memory unit="KiB"&gt;15624346&lt;/memory&gt;&#x000A;      &lt;pages unit="KiB" size="4"&gt;3906086&lt;/pages&gt;&#x000A;      &lt;pages unit="KiB" size="2048"&gt;0&lt;/pages&gt;&#x000A;      &lt;pages unit="KiB" size="1048576"&gt;0&lt;/pages&gt;&#x000A;      &lt;distances&gt;&#x000A;        &lt;sibling id="0" value="21" /&gt;&#x000A;        &lt;sibling id="1" value="10" /&gt;&#x000A;      &lt;/distances&gt;&#x000A;      &lt;cpus num="6"&gt;&#x000A;        &lt;cpu id="6" socket_id="1" core_id="3" siblings="6,9" /&gt;&#x000A;        &lt;cpu id="7" socket_id="1" core_id="4" siblings="7,10" /&gt;&#x000A;        &lt;cpu id="8" socket_id="1" core_id="5" siblings="8,11" /&gt;&#x000A;        &lt;cpu id="9" socket_id="1" core_id="3" siblings="6,9" /&gt;&#x000A;        &lt;cpu id="10" socket_id="1" core_id="4" siblings="7,10" /&gt;&#x000A;        &lt;cpu id="11" socket_id="1" core_id="5" siblings="8,11" /&gt;&#x000A;      &lt;/cpus&gt;&#x000A;    &lt;/cell&gt;&#x000A;  &lt;/cells&gt;&#x000A;&lt;/topology&gt;</code></pre>
+</div>
+</div>
+</section>
+<section class="sect2">
+<h3 id="_promql"><code>promql</code></h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-promql" data-lang="promql">topk(3, sum by (name, namespace) (round(irate(kubevirt_vmi_vcpu_wait_seconds[6m]), 0.1))) &gt; 0</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-promql" data-lang="promql">topk(3, sum by (name, namespace) (round(irate(kubevirt_vmi_network_receive_bytes_total[6m]), 0.1)) + sum by (name, namespace) (round(irate(kubevirt_vmi_network_transmit_bytes_total[6m]) , 0.1))) &gt; 0</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-promql" data-lang="promql">topk(3, sum by (name, namespace) (round(irate(kubevirt_vmi_storage_read_traffic_bytes_total[6m]), 0.1))&#x000A;+ sum by (name, namespace) (round(irate(kubevirt_vmi_storage_write_traffic_bytes_total[6m]), 0.1))) &gt; 0</code></pre>
+</div>
+</div>
+</section>
+</div>
+</section>
+<div class="rh-docs-legal-notice">
+<a class="rh-docs-legal-notice__link" href="https://access.redhat.com/docs-legal-notice">Legal Notices for Trademarks</a>
+</div>
+</article>
+<footer class="rhdocs-footer" id="rhdocs-footer">
+<div class="rhdocs-footer-text" id="rhdocs-footer-text">
+Last updated 2021-09-18 12:49:00 -0400
+</div>
+</footer>
+</cp-documentation>
+</body>
+</html>

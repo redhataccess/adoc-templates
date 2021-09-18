@@ -6,14 +6,15 @@
 <meta content="IE=edge" http-equiv="X-UA-Compatible">
 <![endif]-->
 <meta content="width=device-width, initial-scale=1.0" name="viewport">
+<meta content="noindex" name="robots">
 <meta content="Asciidoctor 2.0.16" name="generator">
 <meta content="This guide is a quick reference for the common formatting markup and document elements in the AsciiDoc syntax." name="description">
 <meta content="AsciiDoc, Asciidoctor, syntax, reference, cheatsheet" name="keywords">
 <meta content="Dan Allen, Sarah White" name="author">
 <title>AsciiDoc Syntax Quick Reference</title>
 <link href="https://static.redhat.com/libs/redhat/redhat-font/2/webfonts/red-hat-font.css" rel="stylesheet">
-<link href="/node_modules/@cpelements/cp-documentation/dist/rhdocs.min.css" rel="stylesheet">
-<script src="/node_modules/@cpelements/cp-documentation/dist/cp-documentation.min.js" type="module"></script>
+<link href="../node_modules/@cpelements/cp-documentation/dist/rhdocs.min.css" rel="stylesheet">
+<script src="../node_modules/@cpelements/cp-documentation/dist/cp-documentation.js" type="module"></script>
 <script>
   window.addEventListener('load', function() {
     var cpDocumentations = document.querySelectorAll('cp-documentation');
@@ -39,11 +40,6 @@
 <p><a href="/dev-preview/assembly_access-control-list.html">Short Assembly Demo</a></p>
 </li>
 </ul>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-xml" data-lang="xml">&lt;topology&gt;&#x000A;  &lt;cells num="2"&gt;&#x000A;    &lt;cell id="0"&gt;&#x000A;      &lt;memory unit="KiB"&gt;15624346&lt;/memory&gt;&#x000A;      &lt;pages unit="KiB" size="4"&gt;3906086&lt;/pages&gt;&#x000A;      &lt;pages unit="KiB" size="2048"&gt;0&lt;/pages&gt;&#x000A;      &lt;pages unit="KiB" size="1048576"&gt;0&lt;/pages&gt;&#x000A;      &lt;distances&gt;&#x000A;        &lt;sibling id="0" value="10" /&gt;&#x000A;        &lt;sibling id="1" value="21" /&gt;&#x000A;      &lt;/distances&gt;&#x000A;      &lt;cpus num="6"&gt;&#x000A;        &lt;cpu id="0" socket_id="0" core_id="0" siblings="0,3" /&gt;&#x000A;        &lt;cpu id="1" socket_id="0" core_id="1" siblings="1,4" /&gt;&#x000A;        &lt;cpu id="2" socket_id="0" core_id="2" siblings="2,5" /&gt;&#x000A;        &lt;cpu id="3" socket_id="0" core_id="0" siblings="0,3" /&gt;&#x000A;        &lt;cpu id="4" socket_id="0" core_id="1" siblings="1,4" /&gt;&#x000A;        &lt;cpu id="5" socket_id="0" core_id="2" siblings="2,5" /&gt;&#x000A;      &lt;/cpus&gt;&#x000A;    &lt;/cell&gt;&#x000A;    &lt;cell id="1"&gt;&#x000A;      &lt;memory unit="KiB"&gt;15624346&lt;/memory&gt;&#x000A;      &lt;pages unit="KiB" size="4"&gt;3906086&lt;/pages&gt;&#x000A;      &lt;pages unit="KiB" size="2048"&gt;0&lt;/pages&gt;&#x000A;      &lt;pages unit="KiB" size="1048576"&gt;0&lt;/pages&gt;&#x000A;      &lt;distances&gt;&#x000A;        &lt;sibling id="0" value="21" /&gt;&#x000A;        &lt;sibling id="1" value="10" /&gt;&#x000A;      &lt;/distances&gt;&#x000A;      &lt;cpus num="6"&gt;&#x000A;        &lt;cpu id="6" socket_id="1" core_id="3" siblings="6,9" /&gt;&#x000A;        &lt;cpu id="7" socket_id="1" core_id="4" siblings="7,10" /&gt;&#x000A;        &lt;cpu id="8" socket_id="1" core_id="5" siblings="8,11" /&gt;&#x000A;        &lt;cpu id="9" socket_id="1" core_id="3" siblings="6,9" /&gt;&#x000A;        &lt;cpu id="10" socket_id="1" core_id="4" siblings="7,10" /&gt;&#x000A;        &lt;cpu id="11" socket_id="1" core_id="5" siblings="8,11" /&gt;&#x000A;      &lt;/cpus&gt;&#x000A;    &lt;/cell&gt;&#x000A;  &lt;/cells&gt;&#x000A;&lt;/topology&gt;</code></pre>
-</div>
-</div>
 <p>AsciiDoc is a mature, lightweight markup language for authoring notes, articles, documentation, books, web pages, slide decks and man pages in plain text.
 This guide is a quick reference for the common formatting markup and document elements in the AsciiDoc syntax.</p>
 <div class="admonitionblock note">
@@ -784,15 +780,13 @@ There are a variety of attributes available to <a href="http://asciidoctor.org/d
 </div>
 <div class="paragraph">
 <strong class="heading">Inline</strong>
-<p>Click <span class="image"><img alt="Play" src="images/icons/play.png" title="Play"></span> to get the party started.</p>
+<p>Click <span class="image"><img alt="Play" src="images/play.png" title="Play"></span> to get the party started.</p>
 </div>
-<p>Click <span class="image"><img alt="pause" src="images/icons/pause.png" title="Pause"></span> when you need a break.</p>
-<div class="exampleblock">
-<div class="content">
+<p>Click <span class="image"><img alt="play" src="images/play.png" title="Play"></span> again to pause.</p>
 <div class="listingblock">
 <strong class="heading">Embedded</strong>
 <div class="content">
-<pre>= Document Title&#x000A;:data-uri:</pre>
+<pre>== Document Title&#x000A;:data-uri:</pre>
 </div>
 </div>
 <div class="admonitionblock note">
@@ -807,7 +801,12 @@ When the <code>data-uri</code> attribute is set, all images in the document&#821
 Instead of declaring the <code>data-uri</code> attribute in the document, you can pass it as a command-line argument using <code>-a data-uri</code>.
 </div>
 </div>
-<p>== Videos</p>
+<p>Fancy.</p>
+</div>
+</section>
+<section class="sect1">
+<h2 id="videos">Videos</h2>
+<div class="sectionbody">
 <div class="listingblock">
 <strong class="heading">Block</strong>
 <div class="content">
@@ -832,7 +831,11 @@ Instead of declaring the <code>data-uri</code> attribute in the document, you ca
 You can control the video settings using <a href="http://asciidoctor.org/docs/user-manual/#video">additional attributes and options</a> on the macro.
 </div>
 </div>
-<p>== Source Code</p>
+</div>
+</section>
+<section class="sect1">
+<h2 id="source-code">Source Code</h2>
+<div class="sectionbody">
 <div class="paragraph">
 <strong class="heading">Inline</strong>
 <p>Reference code like <code>types</code> or <code>methods</code> inline.</p>
@@ -856,60 +859,45 @@ You can control the video settings using <a href="http://asciidoctor.org/docs/us
 </div>
 </div>
 <div class="listingblock">
-<strong class="heading">app.rb</strong>
+<strong class="heading">Code block with title and syntax highlighting</strong>
 <div class="content">
-<pre class="highlight"><code class="language-ruby" data-lang="ruby">require 'sinatra'&#x000A;&#x000A;get '/hi' do&#x000A;  "Hello World!"&#x000A;end</code></pre>
+<pre class="highlight"><code class="language-html" data-lang="html">&lt;p&gt;&#x000A;  &lt;a href="https://www.redhat.com/"&gt;Red Hat&lt;/a&gt;&#x000A;&lt;/p&gt;&#x000A;----</code></pre>
 </div>
 </div>
 <div class="listingblock">
 <strong class="heading">Code block with callouts</strong>
 <div class="content">
-<pre class="highlight"><code class="language-ruby" data-lang="ruby">require 'sinatra' &lt;1&gt;&#x000A;&#x000A;get '/hi' do      &lt;2&gt;&#x000A;  "Hello World!"  &lt;3&gt;&#x000A;end</code></pre>
+<pre class="highlight"><code class="language-yml" data-lang="yml">apiVersion: storage.k8s.io/v1&#x000A;kind: StorageClass&#x000A;metadata:&#x000A;  name: &lt;storage-class&gt; <span class="colist-num"><i aria-label="See #1 in list below" class="conum">1</i></span>&#x000A;  annotations:&#x000A;    storageclass.kubernetes.io/is-default-class: "true"&#x000A;provisioner: &lt;provisioner-name&gt; <span class="colist-num"><i aria-label="See #2 in list below" class="conum">2</i></span></code></pre>
 </div>
 </div>
 <div class="colist arabic">
 <ol>
-<li>
-<p>Library import</p>
-</li>
-<li>
-<p>URL mapping</p>
-</li>
-<li>
-<p>Content for response</p>
-</li>
+<li>The name of the storage class that will be created.</li>
+<li>The name of the CSI driver that has been installed.</li>
 </ol>
 </div>
 <div class="listingblock">
 <strong class="heading">Code block with non-selectable callouts</strong>
 <div class="content">
-<pre>line of code  // &lt;1&gt;&#x000A;line of code  # &lt;2&gt;&#x000A;line of code  ;; &lt;3&gt;</pre>
+<pre>line of code  <span class="colist-num"><i aria-label="See #1 in list below" class="conum">1</i></span>&#x000A;line of code  <span class="colist-num"><i aria-label="See #2 in list below" class="conum">2</i></span>&#x000A;line of code  <span class="colist-num"><i aria-label="See #3 in list below" class="conum">3</i></span></pre>
 </div>
 </div>
 <div class="colist arabic">
 <ol>
-<li>
-<p>A callout behind a line comment for C-style languages.</p>
-</li>
-<li>
-<p>A callout behind a line comment for Ruby, Python, Perl, etc.</p>
-</li>
-<li>
-<p>A callout behind a line comment for Clojure.</p>
-</li>
+<li>A callout behind a line comment for C-style languages.</li>
+<li>A callout behind a line comment for Ruby, Python, Perl, etc.</li>
+<li>A callout behind a line comment for Clojure.</li>
 </ol>
 </div>
 <div class="listingblock">
 <strong class="heading">XML code block with a non-selectable callout</strong>
 <div class="content">
-<pre class="highlight"><code class="language-xml" data-lang="xml">&lt;section&gt;&#x000A;  &lt;title&gt;Section Title&lt;/title&gt; &lt;!--1--&gt;&#x000A;&lt;/section&gt;</code></pre>
+<pre class="highlight"><code class="language-xml" data-lang="xml">&lt;section&gt;&#x000A;  &lt;title&gt;Section Title&lt;/title&gt; <span class="colist-num"><i aria-label="See #1 in list below" class="conum">1</i></span>&#x000A;&lt;/section&gt;</code></pre>
 </div>
 </div>
 <div class="colist arabic">
 <ol>
-<li>
-<p>The section title is required.</p>
-</li>
+<li>The section title is required.</li>
 </ol>
 </div>
 <div class="listingblock">
@@ -930,8 +918,9 @@ You can control the video settings using <a href="http://asciidoctor.org/docs/us
 <pre>[source,ruby,indent=0]&#x000A;----&#x000A;include::lib/document.rb[lines=5..10]&#x000A;----</pre>
 </div>
 </div>
-</div>
-</div>
+<div class="admonitionblock note">
+<strong class="title icon-title"></strong>
+<div class="content">
 <ul>
 <li>
 <p>When <code>indent</code> is 0, the leading block indent is stripped (tabs are replaced with 4 spaces).</p>
@@ -940,16 +929,18 @@ You can control the video settings using <a href="http://asciidoctor.org/docs/us
 <p>When <code>indent</code> is &gt; 0, the leading block indent is first stripped (tabs are replaced with 4 spaces), then a block is indented by the number of columns equal to this value.</p>
 </li>
 </ul>
-<div class="exampleblock">
-<div class="content">
+</div>
+</div>
 <div class="listingblock">
 <strong class="heading">Code block without delimiters (no blank lines)</strong>
 <div class="content">
 <pre class="highlight"><code class="language-xml" data-lang="xml">&lt;meta name="viewport"&#x000A;  content="width=device-width, initial-scale=1.0"&gt;</code></pre>
 </div>
 </div>
-</div>
-</div>
+<div class="admonitionblock important">
+<strong class="title icon-title"></strong>
+<div class="content">
+<strong class="title">Enabling the syntax highlighter</strong>
 <p>Syntax highlighting is enabled by setting the <code>source-highlighter</code> attribute in the document header or passed as an argument.</p>
 <div class="literalblock">
 <div class="content">
@@ -957,9 +948,13 @@ You can control the video settings using <a href="http://asciidoctor.org/docs/us
 </div>
 </div>
 <p>The valid options for are <code>coderay</code>, <code>highlight.js</code>, <code>prettify</code>, and <code>pygments</code>.</p>
-<div class="exampleblock">
-<div class="content">
-<p>== More Delimited Blocks</p>
+</div>
+</div>
+</div>
+</section>
+<section class="sect1">
+<h2 id="more-delimited-blocks">More Delimited Blocks</h2>
+<div class="sectionbody">
 <aside class="sidebarblock">
 <strong class="heading">AsciiDoc history</strong>
 <div class="content">
@@ -979,11 +974,14 @@ The dot cannot be followed by a space.
 <div class="listingblock">
 <strong class="heading">Example</strong>
 <div class="content">
-<pre>.Sample document</pre>
+<pre>.Sample document&#x000A;====&#x000A;Here's a sample AsciiDoc document:&#x000A;&#x000A;[listing]&#x000A;....&#x000A;= Title of Document&#x000A;Doc Writer&#x000A;:toc:&#x000A;&#x000A;This guide provides...&#x000A;....&#x000A;&#x000A;The document header is useful, but not required.&#x000A;====</pre>
 </div>
 </div>
-</div>
-</div>
+<div class="exampleblock result">
+<div class="content">
+<div class="exampleblock">
+<strong class="heading">Sample document</strong>
+<div class="content">
 <p>Here&#8217;s a sample AsciiDoc document:</p>
 <div class="listingblock">
 <div class="content">
@@ -991,31 +989,14 @@ The dot cannot be followed by a space.
 </div>
 </div>
 <p>The document header is useful, but not required.</p>
-<div class="exampleblock">
+</div>
+</div>
+</div>
+</div>
+<div class="admonitionblock note" id="admon-bl">
+<strong class="title icon-title"></strong>
 <div class="content">
-<div class="listingblock">
-<div class="content">
-<pre>[example.result]&#x000A;--&#x000A;.Sample document</pre>
-</div>
-</div>
-</div>
-</div>
-<p>Here&#8217;s a sample AsciiDoc document:</p>
-<div class="listingblock">
-<div class="content">
-<pre>= Title of Document&#x000A;Doc Writer&#x000A;:toc:&#x000A;&#x000A;This guide provides...</pre>
-</div>
-</div>
-<p>The document header is useful, but not required.</p>
-<div class="exampleblock">
-<div class="content">
-<div class="openblock">
-<div class="content">
-
-</div>
-</div>
-</div>
-</div>
+<strong class="title">Admonition</strong>
 <p>An admonition block may contain complex content.</p>
 <div class="ulist">
 <strong class="heading" id="ulist_heading_12">A list</strong>
@@ -1032,17 +1013,18 @@ The dot cannot be followed by a space.
 </ul>
 </div>
 <p>Another paragraph.</p>
-<div class="exampleblock">
+</div>
+</div>
+<div class="admonitionblock tip">
+<strong class="title icon-title"></strong>
 <div class="content">
-
-</div>
-</div>
+<strong class="title">Admonition and callout icons</strong>
 <p>Asciidoctor can "draw" icons using <a href="http://fortawesome.github.io/Font-Awesome" target="_blank">Font Awesome</a> and CSS.</p>
 <p>To use this feature, set the value of the <code>icons</code> document attribute to <code>font</code>.
 Asciidoctor will then emit HTML markup that selects an appropriate font character from the Font Awesome font for each admonition block.</p>
 <p>Icons can also be used <a href="http://asciidoctor.org/docs/user-manual/#inline-icons">inline</a> and <a href="http://asciidoctor.org/docs/user-manual/#size-rotate-and-flip">styled</a>.</p>
-<div class="exampleblock">
-<div class="content">
+</div>
+</div>
 <div class="quoteblock">
 <strong class="heading">Blockquote</strong>
 <blockquote>
@@ -1118,7 +1100,11 @@ or it can masquerade as any other block.</p>
 <pre class="highlight"><code class="language-xml" data-lang="xml">&lt;dependency&gt;&#x000A;  &lt;groupId&gt;org.asciidoctor&lt;/groupId&gt;&#x000A;  &lt;artifactId&gt;asciidoctor-java-integration&lt;/artifactId&gt;&#x000A;  &lt;version&gt;0.1.4&lt;/version&gt;&#x000A;&lt;/dependency&gt;</code></pre>
 </div>
 </div>
-<p>== Block Id, Role and Options</p>
+</div>
+</section>
+<section class="sect1">
+<h2 id="block-id-role-and-options">Block Id, Role and Options</h2>
+<div class="sectionbody">
 <div class="listingblock">
 <strong class="heading">Traditional markup method for assigning block <code>id</code> and <code>role</code></strong>
 <div class="content">
@@ -1131,8 +1117,9 @@ or it can masquerade as any other block.</p>
 <pre>[#goals.incremental]&#x000A;* Goal 1&#x000A;* Goal 2</pre>
 </div>
 </div>
-</div>
-</div>
+<div class="admonitionblock tip">
+<strong class="title icon-title"></strong>
+<div class="content">
 <ul>
 <li>
 <p>To specify multiple roles using the shorthand syntax, separate them by dots.</p>
@@ -1141,8 +1128,8 @@ or it can masquerade as any other block.</p>
 <p>The order of <code>id</code> and <code>role</code> values in the shorthand syntax does not matter.</p>
 </li>
 </ul>
-<div class="exampleblock">
-<div class="content">
+</div>
+</div>
 <div class="listingblock">
 <strong class="heading">Traditional markup method for assigning quoted text anchor (<code>id</code>) and <code>role</code></strong>
 <div class="content">
@@ -1173,7 +1160,11 @@ or it can masquerade as any other block.</p>
 <pre>[%header%footer%autowidth]&#x000A;|===&#x000A;|Cell A |Cell B&#x000A;|===</pre>
 </div>
 </div>
-<p>== Comments</p>
+</div>
+</section>
+<section class="sect1">
+<h2 id="comments">Comments</h2>
+<div class="sectionbody">
 <div class="listingblock">
 <strong class="heading">Line</strong>
 <div class="content">
@@ -1192,7 +1183,11 @@ Single-line comments can be used to divide elements, such as two adjacent lists.
 <pre>////&#x000A;A multi-line comment.&#x000A;&#x000A;Notice it's a delimited block.&#x000A;////</pre>
 </div>
 </div>
-<p>== Tables</p>
+</div>
+</section>
+<section class="sect1">
+<h2 id="tables">Tables</h2>
+<div class="sectionbody">
 <div class="listingblock">
 <strong class="heading">Table with a title, three columns, a header, and two rows of content</strong>
 <div class="content">
@@ -1201,16 +1196,12 @@ Single-line comments can be used to divide elements, such as two adjacent lists.
 </div>
 <div class="colist arabic">
 <ol>
-<li>
-<p>Unless the <code>cols</code> attribute is specified, the number of columns is equal to the number of vertical bars on the first non-blank line inside the block delimiters.</p>
-</li>
-<li>
-<p>When a blank line follows a single line of column titles, the column titles row will be styled as a header row by default.</p>
-</li>
+<li>Unless the <code>cols</code> attribute is specified, the number of columns is equal to the number of vertical bars on the first non-blank line inside the block delimiters.</li>
+<li>When a blank line follows a single line of column titles, the column titles row will be styled as a header row by default.</li>
 </ol>
 </div>
-</div>
-</div>
+<div class="exampleblock result">
+<div class="content">
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Table Title</caption>
 <colgroup>
@@ -1256,8 +1247,8 @@ Name of Column 3
 </tr>
 </tbody>
 </table>
-<div class="exampleblock">
-<div class="content">
+</div>
+</div>
 <div class="listingblock">
 <strong class="heading">Table with two columns, a header, and two rows of content</strong>
 <div class="content">
@@ -1266,13 +1257,11 @@ Name of Column 3
 </div>
 <div class="colist arabic">
 <ol>
-<li>
-<p>The <code>*</code> in the <code>cols</code> attribute is the repeat operator. It means repeat the column specification for the remainder of columns. In this case, it means to repeat the default formatting across 4 columns. When the header row is not defined on a single line, you must use the <code>cols</code> attribute to set the number of columns and <code>options</code> attributes to make the first row a header.</p>
-</li>
+<li>The <code>*</code> in the <code>cols</code> attribute is the repeat operator. It means repeat the column specification for the remainder of columns. In this case, it means to repeat the default formatting across 4 columns. When the header row is not defined on a single line, you must use the <code>cols</code> attribute to set the number of columns and <code>options</code> attributes to make the first row a header.</li>
 </ol>
 </div>
-</div>
-</div>
+<div class="exampleblock result">
+<div class="content">
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 50%;">
@@ -1307,8 +1296,8 @@ Name of Column 2
 </tr>
 </tbody>
 </table>
-<div class="exampleblock">
-<div class="content">
+</div>
+</div>
 <div class="listingblock">
 <strong class="heading">Table with three columns, a header, and two rows of content</strong>
 <div class="content">
@@ -1317,13 +1306,11 @@ Name of Column 2
 </div>
 <div class="colist arabic">
 <ol>
-<li>
-<p>In this example, the <code>cols</code> attribute has two functions. It specifies that this table has three columns, and it sets their relative widths.</p>
-</li>
+<li>In this example, the <code>cols</code> attribute has two functions. It specifies that this table has three columns, and it sets their relative widths.</li>
 </ol>
 </div>
-</div>
-</div>
+<div class="exampleblock result">
+<div class="content">
 <table class="tableblock frame-all grid-all spread">
 <caption class="title">Applications</caption>
 <colgroup>
@@ -1372,16 +1359,16 @@ Empowers developers to easily create real, automated tests.</p>
 </tr>
 </tbody>
 </table>
-<div class="exampleblock">
-<div class="content">
+</div>
+</div>
 <div class="listingblock">
 <strong class="heading">Table with column containing AsciiDoc content</strong>
 <div class="content">
 <pre>[cols="2,2,5a"]&#x000A;|===&#x000A;|Firefox&#x000A;|Browser&#x000A;|Mozilla Firefox is an open-source web browser.&#x000A;&#x000A;It's designed for:&#x000A;&#x000A;* standards compliance&#x000A;* performance&#x000A;* portability&#x000A;&#x000A;http://getfirefox.com[Get Firefox]!&#x000A;|===</pre>
 </div>
 </div>
-</div>
-</div>
+<div class="exampleblock result">
+<div class="content">
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 22.2222%;">
@@ -1415,16 +1402,16 @@ Empowers developers to easily create real, automated tests.</p>
 </tr>
 </tbody>
 </table>
-<div class="exampleblock">
-<div class="content">
+</div>
+</div>
 <div class="listingblock">
 <strong class="heading">Table from CSV data</strong>
 <div class="content">
 <pre>[format="csv", options="header"]&#x000A;|===&#x000A;Artist,Track,Genre&#x000A;Baauer,Harlem Shake,Hip Hop&#x000A;The Lumineers,Ho Hey,Folk Rock&#x000A;|===</pre>
 </div>
 </div>
-</div>
-</div>
+<div class="exampleblock result">
+<div class="content">
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -1469,16 +1456,16 @@ Genre
 </tr>
 </tbody>
 </table>
-<div class="exampleblock">
-<div class="content">
+</div>
+</div>
 <div class="listingblock">
 <strong class="heading">Table from CSV data using shorthand (Asciidoctor only)</strong>
 <div class="content">
 <pre>,===&#x000A;Artist,Track,Genre&#x000A;&#x000A;Baauer,Harlem Shake,Hip Hop&#x000A;,===</pre>
 </div>
 </div>
-</div>
-</div>
+<div class="exampleblock result">
+<div class="content">
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -1512,16 +1499,16 @@ Genre
 </tr>
 </tbody>
 </table>
-<div class="exampleblock">
-<div class="content">
+</div>
+</div>
 <div class="listingblock">
 <strong class="heading">Table from DSV data using shorthand (Asciidoctor only)</strong>
 <div class="content">
 <pre>:===&#x000A;Artist:Track:Genre&#x000A;&#x000A;Robyn:Indestructable:Dance&#x000A;:===</pre>
 </div>
 </div>
-</div>
-</div>
+<div class="exampleblock result">
+<div class="content">
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -1555,16 +1542,16 @@ Genre
 </tr>
 </tbody>
 </table>
-<div class="exampleblock">
-<div class="content">
+</div>
+</div>
 <div class="listingblock">
 <strong class="heading">Table with formatted, aligned and merged cells</strong>
 <div class="content">
 <pre>[cols="e,m,^,&gt;s", width="25%"]&#x000A;|===&#x000A;|1 &gt;s|2 |3 |4&#x000A;^|5 2.2+^.^|6 .3+&lt;.&gt;m|7&#x000A;^|8&#x000A;|9 2+&gt;|10&#x000A;|===</pre>
 </div>
 </div>
-</div>
-</div>
+<div class="exampleblock result">
+<div class="content">
 <table class="tableblock frame-all grid-all" style="width: 25%;">
 <colgroup>
 <col style="width: 25%;">
@@ -1613,9 +1600,13 @@ Genre
 </tr>
 </tbody>
 </table>
-<div class="exampleblock">
-<div class="content">
-<p>== UI Macros</p>
+</div>
+</div>
+</div>
+</section>
+<section class="sect1">
+<h2 id="ui-macros">UI Macros</h2>
+<div class="sectionbody">
 <div class="admonitionblock important">
 <strong class="title icon-title"></strong>
 <div class="content">
@@ -1628,8 +1619,8 @@ You <strong>must</strong> set the <code>experimental</code> attribute in the doc
 <pre>|===&#x000A;|Shortcut |Purpose&#x000A;&#x000A;|kbd:[F11]&#x000A;|Toggle fullscreen&#x000A;&#x000A;|kbd:[Ctrl+T]&#x000A;|Open a new tab&#x000A;&#x000A;|kbd:[Ctrl+Shift+N]&#x000A;|New incognito window&#x000A;&#x000A;|kbd:[Ctrl + +]&#x000A;|Increase zoom&#x000A;|===</pre>
 </div>
 </div>
-</div>
-</div>
+<div class="exampleblock result">
+<div class="content">
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 50%;">
@@ -1680,41 +1671,45 @@ Purpose
 </tr>
 </tbody>
 </table>
-<div class="exampleblock">
-<div class="content">
+</div>
+</div>
 <div class="listingblock">
 <strong class="heading">Menu selections (inline <code>menu</code> macro)</strong>
 <div class="content">
 <pre>To save the file, select menu:File[Save].&#x000A;&#x000A;Select menu:View[Zoom &gt; Reset] to reset the zoom level to the default setting.</pre>
 </div>
 </div>
-</div>
-</div>
+<div class="exampleblock result">
+<div class="content">
 <p>To save the file, select <span class="menuseq"><span class="menu">File</span>&#160;&#9656; <span class="menuitem">Save</span></span>.</p>
 <p>Select <span class="menuseq"><span class="menu">View</span>&#160;&#9656; <span class="submenu">Zoom</span>&#160;&#9656; <span class="menuitem">Reset</span></span> to reset the zoom level to the default setting.</p>
-<div class="exampleblock">
-<div class="content">
+</div>
+</div>
 <div class="listingblock">
 <strong class="heading">Buttons (inline <code>btn</code> macro)</strong>
 <div class="content">
 <pre>Press the btn:[OK] button when you are finished.&#x000A;&#x000A;Select a file in the file navigator and click btn:[Open].</pre>
 </div>
 </div>
-</div>
-</div>
+<div class="exampleblock result">
+<div class="content">
 <p>Press the <b class="button">OK</b> button when you are finished.</p>
 <p>Select a file in the file navigator and click <b class="button">Open</b>.</p>
-<div class="exampleblock">
-<div class="content">
-<p>== Attributes and Substitutions</p>
+</div>
+</div>
+</div>
+</section>
+<section class="sect1">
+<h2 id="attributes-and-substitutions">Attributes and Substitutions</h2>
+<div class="sectionbody">
 <div class="listingblock">
 <strong class="heading">Attribute declaration and usage</strong>
 <div class="content">
 <pre>:homepage: http://asciidoctor.org&#x000A;:docslink: http://asciidoctor.org/docs[Asciidoctor's Docs]&#x000A;:desc: Asciidoctor is a mature, plain-text document format for +&#x000A;       writing notes, articles, documentation, books, and more. +&#x000A;       It's also a text processor &amp; toolchain for translating +&#x000A;       documents into various output formats (i.e., backends), +&#x000A;       including HTML, DocBook, PDF and ePub.&#x000A;:checkedbox: pass:normal[`[&amp;#10004;]`]&#x000A;&#x000A;Check out {homepage}[Asciidoctor]!&#x000A;&#x000A;{desc}&#x000A;&#x000A;Check out {docslink} too!&#x000A;&#x000A;{checkedbox} That's done!</pre>
 </div>
 </div>
-</div>
-</div>
+<div class="exampleblock result">
+<div class="content">
 <table class="tableblock frame-all grid-all spread unstyled">
 <colgroup>
 <col style="width: 100%;">
@@ -1730,8 +1725,8 @@ Purpose
 </tr>
 </tbody>
 </table>
-<div class="exampleblock">
-<div class="content">
+</div>
+</div>
 <div class="ulist">
 <strong class="heading" id="ulist_heading_12">Attribute assignment precedence (highest to lowest)</strong>
 <ul aria-labelledby="ulist_heading_12">
@@ -2035,67 +2030,79 @@ Replaces the line break character (<code>&#43;</code>)
 <pre>[caption=""]&#x000A;.Parts{counter2:index:0}&#x000A;|===&#x000A;|Part Id |Description&#x000A;&#x000A;|PX-{counter:index}&#x000A;|Description of PX-{index}&#x000A;&#x000A;|PX-{counter:index}&#x000A;|Description of PX-{index}&#x000A;|===</pre>
 </div>
 </div>
-<p>==  Text Replacement</p>
+</div>
+</section>
+<section class="sect1">
+<h2 id="text-replacement">Text Replacement</h2>
+<div class="sectionbody">
 <div class="admonitionblock tip">
 <strong class="title icon-title"></strong>
 <div class="content">
 Any named, numeric or hex <a href="http://en.wikipedia.org/wiki/List_of_XML_and_HTML_character_entity_references">XML entity reference</a> is supported.
 </div>
 </div>
-<p>== Escaping Text</p>
+</div>
+</section>
+<section class="sect1">
+<h2 id="escaping-text">Escaping Text</h2>
+<div class="sectionbody">
 <div class="listingblock">
 <strong class="heading">Backslash</strong>
 <div class="content">
 <pre>\*Stars* is not rendered as bold text.&#x000A;The asterisks around the word are preserved.&#x000A;&#x000A;\{author} is not resolved to the author name.&#x000A;The curly brackets around the word are preserved.&#x000A;&#x000A;The backslash character is automatically removed.</pre>
 </div>
 </div>
-</div>
-</div>
+<div class="exampleblock result">
+<div class="content">
 <p>*Stars* is not rendered as bold text.
 The asterisks around the word are preserved.</p>
 <p>{author} is not resolved to the author name.
 The curly brackets around the word are preserved.</p>
 <p>The backslash character is automatically removed.</p>
-<div class="exampleblock">
-<div class="content">
+</div>
+</div>
 <div class="listingblock">
 <strong class="heading">Double dollar</strong>
 <div class="content">
 <pre>$$*Stars*$$ is not rendered as bold text.&#x000A;The asterisks around the word are preserved.&#x000A;&#x000A;$$&amp;amp;$$ renders as an XML entity instead of &amp;.</pre>
 </div>
 </div>
-</div>
-</div>
+<div class="exampleblock result">
+<div class="content">
 <p>*Stars* is not rendered as bold text.
 The asterisks around the word are preserved.</p>
 <p>&amp;amp; renders as an XML entity instead of &amp;.</p>
-<div class="exampleblock">
-<div class="content">
+</div>
+</div>
 <div class="listingblock">
 <strong class="heading">Triple plus and inline passthrough macro</strong>
 <div class="content">
 <pre>+++&lt;u&gt;underline me&lt;/u&gt;+++ renders as underlined text.&#x000A;&#x000A;pass:[&lt;u&gt;underline me&lt;/u&gt;] also renders as underlined text.</pre>
 </div>
 </div>
-</div>
-</div>
+<div class="exampleblock result">
+<div class="content">
 <p><u>underline me</u> renders as underlined text.</p>
 <p><u>underline me</u> also renders as underlined text.</p>
-<div class="exampleblock">
-<div class="content">
+</div>
+</div>
 <div class="listingblock">
 <strong class="heading">Backticks</strong>
 <div class="content">
 <pre>`Text in {backticks}` renders exactly as entered, in `monospace`.&#x000A;The attribute reference is not resolved.</pre>
 </div>
 </div>
-</div>
-</div>
+<div class="exampleblock result">
+<div class="content">
 <p><code>Text in {backticks}</code> renders exactly as entered, in <code>monospace</code>.
 The attribute reference is not resolved.</p>
-<div class="exampleblock">
-<div class="content">
-<p>== Table of Contents (ToC)</p>
+</div>
+</div>
+</div>
+</section>
+<section class="sect1">
+<h2 id="table-of-contents-toc">Table of Contents (ToC)</h2>
+<div class="sectionbody">
 <div class="listingblock">
 <strong class="heading">Document with ToC</strong>
 <div class="content">
@@ -2114,15 +2121,19 @@ The attribute reference is not resolved.</p>
 The ToC <a href="http://asciidoctor.org/docs/user-manual/#table-of-contents">"title, levels, and positioning"</a> can be customized.
 </div>
 </div>
-<p>== Bibliography</p>
+</div>
+</section>
+<section class="sect1">
+<h2 id="bibliography">Bibliography</h2>
+<div class="sectionbody">
 <div class="listingblock">
 <strong class="heading">References</strong>
 <div class="content">
 <pre>'The Pragmatic Programmer' &lt;&lt;prag&gt;&gt; should be required reading for&#x000A;all developers.&#x000A;&#x000A;[bibliography]&#x000A;- [[[prag]]] Andy Hunt &amp; Dave Thomas. 'The Pragmatic Programmer:&#x000A;  From Journeyman to Master'. Addison-Wesley. 1999.&#x000A;- [[[seam]]] Dan Allen. 'Seam in Action'. Manning Publications.&#x000A;  2008.</pre>
 </div>
 </div>
-</div>
-</div>
+<div class="exampleblock result">
+<div class="content">
 <p>'The Pragmatic Programmer' <a href="#prag">[prag]</a> should be required reading for
 all developers.</p>
 <ul class="bibliography">
@@ -2135,17 +2146,21 @@ From Journeyman to Master'. Addison-Wesley. 1999.</p>
 2008.</p>
 </li>
 </ul>
-<div class="exampleblock">
-<div class="content">
-<p>== Footnotes</p>
+</div>
+</div>
+</div>
+</section>
+<section class="sect1">
+<h2 id="section-footnotes">Footnotes</h2>
+<div class="sectionbody">
 <div class="listingblock">
 <strong class="heading">Normal and reusable footnotes</strong>
 <div class="content">
 <pre>A statement.footnote:[Clarification about this statement.]&#x000A;&#x000A;A bold statement.footnoteref:[disclaimer,These opinions are my own.]&#x000A;&#x000A;Another bold statement.footenoteref:[disclaimer]</pre>
 </div>
 </div>
-</div>
-</div>
+<div class="exampleblock result">
+<div class="content">
 <table class="tableblock frame-all grid-all spread unstyled">
 <colgroup>
 <col style="width: 100%;">
@@ -2169,9 +2184,13 @@ From Journeyman to Master'. Addison-Wesley. 1999.</p>
 </tr>
 </tbody>
 </table>
-<div class="exampleblock">
-<div class="content">
-<p>== Markdown Compatibility</p>
+</div>
+</div>
+</div>
+</section>
+<section class="sect1">
+<h2 id="markdown-compatibility">Markdown Compatibility</h2>
+<div class="sectionbody">
 <div class="admonitionblock important">
 <strong class="title icon-title"></strong>
 <div class="content">
@@ -2185,39 +2204,39 @@ You can configure AsciiDoc (Python) to recognize this syntax by putting <a href=
 <pre># Document Title (Level 0)&#x000A;&#x000A;## Section Level 1&#x000A;&#x000A;### Section Level 2&#x000A;&#x000A;#### Section Level 3&#x000A;&#x000A;##### Section Level 4&#x000A;&#x000A;###### Section Level 5</pre>
 </div>
 </div>
-</div>
-</div>
+<div class="exampleblock result">
+<div class="content">
 <h1 class="float" id="document-title-level-0">Document Title (Level 0)</h1>
 <h2 class="float" id="section-level-1">Section Level 1</h2>
 <h3 class="float" id="section-level-2">Section Level 2</h3>
 <h4 class="float" id="section-level-3">Section Level 3</h4>
 <h5 class="float" id="section-level-4">Section Level 4</h5>
 <h6 class="float" id="section-level-5">Section Level 5</h6>
-<div class="exampleblock">
-<div class="content">
+</div>
+</div>
 <div class="listingblock">
 <strong class="heading">Fenced code block with syntax highlighting</strong>
 <div class="content">
 <pre>```ruby&#x000A;require 'sinatra'&#x000A;&#x000A;get '/hi' do&#x000A;  "Hello World!"&#x000A;end&#x000A;```</pre>
 </div>
 </div>
-</div>
-</div>
+<div class="exampleblock result">
+<div class="content">
 <div class="listingblock">
 <div class="content">
 <pre class="highlight"><code class="language-ruby" data-lang="ruby">require 'sinatra'&#x000A;&#x000A;get '/hi' do&#x000A;  "Hello World!"&#x000A;end</code></pre>
 </div>
 </div>
-<div class="exampleblock">
-<div class="content">
+</div>
+</div>
 <div class="listingblock">
 <strong class="heading">Markdown-style blockquote</strong>
 <div class="content">
 <pre>&gt; I hold it that a little rebellion now and then is a good thing,&#x000A;&gt; and as necessary in the political world as storms in the physical.&#x000A;&gt; -- Thomas Jefferson, Papers of Thomas Jefferson: Volume 11</pre>
 </div>
 </div>
-</div>
-</div>
+<div class="exampleblock result">
+<div class="content">
 <div class="quoteblock">
 <blockquote>
 <div class="content"><p>I hold it that a little rebellion now and then is a good thing,
@@ -2230,16 +2249,16 @@ and as necessary in the political world as storms in the physical.</p></div>
 </footer>
 </blockquote>
 </div>
-<div class="exampleblock">
-<div class="content">
+</div>
+</div>
 <div class="listingblock">
 <strong class="heading">Markdown-style blockquote with block content</strong>
 <div class="content">
 <pre>&gt; &gt; What's new?&#x000A;&gt;&#x000A;&gt; I've got Markdown in my AsciiDoc!&#x000A;&gt;&#x000A;&gt; &gt; Like what?&#x000A;&gt;&#x000A;&gt; * Blockquotes&#x000A;&gt; * Headings&#x000A;&gt; * Fenced code blocks&#x000A;&gt;&#x000A;&gt; &gt; Is there more?&#x000A;&gt;&#x000A;&gt; Yep. AsciiDoc and Markdown share a lot of common syntax already.</pre>
 </div>
 </div>
-</div>
-</div>
+<div class="exampleblock result">
+<div class="content">
 <div class="quoteblock">
 <blockquote>
 <div class="content"><div class="quoteblock">
@@ -2272,27 +2291,29 @@ and as necessary in the political world as storms in the physical.</p></div>
 <p>Yep. AsciiDoc and Markdown share a lot of common syntax already.</p></div>
 </blockquote>
 </div>
-<div class="exampleblock">
-<div class="content">
+</div>
+</div>
 <div class="listingblock">
 <strong class="heading">Markdown-style horizontal rules</strong>
 <div class="content">
 <pre>---&#x000A;&#x000A;- - -&#x000A;&#x000A;***&#x000A;&#x000A;* * *</pre>
 </div>
 </div>
-</div>
-</div>
-<hr>
-<hr>
-<hr>
-<hr>
-<div class="exampleblock">
+<div class="exampleblock result">
 <div class="content">
-<p>== User Manual and Help</p>
+<hr>
+<hr>
+<hr>
+<hr>
+</div>
+</div>
+</div>
+</section>
+<section class="sect1">
+<h2 id="user-manual-and-help">User Manual and Help</h2>
+<div class="sectionbody">
 <p>To learn more about Asciidoctor and its capabilities, check out the other <a href="http://asciidoctor.org/docs">Asciidoctor guides</a> and its <a href="http://asciidoctor.org/docs/user-manual">User Manual</a>.
 Also, don&#8217;t forget to join the <a href="http://discuss.asciidoctor.org">Asciidoctor mailing list</a>, where you can ask questions and leave comments.</p>
-</div>
-</div>
 </div>
 </section>
 <div class="rh-docs-legal-notice">
@@ -2302,7 +2323,7 @@ Also, don&#8217;t forget to join the <a href="http://discuss.asciidoctor.org">As
 <footer class="rhdocs-footer" id="rhdocs-footer">
 <div class="rhdocs-footer-text" id="rhdocs-footer-text">
 Version 1.0.3<br>
-Last updated 2021-09-03 10:36:34 -0400
+Last updated 2021-09-18 12:48:59 -0400
 </div>
 </footer>
 </cp-documentation>
