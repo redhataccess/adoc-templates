@@ -26,9 +26,7 @@
     "postinstall": "npm run build"
   },
   "dependencies": {
-    "@cpelements/cp-documentation": "^0.1.15",
-    "@patternfly/pfe-codeblock": "^1.11.0",
-    "@patternfly/pfe-icon": "^1.11.0"
+    "@cpelements/cp-documentation": "0.1.45"
   },
   "repository": {
     "type": "git",
