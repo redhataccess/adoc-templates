@@ -70,7 +70,7 @@ const watchTasks = () => {
  */
 // Will use frontend assets from prod
 task('default',
-  compileAllAsciiDocs('prod')
+  compileAllAsciiDocs('localdev')
 );
 
 // Will use local frontend assets
