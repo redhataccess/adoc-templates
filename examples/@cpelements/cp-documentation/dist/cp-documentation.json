@@ -1,0 +1,78 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "Documentation",
+  "description": "Encapsulate documentation content, which may be loaded dynamically from an API",
+  "type": "object",
+  "tag": "cp-documentation",
+  "class": "PfeDocumentation",
+  "category": "container",
+  "properties": {
+    "slots": {
+      "title": "Slots",
+      "description": "Definition of the supported slots",
+      "type": "object",
+      "properties": {
+        "default": {
+          "title": "Default slot",
+          "type": "array",
+          "namedSlot": false,
+          "items": {
+            "oneOf": [
+              {
+                "$ref": "raw"
+              }
+            ]
+          }
+        }
+      },
+      "required": ["default"]
+    },
+    "attributes": {
+      "title": "Attributes",
+      "type": "object",
+      "properties": {
+        "loaded": {
+          "title": "Loaded",
+          "type": "string",
+          "enum": [],
+          "default": "",
+          "prefixed": true
+        },
+        " endpoint": {
+          "title": " endpoint",
+          "type": "string",
+          "enum": [],
+          "default": "",
+          "prefixed": true
+        },
+        " css": {
+          "title": " css",
+          "type": "string",
+          "enum": [],
+          "default": "",
+          "prefixed": true
+        }
+      },
+      "required": ["loaded"]
+    },
+    "events": {
+      "title": "Events",
+      "description": "Definition of the supported events",
+      "type": "object",
+      "properties": {
+        "change": {
+          "title": "Change",
+          "type": "string",
+          "default": "cp-documentation:change"
+        },
+        "loaded": {
+          "title": "Loaded",
+          "type": "string",
+          "default": "cp-documentation:loaded"
+        }
+      }
+    }
+  },
+  "required": ["slots", "attributes", "events"],
+  "additionalProperties": false
+}

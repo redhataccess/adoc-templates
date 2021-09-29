@@ -1,0 +1,88 @@
+{
+  "_from": "@cpelements/cp-documentation@0.1.47",
+  "_id": "@cpelements/cp-documentation@0.1.47",
+  "_inBundle": false,
+  "_integrity": "sha512-sGwFqmGkAZJaO5urDYTSPxgk299tfeYUULaI23YCMwLuHCyySojxJXR9M/nlb/Bkmt3beVszWkdSREGRc94DhQ==",
+  "_location": "/@cpelements/cp-documentation",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "version",
+    "registry": true,
+    "raw": "@cpelements/cp-documentation@0.1.47",
+    "name": "@cpelements/cp-documentation",
+    "escapedName": "@cpelements%2fcp-documentation",
+    "scope": "@cpelements",
+    "rawSpec": "0.1.47",
+    "saveSpec": null,
+    "fetchSpec": "0.1.47"
+  },
+  "_requiredBy": [
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/@cpelements/cp-documentation/-/cp-documentation-0.1.47.tgz",
+  "_shasum": "001647e413ad482ddd1d61d0cbb35b72ce7e9e9c",
+  "_spec": "@cpelements/cp-documentation@0.1.47",
+  "_where": "/home/wruvalca/dev/adoc-templates",
+  "bugs": {
+    "url": "https://github.com/patternfly/patternfly-elements/issues"
+  },
+  "bundleDependencies": false,
+  "contributors": [
+    {
+      "name": "wesruv"
+    }
+  ],
+  "dependencies": {
+    "prismjs": "^1.24.1"
+  },
+  "deprecated": false,
+  "description": "Documentation element for PatternFly Elements",
+  "devDependencies": {
+    "@patternfly/pfe-icon": "^1.3.0",
+    "@patternfly/pfe-sass": "^1.3.0",
+    "@patternfly/pfelement": "^1.3.0",
+    "gh-pages": "^2.2.0",
+    "pinkie-promise": "^2.0.1",
+    "spandx": "^2.1.2"
+  },
+  "files": [
+    "dist"
+  ],
+  "homepage": "https://github.com/patternfly/patternfly-elements#readme",
+  "keywords": [
+    "web-components",
+    "html"
+  ],
+  "license": "MIT",
+  "main": "./dist/cp-documentation.umd.js",
+  "module": "./dist/cp-documentation.js",
+  "name": "@cpelements/cp-documentation",
+  "pfelement": {
+    "className": "PfeDocumentation",
+    "elementName": "cp-documentation",
+    "files": {
+      "styles": "./src/cp-documentation.scss",
+      "template": "./src/cp-documentation.html",
+      "js": "./src/cp-documentation.js"
+    },
+    "assets": [
+      "rhdocs.*css"
+    ]
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/patternfly/patternfly-elements.git",
+    "directory": "elements/cp-documentation"
+  },
+  "scripts": {
+    "build": "../../node_modules/.bin/gulp",
+    "dev": "../../node_modules/.bin/gulp dev",
+    "spandx": "spandx",
+    "test": "../../node_modules/.bin/wct --configFile ../../wct.conf.json elements/cp-documentation/test/"
+  },
+  "unpkg": "./dist/cp-documentation.umd.min.js",
+  "version": "0.1.47"
+}
