@@ -26,6 +26,9 @@ include::modules/installation-creating-aws-control-plane.adoc[leveloffset=+1]
 //This one includes an external file as a code sample.
 include::modules/installation-cloudformation-security.adoc[leveloffset=+1]
 
+//This one includes an [source,terminal,subs="+quotes"] example.
+include::modules/virt-accessing-vm-yaml-ssh.adoc[leveloffset=+1]
+
 //This one has some footnotes. Note that this module has a different way of controlling the conditional content, so we have to set an unset a variable in the assembly.
 :virt-importing-vmware-vm:
 include::modules/virt-features-for-storage-matrix.adoc[leveloffset=+1]
