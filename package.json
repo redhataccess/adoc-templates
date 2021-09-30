@@ -23,7 +23,7 @@
     "dev": "npm run gulp watch",
     "start": "npm run watch",
     "clean": "rm -rf node_modules && rm dev-preview/*.css && rm dev-preview/*.html",
-    "postinstall": "npm run build"
+    "postinstall": "cp -R node_modules/@cpelements examples/ && cp -R node_modules/@patternfly examples/ && npm run build"
   },
   "dependencies": {
     "@cpelements/cp-documentation": "0.1.47",
