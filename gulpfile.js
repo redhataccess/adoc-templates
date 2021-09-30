@@ -44,6 +44,7 @@ const compileAllAsciiDocs = (env) => series(
   compileAsciiDoc('examples/ascii-doc-styleguide.adoc', env),
   compileAsciiDoc('examples/code-samples.adoc', env),
   compileAsciiDoc('examples/assembly_access-control-list.adoc', env),
+  compileAsciiDoc('examples/demo-assembly.adoc', env),
 );
 
 

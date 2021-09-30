@@ -1,0 +1,1639 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<!--[if IE]>
+<meta content="IE=edge" http-equiv="X-UA-Compatible">
+<![endif]-->
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<meta content="noindex" name="robots">
+<meta content="Asciidoctor 2.0.16" name="generator">
+<title>Demo assembly of complicated modules</title>
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Red+Hat+Display:ital,wght@0,400;0,500;0,700;1,400;1,700&family=Red+Hat+Text:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+<link href="../examples/@cpelements/cp-documentation/dist/rhdocs.min.css" rel="stylesheet">
+<script src="../examples/@cpelements/cp-documentation/dist/cp-documentation.js" type="module"></script>
+<script>
+  window.addEventListener('load', function() {
+    var cpDocumentations = document.querySelectorAll('cp-documentation');
+    for (let index = 0; index < cpDocumentations.length; index++) {
+      const cpDocumentation = cpDocumentations[index];
+      cpDocumentation.setAttribute('pfe-c-non-prod', '');
+    }
+  });
+</script>
+</head>
+<body class="article pantheon-render rhdocs has-toc toc-left" id="demo-assembly">
+<cp-documentation id="doc-content">
+<header class="rhdocs__header" id="rhdocs-header">
+<div class="rhdocs__header__primary-wrapper">
+<h1>Demo assembly of complicated modules</h1>
+</div>
+</header>
+<nav aria-label="" class="rhdocs-toc toc" id="rhdocs-toc">
+<h2 class="rhdocs-toctitle" id="rhdocs-toctitle"></h2>
+<ol aria-labelledby="rhdocs-toctitle" class="sectlevel1">
+<li>
+<a href="#templates-writing-description_demo-assembly">Writing the template description</a>
+
+</li>
+<li>
+<a href="#installation-aws-config-yaml_demo-assembly">Sample customized <code>install-config.yaml</code> file for AWS</a>
+
+</li>
+<li>
+<a href="#templates-writing-parameters_demo-assembly">Writing template parameters</a>
+
+</li>
+<li>
+<a href="#cluster-autoscaler-operator_demo-assembly">Cluster Autoscaler Operator</a>
+
+</li>
+<li>
+<a href="#installation-creating-aws-control-plane_demo-assembly">Creating the control plane machines in AWS</a>
+
+</li>
+<li>
+<a href="#installation-cloudformation-security_demo-assembly">CloudFormation template for security objects</a>
+
+</li>
+<li>
+<a href="#virt-accessing-vm-yaml-ssh_demo-assembly">Accessing a virtual machine via SSH with YAML configurations</a>
+
+</li>
+<li>
+<a href="#virt-features-for-storage-matrix_demo-assembly">OpenShift Virtualization storage feature matrix</a>
+
+</li>
+<li>
+<a href="#installation-configuration-parameters_demo-assembly">Installation configuration parameters</a>
+<ol aria-labelledby="rhdocs-toctitle" class="sectlevel2">
+<li>
+<a href="#installation-configuration-parameters-required_demo-assembly">Required configuration parameters</a>
+
+</li>
+<li>
+<a href="#installation-configuration-parameters-network_demo-assembly">Network configuration parameters</a>
+
+</li>
+<li>
+<a href="#installation-configuration-parameters-optional_demo-assembly">Optional configuration parameters</a>
+
+</li>
+<li>
+<a href="#installation-configuration-parameters-optional-aws_demo-assembly">Optional AWS configuration parameters</a>
+
+</li>
+</ol>
+</li>
+<li>
+<a href="#configuring-hybrid-ovnkubernetes_demo-assembly">Configuring hybrid networking with OVN-Kubernetes</a>
+
+</li>
+</ol>
+</nav>
+<article class="rhdocs-content" id="rhdocs-content">
+<div class="preamble" id="rhdocs-preamble">
+<section class="sectionbody">
+<nav class="toc">
+<h2 class="title"></h2>
+<ol aria-labelledby="rhdocs-toctitle" class="sectlevel1">
+<li>
+<a href="#templates-writing-description_demo-assembly">Writing the template description</a>
+
+</li>
+<li>
+<a href="#installation-aws-config-yaml_demo-assembly">Sample customized <code>install-config.yaml</code> file for AWS</a>
+
+</li>
+<li>
+<a href="#templates-writing-parameters_demo-assembly">Writing template parameters</a>
+
+</li>
+<li>
+<a href="#cluster-autoscaler-operator_demo-assembly">Cluster Autoscaler Operator</a>
+
+</li>
+<li>
+<a href="#installation-creating-aws-control-plane_demo-assembly">Creating the control plane machines in AWS</a>
+
+</li>
+<li>
+<a href="#installation-cloudformation-security_demo-assembly">CloudFormation template for security objects</a>
+
+</li>
+<li>
+<a href="#virt-accessing-vm-yaml-ssh_demo-assembly">Accessing a virtual machine via SSH with YAML configurations</a>
+
+</li>
+<li>
+<a href="#virt-features-for-storage-matrix_demo-assembly">OpenShift Virtualization storage feature matrix</a>
+
+</li>
+<li>
+<a href="#installation-configuration-parameters_demo-assembly">Installation configuration parameters</a>
+<ol aria-labelledby="rhdocs-toctitle" class="sectlevel2">
+<li>
+<a href="#installation-configuration-parameters-required_demo-assembly">Required configuration parameters</a>
+
+</li>
+<li>
+<a href="#installation-configuration-parameters-network_demo-assembly">Network configuration parameters</a>
+
+</li>
+<li>
+<a href="#installation-configuration-parameters-optional_demo-assembly">Optional configuration parameters</a>
+
+</li>
+<li>
+<a href="#installation-configuration-parameters-optional-aws_demo-assembly">Optional AWS configuration parameters</a>
+
+</li>
+</ol>
+</li>
+<li>
+<a href="#configuring-hybrid-ovnkubernetes_demo-assembly">Configuring hybrid networking with OVN-Kubernetes</a>
+
+</li>
+</ol>
+</nav>
+<p>This is a demo assembly of some modules from the <code>openshift/openshift-docs</code> repo that have complex elements.</p>
+</section>
+</div>
+<section class="sect1">
+<h2 id="templates-writing-description_demo-assembly">Writing the template description</h2>
+<div class="sectionbody">
+<p>The template description informs you what the template does and helps you find it when searching in the web console. Additional metadata beyond the template name is optional, but useful to have. In addition to general descriptive information, the metadata also includes a set of tags. Useful tags include the name of the language the template is related to for example, Java, PHP, Ruby, and so on.</p>
+<p>The following is an example of template description metadata:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight nowrap"><code class="language-yaml" data-lang="yaml">kind: Template&#x000A;apiVersion: v1&#x000A;metadata:&#x000A;  name: cakephp-mysql-example <span class="colist-num"><i aria-label="See #1 in list below" class="conum">1</i></span>&#x000A;  annotations:&#x000A;    openshift.io/display-name: "CakePHP MySQL Example (Ephemeral)" <span class="colist-num"><i aria-label="See #2 in list below" class="conum">2</i></span>&#x000A;    description: &gt;-&#x000A;      An example CakePHP application with a MySQL database. For more information&#x000A;      about using this template, including OpenShift considerations, see&#x000A;      https://github.com/sclorg/cakephp-ex/blob/master/README.md.&#x000A;&#x000A;&#x000A;      WARNING: Any data stored will be lost upon pod destruction. Only use this&#x000A;      template for testing." <span class="colist-num"><i aria-label="See #3 in list below" class="conum">3</i></span>&#x000A;    openshift.io/long-description: &gt;-&#x000A;      This template defines resources needed to develop a CakePHP application,&#x000A;      including a build configuration, application DeploymentConfig, and&#x000A;      database DeploymentConfig.  The database is stored in&#x000A;      non-persistent storage, so this configuration should be used for&#x000A;      experimental purposes only. <span class="colist-num"><i aria-label="See #4 in list below" class="conum">4</i></span>&#x000A;    tags: "quickstart,php,cakephp" <span class="colist-num"><i aria-label="See #5 in list below" class="conum">5</i></span>&#x000A;    iconClass: icon-php <span class="colist-num"><i aria-label="See #6 in list below" class="conum">6</i></span>&#x000A;    openshift.io/provider-display-name: "Red Hat, Inc." <span class="colist-num"><i aria-label="See #7 in list below" class="conum">7</i></span>&#x000A;    openshift.io/documentation-url: "https://github.com/sclorg/cakephp-ex" <span class="colist-num"><i aria-label="See #8 in list below" class="conum">8</i></span>&#x000A;    openshift.io/support-url: "https://access.redhat.com" <span class="colist-num"><i aria-label="See #9 in list below" class="conum">9</i></span>&#x000A;message: "Your admin credentials are ${ADMIN_USERNAME}:${ADMIN_PASSWORD}" <span class="colist-num"><i aria-label="See #10 in list below" class="conum">10</i></span></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<ol>
+<li>The unique name of the template.</li>
+<li>A brief, user-friendly name, which can be employed by user interfaces.</li>
+<li>A description of the template. Include enough detail that users understand what is being deployed and any caveats they must know before deploying. It should also provide links to additional information, such as a README file. Newlines can be included to create paragraphs.</li>
+<li>Additional template description. This may be displayed by the service catalog, for example.</li>
+<li>Tags to be associated with the template for searching and grouping. Add tags that include it into one of the provided catalog categories. Refer to the <code>id</code> and <code>categoryAliases</code> in <code>CATALOG_CATEGORIES</code> in the console constants file.</li>
+<li>An icon to be displayed with your template in the web console.</li>
+<li>The name of the person or organization providing the template.</li>
+<li>A URL referencing further documentation for the template.</li>
+<li>A URL where support can be obtained for the template.</li>
+<li>An instructional message that is displayed when this template is instantiated. This field should inform the user how to use the newly created resources. Parameter substitution is performed on the message before being displayed so that generated credentials and other parameters can be included in the output. Include links to any next-steps documentation that users should follow.</li>
+</ol>
+</div>
+</div>
+</section>
+<section class="sect1">
+<h2 id="installation-aws-config-yaml_demo-assembly">Sample customized <code>install-config.yaml</code> file for AWS</h2>
+<div class="sectionbody">
+<p>You can customize the installation configuration file (<code>install-config.yaml</code>) to specify more details about
+your OpenShift Container Platform cluster&#8217;s platform or modify the values of the required
+parameters.</p>
+<div class="admonitionblock important">
+<strong class="title icon-title"></strong>
+<div class="content">
+<p>This sample YAML file is provided for reference only. You must obtain your
+<code>install-config.yaml</code> file by using the installation program and modify it.</p>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight nowrap"><code class="language-yaml" data-lang="yaml">apiVersion: v1&#x000A;baseDomain: example.com <span class="colist-num"><i aria-label="See #1 in list below" class="conum">1</i></span>&#x000A;credentialsMode: Mint <span class="colist-num"><i aria-label="See #2 in list below" class="conum">2</i></span>&#x000A;controlPlane: <span class="colist-num"><i aria-label="See #3 in list below" class="conum">3</i></span> <span class="colist-num"><i aria-label="See #4 in list below" class="conum">4</i></span>&#x000A;  hyperthreading: Enabled <span class="colist-num"><i aria-label="See #5 in list below" class="conum">5</i></span>&#x000A;  name: master&#x000A;  platform:&#x000A;    aws:&#x000A;      zones:&#x000A;      - us-west-2a&#x000A;      - us-west-2b&#x000A;      rootVolume:&#x000A;        iops: 4000&#x000A;        size: 500&#x000A;        type: io1 <span class="colist-num"><i aria-label="See #6 in list below" class="conum">6</i></span>&#x000A;      type: m5.xlarge&#x000A;  replicas: 3&#x000A;compute: <span class="colist-num"><i aria-label="See #3 in list below" class="conum">3</i></span>&#x000A;- hyperthreading: Enabled <span class="colist-num"><i aria-label="See #5 in list below" class="conum">5</i></span>&#x000A;  name: worker&#x000A;  platform:&#x000A;    aws:&#x000A;      rootVolume:&#x000A;        iops: 2000&#x000A;        size: 500&#x000A;        type: io1 <span class="colist-num"><i aria-label="See #6 in list below" class="conum">6</i></span>&#x000A;      type: c5.4xlarge&#x000A;      zones:&#x000A;      - us-west-2c&#x000A;  replicas: 3&#x000A;metadata:&#x000A;  name: test-cluster <span class="colist-num"><i aria-label="See #1 in list below" class="conum">1</i></span>&#x000A;networking:&#x000A;  clusterNetwork:&#x000A;  - cidr: 10.128.0.0/14&#x000A;    hostPrefix: 23&#x000A;  machineNetwork:&#x000A;  - cidr: 10.0.0.0/16&#x000A;  networkType: OpenShiftSDN&#x000A;  serviceNetwork:&#x000A;  - 172.30.0.0/16&#x000A;platform:&#x000A;  aws:&#x000A;    region: us-west-2 <span class="colist-num"><i aria-label="See #1 in list below" class="conum">1</i></span>&#x000A;    userTags:&#x000A;      adminContact: jdoe&#x000A;      costCenter: 7536&#x000A;    amiID: ami-96c6f8f7 <span class="colist-num"><i aria-label="See #7 in list below" class="conum">7</i></span>&#x000A;    serviceEndpoints: <span class="colist-num"><i aria-label="See #8 in list below" class="conum">8</i></span>&#x000A;      - name: ec2&#x000A;        url: https://vpce-id.ec2.us-west-2.vpce.amazonaws.com&#x000A;fips: false <span class="colist-num"><i aria-label="See #9 in list below" class="conum">9</i></span>&#x000A;sshKey: ssh-ed25519 AAAA... <span class="colist-num"><i aria-label="See #10 in list below" class="conum">10</i></span>&#x000A;pullSecret: '{"auths": ...}' <span class="colist-num"><i aria-label="See #1 in list below" class="conum">1</i></span></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<ol>
+<li>Required. The installation program prompts you for this value.</li>
+<li>Optional: Add this parameter to force the Cloud Credential Operator (CCO) to use the specified mode, instead of having the CCO dynamically try to determine the capabilities of the credentials. For details about CCO modes, see the <em>Cloud Credential Operator</em> entry in the <em>Red Hat Operators reference</em> content.</li>
+<li>If you do not provide these parameters and values, the installation program
+provides the default value.</li>
+<li>The <code>controlPlane</code> section is a single mapping, but the compute section is a
+sequence of mappings. To meet the requirements of the different data structures,
+the first line of the <code>compute</code> section must begin with a hyphen, <code>-</code>, and the
+first line of the <code>controlPlane</code> section must not. Although both sections
+currently define a single machine pool, it is possible that future versions
+of OpenShift Container Platform will support defining multiple compute pools during
+installation. Only one control plane pool is used.</li>
+<li>Whether to enable or disable simultaneous multithreading, or
+<code>hyperthreading</code>. By default, simultaneous multithreading is enabled
+to increase the performance of your machines' cores. You can disable it by
+setting the parameter value to <code>Disabled</code>. If you disable simultaneous
+multithreading in some cluster machines, you must disable it in all cluster
+machines.</li>
+<li>To configure faster storage for etcd, especially for larger clusters, set the
+storage type as <code>io1</code> and set <code>iops</code> to <code>2000</code>.</li>
+<li>The ID of the AMI used to boot machines for the cluster. If set, the AMI
+must belong to the same region as the cluster.</li>
+<li>The AWS service endpoints. Custom endpoints are required when installing to
+an unknown AWS region. The endpoint URL must use the <code>https</code> protocol and the
+host must trust the certificate.</li>
+<li>Whether to enable or disable FIPS mode. By default, FIPS mode is not enabled. If FIPS mode is enabled, the Red Hat Enterprise Linux CoreOS (RHCOS) machines that OpenShift Container Platform runs on bypass the default Kubernetes cryptography suite and use the cryptography modules that are provided with RHCOS instead.</li>
+<li>You can optionally provide the <code>sshKey</code> value that you use to access the
+machines in your cluster.</li>
+</ol>
+</div>
+</div>
+</section>
+<section class="sect1">
+<h2 id="templates-writing-parameters_demo-assembly">Writing template parameters</h2>
+<div class="sectionbody">
+<p>Parameters allow a value to be supplied by you or generated when the template is instantiated. Then, that value is substituted wherever the parameter is referenced. References can be defined in any field in the objects list field. This is useful for generating random passwords or allowing you to supply a hostname or other user-specific value that is required to customize the template. Parameters can be referenced in two ways:</p>
+<ul>
+<li>
+<p>As a string value by placing values in the form <code>${PARAMETER_NAME}</code> in any string field in the template.</p>
+</li>
+<li>
+<p>As a JSON or YAML value by placing values in the form <code>${PARAMETER_NAME}</code> in place of any field in the template.</p>
+</li>
+</ul>
+<p>When using the <code>${PARAMETER_NAME}</code> syntax, multiple parameter references can be combined in a single field and the reference can be embedded within fixed data, such as <code>"http://${PARAMETER_1}${PARAMETER_2}"</code>. Both parameter values are substituted and the resulting value is a quoted string.</p>
+<p>When using the <code>${PARAMETER_NAME}</code> syntax only a single parameter reference is allowed and leading and trailing characters are not permitted. The resulting value is unquoted unless, after substitution is performed, the result is not a valid JSON object. If the result is not a valid JSON value, the resulting value is quoted and treated as a standard string.</p>
+<p>A single parameter can be referenced multiple times within a template and it can be referenced using both substitution syntaxes within a single template.</p>
+<p>A default value can be provided, which is used if you do not supply a different value:</p>
+<p>The following is an example of setting an explicit value as the default value:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight nowrap"><code class="language-yaml" data-lang="yaml">parameters:&#x000A;  - name: USERNAME&#x000A;    description: "The user name for Joe"&#x000A;    value: joe</code></pre>
+</div>
+</div>
+<p>Parameter values can also be generated based on rules specified in the parameter definition, for example generating a parameter value:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight nowrap"><code class="language-yaml" data-lang="yaml">parameters:&#x000A;  - name: PASSWORD&#x000A;    description: "The random user password"&#x000A;    generate: expression&#x000A;    from: "[a-zA-Z0-9]{12}"</code></pre>
+</div>
+</div>
+<p>In the previous example, processing generates a random password 12 characters long consisting of all upper and lowercase alphabet letters and numbers.</p>
+<p>The syntax available is not a full regular expression syntax. However, you can use <code>\w</code>, <code>\d</code>, <code>\a</code>, and <code>\A</code> modifiers:</p>
+<ul>
+<li>
+<p><code>[\w]{10}</code> produces 10 alphabet characters, numbers, and underscores. This
+follows the PCRE standard and is equal to <code>[a-zA-Z0-9_]{10}</code>.</p>
+</li>
+<li>
+<p><code>[\d]{10}</code> produces 10 numbers. This is equal to <code>[0-9]{10}</code>.</p>
+</li>
+<li>
+<p><code>[\a]{10}</code> produces 10 alphabetical characters. This is equal to
+<code>[a-zA-Z]{10}</code>.</p>
+</li>
+<li>
+<p><code>[\A]{10}</code> produces 10 punctuation or symbol characters. This is equal to <code>[~!@#$%\^&amp;*()\-_+={}\[\]\\|&lt;,&gt;.?/"';:`]{10}</code>.</p>
+</li>
+</ul>
+<div class="admonitionblock note">
+<strong class="title icon-title"></strong>
+<div class="content">
+<p>Depending on if the template is written in YAML or JSON, and the type of string that the modifier is embedded within, you might need to escape the backslash with a second backslash. The following examples are equivalent:</p>
+<div class="listingblock">
+<strong class="heading">Example YAML template with a modifier</strong>
+<div class="content">
+<pre class="highlight nowrap"><code class="language-yaml" data-lang="yaml">parameters:&#x000A;  - name: singlequoted_example&#x000A;    generate: expression&#x000A;    from: '[\A]{10}'&#x000A;  - name: doublequoted_example&#x000A;    generate: expression&#x000A;    from: "[\\A]{10}"</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<strong class="heading">Example JSON template with a modifier</strong>
+<div class="content">
+<pre class="highlight nowrap"><code class="language-json" data-lang="json">{&#x000A;    "parameters": [&#x000A;       {"name": "json_example",&#x000A;        "generate": "expression",&#x000A;        "from": "[\\A]{10}"&#x000A;       }&#x000A;    ]&#x000A;}</code></pre>
+</div>
+</div>
+</div>
+</div>
+<p>Here is an example of a full template with parameter definitions and references:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight nowrap"><code class="language-yaml" data-lang="yaml">kind: Template&#x000A;apiVersion: v1&#x000A;metadata:&#x000A;  name: my-template&#x000A;objects:&#x000A;  - kind: BuildConfig&#x000A;    apiVersion: v1&#x000A;    metadata:&#x000A;      name: cakephp-mysql-example&#x000A;      annotations:&#x000A;        description: Defines how to build the application&#x000A;    spec:&#x000A;      source:&#x000A;        type: Git&#x000A;        git:&#x000A;          uri: "${SOURCE_REPOSITORY_URL}" <span class="colist-num"><i aria-label="See #1 in list below" class="conum">1</i></span>&#x000A;          ref: "${SOURCE_REPOSITORY_REF}"&#x000A;        contextDir: "${CONTEXT_DIR}"&#x000A;  - kind: DeploymentConfig&#x000A;    apiVersion: v1&#x000A;    metadata:&#x000A;      name: frontend&#x000A;    spec:&#x000A;      replicas: "${{REPLICA_COUNT}}" <span class="colist-num"><i aria-label="See #2 in list below" class="conum">2</i></span>&#x000A;parameters:&#x000A;  - name: SOURCE_REPOSITORY_URL <span class="colist-num"><i aria-label="See #3 in list below" class="conum">3</i></span>&#x000A;    displayName: Source Repository URL <span class="colist-num"><i aria-label="See #4 in list below" class="conum">4</i></span>&#x000A;    description: The URL of the repository with your application source code <span class="colist-num"><i aria-label="See #5 in list below" class="conum">5</i></span>&#x000A;    value: https://github.com/sclorg/cakephp-ex.git <span class="colist-num"><i aria-label="See #6 in list below" class="conum">6</i></span>&#x000A;    required: true <span class="colist-num"><i aria-label="See #7 in list below" class="conum">7</i></span>&#x000A;  - name: GITHUB_WEBHOOK_SECRET&#x000A;    description: A secret string used to configure the GitHub webhook&#x000A;    generate: expression <span class="colist-num"><i aria-label="See #8 in list below" class="conum">8</i></span>&#x000A;    from: "[a-zA-Z0-9]{40}" <span class="colist-num"><i aria-label="See #9 in list below" class="conum">9</i></span>&#x000A;  - name: REPLICA_COUNT&#x000A;    description: Number of replicas to run&#x000A;    value: "2"&#x000A;    required: true&#x000A;message: "... The GitHub webhook secret is ${GITHUB_WEBHOOK_SECRET} ..." <span class="colist-num"><i aria-label="See #10 in list below" class="conum">10</i></span></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<ol>
+<li>This value is replaced with the value of the <code>SOURCE_REPOSITORY_URL</code> parameter when the template is instantiated.</li>
+<li>This value is replaced with the unquoted value of the <code>REPLICA_COUNT</code> parameter when the template is instantiated.</li>
+<li>The name of the parameter. This value is used to reference the parameter within the template.</li>
+<li>The user-friendly name for the parameter. This is displayed to users.</li>
+<li>A description of the parameter. Provide more detailed information for the purpose of the parameter, including any constraints on the expected value. Descriptions should use complete sentences to follow the console&#8217;s text standards. Do not make this a duplicate of the display name.</li>
+<li>A default value for the parameter which is used if you do not override the value when instantiating the template. Avoid using default values for things like passwords, instead use generated parameters in combination with secrets.</li>
+<li>Indicates this parameter is required, meaning you cannot override it with an empty value. If the parameter does not provide a default or generated value, you must supply a value.</li>
+<li>A parameter which has its value generated.</li>
+<li>The input to the generator. In this case, the generator produces a 40 character alphanumeric value including upper and lowercase characters.</li>
+<li>Parameters can be included in the template message. This informs you about generated values.</li>
+</ol>
+</div>
+</div>
+</section>
+<section class="sect1">
+<h2 id="cluster-autoscaler-operator_demo-assembly">Cluster Autoscaler Operator</h2>
+<div class="sectionbody">
+<h3 class="discrete" id="_purpose">Purpose</h3>
+<p>The Cluster Autoscaler Operator manages deployments of the OpenShift Cluster Autoscaler using the <code>cluster-api</code> provider.</p>
+<h3 class="discrete" id="_project">Project</h3>
+<p><a href="https://github.com/openshift/cluster-autoscaler-operator">cluster-autoscaler-operator</a></p>
+<h3 class="discrete" id="_crds">CRDs</h3>
+<ul>
+<li>
+<p><code>ClusterAutoscaler</code>: This is a singleton resource, which controls the configuration autoscaler instance for the cluster. The Operator only responds to the <code>ClusterAutoscaler</code> resource named <code>default</code> in the managed namespace, the value of the <code>WATCH_NAMESPACE</code> environment variable.</p>
+</li>
+<li>
+<p><code>MachineAutoscaler</code>: This resource targets a node group and manages the annotations to enable and configure autoscaling for that group, the <code>min</code> and <code>max</code> size. Currently only <code>MachineSet</code> objects can be targeted.</p>
+</li>
+</ul>
+</div>
+</section>
+<section class="sect1">
+<h2 id="installation-creating-aws-control-plane_demo-assembly">Creating the control plane machines in AWS</h2>
+<div class="sectionbody">
+<p>You must create the control plane machines in Amazon Web Services (AWS) that your cluster will use.</p>
+<p>You can use the provided CloudFormation template and a custom parameter file to create a stack of AWS resources that represent the control plane nodes.</p>
+<div class="admonitionblock important">
+<strong class="title icon-title"></strong>
+<div class="content">
+<p>The CloudFormation template creates a stack that represents three control plane nodes.</p>
+</div>
+</div>
+<div class="admonitionblock note">
+<strong class="title icon-title"></strong>
+<div class="content">
+<p>If you do not use the provided CloudFormation template to create your control plane
+nodes, you must review the provided information and manually create
+the infrastructure. If your cluster does not initialize correctly, you might
+have to contact Red Hat support with your installation logs.</p>
+</div>
+</div>
+<div class="ulist">
+<strong class="heading" id="ulist_heading_0">Prerequisites</strong>
+<ul aria-labelledby="ulist_heading_0">
+<li>
+<p>You configured an AWS account.</p>
+</li>
+<li>
+<p>You added your AWS keys and region to your local AWS profile by running <code>aws configure</code>.</p>
+</li>
+<li>
+<p>You generated the Ignition config files for your cluster.</p>
+</li>
+<li>
+<p>You created and configured a VPC and associated subnets in AWS.</p>
+</li>
+<li>
+<p>You created and configured DNS, load balancers, and listeners in AWS.</p>
+</li>
+<li>
+<p>You created the security groups and roles required for your cluster in AWS.</p>
+</li>
+<li>
+<p>You created the bootstrap machine.</p>
+</li>
+</ul>
+</div>
+<div class="olist arabic">
+<strong class="heading" id="olist_heading_1">Procedure</strong>
+<ol aria-labelledby="olist_heading_1" class="arabic">
+<li>
+<p>Create a JSON file that contains the parameter values that the template
+requires:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight nowrap"><code class="language-json" data-lang="json">[&#x000A;  {&#x000A;    "ParameterKey": "InfrastructureName", <span class="colist-num"><i aria-label="See #1 in list below" class="conum">1</i></span>&#x000A;    "ParameterValue": "mycluster-&lt;random_string&gt;" <span class="colist-num"><i aria-label="See #2 in list below" class="conum">2</i></span>&#x000A;  },&#x000A;  {&#x000A;    "ParameterKey": "RhcosAmi", <span class="colist-num"><i aria-label="See #3 in list below" class="conum">3</i></span>&#x000A;    "ParameterValue": "ami-&lt;random_string&gt;" <span class="colist-num"><i aria-label="See #4 in list below" class="conum">4</i></span>&#x000A;  },&#x000A;  {&#x000A;    "ParameterKey": "AutoRegisterDNS", <span class="colist-num"><i aria-label="See #5 in list below" class="conum">5</i></span>&#x000A;    "ParameterValue": "yes" <span class="colist-num"><i aria-label="See #6 in list below" class="conum">6</i></span>&#x000A;  },&#x000A;  {&#x000A;    "ParameterKey": "PrivateHostedZoneId", <span class="colist-num"><i aria-label="See #7 in list below" class="conum">7</i></span>&#x000A;    "ParameterValue": "&lt;random_string&gt;" <span class="colist-num"><i aria-label="See #8 in list below" class="conum">8</i></span>&#x000A;  },&#x000A;  {&#x000A;    "ParameterKey": "PrivateHostedZoneName", <span class="colist-num"><i aria-label="See #9 in list below" class="conum">9</i></span>&#x000A;    "ParameterValue": "mycluster.example.com" <span class="colist-num"><i aria-label="See #10 in list below" class="conum">10</i></span>&#x000A;  },&#x000A;  {&#x000A;    "ParameterKey": "Master0Subnet", <span class="colist-num"><i aria-label="See #11 in list below" class="conum">11</i></span>&#x000A;    "ParameterValue": "subnet-&lt;random_string&gt;" <span class="colist-num"><i aria-label="See #12 in list below" class="conum">12</i></span>&#x000A;  },&#x000A;  {&#x000A;    "ParameterKey": "Master1Subnet", <span class="colist-num"><i aria-label="See #11 in list below" class="conum">11</i></span>&#x000A;    "ParameterValue": "subnet-&lt;random_string&gt;" <span class="colist-num"><i aria-label="See #12 in list below" class="conum">12</i></span>&#x000A;  },&#x000A;  {&#x000A;    "ParameterKey": "Master2Subnet", <span class="colist-num"><i aria-label="See #11 in list below" class="conum">11</i></span>&#x000A;    "ParameterValue": "subnet-&lt;random_string&gt;" <span class="colist-num"><i aria-label="See #12 in list below" class="conum">12</i></span>&#x000A;  },&#x000A;  {&#x000A;    "ParameterKey": "MasterSecurityGroupId", <span class="colist-num"><i aria-label="See #13 in list below" class="conum">13</i></span>&#x000A;    "ParameterValue": "sg-&lt;random_string&gt;" <span class="colist-num"><i aria-label="See #14 in list below" class="conum">14</i></span>&#x000A;  },&#x000A;  {&#x000A;    "ParameterKey": "IgnitionLocation", <span class="colist-num"><i aria-label="See #15 in list below" class="conum">15</i></span>&#x000A;    "ParameterValue": "https://api-int.&lt;cluster_name&gt;.&lt;domain_name&gt;:22623/config/master" <span class="colist-num"><i aria-label="See #16 in list below" class="conum">16</i></span>&#x000A;  },&#x000A;  {&#x000A;    "ParameterKey": "CertificateAuthorities", <span class="colist-num"><i aria-label="See #17 in list below" class="conum">17</i></span>&#x000A;    "ParameterValue": "data:text/plain;charset=utf-8;base64,ABC...xYz==" <span class="colist-num"><i aria-label="See #18 in list below" class="conum">18</i></span>&#x000A;  },&#x000A;  {&#x000A;    "ParameterKey": "MasterInstanceProfileName", <span class="colist-num"><i aria-label="See #19 in list below" class="conum">19</i></span>&#x000A;    "ParameterValue": "&lt;roles_stack&gt;-MasterInstanceProfile-&lt;random_string&gt;" <span class="colist-num"><i aria-label="See #20 in list below" class="conum">20</i></span>&#x000A;  },&#x000A;  {&#x000A;    "ParameterKey": "MasterInstanceType", <span class="colist-num"><i aria-label="See #21 in list below" class="conum">21</i></span>&#x000A;    "ParameterValue": "m5.xlarge" <span class="colist-num"><i aria-label="See #22 in list below" class="conum">22</i></span>&#x000A;  },&#x000A;  {&#x000A;    "ParameterKey": "AutoRegisterELB", <span class="colist-num"><i aria-label="See #23 in list below" class="conum">23</i></span>&#x000A;    "ParameterValue": "yes" <span class="colist-num"><i aria-label="See #24 in list below" class="conum">24</i></span>&#x000A;  },&#x000A;  {&#x000A;    "ParameterKey": "RegisterNlbIpTargetsLambdaArn", <span class="colist-num"><i aria-label="See #25 in list below" class="conum">25</i></span>&#x000A;    "ParameterValue": "arn:aws:lambda:&lt;region&gt;:&lt;account_number&gt;:function:&lt;dns_stack_name&gt;-RegisterNlbIpTargets-&lt;random_string&gt;" <span class="colist-num"><i aria-label="See #26 in list below" class="conum">26</i></span>&#x000A;  },&#x000A;  {&#x000A;    "ParameterKey": "ExternalApiTargetGroupArn", <span class="colist-num"><i aria-label="See #27 in list below" class="conum">27</i></span>&#x000A;    "ParameterValue": "arn:aws:elasticloadbalancing:&lt;region&gt;:&lt;account_number&gt;:targetgroup/&lt;dns_stack_name&gt;-Exter-&lt;random_string&gt;" <span class="colist-num"><i aria-label="See #28 in list below" class="conum">28</i></span>&#x000A;  },&#x000A;  {&#x000A;    "ParameterKey": "InternalApiTargetGroupArn", <span class="colist-num"><i aria-label="See #29 in list below" class="conum">29</i></span>&#x000A;    "ParameterValue": "arn:aws:elasticloadbalancing:&lt;region&gt;:&lt;account_number&gt;:targetgroup/&lt;dns_stack_name&gt;-Inter-&lt;random_string&gt;" <span class="colist-num"><i aria-label="See #30 in list below" class="conum">30</i></span>&#x000A;  },&#x000A;  {&#x000A;    "ParameterKey": "InternalServiceTargetGroupArn", <span class="colist-num"><i aria-label="See #31 in list below" class="conum">31</i></span>&#x000A;    "ParameterValue": "arn:aws:elasticloadbalancing:&lt;region&gt;:&lt;account_number&gt;:targetgroup/&lt;dns_stack_name&gt;-Inter-&lt;random_string&gt;" <span class="colist-num"><i aria-label="See #32 in list below" class="conum">32</i></span>&#x000A;  }&#x000A;]</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<ol>
+<li>The name for your cluster infrastructure that is encoded in your Ignition
+config files for the cluster.</li>
+<li>Specify the infrastructure name that you extracted from the Ignition config
+file metadata, which has the format <code>&lt;cluster-name&gt;-&lt;random-string&gt;</code>.</li>
+<li>CurrentRed Hat Enterprise Linux CoreOS (RHCOS) AMI to use for the control plane machines.</li>
+<li>Specify an <code>AWS::EC2::Image::Id</code> value.</li>
+<li>Whether or not to perform DNS etcd registration.</li>
+<li>Specify <code>yes</code> or <code>no</code>. If you specify <code>yes</code>, you must provide hosted zone
+information.</li>
+<li>The Route 53 private zone ID to register the etcd targets with.</li>
+<li>Specify the <code>PrivateHostedZoneId</code> value from the output of the
+CloudFormation template for DNS and load balancing.</li>
+<li>The Route 53 zone to register the targets with.</li>
+<li>Specify <code>&lt;cluster_name&gt;.&lt;domain_name&gt;</code> where <code>&lt;domain_name&gt;</code> is the Route 53
+base domain that you used when you generated <code>install-config.yaml</code> file for the
+cluster. Do not include the trailing period (.) that is
+displayed in the AWS console.</li>
+<li>A subnet, preferably private, to launch the control plane machines on.</li>
+<li>Specify a subnet from the <code>PrivateSubnets</code> value from the output of the
+CloudFormation template for DNS and load balancing.</li>
+<li>The master security group ID to associate with control plane nodes.</li>
+<li>Specify the <code>MasterSecurityGroupId</code> value from the output of the
+CloudFormation template for the security group and roles.</li>
+<li>The location to fetch control plane Ignition config file from.</li>
+<li>Specify the generated Ignition config file location,
+<code><a class="bare" href="https://api-int.&lt;cluster_name&gt;.&lt;domain_name&gt;:22623/config/master">https://api-int.&lt;cluster_name&gt;.&lt;domain_name&gt;:22623/config/master</a></code>.</li>
+<li>The base64 encoded certificate authority string to use.</li>
+<li>Specify the value from the <code>master.ign</code> file that is in the installation
+directory. This value is the long string with the format
+<code>data:text/plain;charset=utf-8;base64,ABC&#8230;&#8203;xYz==</code>.</li>
+<li>The IAM profile to associate with control plane nodes.</li>
+<li>Specify the <code>MasterInstanceProfile</code> parameter value from the output of
+the CloudFormation template for the security group and roles.</li>
+<li>The type of AWS instance to use for the control plane machines.</li>
+<li>Allowed values:</li>
+<li>Whether or not to register a network load balancer (NLB).</li>
+<li>Specify <code>yes</code> or <code>no</code>. If you specify <code>yes</code>, you must provide a Lambda
+Amazon Resource Name (ARN) value.</li>
+<li>The ARN for NLB IP target registration lambda group.</li>
+<li>Specify the <code>RegisterNlbIpTargetsLambda</code> value from the output of the CloudFormation template for DNS
+and load balancing. Use <code>arn:aws-us-gov</code> if deploying the cluster to an AWS
+GovCloud region.</li>
+<li>The ARN for external API load balancer target group.</li>
+<li>Specify the <code>ExternalApiTargetGroupArn</code> value from the output of the CloudFormation template for DNS
+and load balancing. Use <code>arn:aws-us-gov</code> if deploying the cluster to an AWS
+GovCloud region.</li>
+<li>The ARN for internal API load balancer target group.</li>
+<li>Specify the <code>InternalApiTargetGroupArn</code> value from the output of the CloudFormation template for DNS
+and load balancing. Use <code>arn:aws-us-gov</code> if deploying the cluster to an AWS
+GovCloud region.</li>
+<li>The ARN for internal service load balancer target group.</li>
+<li>Specify the <code>InternalServiceTargetGroupArn</code> value from the output of the CloudFormation template for DNS
+and load balancing. Use <code>arn:aws-us-gov</code> if deploying the cluster to an AWS
+GovCloud region.</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Copy the template from the <strong>CloudFormation template for control plane machines</strong>
+section of this topic and save it as a YAML file on your computer. This template
+describes the control plane machines that your cluster requires.</p>
+</li>
+<li>
+<p>If you specified an <code>m5</code> instance type as the value for <code>MasterInstanceType</code>,
+add that instance type to the <code>MasterInstanceType.AllowedValues</code> parameter
+in the CloudFormation template.</p>
+</li>
+<li>
+<p>Launch the CloudFormation template to create a stack of AWS resources that represent the control plane nodes:</p>
+<div class="admonitionblock important">
+<strong class="title icon-title"></strong>
+<div class="content">
+<p>You must enter the command on a single line.</p>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight nowrap"><code class="language-terminal" data-lang="terminal">$ aws cloudformation create-stack --stack-name &lt;name&gt; <span class="colist-num"><i aria-label="See #1 in list below" class="conum">1</i></span>&#x000A;     --template-body file://&lt;template&gt;.yaml <span class="colist-num"><i aria-label="See #2 in list below" class="conum">2</i></span>&#x000A;     --parameters file://&lt;parameters&gt;.json <span class="colist-num"><i aria-label="See #3 in list below" class="conum">3</i></span></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<ol>
+<li><code>&lt;name&gt;</code> is the name for the CloudFormation stack, such as <code>cluster-control-plane</code>.
+You need the name of this stack if you remove the cluster.</li>
+<li><code>&lt;template&gt;</code> is the relative path to and name of the CloudFormation template
+YAML file that you saved.</li>
+<li><code>&lt;parameters&gt;</code> is the relative path to and name of the CloudFormation
+parameters JSON file.</li>
+</ol>
+</div>
+<div class="listingblock">
+<strong class="heading">Example output</strong>
+<div class="content">
+<pre class="highlight nowrap"><code class="language-terminal" data-lang="terminal">arn:aws:cloudformation:us-east-1:269333783861:stack/cluster-control-plane/21c7e2b0-2ee2-11eb-c6f6-0aa34627df4b</code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<strong class="title icon-title"></strong>
+<div class="content">
+<p>The CloudFormation template creates a stack that represents three control plane nodes.</p>
+</div>
+</div>
+</li>
+<li>
+<p>Confirm that the template components exist:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight nowrap"><code class="language-terminal" data-lang="terminal">$ aws cloudformation describe-stacks --stack-name &lt;name&gt;</code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</div>
+</section>
+<section class="sect1">
+<h2 id="installation-cloudformation-security_demo-assembly">CloudFormation template for security objects</h2>
+<div class="sectionbody">
+<p>You can use the following CloudFormation template to deploy the security objects
+that you need for your OpenShift Container Platform cluster.</p>
+<div class="exampleblock">
+<strong class="heading">CloudFormation template for security objects</strong>
+<div class="content">
+<div class="listingblock">
+<div class="content">
+<pre class="highlight nowrap"><code class="language-yaml" data-lang="yaml">link:https://raw.githubusercontent.com/openshift/installer/release-4.9/upi/aws/cloudformation/03_cluster_security.yaml[]</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="sect1">
+<h2 id="virt-accessing-vm-yaml-ssh_demo-assembly">Accessing a virtual machine via SSH with YAML configurations</h2>
+<div class="sectionbody">
+<p>You can enable an SSH connection to a virtual machine (VM) without the need to run the <code>virtctl expose</code> command. When the YAML file for the VM and the YAML file for the service are configured and applied, the service forwards the SSH traffic to the VM.</p>
+<p>The following examples show the configurations for the VM&#8217;s YAML file and the service YAML file.</p>
+<div class="ulist">
+<strong class="heading" id="ulist_heading_1">Prerequisites</strong>
+<ul aria-labelledby="ulist_heading_1">
+<li>
+<p>Install the OpenShift CLI (<code>oc</code>).</p>
+</li>
+<li>
+<p>Create a namespace for the VM&#8217;s YAML file by using the <code>oc create namespace</code> command and specifying a name for the namespace.</p>
+</li>
+</ul>
+</div>
+<div class="olist arabic">
+<strong class="heading" id="olist_heading_2">Procedure</strong>
+<ol aria-labelledby="olist_heading_2" class="arabic">
+<li>
+<p>In the YAML file for the VM, add the label and a value for exposing the service for SSH connections. Enable the <code>masquerade</code> feature for the interface:</p>
+<div class="listingblock">
+<strong class="heading">Example <code>VirtualMachine</code> definition</strong>
+<div class="content">
+<pre class="highlight nowrap"><code class="language-yaml" data-lang="yaml">...&#x000A;apiVersion: kubevirt.io/v1&#x000A;kind: VirtualMachine&#x000A;metadata:&#x000A;  namespace: ssh-ns <span class="colist-num"><i aria-label="See #1 in list below" class="conum">1</i></span>&#x000A;  name: vm-ssh&#x000A;spec:&#x000A;  running: false&#x000A;  template:&#x000A;    metadata:&#x000A;      labels:&#x000A;        kubevirt.io/vm: vm-ssh&#x000A;        special: vm-ssh <span class="colist-num"><i aria-label="See #2 in list below" class="conum">2</i></span>&#x000A;    spec:&#x000A;      domain:&#x000A;        devices:&#x000A;          disks:&#x000A;          - disk:&#x000A;              bus: virtio&#x000A;            name: containerdisk&#x000A;          - disk:&#x000A;              bus: virtio&#x000A;            name: cloudinitdisk&#x000A;          interfaces:&#x000A;          - masquerade: {} <span class="colist-num"><i aria-label="See #3 in list below" class="conum">3</i></span>&#x000A;            name: testmasquerade <span class="colist-num"><i aria-label="See #4 in list below" class="conum">4</i></span>&#x000A;          rng: {}&#x000A;        machine:&#x000A;          type: ""&#x000A;        resources:&#x000A;          requests:&#x000A;            memory: 1024M&#x000A;      networks:&#x000A;      - name: testmasquerade&#x000A;        pod: {}&#x000A;      volumes:&#x000A;      - name: containerdisk&#x000A;        containerDisk:&#x000A;          image: kubevirt/fedora-cloud-container-disk-demo&#x000A;      - name: cloudinitdisk&#x000A;        cloudInitNoCloud:&#x000A;          userData: |&#x000A;            #!/bin/bash&#x000A;            echo "fedora" | passwd fedora --stdin&#x000A;...</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<ol>
+<li>Name of the namespace created by the <code>oc create namespace</code> command.</li>
+<li>Label used by the service to identify the virtual machine instances that are enabled for SSH traffic connections. The label can be any <code>key:value</code> pair that is added as a <code>label</code> to this YAML file and as a <code>selector</code> in the service YAML file.</li>
+<li>The interface type is <code>masquerade</code>.</li>
+<li>The name of this interface is <code>testmasquerade</code>.</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Create the VM:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight nowrap"><code class="language-terminal" data-lang="terminal">$ oc create -f <em>&lt;path_for_the_VM_YAML_file&gt;</em></code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Start the VM:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight nowrap"><code class="language-terminal" data-lang="terminal">$ virtctl start vm-ssh</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>In the YAML file for the service, specify the service name, port number, and the target port.</p>
+<div class="listingblock">
+<strong class="heading">Example <code>Service</code> definition</strong>
+<div class="content">
+<pre class="highlight nowrap"><code class="language-yaml" data-lang="yaml">...&#x000A;apiVersion: v1&#x000A;kind: Service&#x000A;metadata:&#x000A;  name: svc-ssh <span class="colist-num"><i aria-label="See #1 in list below" class="conum">1</i></span>&#x000A;  namespace: ssh-ns <span class="colist-num"><i aria-label="See #2 in list below" class="conum">2</i></span>&#x000A;spec:&#x000A;  ports:&#x000A;  - targetPort: 22 <span class="colist-num"><i aria-label="See #3 in list below" class="conum">3</i></span>&#x000A;    protocol: TCP&#x000A;    port: 27017&#x000A;  selector:&#x000A;    special: vm-ssh <span class="colist-num"><i aria-label="See #4 in list below" class="conum">4</i></span>&#x000A;  type: NodePort&#x000A;...</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<ol>
+<li>Name of the SSH service.</li>
+<li>Name of the namespace created by the <code>oc create namespace</code> command.</li>
+<li>The target port number for the SSH connection.</li>
+<li>The selector name and value must match the label specified in the YAML file for the VM.</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Create the service:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight nowrap"><code class="language-terminal" data-lang="terminal">$ oc create -f <em>&lt;path_for_the_service_YAML_file&gt;</em></code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Verify that the VM is running:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight nowrap"><code class="language-terminal" data-lang="terminal">$ oc get vmi</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<strong class="heading">Example output</strong>
+<div class="content">
+<pre class="highlight nowrap"><code class="language-terminal" data-lang="terminal">NAME    AGE     PHASE       IP              NODENAME&#x000A;vm-ssh 6s       Running     10.244.196.152  node01</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Check the service to find out which port the service acquired:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight nowrap"><code class="language-terminal" data-lang="terminal">$ oc get svc</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<strong class="heading">Example output</strong>
+<div class="content">
+<pre class="highlight nowrap"><code class="language-terminal" data-lang="terminal">NAME            TYPE       CLUSTER-IP     EXTERNAL-IP   PORT(S)           AGE&#x000A;svc-ssh     NodePort       10.106.236.208 &lt;none&gt;        27017:30093/TCP   22s</code></pre>
+</div>
+</div>
+<p>In this example, the service acquired the port number 30093.</p>
+</li>
+<li>
+<p>Run the following command to obtain the IP address for the node:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight nowrap"><code class="language-terminal" data-lang="terminal">$ oc get node <em>&lt;node_name&gt;</em> -o wide</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<strong class="heading">Example output</strong>
+<div class="content">
+<pre class="highlight nowrap"><code class="language-terminal" data-lang="terminal">NAME    STATUS   ROLES   AGE    VERSION  INTERNAL-IP      EXTERNAL-IP&#x000A;node01  Ready    worker  6d22h  v1.22.1  192.168.55.101   &lt;none&gt;</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Log in to the VM via SSH by specifying the IP address of the node where the VM is running and the port number. Use the port number displayed by the <code>oc get svc</code> command and the IP address of the node displayed by the <code>oc get node</code> command. The following example shows the <code>ssh</code> command with the username, node&#8217;s IP address, and the port number:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight nowrap"><code class="language-terminal" data-lang="terminal">$ ssh fedora@192.168.55.101 -p 30093</code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</div>
+</section>
+<section class="sect1">
+<h2 id="virt-features-for-storage-matrix_demo-assembly">OpenShift Virtualization storage feature matrix</h2>
+<div class="sectionbody">
+<p>The following table describes the OpenShift Virtualization storage types that support VM import.</p>
+<table class="tableblock frame-all grid-all spread">
+<caption class="title">OpenShift Virtualization storage feature matrix</caption>
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+  <th class="tableblock halign-left valign-top" id="table1_th_" scope="col">
+
+  </th>
+  <th class="tableblock halign-left valign-top" id="table1_th_vmware_vm_import" scope="col">
+VMware VM import
+  </th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td class="tableblock halign-left valign-top" headers="table1_th_">
+<p class="tableblock">OpenShift Container Storage: RBD block-mode volumes</p>
+  </td>
+  <td class="tableblock halign-left valign-top" headers="table1_th_vmware_vm_import">
+<p class="tableblock">Yes</p>
+  </td>
+</tr>
+<tr>
+  <td class="tableblock halign-left valign-top" headers="table1_th_">
+<p class="tableblock">OpenShift Virtualization hostpath provisioner</p>
+  </td>
+  <td class="tableblock halign-left valign-top" headers="table1_th_vmware_vm_import">
+<p class="tableblock">Yes</p>
+  </td>
+</tr>
+<tr>
+  <td class="tableblock halign-left valign-top" headers="table1_th_">
+<p class="tableblock">Other multi-node writable storage</p>
+  </td>
+  <td class="tableblock halign-left valign-top" headers="table1_th_vmware_vm_import">
+<p class="tableblock">Yes <sup>[1]</sup></p>
+  </td>
+</tr>
+<tr>
+  <td class="tableblock halign-left valign-top" headers="table1_th_">
+<p class="tableblock">Other single-node writable storage</p>
+  </td>
+  <td class="tableblock halign-left valign-top" headers="table1_th_vmware_vm_import">
+<p class="tableblock">Yes <sup>[2]</sup></p>
+  </td>
+</tr>
+</tbody>
+</table>
+<div class="openblock small">
+<div class="content">
+<ol class="arabic">
+<li>
+<p>PVCs must request a ReadWriteMany access mode.</p>
+</li>
+<li>
+<p>PVCs must request a ReadWriteOnce access mode.</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+</section>
+<section class="sect1">
+<h2 id="installation-configuration-parameters_demo-assembly">Installation configuration parameters</h2>
+<div class="sectionbody">
+<p>Before you deploy an OpenShift Container Platform cluster, you provide parameter values to describe your account on the cloud platform that hosts your cluster and optionally customize your cluster&#8217;s platform. When you create the <code>install-config.yaml</code> installation configuration file, you provide values for the required parameters through the command line. If you customize your cluster, you can modify the <code>install-config.yaml</code> file to provide more details about the platform.</p>
+<div class="admonitionblock note">
+<strong class="title icon-title"></strong>
+<div class="content">
+<p>After installation, you cannot modify these parameters in the <code>install-config.yaml</code> file.</p>
+</div>
+</div>
+<div class="admonitionblock important">
+<strong class="title icon-title"></strong>
+<div class="content">
+<p>The <code>openshift-install</code> command does not validate field names for parameters. If an incorrect name is specified, the related file or object is not created, and no error is reported. Ensure that the field names for any parameters that are specified are correct.</p>
+</div>
+</div>
+<section class="sect2">
+<h3 id="installation-configuration-parameters-required_demo-assembly">Required configuration parameters</h3>
+<p>Required installation configuration parameters are described in the following table:</p>
+<table class="tableblock frame-all grid-all spread">
+<caption class="title">Table 1. Required parameters</caption>
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 30%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+  <th class="tableblock halign-left valign-middle" id="table2_th_parameter" scope="col">
+Parameter
+  </th>
+  <th class="tableblock halign-left valign-middle" id="table2_th_description" scope="col">
+Description
+  </th>
+  <th class="tableblock halign-left valign-middle" id="table2_th_values" scope="col">
+Values
+  </th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td class="tableblock halign-left valign-middle" headers="table2_th_parameter">
+<p class="tableblock"><code>apiVersion</code></p>
+  </td>
+  <td class="tableblock halign-left valign-middle" headers="table2_th_description">
+<p class="tableblock">The API version for the <code>install-config.yaml</code> content. The current version is <code>v1</code>. The installer may also support older API versions.</p>
+  </td>
+  <td class="tableblock halign-left valign-middle" headers="table2_th_values">
+<p>String</p>
+  </td>
+</tr>
+<tr>
+  <td class="tableblock halign-left valign-middle" headers="table2_th_parameter">
+<p class="tableblock"><code>baseDomain</code></p>
+  </td>
+  <td class="tableblock halign-left valign-middle" headers="table2_th_description">
+<p class="tableblock">The base domain of your cloud provider. The base domain is used to create routes to your OpenShift Container Platform cluster components. The full DNS name for your cluster is a combination of the <code>baseDomain</code> and <code>metadata.name</code> parameter values that uses the <code>&lt;metadata.name&gt;.&lt;baseDomain&gt;</code> format.</p>
+  </td>
+  <td class="tableblock halign-left valign-middle" headers="table2_th_values">
+<p>A fully-qualified domain or subdomain name, such as <code>example.com</code>.</p>
+  </td>
+</tr>
+<tr>
+  <td class="tableblock halign-left valign-middle" headers="table2_th_parameter">
+<p class="tableblock"><code>metadata</code></p>
+  </td>
+  <td class="tableblock halign-left valign-middle" headers="table2_th_description">
+<p class="tableblock">Kubernetes resource <code>ObjectMeta</code>, from which only the <code>name</code> parameter is consumed.</p>
+  </td>
+  <td class="tableblock halign-left valign-middle" headers="table2_th_values">
+<p>Object</p>
+  </td>
+</tr>
+<tr>
+  <td class="tableblock halign-left valign-middle" headers="table2_th_parameter">
+<p class="tableblock"><code>metadata.name</code></p>
+  </td>
+  <td class="tableblock halign-left valign-middle" headers="table2_th_description">
+<p class="tableblock">The name of the cluster. DNS records for the cluster are all subdomains of <code>{{.metadata.name}}.{{.baseDomain}}</code>.</p>
+  </td>
+  <td class="tableblock halign-left valign-middle" headers="table2_th_values">
+<p>String of lowercase letters, hyphens (<code>-</code>), and periods (<code>.</code>), such as <code>dev</code>.</p>
+  </td>
+</tr>
+<tr>
+  <td class="tableblock halign-left valign-middle" headers="table2_th_parameter">
+<p class="tableblock"><code>platform</code></p>
+  </td>
+  <td class="tableblock halign-left valign-middle" headers="table2_th_description">
+<p class="tableblock">The configuration for the specific platform upon which to perform the installation: <code>aws</code>, <code>baremetal</code>, <code>azure</code>, <code>openstack</code>, <code>ovirt</code>, <code>vsphere</code>, or <code>{}</code>. For additional information about <code>platform.&lt;platform&gt;</code> parameters, consult the table for your specific platform that follows.</p>
+  </td>
+  <td class="tableblock halign-left valign-middle" headers="table2_th_values">
+<p>Object</p>
+  </td>
+</tr>
+<tr>
+  <td class="tableblock halign-left valign-middle" headers="table2_th_parameter">
+<p class="tableblock"><code>pullSecret</code></p>
+  </td>
+  <td class="tableblock halign-left valign-middle" headers="table2_th_description">
+<p class="tableblock">Get a pull secret from <a class="bare" href="https://console.redhat.com/openshift/install/pull-secret">https://console.redhat.com/openshift/install/pull-secret</a> to authenticate downloading container images for OpenShift Container Platform components from services such as Quay.io.</p>
+  </td>
+  <td class="tableblock halign-left valign-middle" headers="table2_th_values">
+<div class="listingblock">
+<div class="content">
+<pre class="highlight nowrap"><code class="language-json" data-lang="json">{&#x000A;   "auths":{&#x000A;      "cloud.openshift.com":{&#x000A;         "auth":"b3Blb=",&#x000A;         "email":"you@example.com"&#x000A;      },&#x000A;      "quay.io":{&#x000A;         "auth":"b3Blb=",&#x000A;         "email":"you@example.com"&#x000A;      }&#x000A;   }&#x000A;}</code></pre>
+</div>
+</div>
+  </td>
+</tr>
+</tbody>
+</table>
+</section>
+<section class="sect2">
+<h3 id="installation-configuration-parameters-network_demo-assembly">Network configuration parameters</h3>
+<p>You can customize your installation configuration based on the requirements of your existing network infrastructure. For example, you can expand the IP address block for the cluster network or provide different IP address blocks than the defaults.</p>
+<p>Only IPv4 addresses are supported.</p>
+<table class="tableblock frame-all grid-all spread">
+<caption class="title">Table 2. Network parameters</caption>
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 37.5%;">
+<col style="width: 37.5%;">
+</colgroup>
+<thead>
+<tr>
+  <th class="tableblock halign-left valign-middle" id="table3_th_parameter" scope="col">
+Parameter
+  </th>
+  <th class="tableblock halign-left valign-middle" id="table3_th_description" scope="col">
+Description
+  </th>
+  <th class="tableblock halign-left valign-middle" id="table3_th_values" scope="col">
+Values
+  </th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td class="tableblock halign-left valign-middle" headers="table3_th_parameter">
+<p class="tableblock"><code>networking</code></p>
+  </td>
+  <td class="tableblock halign-left valign-middle" headers="table3_th_description">
+<p>The configuration for the cluster network.</p>
+  </td>
+  <td class="tableblock halign-left valign-middle" headers="table3_th_values">
+<p>Object</p>
+<div class="admonitionblock note">
+<strong class="title icon-title"></strong>
+<div class="content">
+<p>You cannot modify parameters specified by the <code>networking</code> object after installation.</p>
+</div>
+</div>
+  </td>
+</tr>
+<tr>
+  <td class="tableblock halign-left valign-middle" headers="table3_th_parameter">
+<p class="tableblock"><code>networking.networkType</code></p>
+  </td>
+  <td class="tableblock halign-left valign-middle" headers="table3_th_description">
+<p>The cluster network provider Container Network Interface (CNI) plug-in to install.</p>
+  </td>
+  <td class="tableblock halign-left valign-middle" headers="table3_th_values">
+<p>Either <code>OpenShiftSDN</code> or <code>OVNKubernetes</code>. The default value is <code>OpenShiftSDN</code>.</p>
+  </td>
+</tr>
+<tr>
+  <td class="tableblock halign-left valign-middle" headers="table3_th_parameter">
+<p class="tableblock"><code>networking.clusterNetwork</code></p>
+  </td>
+  <td class="tableblock halign-left valign-middle" headers="table3_th_description">
+<p>The IP address blocks for pods.</p>
+<p>The default value is <code>10.128.0.0/14</code> with a host prefix of <code>/23</code>.</p>
+<p>If you specify multiple IP address blocks, the blocks must not overlap.</p>
+  </td>
+  <td class="tableblock halign-left valign-middle" headers="table3_th_values">
+<p>An array of objects. For example:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight nowrap"><code class="language-yaml" data-lang="yaml">networking:&#x000A;  clusterNetwork:&#x000A;  - cidr: 10.128.0.0/14&#x000A;    hostPrefix: 23</code></pre>
+</div>
+</div>
+  </td>
+</tr>
+<tr>
+  <td class="tableblock halign-left valign-middle" headers="table3_th_parameter">
+<p class="tableblock"><code>networking.clusterNetwork.cidr</code></p>
+  </td>
+  <td class="tableblock halign-left valign-middle" headers="table3_th_description">
+<p>Required if you use <code>networking.clusterNetwork</code>. An IP address block.</p>
+<p>An IPv4 network.</p>
+  </td>
+  <td class="tableblock halign-left valign-middle" headers="table3_th_values">
+<p>An IP address block in Classless Inter-Domain Routing (CIDR) notation.
+The prefix length for an IPv4 block is between <code>0</code> and <code>32</code>.</p>
+  </td>
+</tr>
+<tr>
+  <td class="tableblock halign-left valign-middle" headers="table3_th_parameter">
+<p class="tableblock"><code>networking.clusterNetwork.hostPrefix</code></p>
+  </td>
+  <td class="tableblock halign-left valign-middle" headers="table3_th_description">
+<p>The subnet prefix length to assign to each individual node. For example, if <code>hostPrefix</code> is set to <code>23</code> then each node is assigned a <code>/23</code> subnet out of the given <code>cidr</code>. A <code>hostPrefix</code> value of <code>23</code> provides 510 (2^(32 - 23) - 2) pod IP addresses.</p>
+  </td>
+  <td class="tableblock halign-left valign-middle" headers="table3_th_values">
+<p>A subnet prefix.</p>
+<p>The default value is <code>23</code>.</p>
+  </td>
+</tr>
+<tr>
+  <td class="tableblock halign-left valign-middle" headers="table3_th_parameter">
+<p class="tableblock"><code>networking.serviceNetwork</code></p>
+  </td>
+  <td class="tableblock halign-left valign-middle" headers="table3_th_description">
+<p>The IP address block for services. The default value is <code>172.30.0.0/16</code>.</p>
+<p>The OpenShift SDN and OVN-Kubernetes network providers support only a single IP address block for the service network.</p>
+  </td>
+  <td class="tableblock halign-left valign-middle" headers="table3_th_values">
+<p>An array with an IP address block in CIDR format. For example:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight nowrap"><code class="language-yaml" data-lang="yaml">networking:&#x000A;  serviceNetwork:&#x000A;   - 172.30.0.0/16</code></pre>
+</div>
+</div>
+  </td>
+</tr>
+<tr>
+  <td class="tableblock halign-left valign-middle" headers="table3_th_parameter">
+<p class="tableblock"><code>networking.machineNetwork</code></p>
+  </td>
+  <td class="tableblock halign-left valign-middle" headers="table3_th_description">
+<p>The IP address blocks for machines.</p>
+<p>If you specify multiple IP address blocks, the blocks must not overlap.</p>
+  </td>
+  <td class="tableblock halign-left valign-middle" headers="table3_th_values">
+<p>An array of objects. For example:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight nowrap"><code class="language-yaml" data-lang="yaml">networking:&#x000A;  machineNetwork:&#x000A;  - cidr: 10.0.0.0/16</code></pre>
+</div>
+</div>
+  </td>
+</tr>
+<tr>
+  <td class="tableblock halign-left valign-middle" headers="table3_th_parameter">
+<p class="tableblock"><code>networking.machineNetwork.cidr</code></p>
+  </td>
+  <td class="tableblock halign-left valign-middle" headers="table3_th_description">
+<p>Required if you use <code>networking.machineNetwork</code>. An IP address block. The default value is <code>10.0.0.0/16</code> for all platforms other than libvirt. For libvirt, the default value is <code>192.168.126.0/24</code>.</p>
+  </td>
+  <td class="tableblock halign-left valign-middle" headers="table3_th_values">
+<p>An IP network block in CIDR notation.</p>
+<p>For example, <code>10.0.0.0/16</code>.</p>
+<div class="admonitionblock note">
+<strong class="title icon-title"></strong>
+<div class="content">
+<p>Set the <code>networking.machineNetwork</code> to match the CIDR that the preferred NIC resides in.</p>
+</div>
+</div>
+  </td>
+</tr>
+</tbody>
+</table>
+</section>
+<section class="sect2">
+<h3 id="installation-configuration-parameters-optional_demo-assembly">Optional configuration parameters</h3>
+<p>Optional installation configuration parameters are described in the following table:</p>
+<table class="tableblock frame-all grid-all spread">
+<caption class="title">Table 3. Optional parameters</caption>
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 37.5%;">
+<col style="width: 37.5%;">
+</colgroup>
+<thead>
+<tr>
+  <th class="tableblock halign-left valign-middle" id="table4_th_parameter" scope="col">
+Parameter
+  </th>
+  <th class="tableblock halign-left valign-middle" id="table4_th_description" scope="col">
+Description
+  </th>
+  <th class="tableblock halign-left valign-middle" id="table4_th_values" scope="col">
+Values
+  </th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td class="tableblock halign-left valign-middle" headers="table4_th_parameter">
+<p class="tableblock"><code>additionalTrustBundle</code></p>
+  </td>
+  <td class="tableblock halign-left valign-middle" headers="table4_th_description">
+<p>A PEM-encoded X.509 certificate bundle that is added to the nodes' trusted certificate store. This trust bundle may also be used when a proxy has been configured.</p>
+  </td>
+  <td class="tableblock halign-left valign-middle" headers="table4_th_values">
+<p>String</p>
+  </td>
+</tr>
+<tr>
+  <td class="tableblock halign-left valign-middle" headers="table4_th_parameter">
+<p class="tableblock"><code>compute</code></p>
+  </td>
+  <td class="tableblock halign-left valign-middle" headers="table4_th_description">
+<p>The configuration for the machines that comprise the compute nodes.</p>
+  </td>
+  <td class="tableblock halign-left valign-middle" headers="table4_th_values">
+<p>Array of <code>MachinePool</code> objects. For details, see the following "Machine-pool" table.</p>
+  </td>
+</tr>
+<tr>
+  <td class="tableblock halign-left valign-middle" headers="table4_th_parameter">
+<p class="tableblock"><code>compute.architecture</code></p>
+  </td>
+  <td class="tableblock halign-left valign-middle" headers="table4_th_description">
+<p>Determines the instruction set architecture of the machines in the pool. Currently, heteregeneous clusters are not supported, so all pools must specify the same architecture. Valid values are <code>amd64</code> (the default).</p>
+  </td>
+  <td class="tableblock halign-left valign-middle" headers="table4_th_values">
+<p>String</p>
+  </td>
+</tr>
+<tr>
+  <td class="tableblock halign-left valign-middle" headers="table4_th_parameter">
+<p class="tableblock"><code>compute.hyperthreading</code></p>
+  </td>
+  <td class="tableblock halign-left valign-middle" headers="table4_th_description">
+<p>Whether to enable or disable simultaneous multithreading, or <code>hyperthreading</code>, on compute machines. By default, simultaneous multithreading is enabled to increase the performance of your machines' cores.</p>
+<div class="admonitionblock important">
+<strong class="title icon-title"></strong>
+<div class="content">
+<p>If you disable simultaneous multithreading, ensure that your capacity planning
+accounts for the dramatically decreased machine performance.</p>
+</div>
+</div>
+  </td>
+  <td class="tableblock halign-left valign-middle" headers="table4_th_values">
+<p><code>Enabled</code> or <code>Disabled</code></p>
+  </td>
+</tr>
+<tr>
+  <td class="tableblock halign-left valign-middle" headers="table4_th_parameter">
+<p class="tableblock"><code>compute.name</code></p>
+  </td>
+  <td class="tableblock halign-left valign-middle" headers="table4_th_description">
+<p>Required if you use <code>compute</code>. The name of the machine pool.</p>
+  </td>
+  <td class="tableblock halign-left valign-middle" headers="table4_th_values">
+<p><code>worker</code></p>
+  </td>
+</tr>
+<tr>
+  <td class="tableblock halign-left valign-middle" headers="table4_th_parameter">
+<p class="tableblock"><code>compute.platform</code></p>
+  </td>
+  <td class="tableblock halign-left valign-middle" headers="table4_th_description">
+<p>Required if you use <code>compute</code>. Use this parameter to specify the cloud provider to host the worker machines. This parameter value must match the <code>controlPlane.platform</code> parameter value.</p>
+  </td>
+  <td class="tableblock halign-left valign-middle" headers="table4_th_values">
+<p><code>aws</code>, <code>azure</code>, <code>gcp</code>, <code>openstack</code>, <code>ovirt</code>, <code>vsphere</code>, or <code>{}</code></p>
+  </td>
+</tr>
+<tr>
+  <td class="tableblock halign-left valign-middle" headers="table4_th_parameter">
+<p class="tableblock"><code>compute.replicas</code></p>
+  </td>
+  <td class="tableblock halign-left valign-middle" headers="table4_th_description">
+<p>The number of compute machines, which are also known as worker machines, to provision.</p>
+  </td>
+  <td class="tableblock halign-left valign-middle" headers="table4_th_values">
+<p>A positive integer greater than or equal to <code>2</code>. The default value is <code>3</code>.</p>
+  </td>
+</tr>
+<tr>
+  <td class="tableblock halign-left valign-middle" headers="table4_th_parameter">
+<p class="tableblock"><code>controlPlane</code></p>
+  </td>
+  <td class="tableblock halign-left valign-middle" headers="table4_th_description">
+<p>The configuration for the machines that comprise the control plane.</p>
+  </td>
+  <td class="tableblock halign-left valign-middle" headers="table4_th_values">
+<p>Array of <code>MachinePool</code> objects. For details, see the following "Machine-pool" table.</p>
+  </td>
+</tr>
+<tr>
+  <td class="tableblock halign-left valign-middle" headers="table4_th_parameter">
+<p class="tableblock"><code>controlPlane.architecture</code></p>
+  </td>
+  <td class="tableblock halign-left valign-middle" headers="table4_th_description">
+<p>Determines the instruction set architecture of the machines in the pool. Currently, heterogeneous clusters are not supported, so all pools must specify the same architecture. Valid values are <code>amd64</code> (the default).</p>
+  </td>
+  <td class="tableblock halign-left valign-middle" headers="table4_th_values">
+<p>String</p>
+  </td>
+</tr>
+<tr>
+  <td class="tableblock halign-left valign-middle" headers="table4_th_parameter">
+<p class="tableblock"><code>controlPlane.hyperthreading</code></p>
+  </td>
+  <td class="tableblock halign-left valign-middle" headers="table4_th_description">
+<p>Whether to enable or disable simultaneous multithreading, or <code>hyperthreading</code>, on control plane machines. By default, simultaneous multithreading is enabled to increase the performance of your machines' cores.</p>
+<div class="admonitionblock important">
+<strong class="title icon-title"></strong>
+<div class="content">
+<p>If you disable simultaneous multithreading, ensure that your capacity planning
+accounts for the dramatically decreased machine performance.</p>
+</div>
+</div>
+  </td>
+  <td class="tableblock halign-left valign-middle" headers="table4_th_values">
+<p><code>Enabled</code> or <code>Disabled</code></p>
+  </td>
+</tr>
+<tr>
+  <td class="tableblock halign-left valign-middle" headers="table4_th_parameter">
+<p class="tableblock"><code>controlPlane.name</code></p>
+  </td>
+  <td class="tableblock halign-left valign-middle" headers="table4_th_description">
+<p>Required if you use <code>controlPlane</code>. The name of the machine pool.</p>
+  </td>
+  <td class="tableblock halign-left valign-middle" headers="table4_th_values">
+<p><code>master</code></p>
+  </td>
+</tr>
+<tr>
+  <td class="tableblock halign-left valign-middle" headers="table4_th_parameter">
+<p class="tableblock"><code>controlPlane.platform</code></p>
+  </td>
+  <td class="tableblock halign-left valign-middle" headers="table4_th_description">
+<p>Required if you use <code>controlPlane</code>. Use this parameter to specify the cloud provider that hosts the control plane machines. This parameter value must match the <code>compute.platform</code> parameter value.</p>
+  </td>
+  <td class="tableblock halign-left valign-middle" headers="table4_th_values">
+<p><code>aws</code>, <code>azure</code>, <code>gcp</code>, <code>openstack</code>, <code>ovirt</code>, <code>vsphere</code>, or <code>{}</code></p>
+  </td>
+</tr>
+<tr>
+  <td class="tableblock halign-left valign-middle" headers="table4_th_parameter">
+<p class="tableblock"><code>controlPlane.replicas</code></p>
+  </td>
+  <td class="tableblock halign-left valign-middle" headers="table4_th_description">
+<p>The number of control plane machines to provision.</p>
+  </td>
+  <td class="tableblock halign-left valign-middle" headers="table4_th_values">
+<p>The only supported value is <code>3</code>, which is the default value.</p>
+  </td>
+</tr>
+<tr>
+  <td class="tableblock halign-left valign-middle" headers="table4_th_parameter">
+<p class="tableblock"><code>credentialsMode</code></p>
+  </td>
+  <td class="tableblock halign-left valign-middle" headers="table4_th_description">
+<p>The Cloud Credential Operator (CCO) mode. If no mode is specified, the CCO dynamically tries to determine the capabilities of the provided credentials, with a preference for mint mode on the platforms where multiple modes are supported.</p>
+<div class="admonitionblock note">
+<strong class="title icon-title"></strong>
+<div class="content">
+<p>Not all CCO modes are supported for all cloud providers. For more information on CCO modes, see the <em>Cloud Credential Operator</em> entry in the <em>Red Hat Operators reference</em> content.</p>
+</div>
+</div>
+  </td>
+  <td class="tableblock halign-left valign-middle" headers="table4_th_values">
+<p><code>Mint</code>, <code>Passthrough</code>, <code>Manual</code>, or an empty string (<code>""</code>).</p>
+  </td>
+</tr>
+<tr>
+  <td class="tableblock halign-left valign-middle" headers="table4_th_parameter">
+<p class="tableblock"><code>fips</code></p>
+  </td>
+  <td class="tableblock halign-left valign-middle" headers="table4_th_description">
+<p>Enable or disable FIPS mode. The default is <code>false</code> (disabled). If FIPS mode is enabled, the Red Hat Enterprise Linux CoreOS (RHCOS) machines that OpenShift Container Platform runs on bypass the default Kubernetes cryptography suite and use the cryptography modules that are provided with RHCOS instead.</p>
+<div class="admonitionblock important">
+<strong class="title icon-title"></strong>
+<div class="content">
+<p>The use of FIPS Validated / Modules in Process cryptographic libraries is only supported on OpenShift Container Platform deployments on the <code>x86_64</code> architecture.</p>
+</div>
+</div>
+<div class="admonitionblock note">
+<strong class="title icon-title"></strong>
+<div class="content">
+<p>If you are using Azure File storage, you cannot enable FIPS mode.</p>
+</div>
+</div>
+  </td>
+  <td class="tableblock halign-left valign-middle" headers="table4_th_values">
+<p><code>false</code> or <code>true</code></p>
+  </td>
+</tr>
+<tr>
+  <td class="tableblock halign-left valign-middle" headers="table4_th_parameter">
+<p class="tableblock"><code>imageContentSources</code></p>
+  </td>
+  <td class="tableblock halign-left valign-middle" headers="table4_th_description">
+<p>Sources and repositories for the release-image content.</p>
+  </td>
+  <td class="tableblock halign-left valign-middle" headers="table4_th_values">
+<p>Array of objects. Includes a <code>source</code> and, optionally, <code>mirrors</code>, as described in the following rows of this table.</p>
+  </td>
+</tr>
+<tr>
+  <td class="tableblock halign-left valign-middle" headers="table4_th_parameter">
+<p class="tableblock"><code>imageContentSources.source</code></p>
+  </td>
+  <td class="tableblock halign-left valign-middle" headers="table4_th_description">
+<p>Required if you use <code>imageContentSources</code>. Specify the repository that users refer to, for example, in image pull specifications.</p>
+  </td>
+  <td class="tableblock halign-left valign-middle" headers="table4_th_values">
+<p>String</p>
+  </td>
+</tr>
+<tr>
+  <td class="tableblock halign-left valign-middle" headers="table4_th_parameter">
+<p class="tableblock"><code>imageContentSources.mirrors</code></p>
+  </td>
+  <td class="tableblock halign-left valign-middle" headers="table4_th_description">
+<p>Specify one or more repositories that may also contain the same images.</p>
+  </td>
+  <td class="tableblock halign-left valign-middle" headers="table4_th_values">
+<p>Array of strings</p>
+  </td>
+</tr>
+<tr>
+  <td class="tableblock halign-left valign-middle" headers="table4_th_parameter">
+<p class="tableblock"><code>publish</code></p>
+  </td>
+  <td class="tableblock halign-left valign-middle" headers="table4_th_description">
+<p>How to publish or expose the user-facing endpoints of your cluster, such as the Kubernetes API, OpenShift routes.</p>
+  </td>
+  <td class="tableblock halign-left valign-middle" headers="table4_th_values">
+<p><code>Internal</code> or <code>External</code>. To deploy a private cluster, which cannot be accessed from the internet, set <code>publish</code> to <code>Internal</code>. The default value is <code>External</code>.</p>
+  </td>
+</tr>
+<tr>
+  <td class="tableblock halign-left valign-middle" headers="table4_th_parameter">
+<p class="tableblock"><code>sshKey</code></p>
+  </td>
+  <td class="tableblock halign-left valign-middle" headers="table4_th_description">
+<p>The SSH key to authenticate access to your cluster machines.</p>
+<div class="admonitionblock note">
+<strong class="title icon-title"></strong>
+<div class="content">
+<p>For production OpenShift Container Platform clusters on which you want to perform installation debugging or disaster recovery, specify an SSH key that your <code>ssh-agent</code> process uses.</p>
+</div>
+</div>
+  </td>
+  <td class="tableblock halign-left valign-middle" headers="table4_th_values">
+<p>For example, <code>sshKey: ssh-ed25519 AAAA..</code>.</p>
+  </td>
+</tr>
+</tbody>
+</table>
+</section>
+<section class="sect2">
+<h3 id="installation-configuration-parameters-optional-aws_demo-assembly">Optional AWS configuration parameters</h3>
+<p>Optional AWS configuration parameters are described in the following table:</p>
+<table class="tableblock frame-all grid-all spread">
+<caption class="title">Table 4. Optional AWS parameters</caption>
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 30%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+  <th class="tableblock halign-left valign-middle" id="table5_th_parameter" scope="col">
+Parameter
+  </th>
+  <th class="tableblock halign-left valign-middle" id="table5_th_description" scope="col">
+Description
+  </th>
+  <th class="tableblock halign-left valign-middle" id="table5_th_values" scope="col">
+Values
+  </th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td class="tableblock halign-left valign-middle" headers="table5_th_parameter">
+<p class="tableblock"><code>compute.platform.aws.amiID</code></p>
+  </td>
+  <td class="tableblock halign-left valign-middle" headers="table5_th_description">
+<p class="tableblock">The AWS AMI used to boot compute machines for the cluster. This is required for regions that require a custom RHCOS AMI.</p>
+  </td>
+  <td class="tableblock halign-left valign-middle" headers="table5_th_values">
+<p>Any published or custom RHCOS AMI that belongs to the set AWS region.</p>
+  </td>
+</tr>
+<tr>
+  <td class="tableblock halign-left valign-middle" headers="table5_th_parameter">
+<p class="tableblock"><code>compute.platform.aws.iamRole</code></p>
+  </td>
+  <td class="tableblock halign-left valign-middle" headers="table5_th_description">
+<p class="tableblock">A pre-existing AWS IAM role applied to the compute machine pool instance profiles. You can use these fields to match naming schemes and include predefined permissions boundaries for your IAM roles. If undefined, the installation program creates a new IAM role.</p>
+  </td>
+  <td class="tableblock halign-left valign-middle" headers="table5_th_values">
+<p>The name of a valid AWS IAM role.</p>
+  </td>
+</tr>
+<tr>
+  <td class="tableblock halign-left valign-middle" headers="table5_th_parameter">
+<p class="tableblock"><code>compute.platform.aws.rootVolume.iops</code></p>
+  </td>
+  <td class="tableblock halign-left valign-middle" headers="table5_th_description">
+<p class="tableblock">The Input/Output Operations Per Second (IOPS) that is reserved for the root volume.</p>
+  </td>
+  <td class="tableblock halign-left valign-middle" headers="table5_th_values">
+<p>Integer, for example <code>4000</code>.</p>
+  </td>
+</tr>
+<tr>
+  <td class="tableblock halign-left valign-middle" headers="table5_th_parameter">
+<p class="tableblock"><code>compute.platform.aws.rootVolume.size</code></p>
+  </td>
+  <td class="tableblock halign-left valign-middle" headers="table5_th_description">
+<p class="tableblock">The size in GiB of the root volume.</p>
+  </td>
+  <td class="tableblock halign-left valign-middle" headers="table5_th_values">
+<p>Integer, for example <code>500</code>.</p>
+  </td>
+</tr>
+<tr>
+  <td class="tableblock halign-left valign-middle" headers="table5_th_parameter">
+<p class="tableblock"><code>compute.platform.aws.rootVolume.type</code></p>
+  </td>
+  <td class="tableblock halign-left valign-middle" headers="table5_th_description">
+<p class="tableblock">The type of the root volume.</p>
+  </td>
+  <td class="tableblock halign-left valign-middle" headers="table5_th_values">
+<p>Valid <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSVolumeTypes.html">AWS EBS volume type</a>,
+such as <code>io1</code>.</p>
+  </td>
+</tr>
+<tr>
+  <td class="tableblock halign-left valign-middle" headers="table5_th_parameter">
+<p class="tableblock"><code>compute.platform.aws.type</code></p>
+  </td>
+  <td class="tableblock halign-left valign-middle" headers="table5_th_description">
+<p class="tableblock">The EC2 instance type for the compute machines.</p>
+  </td>
+  <td class="tableblock halign-left valign-middle" headers="table5_th_values">
+<p>Valid AWS instance type, such as <code>m4.2xlarge</code>. See the <strong>Instance types for machines</strong> table that follows.</p>
+  </td>
+</tr>
+<tr>
+  <td class="tableblock halign-left valign-middle" headers="table5_th_parameter">
+<p class="tableblock"><code>compute.platform.aws.zones</code></p>
+  </td>
+  <td class="tableblock halign-left valign-middle" headers="table5_th_description">
+<p class="tableblock">The availability zones where the installation program creates machines for the compute machine pool. If you provide your own VPC, you must provide a subnet in that availability zone.</p>
+  </td>
+  <td class="tableblock halign-left valign-middle" headers="table5_th_values">
+<p>A list of valid AWS availability zones, such as <code>us-east-1c</code>, in a
+<a href="https://yaml.org/spec/1.2/spec.html#sequence//">YAML sequence</a>.</p>
+  </td>
+</tr>
+<tr>
+  <td class="tableblock halign-left valign-middle" headers="table5_th_parameter">
+<p class="tableblock"><code>compute.aws.region</code></p>
+  </td>
+  <td class="tableblock halign-left valign-middle" headers="table5_th_description">
+<p class="tableblock">The AWS region that the installation program creates compute resources in.</p>
+  </td>
+  <td class="tableblock halign-left valign-middle" headers="table5_th_values">
+<p>Any valid <a href="https://docs.aws.amazon.com/general/latest/gr/rande.html">AWS region</a>, such as <code>us-east-1</code>.</p>
+  </td>
+</tr>
+<tr>
+  <td class="tableblock halign-left valign-middle" headers="table5_th_parameter">
+<p class="tableblock"><code>controlPlane.platform.aws.amiID</code></p>
+  </td>
+  <td class="tableblock halign-left valign-middle" headers="table5_th_description">
+<p class="tableblock">The AWS AMI used to boot control plane machines for the cluster.  This is required for regions that require a custom RHCOS AMI.</p>
+  </td>
+  <td class="tableblock halign-left valign-middle" headers="table5_th_values">
+<p>Any published or custom RHCOS AMI that belongs to the set AWS region.</p>
+  </td>
+</tr>
+<tr>
+  <td class="tableblock halign-left valign-middle" headers="table5_th_parameter">
+<p class="tableblock"><code>controlPlane.platform.aws.iamRole</code></p>
+  </td>
+  <td class="tableblock halign-left valign-middle" headers="table5_th_description">
+<p class="tableblock">A pre-existing AWS IAM role applied to the control plane machine pool instance profiles. You can use these fields to match naming schemes and include predefined permissions boundaries for your IAM roles. If undefined, the installation program creates a new IAM role.</p>
+  </td>
+  <td class="tableblock halign-left valign-middle" headers="table5_th_values">
+<p>The name of a valid AWS IAM role.</p>
+  </td>
+</tr>
+<tr>
+  <td class="tableblock halign-left valign-middle" headers="table5_th_parameter">
+<p class="tableblock"><code>controlPlane.platform.aws.type</code></p>
+  </td>
+  <td class="tableblock halign-left valign-middle" headers="table5_th_description">
+<p class="tableblock">The EC2 instance type for the control plane machines.</p>
+  </td>
+  <td class="tableblock halign-left valign-middle" headers="table5_th_values">
+<p>Valid AWS instance type, such as <code>m5.xlarge</code>. See the <strong>Instance types for machines</strong> table that follows.</p>
+  </td>
+</tr>
+<tr>
+  <td class="tableblock halign-left valign-middle" headers="table5_th_parameter">
+<p class="tableblock"><code>controlPlane.platform.aws.zones</code></p>
+  </td>
+  <td class="tableblock halign-left valign-middle" headers="table5_th_description">
+<p class="tableblock">The availability zones where the installation program creates machines for the
+control plane machine pool.</p>
+  </td>
+  <td class="tableblock halign-left valign-middle" headers="table5_th_values">
+<p>A list of valid AWS availability zones, such as <code>us-east-1c</code>, in a <a href="https://yaml.org/spec/1.2/spec.html#sequence//">YAML sequence</a>.</p>
+  </td>
+</tr>
+<tr>
+  <td class="tableblock halign-left valign-middle" headers="table5_th_parameter">
+<p class="tableblock"><code>controlPlane.aws.region</code></p>
+  </td>
+  <td class="tableblock halign-left valign-middle" headers="table5_th_description">
+<p class="tableblock">The AWS region that the installation program creates control plane resources in.</p>
+  </td>
+  <td class="tableblock halign-left valign-middle" headers="table5_th_values">
+<p>Valid <a href="https://docs.aws.amazon.com/general/latest/gr/rande.html">AWS region</a>, such as <code>us-east-1</code>.</p>
+  </td>
+</tr>
+<tr>
+  <td class="tableblock halign-left valign-middle" headers="table5_th_parameter">
+<p class="tableblock"><code>platform.aws.amiID</code></p>
+  </td>
+  <td class="tableblock halign-left valign-middle" headers="table5_th_description">
+<p class="tableblock">The AWS AMI used to boot all machines for the cluster. If set, the AMI must
+belong to the same region as the cluster. This is required for regions that require a custom RHCOS AMI.</p>
+  </td>
+  <td class="tableblock halign-left valign-middle" headers="table5_th_values">
+<p>Any published or custom RHCOS AMI that belongs to the set AWS region.</p>
+  </td>
+</tr>
+<tr>
+  <td class="tableblock halign-left valign-middle" headers="table5_th_parameter">
+<p class="tableblock"><code>platform.aws.hostedZone</code></p>
+  </td>
+  <td class="tableblock halign-left valign-middle" headers="table5_th_description">
+<p class="tableblock">An existing Route 53 private hosted zone for the cluster. You can only use a pre-existing hosted zone when also supplying your own VPC. The hosted zone must already be associated with the user-provided VPC before installation. Also, the domain of the hosted zone must be the cluster domain or a parent of the cluster domain. If undefined, the installation program creates a new hosted zone.</p>
+  </td>
+  <td class="tableblock halign-left valign-middle" headers="table5_th_values">
+<p>String, for example <code>Z3URY6TWQ91KVV</code>.</p>
+  </td>
+</tr>
+<tr>
+  <td class="tableblock halign-left valign-middle" headers="table5_th_parameter">
+<p class="tableblock"><code>platform.aws.serviceEndpoints.name</code></p>
+  </td>
+  <td class="tableblock halign-left valign-middle" headers="table5_th_description">
+<p class="tableblock">The AWS service endpoint name. Custom endpoints are only required for cases
+where alternative AWS endpoints, like FIPS, must be used. Custom API endpoints
+can be specified for EC2, S3, IAM, Elastic Load Balancing, Tagging, Route 53,
+and STS AWS services.</p>
+  </td>
+  <td class="tableblock halign-left valign-middle" headers="table5_th_values">
+<p>Valid <a href="https://docs.aws.amazon.com/general/latest/gr/rande.html">AWS service endpoint</a> name.</p>
+  </td>
+</tr>
+<tr>
+  <td class="tableblock halign-left valign-middle" headers="table5_th_parameter">
+<p class="tableblock"><code>platform.aws.serviceEndpoints.url</code></p>
+  </td>
+  <td class="tableblock halign-left valign-middle" headers="table5_th_description">
+<p class="tableblock">The AWS service endpoint URL. The URL must use the <code>https</code> protocol and the
+host must trust the certificate.</p>
+  </td>
+  <td class="tableblock halign-left valign-middle" headers="table5_th_values">
+<p>Valid <a href="https://docs.aws.amazon.com/general/latest/gr/rande.html">AWS service endpoint</a> URL.</p>
+  </td>
+</tr>
+<tr>
+  <td class="tableblock halign-left valign-middle" headers="table5_th_parameter">
+<p class="tableblock"><code>platform.aws.userTags</code></p>
+  </td>
+  <td class="tableblock halign-left valign-middle" headers="table5_th_description">
+<p class="tableblock">A map of keys and values that the installation program adds as tags to all resources that it creates.</p>
+  </td>
+  <td class="tableblock halign-left valign-middle" headers="table5_th_values">
+<p>Any valid YAML map, such as key value pairs in the <code>&lt;key&gt;: &lt;value&gt;</code> format. For more information about AWS tags, see <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Using_Tags.html">Tagging Your Amazon EC2 Resources</a> in the AWS documentation.</p>
+  </td>
+</tr>
+<tr>
+  <td class="tableblock halign-left valign-middle" headers="table5_th_parameter">
+<p class="tableblock"><code>platform.aws.subnets</code></p>
+  </td>
+  <td class="tableblock halign-left valign-middle" headers="table5_th_description">
+<p class="tableblock">If you provide the VPC instead of allowing the installation program to create the VPC for you, specify the subnet for the cluster to use. The subnet must be part of the same <code>machineNetwork[].cidr</code> ranges that you specify. For a standard cluster, specify a public and a private subnet for each availability zone. For a private cluster, specify a private subnet for each availability zone.</p>
+  </td>
+  <td class="tableblock halign-left valign-middle" headers="table5_th_values">
+<p>Valid subnet IDs.</p>
+  </td>
+</tr>
+</tbody>
+</table>
+</section>
+</div>
+</section>
+<section class="sect1">
+<h2 id="configuring-hybrid-ovnkubernetes_demo-assembly">Configuring hybrid networking with OVN-Kubernetes</h2>
+<div class="sectionbody">
+<p>You can configure your cluster to use hybrid networking with OVN-Kubernetes. This allows a hybrid cluster that supports different node networking configurations. For example, this is necessary to run both Linux and Windows nodes in a cluster.</p>
+<div class="admonitionblock important">
+<strong class="title icon-title"></strong>
+<div class="content">
+<p>You must configure hybrid networking with OVN-Kubernetes during the installation of your cluster. You cannot switch to hybrid networking after the installation process.</p>
+</div>
+</div>
+<div class="ulist">
+<strong class="heading" id="ulist_heading_3">Prerequisites</strong>
+<ul aria-labelledby="ulist_heading_3">
+<li>
+<p>You defined <code>OVNKubernetes</code> for the <code>networking.networkType</code> parameter in the <code>install-config.yaml</code> file. See the installation documentation for configuring OpenShift Container Platform network customizations on your chosen cloud provider for more information.</p>
+</li>
+</ul>
+</div>
+<div class="olist arabic">
+<strong class="heading" id="olist_heading_4">Procedure</strong>
+<ol aria-labelledby="olist_heading_4" class="arabic">
+<li>
+<p>Change to the directory that contains the installation program and create the manifests:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight nowrap"><code class="language-terminal" data-lang="terminal">$ ./openshift-install create manifests --dir=&lt;installation_directory&gt;</code></pre>
+</div>
+</div>
+<div class="openblock">
+<div class="content">
+<p>where:</p>
+<dl>
+<dt><code>&lt;installation_directory&gt;</code></dt>
+<dd>
+Specifies the name of the directory that contains the <code>install-config.yaml</code> file for your cluster.
+</dd>
+</dl>
+</div>
+</div>
+</li>
+<li>
+<p>Create a stub manifest file for the advanced network configuration that is named <code>cluster-network-03-config.yml</code> in the <code>&lt;installation_directory&gt;/manifests/</code> directory:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight nowrap"><code class="language-terminal" data-lang="terminal">$ cat &lt;&lt;EOF &gt; &lt;installation_directory&gt;/manifests/cluster-network-03-config.yml&#x000A;apiVersion: operator.openshift.io/v1&#x000A;kind: Network&#x000A;metadata:&#x000A;  name: cluster&#x000A;spec:&#x000A;EOF</code></pre>
+</div>
+</div>
+<div class="openblock">
+<div class="content">
+<p>where:</p>
+<dl>
+<dt><code>&lt;installation_directory&gt;</code></dt>
+<dd>
+Specifies the directory name that contains the
+<code>manifests/</code> directory for your cluster.
+</dd>
+</dl>
+</div>
+</div>
+</li>
+<li>
+<p>Open the <code>cluster-network-03-config.yml</code> file in an editor and configure OVN-Kubernetes with hybrid networking, such as in the following example:</p>
+<div class="openblock">
+<div class="content">
+<div class="listingblock">
+<strong class="heading">Specify a hybrid networking configuration</strong>
+<div class="content">
+<pre class="highlight nowrap"><code class="language-yaml" data-lang="yaml">apiVersion: operator.openshift.io/v1&#x000A;kind: Network&#x000A;metadata:&#x000A;  name: cluster&#x000A;spec:&#x000A;  defaultNetwork:&#x000A;    ovnKubernetesConfig:&#x000A;      hybridOverlayConfig:&#x000A;        hybridClusterNetwork: <span class="colist-num"><i aria-label="See #1 in list below" class="conum">1</i></span>&#x000A;        - cidr: 10.132.0.0/14&#x000A;          hostPrefix: 23&#x000A;        hybridOverlayVXLANPort: 9898 <span class="colist-num"><i aria-label="See #2 in list below" class="conum">2</i></span></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<ol>
+<li>Specify the CIDR configuration used for nodes on the additional overlay network. The <code>hybridClusterNetwork</code> CIDR cannot overlap with the <code>clusterNetwork</code> CIDR.</li>
+<li>Specify a custom VXLAN port for the additional overlay network. This is required for running Windows nodes in a cluster installed on vSphere, and must not be configured for any other cloud provider. The custom port can be any open port excluding the default <code>4789</code> port. For more information on this requirement, see the Microsoft documentation on <a href="https://docs.microsoft.com/en-us/virtualization/windowscontainers/kubernetes/common-problems#pod-to-pod-connectivity-between-hosts-is-broken-on-my-kubernetes-cluster-running-on-vsphere">Pod-to-pod connectivity between hosts is broken</a>.</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="admonitionblock note">
+<strong class="title icon-title"></strong>
+<div class="content">
+<p>Windows Server Long-Term Servicing Channel (LTSC): Windows Server 2019 is not supported on clusters with a custom <code>hybridOverlayVXLANPort</code> value because this Windows server version does not support selecting a custom VXLAN port.</p>
+</div>
+</div>
+</li>
+<li>
+<p>Save the <code>cluster-network-03-config.yml</code> file and quit the text editor.</p>
+</li>
+<li>
+<p>Optional: Back up the <code>manifests/cluster-network-03-config.yml</code> file. The
+installation program deletes the <code>manifests/</code> directory when creating the
+cluster.</p>
+</li>
+</ol>
+</div>
+</div>
+</section>
+<div class="rh-docs-legal-notice">
+<a class="rh-docs-legal-notice__link" href="https://access.redhat.com/docs-legal-notice">Legal Notices for Trademarks</a>
+</div>
+</article>
+<footer class="rhdocs-footer" id="rhdocs-footer">
+<div class="rhdocs-footer-text" id="rhdocs-footer-text">
+</div>
+</footer>
+</cp-documentation>
+</body>
+</html>

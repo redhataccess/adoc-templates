@@ -8,4 +8,5 @@
     - toc_title_id = 'toctitle'
   %nav{:id=>toc_id, :class=>toc_role}
     %h2.title{:id=>toc_title_id}=toc_title
-    =converter.convert_with_options @document, 'outline', :toclevels => ((attr? :levels) ? (attr :levels).to_i : nil)
+    =converter.convert @document, 'outline'
+

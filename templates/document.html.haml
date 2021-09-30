@@ -131,11 +131,12 @@
       - unless nofooter
         %footer#rhdocs-footer.rhdocs-footer
           #rhdocs-footer-text.rhdocs-footer-text
-            - if attr? :revnumber
-              = precede %(#{attr 'version-label'} #{attr :revnumber}) do
-                - if attr? 'last-update-label'
-                  %br
-            - if attr? 'last-update-label'
-              #{attr 'last-update-label'} #{attr :localdatetime}
-          - unless (docinfo_content = (docinfo :footer)).empty?
-            =docinfo_content
+            - if (@document.attr :pantheonenv) != 'localdev'
+              - if attr? :revnumber
+                = precede %(#{attr 'version-label'} #{attr :revnumber}) do
+                  - if attr? 'last-update-label'
+                    %br
+              - if attr? 'last-update-label'
+                #{attr 'last-update-label'} #{attr :localdatetime}
+            - unless (docinfo_content = (docinfo :footer)).empty?
+              =docinfo_content
