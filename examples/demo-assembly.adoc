@@ -1,0 +1,41 @@
+[id="demo-assembly"]
+= Demo assembly of complicated modules
+include::adoc-includes/common-attributes.adoc[]
+include::adoc-includes/virt-document-attributes.adoc[]
+:context: demo-assembly
+
+toc::[]
+
+This is a demo assembly of some modules from the `openshift/openshift-docs` repo that have complex elements.
+
+//This one has a list in the callouts.
+include::adoc-includes/templates-writing-description.adoc[leveloffset=+1]
+
+//This one has some complicated if/ifeval statements and notes in callouts but should display the default values.
+include::adoc-includes/installation-aws-config-yaml.adoc[leveloffset=+1]
+
+//This one has YAML samples in notes.
+include::adoc-includes/templates-writing-parameters.adoc[leveloffset=+1]
+
+//This one has discrete headings.
+include::adoc-includes/cluster-autoscaler-operator.adoc[leveloffset=+1]
+
+//This one has another list in the callouts.
+include::adoc-includes/installation-creating-aws-control-plane.adoc[leveloffset=+1]
+
+//This one includes an external file as a code sample.
+include::adoc-includes/installation-cloudformation-security.adoc[leveloffset=+1]
+
+//This one includes an [source,terminal,subs="+quotes"] example.
+include::adoc-includes/virt-accessing-vm-yaml-ssh.adoc[leveloffset=+1]
+
+//This one has some footnotes. Note that this module has a different way of controlling the conditional content, so we have to set an unset a variable in the assembly.
+:virt-importing-vmware-vm:
+include::adoc-includes/virt-features-for-storage-matrix.adoc[leveloffset=+1]
+:!virt-importing-vmware-vm:
+
+//This one has some really bad tables and complicated conditional statements. I added a pair of ifeval statements to the modules so that the AWS values are displayed.
+include::adoc-includes/installation-configuration-parameters.adoc[leveloffset=+1]
+
+//This one has a really short definition list in step 2.
+include::adoc-includes/configuring-hybrid-ovnkubernetes.adoc[leveloffset=+1]
