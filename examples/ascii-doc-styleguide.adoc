@@ -1048,7 +1048,7 @@ Robyn:Indestructable:Dance
 
 IMPORTANT: You *must* set the `experimental` attribute in the document header to enable these macros.
 
-.Keyboard shortcuts (inline `kbd` macro)
+=== Keyboard shortcuts (inline `kbd` macro)
 ----
 |===
 |Shortcut |Purpose
@@ -1086,7 +1086,12 @@ IMPORTANT: You *must* set the `experimental` attribute in the document header to
 |===
 ====
 
-.Menu selections (inline `menu` macro)
+==== Inline sample:
+
+Locate the blueprint that you want to build an image by entering its name or a part of it into the search box at top left, and press kbd:[Enter]. Ut ex enim veniam ut magna pariatur in ut amet eiusmod minim officia. Sit dolor ut officia officia eu exercitation. Cillum elit laborum Lorem ipsum in ipsum et cupidatat cillum irure.
+
+
+=== Menu selections (inline `menu` macro)
 ----
 To save the file, select menu:File[Save].
 
@@ -1100,7 +1105,7 @@ To save the file, select menu:File[Save].
 Select menu:View[Zoom > Reset] to reset the zoom level to the default setting.
 ====
 
-.Buttons (inline `btn` macro)
+=== Buttons (inline `btn` macro)
 ----
 Press the btn:[OK] button when you are finished.
 
