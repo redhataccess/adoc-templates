@@ -39,3 +39,6 @@ include::adoc-includes/installation-configuration-parameters.adoc[leveloffset=+1
 
 //This one has a really short definition list in step 2.
 include::adoc-includes/configuring-hybrid-ovnkubernetes.adoc[leveloffset=+1]
+
+//This one is a generated page from our REST API guide.
+include::adoc-includes/index.adoc[leveloffset=+1]
