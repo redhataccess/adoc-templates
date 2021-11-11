@@ -1,33 +1,29 @@
 {
-  "_args": [
-    [
-      "@patternfly/pfelement@1.11.1",
-      "/home/wruvalca/dev/adoc-templates"
-    ]
-  ],
-  "_from": "@patternfly/pfelement@1.11.1",
-  "_id": "@patternfly/pfelement@1.11.1",
+  "_from": "@patternfly/pfelement@^1.11.2",
+  "_id": "@patternfly/pfelement@1.11.2",
   "_inBundle": false,
-  "_integrity": "sha512-qy4saYS+YCecmYzdlp+JJX3PfFg/ksQHblr0MpYKhOueR/KsGm/tjCYoqbyRMqRd4eK+PJf9t1p0506j3ZOAZw==",
+  "_integrity": "sha512-drqf82c186Vk9iy63Ep68zbCa7vkWW7/JMk4cLGThsoHcKOITDQjd3/37oyXtT9O3B235w++MHBQmC5GJAEhEw==",
   "_location": "/@patternfly/pfelement",
   "_phantomChildren": {},
   "_requested": {
-    "type": "version",
+    "type": "range",
     "registry": true,
-    "raw": "@patternfly/pfelement@1.11.1",
+    "raw": "@patternfly/pfelement@^1.11.2",
     "name": "@patternfly/pfelement",
     "escapedName": "@patternfly%2fpfelement",
     "scope": "@patternfly",
-    "rawSpec": "1.11.1",
+    "rawSpec": "^1.11.2",
     "saveSpec": null,
-    "fetchSpec": "1.11.1"
+    "fetchSpec": "^1.11.2"
   },
   "_requiredBy": [
     "/",
+    "/@patternfly/pfe-clipboard",
     "/@patternfly/pfe-icon"
   ],
-  "_resolved": "https://registry.npmjs.org/@patternfly/pfelement/-/pfelement-1.11.1.tgz",
-  "_spec": "1.11.1",
+  "_resolved": "https://registry.npmjs.org/@patternfly/pfelement/-/pfelement-1.11.2.tgz",
+  "_shasum": "43a13722e68277bf5f57f3b3612909c097b10821",
+  "_spec": "@patternfly/pfelement@^1.11.2",
   "_where": "/home/wruvalca/dev/adoc-templates",
   "browserslist": [
     "last 2 versions",
@@ -38,6 +34,7 @@
   "bugs": {
     "url": "https://github.com/patternfly/patternfly-elements/issues"
   },
+  "bundleDependencies": false,
   "contributors": [
     {
       "name": "Kyle Buchanan",
@@ -52,18 +49,16 @@
       "url": "https://github.com/castastrophe"
     }
   ],
+  "deprecated": false,
   "description": "Base class for PatternFly Elements",
   "devDependencies": {
-    "@patternfly/pfe-sass": "^1.11.1"
-  },
-  "engines": {
-    "node": ">=10 <13"
+    "@patternfly/pfe-sass": "^1.11.2"
   },
   "files": [
     "dist"
   ],
   "generator-pfelement-version": "0.3.4",
-  "gitHead": "03304ab5be8292f92b0b379007c26d4572ab5d2c",
+  "gitHead": "5adee443614cd02f28991c3b161bf4f82e2338e4",
   "homepage": "https://github.com/patternfly/patternfly-elements#readme",
   "keywords": [
     "web-components",
@@ -98,5 +93,5 @@
     "watch": "../../node_modules/.bin/gulp watch"
   },
   "unpkg": "./dist/pfelement.umd.min.js",
-  "version": "1.11.1"
+  "version": "1.11.2"
 }

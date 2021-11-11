@@ -1946,12 +1946,36 @@ a .icon {
   width: 14px;
 }
 
+.codeblock__wrapper {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  border: 1px solid #ccc;
+}
+
+.codeblock[class] {
+  margin: 0;
+  border-bottom: 1px solid #ccc;
+}
+
+.codeblock__copy {
+  border: 1px solid #ccc;
+  margin: -1px -1px -1px auto;
+}
+
 @media (min-width: 1100px) {
   .rhdocs .admonitionblock,
   .rhdocs .table-wrapper,
   .rhdocs table.wide,
   .rhdocs pre,
-  .rhdocs .related-topic-content__wrapper {
+  .rhdocs .related-topic-content__wrapper,
+  .rhdocs .codeblock__wrapper {
     width: calc(100vw - 144px);
     max-width: 1400px;
   }
@@ -1963,39 +1987,55 @@ a .icon {
   .pfe-documentation--next-to-sidebar .rhdocs table.wide,
   .pfe-documentation--next-to-sidebar .rhdocs pre,
   .pfe-documentation--next-to-sidebar .rhdocs .related-topic-content__wrapper,
+  .pfe-documentation--next-to-sidebar .rhdocs .codeblock__wrapper,
   :host(.pfe-documentation--next-to-sidebar) .rhdocs .admonitionblock,
   :host(.pfe-documentation--next-to-sidebar) .rhdocs .table-wrapper,
   :host(.pfe-documentation--next-to-sidebar) .rhdocs table.wide,
   :host(.pfe-documentation--next-to-sidebar) .rhdocs pre,
-  :host(.pfe-documentation--next-to-sidebar) .rhdocs .related-topic-content__wrapper {
+  :host(.pfe-documentation--next-to-sidebar) .rhdocs .related-topic-content__wrapper,
+  :host(.pfe-documentation--next-to-sidebar) .rhdocs .codeblock__wrapper {
     width: calc(70vw - 144px);
     max-width: 1400px;
   }
 }
 
-.rhdocs[class] .admonitionblock .admonitionblock, .rhdocs[class] .table-wrapper .admonitionblock, .rhdocs[class] table.wide .admonitionblock, .rhdocs[class] pre .admonitionblock, .rhdocs[class] .related-topic-content__wrapper .admonitionblock,
+.rhdocs[class] .admonitionblock .admonitionblock, .rhdocs[class] .table-wrapper .admonitionblock, .rhdocs[class] table.wide .admonitionblock, .rhdocs[class] pre .admonitionblock, .rhdocs[class] .related-topic-content__wrapper .admonitionblock, .rhdocs[class] .codeblock__wrapper .admonitionblock,
 .rhdocs[class] .admonitionblock .table-wrapper,
 .rhdocs[class] .table-wrapper .table-wrapper,
 .rhdocs[class] table.wide .table-wrapper,
 .rhdocs[class] pre .table-wrapper,
 .rhdocs[class] .related-topic-content__wrapper .table-wrapper,
+.rhdocs[class] .codeblock__wrapper .table-wrapper,
 .rhdocs[class] .admonitionblock table.wide,
 .rhdocs[class] .table-wrapper table.wide,
 .rhdocs[class] table.wide table.wide,
 .rhdocs[class] pre table.wide,
 .rhdocs[class] .related-topic-content__wrapper table.wide,
+.rhdocs[class] .codeblock__wrapper table.wide,
 .rhdocs[class] .admonitionblock pre,
 .rhdocs[class] .table-wrapper pre,
 .rhdocs[class] table.wide pre,
 .rhdocs[class] pre pre,
 .rhdocs[class] .related-topic-content__wrapper pre,
+.rhdocs[class] .codeblock__wrapper pre,
 .rhdocs[class] .admonitionblock .related-topic-content__wrapper,
 .rhdocs[class] .table-wrapper .related-topic-content__wrapper,
 .rhdocs[class] table.wide .related-topic-content__wrapper,
 .rhdocs[class] pre .related-topic-content__wrapper,
-.rhdocs[class] .related-topic-content__wrapper .related-topic-content__wrapper {
+.rhdocs[class] .related-topic-content__wrapper .related-topic-content__wrapper,
+.rhdocs[class] .codeblock__wrapper .related-topic-content__wrapper,
+.rhdocs[class] .admonitionblock .codeblock__wrapper,
+.rhdocs[class] .table-wrapper .codeblock__wrapper,
+.rhdocs[class] table.wide .codeblock__wrapper,
+.rhdocs[class] pre .codeblock__wrapper,
+.rhdocs[class] .related-topic-content__wrapper .codeblock__wrapper,
+.rhdocs[class] .codeblock__wrapper .codeblock__wrapper {
   width: auto;
   max-width: 100%;
+}
+
+.codeblock__wrapper pre {
+  width: auto;
 }
 
 .masthead {

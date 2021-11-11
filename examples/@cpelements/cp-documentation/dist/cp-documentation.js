@@ -1,4 +1,5 @@
 import PFElement from '../../../@patternfly/pfelement/dist/pfelement.js';
+import '../../../@patternfly/pfe-clipboard/dist/pfe-clipboard.js';
 
 var commonjsGlobal = typeof globalThis !== 'undefined' ? globalThis : typeof window !== 'undefined' ? window : typeof global !== 'undefined' ? global : typeof self !== 'undefined' ? self : {};
 
@@ -3200,7 +3201,7 @@ Prism.languages.py = Prism.languages.python;
 });
 
 /*!
- * PatternFly Elements: PfeDocumentation 0.1.53
+ * PatternFly Elements: PfeDocumentation 0.1.54
  * @license
  * Copyright 2020 Red Hat, Inc.
  * 
@@ -3360,7 +3361,7 @@ const lightDomObserverConfig = {
 
 class PfeDocumentation extends PFElement {
   static get version() {
-    return "0.1.53";
+    return "0.1.54";
   }
 
   get html() {
@@ -3412,6 +3413,7 @@ class PfeDocumentation extends PFElement {
 
     // Initialize variables to be used later
     this._contentData = {};
+    this._plainCodeBlockContent = {};
     this._contentType = null;
     this._scrollSpying = false;
     this._sections = {};
@@ -3717,15 +3719,18 @@ class PfeDocumentation extends PFElement {
     const codeBlockClassesArray = codeBlockClasses
       ? codeBlockClasses.split(" ")
       : undefined;
+    // Adding a hidden copy of the un-upgraded code content to the DOM, may be unecessary
     const plainCodeBlock = document.createElement("pre");
 
     if (codeBlock.classList.contains("codeblock--processed")) {
       return;
     }
 
-    // Get the language from the class names
-    let language = "none";
+    // Figure out code's language
+    let language = "none"; // Default to none
+    // Keeps track of the provided language class, which may need to be removed
     let languageClass;
+    // Iterate over class names and find code language
     if (codeBlockClassesArray) {
       for (let index = 0; index < codeBlockClassesArray.length; index++) {
         const className = codeBlockClassesArray[index];
@@ -3736,7 +3741,7 @@ class PfeDocumentation extends PFElement {
       }
     }
 
-    // Make sure we're dealing with a pre element
+    // Make sure we're dealing with a pre element, which could be the element or it's parent
     if (codeBlock.tagName.toLowerCase() !== "pre") {
       if (
         codeBlock.parentElement &&
@@ -3749,17 +3754,69 @@ class PfeDocumentation extends PFElement {
       }
     }
 
+    const codeBlockWrapper = codeBlock.parentElement;
+
     // Create a copy without the syntax highlighting or HTML and annotations removed
-    plainCodeBlock.innerText = codeBlock.innerText;
+    const plainCodeBlockId = `codeblock--plain--${Math.random()
+      .toString(36)
+      .substr(2, 9)}`;
+
+    // Remove any annotations from the code block for the copy button
+    // Users don't want to copy artifacts from the docs, just the code
+    const codeBlockClone = codeBlock.cloneNode(true);
+    const codeBlockAnnotations = codeBlockClone.querySelectorAll(".colist-num");
+    for (let index = 0; index < codeBlockAnnotations.length; index++) {
+      const codeBlockAnnotation = codeBlockAnnotations[index];
+      // @todo IE
+      codeBlockAnnotation.remove();
+    }
+    // Use this cleaned up code for the copy content
+    const contentToCopy = codeBlockClone.innerText;
+
+    this._plainCodeBlockContent[plainCodeBlockId] = contentToCopy;
     plainCodeBlock.hidden = true;
+    plainCodeBlock.id = plainCodeBlockId;
+    plainCodeBlock.classList.add("codeblock--plain");
 
     // For some reason, sometimes parentElement doesn't exist??
-    if (codeBlock.parentElement) {
-      codeBlock.parentElement.classList.add("codeblock__wrapper");
-      codeBlock.parentElement.appendChild(plainCodeBlock);
+    if (
+      codeBlockWrapper &&
+      !codeBlockWrapper.classList.contains("codeblock__wrapper")
+    ) {
+      codeBlockWrapper.classList.add("codeblock__wrapper");
+      codeBlockWrapper.dataset.plainCodeBlockId = plainCodeBlockId;
+      codeBlock.classList.add('codeblock');
+
+      // Append the hidden unformatted codeblock
+      codeBlockWrapper.appendChild(plainCodeBlock);
+
+      // Create and add copy button
+      const copyButton = document.createElement("pfe-clipboard");
+      copyButton.setAttribute("copy-from", "property");
+      copyButton.classList.add('codeblock__copy');
+      codeBlockWrapper.appendChild(copyButton);
+
+      // Set content to be copied once clipboard component is running
+      document.addEventListener("pfe-clipboard:connected", (event) => {
+        // Needed to get the ID to retrieve the content from the object
+        const thisComponent = event.detail.component;
+        const thisCodeWrapper = thisComponent.closest(".codeblock__wrapper");
+        if (
+          thisComponent &&
+          thisCodeWrapper &&
+          thisCodeWrapper.dataset.plainCodeBlockId
+        ) {
+          // Set the content to be copied
+          thisComponent.contentToCopy =
+            this._plainCodeBlockContent[
+              thisCodeWrapper.dataset.plainCodeBlockId
+            ];
+        }
+      });
     }
 
     // Alias languages as described by https://docs.google.com/spreadsheets/d/1T2_Hc3Pi4Phu2R4S9OBLv7kGx790FJfFkCMNSKLvMwI/edit#gid=0
+    // This is covering for our enormous backlog of content
     switch (language) {
       case "config":
         language = "text";

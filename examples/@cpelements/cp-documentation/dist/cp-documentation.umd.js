@@ -1,6 +1,6 @@
 (function (global, factory) {
-	typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory(require('../../../@patternfly/pfelement/dist/pfelement.umd')) :
-	typeof define === 'function' && define.amd ? define(['../../../@patternfly/pfelement/dist/pfelement.umd'], factory) :
+	typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory(require('../../../@patternfly/pfelement/dist/pfelement.umd'), require('../../../@patternfly/pfe-clipboard/dist/pfe-clipboard.umd')) :
+	typeof define === 'function' && define.amd ? define(['../../../@patternfly/pfelement/dist/pfelement.umd', '../../../@patternfly/pfe-clipboard/dist/pfe-clipboard.umd'], factory) :
 	(global.PfeDocumentation = factory(global.PFElement));
 }(this, (function (PFElement) { 'use strict';
 
@@ -2951,7 +2951,7 @@
 	};
 
 	/*!
-	 * PatternFly Elements: PfeDocumentation 0.1.53
+	 * PatternFly Elements: PfeDocumentation 0.1.54
 	 * @license
 	 * Copyright 2020 Red Hat, Inc.
 	 * 
@@ -3125,7 +3125,7 @@
 	  }], [{
 	    key: "version",
 	    get: function get$$1() {
-	      return "0.1.53";
+	      return "0.1.54";
 	    }
 	  }, {
 	    key: "tag",
@@ -3171,6 +3171,7 @@
 
 	    // Initialize variables to be used later
 	    _this._contentData = {};
+	    _this._plainCodeBlockContent = {};
 	    _this._contentType = null;
 	    _this._scrollSpying = false;
 	    _this._sections = {};
@@ -3463,17 +3464,22 @@
 	  }, {
 	    key: "_processCodeblock",
 	    value: function _processCodeblock(codeBlock) {
+	      var _this2 = this;
+
 	      var codeBlockClasses = codeBlock.getAttribute("class");
 	      var codeBlockClassesArray = codeBlockClasses ? codeBlockClasses.split(" ") : undefined;
+	      // Adding a hidden copy of the un-upgraded code content to the DOM, may be unecessary
 	      var plainCodeBlock = document.createElement("pre");
 
 	      if (codeBlock.classList.contains("codeblock--processed")) {
 	        return;
 	      }
 
-	      // Get the language from the class names
-	      var language = "none";
+	      // Figure out code's language
+	      var language = "none"; // Default to none
+	      // Keeps track of the provided language class, which may need to be removed
 	      var languageClass = void 0;
+	      // Iterate over class names and find code language
 	      if (codeBlockClassesArray) {
 	        for (var index = 0; index < codeBlockClassesArray.length; index++) {
 	          var className = codeBlockClassesArray[index];
@@ -3484,7 +3490,7 @@
 	        }
 	      }
 
-	      // Make sure we're dealing with a pre element
+	      // Make sure we're dealing with a pre element, which could be the element or it's parent
 	      if (codeBlock.tagName.toLowerCase() !== "pre") {
 	        if (codeBlock.parentElement && codeBlock.parentElement.tagName.toLowerCase() === "pre") {
 	          codeBlock = codeBlock.parentElement;
@@ -3494,17 +3500,57 @@
 	        }
 	      }
 
+	      var codeBlockWrapper = codeBlock.parentElement;
+
 	      // Create a copy without the syntax highlighting or HTML and annotations removed
-	      plainCodeBlock.innerText = codeBlock.innerText;
+	      var plainCodeBlockId = "codeblock--plain--" + Math.random().toString(36).substr(2, 9);
+
+	      // Remove any annotations from the code block for the copy button
+	      // Users don't want to copy artifacts from the docs, just the code
+	      var codeBlockClone = codeBlock.cloneNode(true);
+	      var codeBlockAnnotations = codeBlockClone.querySelectorAll(".colist-num");
+	      for (var _index2 = 0; _index2 < codeBlockAnnotations.length; _index2++) {
+	        var codeBlockAnnotation = codeBlockAnnotations[_index2];
+	        // @todo IE
+	        codeBlockAnnotation.remove();
+	      }
+	      // Use this cleaned up code for the copy content
+	      var contentToCopy = codeBlockClone.innerText;
+
+	      this._plainCodeBlockContent[plainCodeBlockId] = contentToCopy;
 	      plainCodeBlock.hidden = true;
+	      plainCodeBlock.id = plainCodeBlockId;
+	      plainCodeBlock.classList.add("codeblock--plain");
 
 	      // For some reason, sometimes parentElement doesn't exist??
-	      if (codeBlock.parentElement) {
-	        codeBlock.parentElement.classList.add("codeblock__wrapper");
-	        codeBlock.parentElement.appendChild(plainCodeBlock);
+	      if (codeBlockWrapper && !codeBlockWrapper.classList.contains("codeblock__wrapper")) {
+	        codeBlockWrapper.classList.add("codeblock__wrapper");
+	        codeBlockWrapper.dataset.plainCodeBlockId = plainCodeBlockId;
+	        codeBlock.classList.add('codeblock');
+
+	        // Append the hidden unformatted codeblock
+	        codeBlockWrapper.appendChild(plainCodeBlock);
+
+	        // Create and add copy button
+	        var copyButton = document.createElement("pfe-clipboard");
+	        copyButton.setAttribute("copy-from", "property");
+	        copyButton.classList.add('codeblock__copy');
+	        codeBlockWrapper.appendChild(copyButton);
+
+	        // Set content to be copied once clipboard component is running
+	        document.addEventListener("pfe-clipboard:connected", function (event) {
+	          // Needed to get the ID to retrieve the content from the object
+	          var thisComponent = event.detail.component;
+	          var thisCodeWrapper = thisComponent.closest(".codeblock__wrapper");
+	          if (thisComponent && thisCodeWrapper && thisCodeWrapper.dataset.plainCodeBlockId) {
+	            // Set the content to be copied
+	            thisComponent.contentToCopy = _this2._plainCodeBlockContent[thisCodeWrapper.dataset.plainCodeBlockId];
+	          }
+	        });
 	      }
 
 	      // Alias languages as described by https://docs.google.com/spreadsheets/d/1T2_Hc3Pi4Phu2R4S9OBLv7kGx790FJfFkCMNSKLvMwI/edit#gid=0
+	      // This is covering for our enormous backlog of content
 	      switch (language) {
 	        case "config":
 	          language = "text";
@@ -3790,15 +3836,15 @@
 
 	      var codeBlocks = newContentWrapper.querySelectorAll("pre[class*='language-'], code[class*='language-']");
 	      if (codeBlocks) {
-	        for (var _index2 = 0; _index2 < codeBlocks.length; _index2++) {
-	          var codeBlock = codeBlocks[_index2];
+	        for (var _index3 = 0; _index3 < codeBlocks.length; _index3++) {
+	          var codeBlock = codeBlocks[_index3];
 	          this._processCodeblock(codeBlock);
 	        }
 	      }
 
 	      var tables = newContentWrapper.querySelectorAll("table");
-	      for (var _index3 = 0; _index3 < tables.length; _index3++) {
-	        var table = tables[_index3];
+	      for (var _index4 = 0; _index4 < tables.length; _index4++) {
+	        var table = tables[_index4];
 
 	        if (!table.parentElement.classList.contains("table-wrapper")) {
 	          var tableWrapper = document.createElement("div");
@@ -3888,7 +3934,7 @@
 	  }, {
 	    key: "loadData",
 	    value: function loadData() {
-	      var _this2 = this;
+	      var _this3 = this;
 
 	      var endpointUrl = this.getAttribute("pfe-endpoint");
 	      if (endpointUrl) {
@@ -3896,16 +3942,16 @@
 	          return response.json();
 	        }).then(function (data) {
 	          if (_typeof(data.module) === "object") {
-	            _this2.setAttribute("pfe-loaded", "");
-	            _this2._contentData = data.module;
-	            if (_this2._contentData.body) {
-	              _this2.innerHTML = _this2._contentData.body;
+	            _this3.setAttribute("pfe-loaded", "");
+	            _this3._contentData = data.module;
+	            if (_this3._contentData.body) {
+	              _this3.innerHTML = _this3._contentData.body;
 	            }
 	          }
 	        })
 	        // This will throw an error: "Unexpected token < in JSON", it's because Pantheon is sending HTML 404's, not JSON
 	        .catch(function (error) {
-	          return console.error(_this2.tag + ": " + error);
+	          return console.error(_this3.tag + ": " + error);
 	        });
 	      }
 	    }
@@ -3966,8 +4012,8 @@
 	          // Create contents of included in guides
 	          if (guideLinksArray.length > 1) {
 	            relatedTopicContentLinks = document.createElement("ul");
-	            for (var _index4 = 0; _index4 < relatedTopicContentLinks.length; _index4++) {
-	              var relatedTopicContentLink = relatedTopicContentLinks[_index4];
+	            for (var _index5 = 0; _index5 < relatedTopicContentLinks.length; _index5++) {
+	              var relatedTopicContentLink = relatedTopicContentLinks[_index5];
 	              var listItem = document.createElement("li");
 	              listItem.append(relatedTopicContentLink);
 	              relatedTopicContentLinks.append(listItem);

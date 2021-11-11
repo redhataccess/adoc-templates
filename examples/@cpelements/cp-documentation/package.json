@@ -1,27 +1,27 @@
 {
-  "_from": "@cpelements/cp-documentation@0.1.53",
-  "_id": "@cpelements/cp-documentation@0.1.53",
+  "_from": "@cpelements/cp-documentation@0.1.54",
+  "_id": "@cpelements/cp-documentation@0.1.54",
   "_inBundle": false,
-  "_integrity": "sha512-H+PpdS9bRFgASx+a6gjjCm5wnIw8e8BzhmTK6wdJCqBaNzrmO1AVwvi5GzVeLWhWH7VentDR8Y07OhcIMFbHQQ==",
+  "_integrity": "sha512-MERPlx7wjLUABgxofTKCNXoMEnMbJ9U0dKbjSO4yFYRDXM8gTILpSMrAPHfR4BgHWV5qddZhpOCE1oPZJqFC4A==",
   "_location": "/@cpelements/cp-documentation",
   "_phantomChildren": {},
   "_requested": {
     "type": "version",
     "registry": true,
-    "raw": "@cpelements/cp-documentation@0.1.53",
+    "raw": "@cpelements/cp-documentation@0.1.54",
     "name": "@cpelements/cp-documentation",
     "escapedName": "@cpelements%2fcp-documentation",
     "scope": "@cpelements",
-    "rawSpec": "0.1.53",
+    "rawSpec": "0.1.54",
     "saveSpec": null,
-    "fetchSpec": "0.1.53"
+    "fetchSpec": "0.1.54"
   },
   "_requiredBy": [
     "/"
   ],
-  "_resolved": "https://registry.npmjs.org/@cpelements/cp-documentation/-/cp-documentation-0.1.53.tgz",
-  "_shasum": "a473ee83c4666d71160998122aaaf223f31c0c14",
-  "_spec": "@cpelements/cp-documentation@0.1.53",
+  "_resolved": "https://registry.npmjs.org/@cpelements/cp-documentation/-/cp-documentation-0.1.54.tgz",
+  "_shasum": "c556c2faf04cc11c4ec89b0f97cdefe8f61fe8ba",
+  "_spec": "@cpelements/cp-documentation@0.1.54",
   "_where": "/home/wruvalca/dev/adoc-templates",
   "bugs": {
     "url": "https://github.com/patternfly/patternfly-elements/issues"
@@ -33,12 +33,13 @@
     }
   ],
   "dependencies": {
+    "@patternfly/pfe-clipboard": "^1.11.2",
+    "@patternfly/pfe-icon": "^1.11.2",
     "prismjs": "^1.24.1"
   },
   "deprecated": false,
   "description": "Documentation element for PatternFly Elements",
   "devDependencies": {
-    "@patternfly/pfe-icon": "^1.3.0",
     "@patternfly/pfe-sass": "^1.3.0",
     "@patternfly/pfelement": "^1.3.0",
     "gh-pages": "^2.2.0",
@@ -84,5 +85,5 @@
     "test": "../../node_modules/.bin/wct --configFile ../../wct.conf.json elements/cp-documentation/test/"
   },
   "unpkg": "./dist/cp-documentation.umd.min.js",
-  "version": "0.1.53"
+  "version": "0.1.54"
 }

@@ -87,7 +87,7 @@ function addBuiltIns({ PfeIcon, config }) {
 }
 
 /*!
- * PatternFly Elements: PfeIcon 1.11.1
+ * PatternFly Elements: PfeIcon 1.11.2
  * @license
  * Copyright 2021 Red Hat, Inc.
  * 
@@ -129,7 +129,7 @@ class PfeIcon extends PFElement {
 
   // Injected at build-time
   static get version() {
-    return "1.11.1";
+    return "1.11.2";
   }
 
   // Injected at build-time

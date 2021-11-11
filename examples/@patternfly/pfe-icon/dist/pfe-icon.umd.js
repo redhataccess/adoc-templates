@@ -217,7 +217,7 @@
   }
 
   /*!
-   * PatternFly Elements: PfeIcon 1.11.1
+   * PatternFly Elements: PfeIcon 1.11.2
    * @license
    * Copyright 2021 Red Hat, Inc.
    * 
@@ -311,7 +311,7 @@
 
       // Injected at build-time
       get: function get() {
-        return "1.11.1";
+        return "1.11.2";
       }
     }, {
       key: "tag",
