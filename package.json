@@ -29,7 +29,7 @@
     "@cpelements/cp-documentation": "0.1.54",
     "@patternfly/pfe-icon": "^1.11.2",
     "@patternfly/pfelement": "^1.11.2",
-    "@patternfly/pfe-clipboard": "^1.11.2"
+    "@patternfly/pfe-clipboard": "^1.12.0"
   },
   "repository": {
     "type": "git",

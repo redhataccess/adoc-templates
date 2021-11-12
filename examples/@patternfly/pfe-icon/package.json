@@ -1,28 +1,33 @@
 {
-  "_from": "@patternfly/pfe-icon@^1.11.2",
+  "_args": [
+    [
+      "@patternfly/pfe-icon@1.11.2",
+      "/home/wruvalca/dev/adoc-templates"
+    ]
+  ],
+  "_from": "@patternfly/pfe-icon@1.11.2",
   "_id": "@patternfly/pfe-icon@1.11.2",
   "_inBundle": false,
   "_integrity": "sha512-uHiJBARc7G+zd+Ll/srV4k+w00tjFXKdhkQqMwvTARz9nTboUmFKWeCXLmwUPTRPEngKQBZhHz8125aGacnrSQ==",
   "_location": "/@patternfly/pfe-icon",
   "_phantomChildren": {},
   "_requested": {
-    "type": "range",
+    "type": "version",
     "registry": true,
-    "raw": "@patternfly/pfe-icon@^1.11.2",
+    "raw": "@patternfly/pfe-icon@1.11.2",
     "name": "@patternfly/pfe-icon",
     "escapedName": "@patternfly%2fpfe-icon",
     "scope": "@patternfly",
-    "rawSpec": "^1.11.2",
+    "rawSpec": "1.11.2",
     "saveSpec": null,
-    "fetchSpec": "^1.11.2"
+    "fetchSpec": "1.11.2"
   },
   "_requiredBy": [
     "/",
     "/@cpelements/cp-documentation"
   ],
   "_resolved": "https://registry.npmjs.org/@patternfly/pfe-icon/-/pfe-icon-1.11.2.tgz",
-  "_shasum": "163079d8f44c7a65192770447585f002d128440f",
-  "_spec": "@patternfly/pfe-icon@^1.11.2",
+  "_spec": "1.11.2",
   "_where": "/home/wruvalca/dev/adoc-templates",
   "author": {
     "name": "Michael Clayton &lt;mclayton@redhat.com&gt;"
@@ -36,11 +41,9 @@
   "bugs": {
     "url": "https://github.com/patternfly/patternfly-elements/issues"
   },
-  "bundleDependencies": false,
   "dependencies": {
     "@patternfly/pfelement": "^1.11.2"
   },
-  "deprecated": false,
   "description": "Icon element for PatternFly Elements",
   "devDependencies": {
     "@patternfly/pfe-sass": "^1.11.2"

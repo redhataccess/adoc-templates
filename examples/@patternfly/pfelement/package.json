@@ -1,29 +1,33 @@
 {
-  "_from": "@patternfly/pfelement@^1.11.2",
+  "_args": [
+    [
+      "@patternfly/pfelement@1.11.2",
+      "/home/wruvalca/dev/adoc-templates"
+    ]
+  ],
+  "_from": "@patternfly/pfelement@1.11.2",
   "_id": "@patternfly/pfelement@1.11.2",
   "_inBundle": false,
   "_integrity": "sha512-drqf82c186Vk9iy63Ep68zbCa7vkWW7/JMk4cLGThsoHcKOITDQjd3/37oyXtT9O3B235w++MHBQmC5GJAEhEw==",
   "_location": "/@patternfly/pfelement",
   "_phantomChildren": {},
   "_requested": {
-    "type": "range",
+    "type": "version",
     "registry": true,
-    "raw": "@patternfly/pfelement@^1.11.2",
+    "raw": "@patternfly/pfelement@1.11.2",
     "name": "@patternfly/pfelement",
     "escapedName": "@patternfly%2fpfelement",
     "scope": "@patternfly",
-    "rawSpec": "^1.11.2",
+    "rawSpec": "1.11.2",
     "saveSpec": null,
-    "fetchSpec": "^1.11.2"
+    "fetchSpec": "1.11.2"
   },
   "_requiredBy": [
     "/",
-    "/@patternfly/pfe-clipboard",
     "/@patternfly/pfe-icon"
   ],
   "_resolved": "https://registry.npmjs.org/@patternfly/pfelement/-/pfelement-1.11.2.tgz",
-  "_shasum": "43a13722e68277bf5f57f3b3612909c097b10821",
-  "_spec": "@patternfly/pfelement@^1.11.2",
+  "_spec": "1.11.2",
   "_where": "/home/wruvalca/dev/adoc-templates",
   "browserslist": [
     "last 2 versions",
@@ -34,7 +38,6 @@
   "bugs": {
     "url": "https://github.com/patternfly/patternfly-elements/issues"
   },
-  "bundleDependencies": false,
   "contributors": [
     {
       "name": "Kyle Buchanan",
@@ -49,7 +52,6 @@
       "url": "https://github.com/castastrophe"
     }
   ],
-  "deprecated": false,
   "description": "Base class for PatternFly Elements",
   "devDependencies": {
     "@patternfly/pfe-sass": "^1.11.2"

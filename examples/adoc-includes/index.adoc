@@ -1,7 +1,7 @@
 [id="api-object-reference"]
 = Common object reference
 ifdef::product-title[]
-include::modules/common-attributes.adoc[]
+include::common-attributes.adoc[]
 endif::[]
 
 toc::[]
@@ -310,7 +310,7 @@ Required::
 
 | `metadata`
 | xref:../objects/index.adoc#listmeta-meta-v1[`ListMeta meta/v1`]
-| 
+|
 
 |===
 
@@ -681,7 +681,7 @@ Required::
 
 | `metadata`
 | xref:../objects/index.adoc#listmeta-meta-v1[`ListMeta meta/v1`]
-| 
+|
 
 |===
 
@@ -722,7 +722,7 @@ Required::
 
 | `metadata`
 | xref:../objects/index.adoc#listmeta-meta-v1[`ListMeta meta/v1`]
-| 
+|
 
 |===
 
@@ -763,7 +763,7 @@ Required::
 
 | `metadata`
 | xref:../objects/index.adoc#listmeta-meta-v1[`ListMeta meta/v1`]
-| 
+|
 
 |===
 
@@ -890,7 +890,7 @@ Type::
 
 | `metadata`
 | xref:../objects/index.adoc#objectmeta-meta-v1[`ObjectMeta meta/v1`]
-| 
+|
 
 | `revision`
 | xref:../objects/index.adoc#sourcerevision-build-openshift-io-v1[`SourceRevision build.openshift.io/v1`]
@@ -1117,7 +1117,7 @@ Required::
 
 | `metadata`
 | xref:../objects/index.adoc#listmeta-meta-v1[`ListMeta meta/v1`]
-| 
+|
 
 |===
 
@@ -1513,7 +1513,7 @@ Required::
 
 | `metadata`
 | xref:../objects/index.adoc#listmeta-meta-v1[`ListMeta meta/v1`]
-| 
+|
 
 |===
 
@@ -1595,7 +1595,7 @@ Required::
 
 | `metadata`
 | xref:../objects/index.adoc#listmeta-meta-v1[`ListMeta meta/v1`]
-| 
+|
 
 |===
 
@@ -3647,7 +3647,7 @@ Required::
 
 | `metadata`
 | xref:../objects/index.adoc#listmeta-meta-v1[`ListMeta meta/v1`]
-| 
+|
 
 |===
 
@@ -5374,7 +5374,7 @@ Required::
 
 | `metadata`
 | xref:../objects/index.adoc#listmeta-meta-v1[`ListMeta meta/v1`]
-| 
+|
 
 |===
 
@@ -5405,15 +5405,15 @@ Required::
 
 | `group`
 | `string`
-| 
+|
 
 | `kind`
 | `string`
-| 
+|
 
 | `version`
 | `string`
-| 
+|
 
 |===
 
@@ -5755,7 +5755,7 @@ Required::
 
 | `metadata`
 | xref:../objects/index.adoc#listmeta-meta-v1[`ListMeta meta/v1`]
-| 
+|
 
 |===
 
@@ -5878,7 +5878,7 @@ Required::
 
 | `metadata`
 | xref:../objects/index.adoc#listmeta-meta-v1[`ListMeta meta/v1`]
-| 
+|
 
 |===
 
@@ -5965,7 +5965,7 @@ Required::
 
 | `metadata`
 | xref:../objects/index.adoc#objectmeta-meta-v1[`ObjectMeta meta/v1`]
-| 
+|
 
 |===
 
@@ -6006,7 +6006,7 @@ Required::
 
 | `metadata`
 | xref:../objects/index.adoc#listmeta-meta-v1[`ListMeta meta/v1`]
-| 
+|
 
 |===
 
@@ -6047,7 +6047,7 @@ Required::
 
 | `metadata`
 | xref:../objects/index.adoc#listmeta-meta-v1[`ListMeta meta/v1`]
-| 
+|
 
 |===
 
@@ -6088,7 +6088,7 @@ Required::
 
 | `metadata`
 | xref:../objects/index.adoc#listmeta-meta-v1[`ListMeta meta/v1`]
-| 
+|
 
 |===
 
@@ -7620,15 +7620,15 @@ Required::
 
 | `lastTransitionTime`
 | xref:../objects/index.adoc#time-meta-v1[`Time meta/v1`]
-| 
+|
 
 | `message`
 | `string`
-| 
+|
 
 | `reason`
 | `string`
-| 
+|
 
 | `status`
 | `string`
@@ -8343,7 +8343,7 @@ Required::
 
 | `metadata`
 | xref:../objects/index.adoc#listmeta-meta-v1[`ListMeta meta/v1`]
-| 
+|
 
 |===
 
@@ -8384,7 +8384,7 @@ Required::
 
 | `metadata`
 | xref:../objects/index.adoc#listmeta-meta-v1[`ListMeta meta/v1`]
-| 
+|
 
 |===
 
@@ -8425,7 +8425,7 @@ Required::
 
 | `metadata`
 | xref:../objects/index.adoc#listmeta-meta-v1[`ListMeta meta/v1`]
-| 
+|
 
 |===
 
@@ -8466,7 +8466,7 @@ Required::
 
 | `metadata`
 | xref:../objects/index.adoc#listmeta-meta-v1[`ListMeta meta/v1`]
-| 
+|
 
 |===
 
@@ -9272,7 +9272,7 @@ Required::
 
 | `items`
 | xref:../operatorhub_apis/packagemanifest-packages-operators-coreos-com-v1.adoc#packagemanifest-packages-operators-coreos-com-v1[`array (PackageManifest packages.operators.coreos.com/v1)`]
-| 
+|
 
 | `kind`
 | `string`
@@ -9280,7 +9280,7 @@ Required::
 
 | `metadata`
 | xref:../objects/index.adoc#listmeta-meta-v1[`ListMeta meta/v1`]
-| 
+|
 
 |===
 
@@ -9471,11 +9471,11 @@ Required::
 
 | `status`
 | `string`
-| 
+|
 
 | `type`
 | `string`
-| 
+|
 
 |===
 
@@ -10119,7 +10119,7 @@ Type::
 
 | `value`
 | `string`
-| 
+|
 
 |===
 
@@ -11051,7 +11051,7 @@ Required::
 
 | `metadata`
 | xref:../objects/index.adoc#listmeta-meta-v1[`ListMeta meta/v1`]
-| 
+|
 
 |===
 
@@ -11351,7 +11351,7 @@ Required::
 
 | `metadata`
 | xref:../objects/index.adoc#listmeta-meta-v1[`ListMeta meta/v1`]
-| 
+|
 
 |===
 
@@ -11853,7 +11853,7 @@ Required::
 
 | `metadata`
 | xref:../objects/index.adoc#listmeta-meta-v1[`ListMeta meta/v1`]
-| 
+|
 
 |===
 
@@ -11976,7 +11976,7 @@ Required::
 
 | `metadata`
 | xref:../objects/index.adoc#listmeta-meta-v1[`ListMeta meta/v1`]
-| 
+|
 
 |===
 
@@ -12058,7 +12058,7 @@ Required::
 
 | `metadata`
 | xref:../objects/index.adoc#listmeta-meta-v1[`ListMeta meta/v1`]
-| 
+|
 
 |===
 
@@ -13866,7 +13866,7 @@ Required::
 
 | `metadata`
 | xref:../objects/index.adoc#listmeta-meta-v1[`ListMeta meta/v1`]
-| 
+|
 
 |===
 
@@ -14237,7 +14237,7 @@ Required::
 
 | `metadata`
 | xref:../objects/index.adoc#listmeta-meta-v1[`ListMeta meta/v1`]
-| 
+|
 
 |===
 
@@ -14270,7 +14270,7 @@ Required::
 
 | `items`
 | xref:../oauth_apis/useroauthaccesstoken-oauth-openshift-io-v1.adoc#useroauthaccesstoken-oauth-openshift-io-v1[`array (UserOAuthAccessToken oauth.openshift.io/v1)`]
-| 
+|
 
 | `kind`
 | `string`
@@ -14278,7 +14278,7 @@ Required::
 
 | `metadata`
 | xref:../objects/index.adoc#listmeta-meta-v1[`ListMeta meta/v1`]
-| 
+|
 
 |===
 
