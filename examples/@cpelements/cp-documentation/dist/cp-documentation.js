@@ -3201,7 +3201,7 @@ Prism.languages.py = Prism.languages.python;
 });
 
 /*!
- * PatternFly Elements: PfeDocumentation 0.1.54
+ * PatternFly Elements: PfeDocumentation 0.1.56
  * @license
  * Copyright 2020 Red Hat, Inc.
  * 
@@ -3361,7 +3361,7 @@ const lightDomObserverConfig = {
 
 class PfeDocumentation extends PFElement {
   static get version() {
-    return "0.1.54";
+    return "0.1.56";
   }
 
   get html() {
@@ -3715,6 +3715,11 @@ class PfeDocumentation extends PFElement {
    * @param {HTMLElement} codeBlock Pre tag or element with language-* class
    */
   _processCodeblock(codeBlock) {
+    // Quick exit if this has been processed already
+    if (codeBlock.classList.contains("codeblock--processed")) {
+      return;
+    }
+
     const codeBlockClasses = codeBlock.getAttribute("class");
     const codeBlockClassesArray = codeBlockClasses
       ? codeBlockClasses.split(" ")
@@ -3722,24 +3727,30 @@ class PfeDocumentation extends PFElement {
     // Adding a hidden copy of the un-upgraded code content to the DOM, may be unecessary
     const plainCodeBlock = document.createElement("pre");
 
-    if (codeBlock.classList.contains("codeblock--processed")) {
-      return;
-    }
-
     // Figure out code's language
     let language = "none"; // Default to none
-    // Keeps track of the provided language class, which may need to be removed
-    let languageClass;
+
     // Iterate over class names and find code language
-    if (codeBlockClassesArray) {
-      for (let index = 0; index < codeBlockClassesArray.length; index++) {
-        const className = codeBlockClassesArray[index];
-        if (className.substring(0, 9) === "language-") {
-          language = className.substring(9).toLowerCase();
-          languageClass = className;
+    const getLanguageClass = (classesArray) => {
+      if (classesArray) {
+        for (let index = 0; index < classesArray.length; index++) {
+          const className = classesArray[index];
+          if (className.substring(0, 9) === "language-") {
+            language = className.substring(9).toLowerCase();
+            // languageClass = className;
+            return className;
+          }
         }
       }
-    }
+    };
+
+    // Keeps track of the provided language class, which may need to be removed
+    let languageClass = getLanguageClass(codeBlockClassesArray);
+
+    // if (!languageClass) {
+    //   const internalLanguageClass = codeBlock.querySelector('[class*=]');
+    // }
+
 
     // Make sure we're dealing with a pre element, which could be the element or it's parent
     if (codeBlock.tagName.toLowerCase() !== "pre") {
@@ -3785,7 +3796,7 @@ class PfeDocumentation extends PFElement {
     ) {
       codeBlockWrapper.classList.add("codeblock__wrapper");
       codeBlockWrapper.dataset.plainCodeBlockId = plainCodeBlockId;
-      codeBlock.classList.add('codeblock');
+      codeBlock.classList.add("codeblock");
 
       // Append the hidden unformatted codeblock
       codeBlockWrapper.appendChild(plainCodeBlock);
@@ -3793,7 +3804,7 @@ class PfeDocumentation extends PFElement {
       // Create and add copy button
       const copyButton = document.createElement("pfe-clipboard");
       copyButton.setAttribute("copy-from", "property");
-      copyButton.classList.add('codeblock__copy');
+      copyButton.classList.add("codeblock__copy");
       codeBlockWrapper.appendChild(copyButton);
 
       // Set content to be copied once clipboard component is running
@@ -3842,12 +3853,16 @@ class PfeDocumentation extends PFElement {
       codeBlock.classList.add(`language-${language}`);
     }
 
+    const postHighlight = () => {
+      codeBlock.classList.add('codeblock--processed');
+    };
+
     // Highlight syntax
     try {
       prism.highlightElement(
         codeBlock,
-        false //,
-        // postHighlight
+        false,
+        postHighlight
       );
     } catch (error) {
       console.error(error);
@@ -4139,6 +4154,17 @@ class PfeDocumentation extends PFElement {
     if (codeBlocks) {
       for (let index = 0; index < codeBlocks.length; index++) {
         let codeBlock = codeBlocks[index];
+        this._processCodeblock(codeBlock);
+      }
+    }
+
+    // Have to go over pre tags, some don't have language and need to be
+    // processed seperately. The quick exit on `_processCodeblocks` will
+    // prevent duplicate processing.
+    const noLanguageCodeBlocks = newContentWrapper.querySelectorAll('pre');
+    if (noLanguageCodeBlocks) {
+      for (let index = 0; index < noLanguageCodeBlocks.length; index++) {
+        let codeBlock = noLanguageCodeBlocks[index];
         this._processCodeblock(codeBlock);
       }
     }

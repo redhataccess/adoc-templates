@@ -1843,8 +1843,17 @@ a .icon {
   color: inherit;
 }
 
-.rhdocs__section-list--has-scrollspy > li {
+.rhdocs__section-list--has-scrollspy[class] {
   padding-left: 15px;
+}
+
+.rhdocs__section-list--has-scrollspy[class] ul {
+  margin: 0;
+  padding: 0;
+}
+
+.rhdocs__section-list--has-scrollspy[class] li {
+  padding-left: 0;
 }
 
 .rhdocs__section-list--has-scrollspy[class] a {
@@ -1859,6 +1868,22 @@ a .icon {
   color: #151515;
   -webkit-box-shadow: inset 2px 0 0 0 #e00;
           box-shadow: inset 2px 0 0 0 #e00;
+}
+
+.rhdocs__section-list--has-scrollspy[class] li li:last-child > a {
+  padding-bottom: 14px;
+}
+
+.rhdocs__section-list--has-scrollspy[class] li li a {
+  padding-left: 30px;
+}
+
+.rhdocs__section-list--has-scrollspy[class] li li li a {
+  padding-left: 45px;
+}
+
+.rhdocs__section-list--has-scrollspy[class] li li li li a {
+  padding-left: 60px;
 }
 
 .rhdocs__guides-list__wrapper {
@@ -1967,6 +1992,7 @@ a .icon {
 .codeblock__copy {
   border: 1px solid #ccc;
   margin: -1px -1px -1px auto;
+  background: #fff;
 }
 
 @media (min-width: 1100px) {
@@ -1981,7 +2007,7 @@ a .icon {
   }
 }
 
-@media (min-width: 1100px) {
+@media (min-width: 1100px) and (min-width: 1100px) {
   .pfe-documentation--next-to-sidebar .rhdocs .admonitionblock,
   .pfe-documentation--next-to-sidebar .rhdocs .table-wrapper,
   .pfe-documentation--next-to-sidebar .rhdocs table.wide,
@@ -1999,37 +2025,138 @@ a .icon {
   }
 }
 
-.rhdocs[class] .admonitionblock .admonitionblock, .rhdocs[class] .table-wrapper .admonitionblock, .rhdocs[class] table.wide .admonitionblock, .rhdocs[class] pre .admonitionblock, .rhdocs[class] .related-topic-content__wrapper .admonitionblock, .rhdocs[class] .codeblock__wrapper .admonitionblock,
-.rhdocs[class] .admonitionblock .table-wrapper,
-.rhdocs[class] .table-wrapper .table-wrapper,
-.rhdocs[class] table.wide .table-wrapper,
-.rhdocs[class] pre .table-wrapper,
-.rhdocs[class] .related-topic-content__wrapper .table-wrapper,
-.rhdocs[class] .codeblock__wrapper .table-wrapper,
-.rhdocs[class] .admonitionblock table.wide,
-.rhdocs[class] .table-wrapper table.wide,
-.rhdocs[class] table.wide table.wide,
-.rhdocs[class] pre table.wide,
-.rhdocs[class] .related-topic-content__wrapper table.wide,
-.rhdocs[class] .codeblock__wrapper table.wide,
-.rhdocs[class] .admonitionblock pre,
-.rhdocs[class] .table-wrapper pre,
-.rhdocs[class] table.wide pre,
-.rhdocs[class] pre pre,
-.rhdocs[class] .related-topic-content__wrapper pre,
-.rhdocs[class] .codeblock__wrapper pre,
-.rhdocs[class] .admonitionblock .related-topic-content__wrapper,
-.rhdocs[class] .table-wrapper .related-topic-content__wrapper,
-.rhdocs[class] table.wide .related-topic-content__wrapper,
-.rhdocs[class] pre .related-topic-content__wrapper,
-.rhdocs[class] .related-topic-content__wrapper .related-topic-content__wrapper,
-.rhdocs[class] .codeblock__wrapper .related-topic-content__wrapper,
-.rhdocs[class] .admonitionblock .codeblock__wrapper,
-.rhdocs[class] .table-wrapper .codeblock__wrapper,
-.rhdocs[class] table.wide .codeblock__wrapper,
-.rhdocs[class] pre .codeblock__wrapper,
-.rhdocs[class] .related-topic-content__wrapper .codeblock__wrapper,
-.rhdocs[class] .codeblock__wrapper .codeblock__wrapper {
+@media (min-width: 1100px) {
+  .rhdocs li .admonitionblock,
+  .rhdocs li .table-wrapper,
+  .rhdocs li table.wide,
+  .rhdocs li pre,
+  .rhdocs li .related-topic-content__wrapper,
+  .rhdocs li .codeblock__wrapper {
+    width: calc(100vw - 168px);
+    max-width: 1376px;
+  }
+}
+
+@media (min-width: 1100px) and (min-width: 1100px) {
+  .pfe-documentation--next-to-sidebar .rhdocs li .admonitionblock,
+  .pfe-documentation--next-to-sidebar .rhdocs li .table-wrapper,
+  .pfe-documentation--next-to-sidebar .rhdocs li table.wide,
+  .pfe-documentation--next-to-sidebar .rhdocs li pre,
+  .pfe-documentation--next-to-sidebar .rhdocs li .related-topic-content__wrapper,
+  .pfe-documentation--next-to-sidebar .rhdocs li .codeblock__wrapper,
+  :host(.pfe-documentation--next-to-sidebar) .rhdocs li .admonitionblock,
+  :host(.pfe-documentation--next-to-sidebar) .rhdocs li .table-wrapper,
+  :host(.pfe-documentation--next-to-sidebar) .rhdocs li table.wide,
+  :host(.pfe-documentation--next-to-sidebar) .rhdocs li pre,
+  :host(.pfe-documentation--next-to-sidebar) .rhdocs li .related-topic-content__wrapper,
+  :host(.pfe-documentation--next-to-sidebar) .rhdocs li .codeblock__wrapper {
+    width: calc(70vw - 168px);
+    max-width: 1376px;
+  }
+}
+
+@media (min-width: 1100px) {
+  .rhdocs li li .admonitionblock,
+  .rhdocs li li .table-wrapper,
+  .rhdocs li li table.wide,
+  .rhdocs li li pre,
+  .rhdocs li li .related-topic-content__wrapper,
+  .rhdocs li li .codeblock__wrapper {
+    width: calc(100vw - 192px);
+    max-width: 1352px;
+  }
+}
+
+@media (min-width: 1100px) and (min-width: 1100px) {
+  .pfe-documentation--next-to-sidebar .rhdocs li li .admonitionblock,
+  .pfe-documentation--next-to-sidebar .rhdocs li li .table-wrapper,
+  .pfe-documentation--next-to-sidebar .rhdocs li li table.wide,
+  .pfe-documentation--next-to-sidebar .rhdocs li li pre,
+  .pfe-documentation--next-to-sidebar .rhdocs li li .related-topic-content__wrapper,
+  .pfe-documentation--next-to-sidebar .rhdocs li li .codeblock__wrapper,
+  :host(.pfe-documentation--next-to-sidebar) .rhdocs li li .admonitionblock,
+  :host(.pfe-documentation--next-to-sidebar) .rhdocs li li .table-wrapper,
+  :host(.pfe-documentation--next-to-sidebar) .rhdocs li li table.wide,
+  :host(.pfe-documentation--next-to-sidebar) .rhdocs li li pre,
+  :host(.pfe-documentation--next-to-sidebar) .rhdocs li li .related-topic-content__wrapper,
+  :host(.pfe-documentation--next-to-sidebar) .rhdocs li li .codeblock__wrapper {
+    width: calc(70vw - 192px);
+    max-width: 1352px;
+  }
+}
+
+@media (min-width: 1100px) {
+  .rhdocs li li li .admonitionblock,
+  .rhdocs li li li .table-wrapper,
+  .rhdocs li li li table.wide,
+  .rhdocs li li li pre,
+  .rhdocs li li li .related-topic-content__wrapper,
+  .rhdocs li li li .codeblock__wrapper {
+    width: calc(100vw - 216px);
+    max-width: 1328px;
+  }
+}
+
+@media (min-width: 1100px) and (min-width: 1100px) {
+  .pfe-documentation--next-to-sidebar .rhdocs li li li .admonitionblock,
+  .pfe-documentation--next-to-sidebar .rhdocs li li li .table-wrapper,
+  .pfe-documentation--next-to-sidebar .rhdocs li li li table.wide,
+  .pfe-documentation--next-to-sidebar .rhdocs li li li pre,
+  .pfe-documentation--next-to-sidebar .rhdocs li li li .related-topic-content__wrapper,
+  .pfe-documentation--next-to-sidebar .rhdocs li li li .codeblock__wrapper,
+  :host(.pfe-documentation--next-to-sidebar) .rhdocs li li li .admonitionblock,
+  :host(.pfe-documentation--next-to-sidebar) .rhdocs li li li .table-wrapper,
+  :host(.pfe-documentation--next-to-sidebar) .rhdocs li li li table.wide,
+  :host(.pfe-documentation--next-to-sidebar) .rhdocs li li li pre,
+  :host(.pfe-documentation--next-to-sidebar) .rhdocs li li li .related-topic-content__wrapper,
+  :host(.pfe-documentation--next-to-sidebar) .rhdocs li li li .codeblock__wrapper {
+    width: calc(70vw - 216px);
+    max-width: 1328px;
+  }
+}
+
+.rhdocs li li li li .admonitionblock,
+.rhdocs li li li li .table-wrapper,
+.rhdocs li li li li table.wide,
+.rhdocs li li li li pre,
+.rhdocs li li li li .related-topic-content__wrapper,
+.rhdocs li li li li .codeblock__wrapper,
+.rhdocs[class][class] .admonitionblock .admonitionblock,
+.rhdocs[class][class] .table-wrapper .admonitionblock,
+.rhdocs[class][class] table.wide .admonitionblock,
+.rhdocs[class][class] pre .admonitionblock,
+.rhdocs[class][class] .related-topic-content__wrapper .admonitionblock,
+.rhdocs[class][class] .codeblock__wrapper .admonitionblock,
+.rhdocs[class][class] .admonitionblock .table-wrapper,
+.rhdocs[class][class] .table-wrapper .table-wrapper,
+.rhdocs[class][class] table.wide .table-wrapper,
+.rhdocs[class][class] pre .table-wrapper,
+.rhdocs[class][class] .related-topic-content__wrapper .table-wrapper,
+.rhdocs[class][class] .codeblock__wrapper .table-wrapper,
+.rhdocs[class][class] .admonitionblock table.wide,
+.rhdocs[class][class] .table-wrapper table.wide,
+.rhdocs[class][class] table.wide table.wide,
+.rhdocs[class][class] pre table.wide,
+.rhdocs[class][class] .related-topic-content__wrapper table.wide,
+.rhdocs[class][class] .codeblock__wrapper table.wide,
+.rhdocs[class][class] .admonitionblock pre,
+.rhdocs[class][class] .table-wrapper pre,
+.rhdocs[class][class] table.wide pre,
+.rhdocs[class][class] pre pre,
+.rhdocs[class][class] .related-topic-content__wrapper pre,
+.rhdocs[class][class] .codeblock__wrapper pre,
+.rhdocs[class][class] .admonitionblock .related-topic-content__wrapper,
+.rhdocs[class][class] .table-wrapper .related-topic-content__wrapper,
+.rhdocs[class][class] table.wide .related-topic-content__wrapper,
+.rhdocs[class][class] pre .related-topic-content__wrapper,
+.rhdocs[class][class] .related-topic-content__wrapper .related-topic-content__wrapper,
+.rhdocs[class][class] .codeblock__wrapper .related-topic-content__wrapper,
+.rhdocs[class][class] .admonitionblock .codeblock__wrapper,
+.rhdocs[class][class] .table-wrapper .codeblock__wrapper,
+.rhdocs[class][class] table.wide .codeblock__wrapper,
+.rhdocs[class][class] pre .codeblock__wrapper,
+.rhdocs[class][class] .related-topic-content__wrapper .codeblock__wrapper,
+.rhdocs[class][class] .codeblock__wrapper .codeblock__wrapper {
   width: auto;
   max-width: 100%;
 }

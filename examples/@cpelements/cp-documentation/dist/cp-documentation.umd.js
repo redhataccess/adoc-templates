@@ -2951,7 +2951,7 @@
 	};
 
 	/*!
-	 * PatternFly Elements: PfeDocumentation 0.1.54
+	 * PatternFly Elements: PfeDocumentation 0.1.56
 	 * @license
 	 * Copyright 2020 Red Hat, Inc.
 	 * 
@@ -3125,7 +3125,7 @@
 	  }], [{
 	    key: "version",
 	    get: function get$$1() {
-	      return "0.1.54";
+	      return "0.1.56";
 	    }
 	  }, {
 	    key: "tag",
@@ -3466,29 +3466,40 @@
 	    value: function _processCodeblock(codeBlock) {
 	      var _this2 = this;
 
+	      // Quick exit if this has been processed already
+	      if (codeBlock.classList.contains("codeblock--processed")) {
+	        return;
+	      }
+
 	      var codeBlockClasses = codeBlock.getAttribute("class");
 	      var codeBlockClassesArray = codeBlockClasses ? codeBlockClasses.split(" ") : undefined;
 	      // Adding a hidden copy of the un-upgraded code content to the DOM, may be unecessary
 	      var plainCodeBlock = document.createElement("pre");
 
-	      if (codeBlock.classList.contains("codeblock--processed")) {
-	        return;
-	      }
-
 	      // Figure out code's language
 	      var language = "none"; // Default to none
-	      // Keeps track of the provided language class, which may need to be removed
-	      var languageClass = void 0;
+
 	      // Iterate over class names and find code language
-	      if (codeBlockClassesArray) {
-	        for (var index = 0; index < codeBlockClassesArray.length; index++) {
-	          var className = codeBlockClassesArray[index];
-	          if (className.substring(0, 9) === "language-") {
-	            language = className.substring(9).toLowerCase();
-	            languageClass = className;
+	      var getLanguageClass = function getLanguageClass(classesArray) {
+	        if (classesArray) {
+	          for (var index = 0; index < classesArray.length; index++) {
+	            var className = classesArray[index];
+	            if (className.substring(0, 9) === "language-") {
+	              language = className.substring(9).toLowerCase();
+	              // languageClass = className;
+	              return className;
+	            }
 	          }
 	        }
-	      }
+	      };
+
+	      // Keeps track of the provided language class, which may need to be removed
+	      var languageClass = getLanguageClass(codeBlockClassesArray);
+
+	      // if (!languageClass) {
+	      //   const internalLanguageClass = codeBlock.querySelector('[class*=]');
+	      // }
+
 
 	      // Make sure we're dealing with a pre element, which could be the element or it's parent
 	      if (codeBlock.tagName.toLowerCase() !== "pre") {
@@ -3509,8 +3520,8 @@
 	      // Users don't want to copy artifacts from the docs, just the code
 	      var codeBlockClone = codeBlock.cloneNode(true);
 	      var codeBlockAnnotations = codeBlockClone.querySelectorAll(".colist-num");
-	      for (var _index2 = 0; _index2 < codeBlockAnnotations.length; _index2++) {
-	        var codeBlockAnnotation = codeBlockAnnotations[_index2];
+	      for (var index = 0; index < codeBlockAnnotations.length; index++) {
+	        var codeBlockAnnotation = codeBlockAnnotations[index];
 	        // @todo IE
 	        codeBlockAnnotation.remove();
 	      }
@@ -3526,7 +3537,7 @@
 	      if (codeBlockWrapper && !codeBlockWrapper.classList.contains("codeblock__wrapper")) {
 	        codeBlockWrapper.classList.add("codeblock__wrapper");
 	        codeBlockWrapper.dataset.plainCodeBlockId = plainCodeBlockId;
-	        codeBlock.classList.add('codeblock');
+	        codeBlock.classList.add("codeblock");
 
 	        // Append the hidden unformatted codeblock
 	        codeBlockWrapper.appendChild(plainCodeBlock);
@@ -3534,7 +3545,7 @@
 	        // Create and add copy button
 	        var copyButton = document.createElement("pfe-clipboard");
 	        copyButton.setAttribute("copy-from", "property");
-	        copyButton.classList.add('codeblock__copy');
+	        copyButton.classList.add("codeblock__copy");
 	        codeBlockWrapper.appendChild(copyButton);
 
 	        // Set content to be copied once clipboard component is running
@@ -3576,11 +3587,13 @@
 	        codeBlock.classList.add("language-" + language);
 	      }
 
+	      var postHighlight = function postHighlight() {
+	        codeBlock.classList.add('codeblock--processed');
+	      };
+
 	      // Highlight syntax
 	      try {
-	        prism.highlightElement(codeBlock, false //,
-	        // postHighlight
-	        );
+	        prism.highlightElement(codeBlock, false, postHighlight);
 	      } catch (error) {
 	        console.error(error);
 	      }
@@ -3836,9 +3849,20 @@
 
 	      var codeBlocks = newContentWrapper.querySelectorAll("pre[class*='language-'], code[class*='language-']");
 	      if (codeBlocks) {
-	        for (var _index3 = 0; _index3 < codeBlocks.length; _index3++) {
-	          var codeBlock = codeBlocks[_index3];
+	        for (var _index2 = 0; _index2 < codeBlocks.length; _index2++) {
+	          var codeBlock = codeBlocks[_index2];
 	          this._processCodeblock(codeBlock);
+	        }
+	      }
+
+	      // Have to go over pre tags, some don't have language and need to be
+	      // processed seperately. The quick exit on `_processCodeblocks` will
+	      // prevent duplicate processing.
+	      var noLanguageCodeBlocks = newContentWrapper.querySelectorAll('pre');
+	      if (noLanguageCodeBlocks) {
+	        for (var _index3 = 0; _index3 < noLanguageCodeBlocks.length; _index3++) {
+	          var _codeBlock = noLanguageCodeBlocks[_index3];
+	          this._processCodeblock(_codeBlock);
 	        }
 	      }
 
