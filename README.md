@@ -1,4 +1,4 @@
-# Ascii Doc Templates for Red Hat Documentation
+# AsciiDoc Templates for Red Hat Documentation
 
 ## Installing tools for rendering the templates
 
