@@ -1,29 +1,28 @@
 {
-  "_from": "@patternfly/pfe-clipboard@^1.12.0",
-  "_id": "@patternfly/pfe-clipboard@1.12.0",
+  "_from": "@patternfly/pfe-clipboard@^1.11.2",
+  "_id": "@patternfly/pfe-clipboard@1.12.2",
   "_inBundle": false,
-  "_integrity": "sha512-0p8rjCix5CDiLvUsiqvMO9pFvTQoxIHrAfJP0ckUmY3+WAy7tE1+9xcpjVaZuAbnL7W+mo2mLnwZH/Mw1SwBuQ==",
+  "_integrity": "sha512-p6v/tuRAS7tW5kyowaFHMx90IVN9VPZV/FTjy85KX+BDRLzKsXGiROes4pryXYH8CCNrogmGK7nqeTjQSdowzg==",
   "_location": "/@patternfly/pfe-clipboard",
   "_phantomChildren": {},
   "_requested": {
     "type": "range",
     "registry": true,
-    "raw": "@patternfly/pfe-clipboard@^1.12.0",
+    "raw": "@patternfly/pfe-clipboard@^1.11.2",
     "name": "@patternfly/pfe-clipboard",
     "escapedName": "@patternfly%2fpfe-clipboard",
     "scope": "@patternfly",
-    "rawSpec": "^1.12.0",
+    "rawSpec": "^1.11.2",
     "saveSpec": null,
-    "fetchSpec": "^1.12.0"
+    "fetchSpec": "^1.11.2"
   },
   "_requiredBy": [
-    "/",
     "/@cpelements/cp-documentation"
   ],
-  "_resolved": "https://registry.npmjs.org/@patternfly/pfe-clipboard/-/pfe-clipboard-1.12.0.tgz",
-  "_shasum": "7b551b31be2fa134eb62a4da501b67dbf10d9ccc",
-  "_spec": "@patternfly/pfe-clipboard@^1.12.0",
-  "_where": "/home/wruvalca/dev/adoc-templates",
+  "_resolved": "https://registry.npmjs.org/@patternfly/pfe-clipboard/-/pfe-clipboard-1.12.2.tgz",
+  "_shasum": "d5f9939d0216f32597e316693dbd662f8659f954",
+  "_spec": "@patternfly/pfe-clipboard@^1.11.2",
+  "_where": "/home/wruvalca/dev/adoc-templates/node_modules/@cpelements/cp-documentation",
   "browserslist": [
     "last 2 versions",
     "Firefox >= 78",
@@ -40,17 +39,17 @@
     }
   ],
   "dependencies": {
-    "@patternfly/pfelement": "^1.12.0"
+    "@patternfly/pfelement": "^1.12.2"
   },
   "deprecated": false,
   "description": "Clipboard element for PatternFly Elements",
   "devDependencies": {
-    "@patternfly/pfe-sass": "^1.12.0"
+    "@patternfly/pfe-sass": "^1.12.2"
   },
   "files": [
     "dist"
   ],
-  "gitHead": "0895dfd7fd6e63a61c8e83852ffec30a51d7d40b",
+  "gitHead": "3a22162d39bc70298aa60c069656684cdcd5533f",
   "homepage": "https://github.com/patternfly/patternfly-elements#readme",
   "keywords": [
     "web-components",
@@ -86,5 +85,5 @@
     "watch": "../../node_modules/.bin/gulp watch"
   },
   "unpkg": "./dist/pfe-clipboard.umd.min.js",
-  "version": "1.12.0"
+  "version": "1.12.2"
 }

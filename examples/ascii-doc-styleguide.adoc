@@ -34,7 +34,9 @@ v1.0.3, 2014-12-28
 :pass-ref: {user-ref}/#passthrough-macros
 :mailinglist: http://discuss.asciidoctor.org
 
-* link:/dev-preview/assembly_access-control-list.html[Short Assembly Demo]
+## Other sample pages
+* link:/examples/assembly_access-control-list.html[Short Assembly Demo]
+* link:/examples/code-samples.html[Code Samples]
 
 // Stolen and modified from:
 // https://gist.github.com/mojavelinux/8198e5a5ac2570a0cf30
@@ -105,6 +107,61 @@ WARNING: Watch out for...
 CAUTION: Ensure that...
 
 NOTE: You can also create <<admon-bl,admonition blocks>>.
+
+[TIP]
+====
+This is an example of an admonition with `code` in it.
+
+[source,html]
+<p>
+  <a href="https://www.redhat.com/">Red Hat</a>
+</p>
+
+====
+
+[IMPORTANT]
+====
+This is an example of an admonition with `code` in it.
+
+[source,html]
+<p>
+  <a href="https://www.redhat.com/">Red Hat</a>
+</p>
+
+====
+
+[WARNING]
+====
+This is an example of an admonition with `code` in it.
+
+[source,html]
+<p>
+  <a href="https://www.redhat.com/">Red Hat</a>
+</p>
+
+====
+
+[CAUTION]
+====
+This is an example of an admonition with `code` in it.
+
+[source,html]
+<p>
+  <a href="https://www.redhat.com/">Red Hat</a>
+</p>
+
+====
+
+[NOTE]
+====
+This is an example of an admonition with `code` in it.
+
+[source,html]
+<p>
+  <a href="https://www.redhat.com/">Red Hat</a>
+</p>
+
+====
 
 .Lead paragraph
 
@@ -1466,25 +1523,29 @@ You can configure AsciiDoc (Python) to recognize this syntax by putting https://
 
 .Fenced code block with syntax highlighting
 ----
-```ruby
-require 'sinatra'
+```bash
+#!/bin/bash
 
-get '/hi' do
-  "Hello World!"
-end
+# optional argument handling
+if [[ "$1" == "version" ]]
+then
+    echo "1.0.0"
+    exit 0
+fi
 ```
 ----
 
-[.result]
-====
-```ruby
-require 'sinatra'
+```bash
+#!/bin/bash
 
-get '/hi' do
-  "Hello World!"
-end
+# optional argument handling
+if [[ "$1" == "version" ]]
+then
+    echo "1.0.0"
+    exit 0
+fi
 ```
-====
+
 
 .Markdown-style blockquote
 ----

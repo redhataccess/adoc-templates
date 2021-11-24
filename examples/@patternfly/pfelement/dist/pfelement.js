@@ -210,7 +210,7 @@ if (!Array.prototype.find) {
 }
 
 /*!
- * PatternFly Elements: PFElement 1.11.2
+ * PatternFly Elements: PFElement 1.12.2
  * @license
  * Copyright 2021 Red Hat, Inc.
  * 
@@ -243,7 +243,7 @@ const prefix = "pfe";
 /**
  * @class PFElement
  * @extends HTMLElement
- * @version 1.11.2
+ * @version 1.12.2
  * @classdesc Serves as the baseline for all PatternFly Element components.
  */
 class PFElement extends HTMLElement {
@@ -363,7 +363,7 @@ class PFElement extends HTMLElement {
    * The current version of a component; set by the compiler using the package.json data.
    */
   static get version() {
-    return "1.11.2";
+    return "1.12.2";
   }
 
   /**

@@ -1,7 +1,7 @@
 import PFElement from '../../pfelement/dist/pfelement.js';
 
 /*!
- * PatternFly Elements: PfeClipboard 1.12.0
+ * PatternFly Elements: PfeClipboard 1.12.2
  * @license
  * Copyright 2021 Red Hat, Inc.
  * 
@@ -29,7 +29,7 @@ class PfeClipboard extends PFElement {
 
   // Injected at build-time
   static get version() {
-    return "1.12.0";
+    return "1.12.2";
   }
 
   // Injected at build-time

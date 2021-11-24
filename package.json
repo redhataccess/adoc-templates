@@ -26,10 +26,7 @@
     "postinstall": "cp -R node_modules/@cpelements examples/ && cp -R node_modules/@patternfly examples/ && npm run build"
   },
   "dependencies": {
-    "@cpelements/cp-documentation": "0.1.56",
-    "@patternfly/pfe-icon": "^1.11.2",
-    "@patternfly/pfelement": "^1.11.2",
-    "@patternfly/pfe-clipboard": "^1.12.0"
+    "@cpelements/cp-documentation": "0.1.58"
   },
   "repository": {
     "type": "git",

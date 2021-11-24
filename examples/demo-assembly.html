@@ -3020,8 +3020,8 @@
 your OpenShift Container Platform cluster&#8217;s platform or modify the values of the required
 parameters.</p>
 <div class="admonitionblock important">
-<strong class="title icon-title"></strong>
 <div class="content">
+<strong class="title title--type">Important</strong>
 <p>This sample YAML file is provided for reference only. You must obtain your
 <code>install-config.yaml</code> file by using the installation program and modify it.</p>
 </div>
@@ -3111,8 +3111,8 @@ follows the PCRE standard and is equal to <code>[a-zA-Z0-9_]{10}</code>.</p>
 </li>
 </ul>
 <div class="admonitionblock note">
-<strong class="title icon-title"></strong>
 <div class="content">
+<strong class="title title--type">Note</strong>
 <p>Depending on if the template is written in YAML or JSON, and the type of string that the modifier is embedded within, you might need to escape the backslash with a second backslash. The following examples are equivalent:</p>
 <div class="listingblock">
 <strong class="heading">Example YAML template with a modifier</strong>
@@ -3174,14 +3174,14 @@ follows the PCRE standard and is equal to <code>[a-zA-Z0-9_]{10}</code>.</p>
 <p>You must create the control plane machines in Amazon Web Services (AWS) that your cluster will use.</p>
 <p>You can use the provided CloudFormation template and a custom parameter file to create a stack of AWS resources that represent the control plane nodes.</p>
 <div class="admonitionblock important">
-<strong class="title icon-title"></strong>
 <div class="content">
+<strong class="title title--type">Important</strong>
 <p>The CloudFormation template creates a stack that represents three control plane nodes.</p>
 </div>
 </div>
 <div class="admonitionblock note">
-<strong class="title icon-title"></strong>
 <div class="content">
+<strong class="title title--type">Note</strong>
 <p>If you do not use the provided CloudFormation template to create your control plane
 nodes, you must review the provided information and manually create
 the infrastructure. If your cluster does not initialize correctly, you might
@@ -3297,8 +3297,8 @@ in the CloudFormation template.</p>
 <li>
 <p>Launch the CloudFormation template to create a stack of AWS resources that represent the control plane nodes:</p>
 <div class="admonitionblock important">
-<strong class="title icon-title"></strong>
 <div class="content">
+<strong class="title title--type">Important</strong>
 <p>You must enter the command on a single line.</p>
 </div>
 </div>
@@ -3324,8 +3324,8 @@ parameters JSON file.</li>
 </div>
 </div>
 <div class="admonitionblock note">
-<strong class="title icon-title"></strong>
 <div class="content">
+<strong class="title title--type">Note</strong>
 <p>The CloudFormation template creates a stack that represents three control plane nodes.</p>
 </div>
 </div>
@@ -3565,14 +3565,14 @@ VMware VM import
 <div class="sectionbody">
 <p>Before you deploy an OpenShift Container Platform cluster, you provide parameter values to describe your account on the cloud platform that hosts your cluster and optionally customize your cluster&#8217;s platform. When you create the <code>install-config.yaml</code> installation configuration file, you provide values for the required parameters through the command line. If you customize your cluster, you can modify the <code>install-config.yaml</code> file to provide more details about the platform.</p>
 <div class="admonitionblock note">
-<strong class="title icon-title"></strong>
 <div class="content">
+<strong class="title title--type">Note</strong>
 <p>After installation, you cannot modify these parameters in the <code>install-config.yaml</code> file.</p>
 </div>
 </div>
 <div class="admonitionblock important">
-<strong class="title icon-title"></strong>
 <div class="content">
+<strong class="title title--type">Important</strong>
 <p>The <code>openshift-install</code> command does not validate field names for parameters. If an incorrect name is specified, the related file or object is not created, and no error is reported. Ensure that the field names for any parameters that are specified are correct.</p>
 </div>
 </div>
@@ -3708,8 +3708,8 @@ Values
   <td class="tableblock halign-left valign-middle" headers="table3_th_values">
 <p>Object</p>
 <div class="admonitionblock note">
-<strong class="title icon-title"></strong>
 <div class="content">
+<strong class="title title--type">Note</strong>
 <p>You cannot modify parameters specified by the <code>networking</code> object after installation.</p>
 </div>
 </div>
@@ -3814,8 +3814,8 @@ The prefix length for an IPv4 block is between <code>0</code> and <code>32</code
 <p>An IP network block in CIDR notation.</p>
 <p>For example, <code>10.0.0.0/16</code>.</p>
 <div class="admonitionblock note">
-<strong class="title icon-title"></strong>
 <div class="content">
+<strong class="title title--type">Note</strong>
 <p>Set the <code>networking.machineNetwork</code> to match the CIDR that the preferred NIC resides in.</p>
 </div>
 </div>
@@ -3888,8 +3888,8 @@ Values
   <td class="tableblock halign-left valign-middle" headers="table4_th_description">
 <p>Whether to enable or disable simultaneous multithreading, or <code>hyperthreading</code>, on compute machines. By default, simultaneous multithreading is enabled to increase the performance of your machines' cores.</p>
 <div class="admonitionblock important">
-<strong class="title icon-title"></strong>
 <div class="content">
+<strong class="title title--type">Important</strong>
 <p>If you disable simultaneous multithreading, ensure that your capacity planning
 accounts for the dramatically decreased machine performance.</p>
 </div>
@@ -3961,8 +3961,8 @@ accounts for the dramatically decreased machine performance.</p>
   <td class="tableblock halign-left valign-middle" headers="table4_th_description">
 <p>Whether to enable or disable simultaneous multithreading, or <code>hyperthreading</code>, on control plane machines. By default, simultaneous multithreading is enabled to increase the performance of your machines' cores.</p>
 <div class="admonitionblock important">
-<strong class="title icon-title"></strong>
 <div class="content">
+<strong class="title title--type">Important</strong>
 <p>If you disable simultaneous multithreading, ensure that your capacity planning
 accounts for the dramatically decreased machine performance.</p>
 </div>
@@ -4012,8 +4012,8 @@ accounts for the dramatically decreased machine performance.</p>
   <td class="tableblock halign-left valign-middle" headers="table4_th_description">
 <p>The Cloud Credential Operator (CCO) mode. If no mode is specified, the CCO dynamically tries to determine the capabilities of the provided credentials, with a preference for mint mode on the platforms where multiple modes are supported.</p>
 <div class="admonitionblock note">
-<strong class="title icon-title"></strong>
 <div class="content">
+<strong class="title title--type">Note</strong>
 <p>Not all CCO modes are supported for all cloud providers. For more information on CCO modes, see the <em>Cloud Credential Operator</em> entry in the <em>Red Hat Operators reference</em> content.</p>
 </div>
 </div>
@@ -4029,14 +4029,14 @@ accounts for the dramatically decreased machine performance.</p>
   <td class="tableblock halign-left valign-middle" headers="table4_th_description">
 <p>Enable or disable FIPS mode. The default is <code>false</code> (disabled). If FIPS mode is enabled, the Red Hat Enterprise Linux CoreOS (RHCOS) machines that OpenShift Container Platform runs on bypass the default Kubernetes cryptography suite and use the cryptography modules that are provided with RHCOS instead.</p>
 <div class="admonitionblock important">
-<strong class="title icon-title"></strong>
 <div class="content">
+<strong class="title title--type">Important</strong>
 <p>The use of FIPS Validated / Modules in Process cryptographic libraries is only supported on OpenShift Container Platform deployments on the <code>x86_64</code> architecture.</p>
 </div>
 </div>
 <div class="admonitionblock note">
-<strong class="title icon-title"></strong>
 <div class="content">
+<strong class="title title--type">Note</strong>
 <p>If you are using Azure File storage, you cannot enable FIPS mode.</p>
 </div>
 </div>
@@ -4096,8 +4096,8 @@ accounts for the dramatically decreased machine performance.</p>
   <td class="tableblock halign-left valign-middle" headers="table4_th_description">
 <p>The SSH key to authenticate access to your cluster machines.</p>
 <div class="admonitionblock note">
-<strong class="title icon-title"></strong>
 <div class="content">
+<strong class="title title--type">Note</strong>
 <p>For production OpenShift Container Platform clusters on which you want to perform installation debugging or disaster recovery, specify an SSH key that your <code>ssh-agent</code> process uses.</p>
 </div>
 </div>
@@ -4360,8 +4360,8 @@ host must trust the certificate.</p>
 <div class="sectionbody">
 <p>You can configure your cluster to use hybrid networking with OVN-Kubernetes. This allows a hybrid cluster that supports different node networking configurations. For example, this is necessary to run both Linux and Windows nodes in a cluster.</p>
 <div class="admonitionblock important">
-<strong class="title icon-title"></strong>
 <div class="content">
+<strong class="title title--type">Important</strong>
 <p>You must configure hybrid networking with OVN-Kubernetes during the installation of your cluster. You cannot switch to hybrid networking after the installation process.</p>
 </div>
 </div>
@@ -4434,8 +4434,8 @@ Specifies the directory name that contains the
 </div>
 </div>
 <div class="admonitionblock note">
-<strong class="title icon-title"></strong>
 <div class="content">
+<strong class="title title--type">Note</strong>
 <p>Windows Server Long-Term Servicing Channel (LTSC): Windows Server 2019 is not supported on clusters with a custom <code>hybridOverlayVXLANPort</code> value because this Windows server version does not support selecting a custom VXLAN port.</p>
 </div>
 </div>

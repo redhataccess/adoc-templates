@@ -53,6 +53,10 @@ ifdef::context[:parent-context-of-access-control-list: {context}]
 [id="access-control-list_{context}"]
 = Access control list
 
+## Other sample pages
+* link:/examples/ascii-doc-styleguide.html[AsciiDoc Styleguide]
+* link:/examples/code-samples.html[Code Samples]
+
 :context: access-control-list
 
 Traditionally, each file and directory can only have one user owner and one group owner at a time. If you want to apply a more specific set of permissions to a file or directory (allow certain users outside the group to gain access to a specific file within a directory but not to other files) without changing the ownership and permissions of a file or directory, you can use the access control lists (ACL).

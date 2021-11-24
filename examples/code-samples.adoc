@@ -1,5 +1,9 @@
 # Code Sample Page
 
+## Other sample pages
+* link:/examples/ascii-doc-styleguide.html[AsciiDoc Styleguide]
+* link:/examples/assembly_access-control-list.html[Short Assembly Demo]
+
 ## Syntax Highlighting Features
 
 ### Line Annotation

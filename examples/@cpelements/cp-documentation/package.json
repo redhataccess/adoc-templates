@@ -1,27 +1,27 @@
 {
-  "_from": "@cpelements/cp-documentation@0.1.56",
-  "_id": "@cpelements/cp-documentation@0.1.56",
+  "_from": "@cpelements/cp-documentation@0.1.58",
+  "_id": "@cpelements/cp-documentation@0.1.58",
   "_inBundle": false,
-  "_integrity": "sha512-x8otGflAevSOHQ2eThbEHHOBwfIpzdfvSmejhibp96kJeJrCDG/JYWK+New9ETisMuPsK7IiyGT0BSzAMTMjaQ==",
+  "_integrity": "sha512-YS+Ua//BF3HrTrJc7Y0Df7cAf5YQc9AIxxRg4+QugmqF32lKoOdiJ0vR0Ejvo4cXBD00zCjoDa0F53s3dYpqKQ==",
   "_location": "/@cpelements/cp-documentation",
   "_phantomChildren": {},
   "_requested": {
     "type": "version",
     "registry": true,
-    "raw": "@cpelements/cp-documentation@0.1.56",
+    "raw": "@cpelements/cp-documentation@0.1.58",
     "name": "@cpelements/cp-documentation",
     "escapedName": "@cpelements%2fcp-documentation",
     "scope": "@cpelements",
-    "rawSpec": "0.1.56",
+    "rawSpec": "0.1.58",
     "saveSpec": null,
-    "fetchSpec": "0.1.56"
+    "fetchSpec": "0.1.58"
   },
   "_requiredBy": [
     "/"
   ],
-  "_resolved": "https://registry.npmjs.org/@cpelements/cp-documentation/-/cp-documentation-0.1.56.tgz",
-  "_shasum": "5a64ed84a4c1d46531ce58b82e4c9d501a78f1e6",
-  "_spec": "@cpelements/cp-documentation@0.1.56",
+  "_resolved": "https://registry.npmjs.org/@cpelements/cp-documentation/-/cp-documentation-0.1.58.tgz",
+  "_shasum": "7dd3bee399fc780ea613f7551f1a511e2ef9c174",
+  "_spec": "@cpelements/cp-documentation@0.1.58",
   "_where": "/home/wruvalca/dev/adoc-templates",
   "bugs": {
     "url": "https://github.com/patternfly/patternfly-elements/issues"
@@ -33,9 +33,8 @@
     }
   ],
   "dependencies": {
-    "@patternfly/pfe-clipboard": "^1.11.2",
-    "@patternfly/pfe-icon": "^1.11.2",
-    "prismjs": "^1.24.1"
+    "@patternfly/pfe-clipboard": "^1.12.2",
+    "prismjs": "^1.25.0"
   },
   "deprecated": false,
   "description": "Documentation element for PatternFly Elements",
@@ -47,7 +46,8 @@
     "spandx": "^2.1.2"
   },
   "files": [
-    "dist"
+    "dist",
+    "fa-icons"
   ],
   "homepage": "https://github.com/patternfly/patternfly-elements#readme",
   "keywords": [
@@ -85,5 +85,5 @@
     "test": "../../node_modules/.bin/wct --configFile ../../wct.conf.json elements/cp-documentation/test/"
   },
   "unpkg": "./dist/cp-documentation.umd.min.js",
-  "version": "0.1.56"
+  "version": "0.1.58"
 }
