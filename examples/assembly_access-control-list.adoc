@@ -54,8 +54,8 @@ ifdef::context[:parent-context-of-access-control-list: {context}]
 = Access control list
 
 ## Other sample pages
-* link:/examples/ascii-doc-styleguide.html[AsciiDoc Styleguide]
-* link:/examples/code-samples.html[Code Samples]
+* link:ascii-doc-styleguide.html[AsciiDoc Styleguide]
+* link:code-samples.html[Code Samples]
 
 :context: access-control-list
 

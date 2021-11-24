@@ -35,8 +35,8 @@ v1.0.3, 2014-12-28
 :mailinglist: http://discuss.asciidoctor.org
 
 ## Other sample pages
-* link:/examples/assembly_access-control-list.html[Short Assembly Demo]
-* link:/examples/code-samples.html[Code Samples]
+* link:assembly_access-control-list.html[Short Assembly Demo]
+* link:code-samples.html[Code Samples]
 
 // Stolen and modified from:
 // https://gist.github.com/mojavelinux/8198e5a5ac2570a0cf30
