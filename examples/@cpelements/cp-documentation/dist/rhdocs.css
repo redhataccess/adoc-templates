@@ -2148,7 +2148,8 @@ cp-documentation .sect1 {
 }
 
 .menuseq .menu,
-.menuseq .menuitem {
+.menuseq .menuitem,
+.menuseq .submenu {
   position: relative;
   display: block;
   text-indent: 0;
@@ -2156,8 +2157,13 @@ cp-documentation .sect1 {
 
 .menuseq .menu + .menu:before,
 .menuseq .menu + .menuitem:before,
+.menuseq .menu + .submenu:before,
 .menuseq .menuitem + .menu:before,
-.menuseq .menuitem + .menuitem:before {
+.menuseq .menuitem + .menuitem:before,
+.menuseq .menuitem + .submenu:before,
+.menuseq .submenu + .menu:before,
+.menuseq .submenu + .menuitem:before,
+.menuseq .submenu + .submenu:before {
   content: ">";
   display: inline-block;
   padding: 0 0.25em;
