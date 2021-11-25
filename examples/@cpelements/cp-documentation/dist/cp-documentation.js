@@ -3201,7 +3201,7 @@ Prism.languages.py = Prism.languages.python;
 });
 
 /*!
- * PatternFly Elements: PfeDocumentation 0.1.58
+ * PatternFly Elements: PfeDocumentation 0.1.59
  * @license
  * Copyright 2020 Red Hat, Inc.
  * 
@@ -3361,7 +3361,7 @@ const lightDomObserverConfig = {
 
 class PfeDocumentation extends PFElement {
   static get version() {
-    return "0.1.58";
+    return "0.1.59";
   }
 
   get html() {
@@ -3731,7 +3731,6 @@ class PfeDocumentation extends PFElement {
           const className = classesArray[index];
           if (className.substring(0, 9) === "language-") {
             language = className.substring(9).toLowerCase();
-            // languageClass = className;
             return className;
           }
         }
@@ -3771,7 +3770,29 @@ class PfeDocumentation extends PFElement {
       codeBlockAnnotation.remove();
     }
     // Use this cleaned up code for the copy content
-    const contentToCopy = codeBlockClone.innerText;
+    let contentToCopy = codeBlockClone.innerText;
+
+    // Remove prompt from copy value if we have one
+    switch (language) {
+      case "none":
+      case "terminal":
+      case "shell":
+        const contentToCopyTrimmed = contentToCopy.trim();
+        let promptIndex = -1;
+        if (contentToCopyTrimmed.indexOf("# ") === 0) {
+          // Get non-trimmed index
+          promptIndex = contentToCopy.indexOf("# ");
+        } else if (contentToCopyTrimmed.indexOf("$ ") === 0) {
+          // Get non-trimmed index
+          promptIndex = contentToCopy.indexOf("$ ");
+        }
+
+        if (promptIndex > -1) {
+          contentToCopy = contentToCopy.substr(promptIndex + 2);
+          codeBlockClone.innerText = contentToCopy;
+        }
+        break;
+    }
 
     this._plainCodeBlockContent[plainCodeBlockId] = contentToCopy;
     plainCodeBlock.hidden = true;
@@ -3783,7 +3804,12 @@ class PfeDocumentation extends PFElement {
       codeBlockWrapper &&
       !codeBlockWrapper.classList.contains("codeblock__wrapper")
     ) {
+      const codeBlockInnerWrapper = document.createElement("div");
+      // Necessary becase of FF bug: https://codepen.io/wesruv/full/dyzxMzW
+      codeBlockInnerWrapper.classList.add("codeblock__inner-wrapper");
       codeBlockWrapper.classList.add("codeblock__wrapper");
+      codeBlockWrapper.append(codeBlockInnerWrapper);
+      codeBlockInnerWrapper.append(codeBlock);
       codeBlockWrapper.dataset.plainCodeBlockId = plainCodeBlockId;
       codeBlock.classList.add("codeblock");
 

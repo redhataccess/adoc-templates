@@ -1922,11 +1922,12 @@ cp-documentation .sect1 {
 
 .codeblock__wrapper {
   position: relative;
-  background: #f8f8f8;
-  border: 1px solid #d9d9d9;
   z-index: 0;
+  border: 1px solid #d9d9d9;
   -webkit-transform: translate(0);
           transform: translate(0);
+  background: #f8f8f8;
+  overflow: visible;
 }
 
 .admonitionblock .codeblock__wrapper {
@@ -1946,9 +1947,38 @@ cp-documentation .sect1 {
   background: linear-gradient(to left, #f8f8f8ff 70%, #f8f8f800);
 }
 
+.codeblock__inner-wrapper {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  overflow: auto;
+}
+
+.codeblock__inner-wrapper:after {
+  content: "";
+  display: block;
+  -webkit-flex-basis: 70px;
+      -ms-flex-preferred-size: 70px;
+          flex-basis: 70px;
+  -webkit-flex-shrink: 0;
+      -ms-flex-negative: 0;
+          flex-shrink: 0;
+  min-height: 10px;
+  -webkit-box-ordinal-group: 100;
+  -webkit-order: 99;
+      -ms-flex-order: 99;
+          order: 99;
+}
+
 .codeblock[class] {
   margin: 0;
-  padding-right: 70px;
+  padding-right: 0px;
+  overflow: visible;
+}
+
+.codeblock[class][class][class][class][class] {
+  max-width: 99999em;
 }
 
 .codeblock__copy {
@@ -2106,6 +2136,32 @@ cp-documentation .sect1 {
 
 .admonitionblock .content > :last-child {
   margin-bottom: 0;
+}
+
+.menuseq {
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  overflow: hidden;
+  text-indent: -9999em;
+}
+
+.menuseq .menu,
+.menuseq .menuitem {
+  position: relative;
+  display: block;
+  text-indent: 0;
+}
+
+.menuseq .menu + .menu:before,
+.menuseq .menu + .menuitem:before,
+.menuseq .menuitem + .menu:before,
+.menuseq .menuitem + .menuitem:before {
+  content: ">";
+  display: inline-block;
+  padding: 0 0.25em;
+  font-weight: bold;
 }
 
 @media (min-width: 1100px) {

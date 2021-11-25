@@ -2951,7 +2951,7 @@
 	};
 
 	/*!
-	 * PatternFly Elements: PfeDocumentation 0.1.58
+	 * PatternFly Elements: PfeDocumentation 0.1.59
 	 * @license
 	 * Copyright 2020 Red Hat, Inc.
 	 * 
@@ -3125,7 +3125,7 @@
 	  }], [{
 	    key: "version",
 	    get: function get$$1() {
-	      return "0.1.58";
+	      return "0.1.59";
 	    }
 	  }, {
 	    key: "tag",
@@ -3480,7 +3480,6 @@
 	            var className = classesArray[index];
 	            if (className.substring(0, 9) === "language-") {
 	              language = className.substring(9).toLowerCase();
-	              // languageClass = className;
 	              return className;
 	            }
 	          }
@@ -3517,6 +3516,28 @@
 	      // Use this cleaned up code for the copy content
 	      var contentToCopy = codeBlockClone.innerText;
 
+	      // Remove prompt from copy value if we have one
+	      switch (language) {
+	        case "none":
+	        case "terminal":
+	        case "shell":
+	          var contentToCopyTrimmed = contentToCopy.trim();
+	          var promptIndex = -1;
+	          if (contentToCopyTrimmed.indexOf("# ") === 0) {
+	            // Get non-trimmed index
+	            promptIndex = contentToCopy.indexOf("# ");
+	          } else if (contentToCopyTrimmed.indexOf("$ ") === 0) {
+	            // Get non-trimmed index
+	            promptIndex = contentToCopy.indexOf("$ ");
+	          }
+
+	          if (promptIndex > -1) {
+	            contentToCopy = contentToCopy.substr(promptIndex + 2);
+	            codeBlockClone.innerText = contentToCopy;
+	          }
+	          break;
+	      }
+
 	      this._plainCodeBlockContent[plainCodeBlockId] = contentToCopy;
 	      plainCodeBlock.hidden = true;
 	      plainCodeBlock.id = plainCodeBlockId;
@@ -3524,7 +3545,12 @@
 
 	      // For some reason, sometimes parentElement doesn't exist??
 	      if (codeBlockWrapper && !codeBlockWrapper.classList.contains("codeblock__wrapper")) {
+	        var codeBlockInnerWrapper = document.createElement("div");
+	        // Necessary becase of FF bug: https://codepen.io/wesruv/full/dyzxMzW
+	        codeBlockInnerWrapper.classList.add("codeblock__inner-wrapper");
 	        codeBlockWrapper.classList.add("codeblock__wrapper");
+	        codeBlockWrapper.append(codeBlockInnerWrapper);
+	        codeBlockInnerWrapper.append(codeBlock);
 	        codeBlockWrapper.dataset.plainCodeBlockId = plainCodeBlockId;
 	        codeBlock.classList.add("codeblock");
 
