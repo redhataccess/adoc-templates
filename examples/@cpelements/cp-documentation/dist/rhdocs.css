@@ -667,7 +667,7 @@ th {
 }
 
 .rhdocs b.button {
-  padding: 3px 6px;
+  padding: 3px;
   font-size: 90%;
   font-weight: bold;
 }
@@ -1167,6 +1167,7 @@ cp-documentation .sect1 {
   margin: 0.5rem 0;
   padding-left: 2rem;
   counter-increment: colist;
+  font-size: 1rem;
 }
 
 .colist > ol > li .colist-num {
@@ -1982,6 +1983,7 @@ cp-documentation .sect1 {
 }
 
 .codeblock__copy {
+  --pfe-clipboard--icon--Color--hover: #0066cc;
   position: fixed;
   top: 16px;
   left: calc(100% - 44px);
@@ -1993,21 +1995,16 @@ cp-documentation .sect1 {
 }
 
 .codeblock__copy span {
-  display: inline-block;
   visibility: hidden;
-  width: 0;
-  margin-left: -2px;
-  padding: 0 8px 0 0;
-  line-height: 28px;
-  text-indent: 2px;
-  font-size: 1rem;
-  background: #f0efef;
 }
 
-.codeblock__copy:hover span, .codeblock__copy:focus span, .codeblock__copy[copied] span {
-  width: auto;
-  height: 28px;
-  visibility: visible;
+.codeblock__copy:focus {
+  outline: 1px dashed currentColor;
+}
+
+.codeblock__copy svg#icon--copy {
+  width: 16px;
+  height: 16px;
 }
 
 .admonitionblock {
@@ -2019,6 +2016,7 @@ cp-documentation .sect1 {
   line-height: 1.5;
   color: #151515;
   background: #f4f4f4;
+  font-size: 1rem;
 }
 
 .admonitionblock .title--type:after {
