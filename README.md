@@ -1,5 +1,20 @@
 # AsciiDoc Templates for Red Hat Documentation
 
+These templates aren't intended for use outside of Red Hat, but it is not prohibited.
+
+## Previewing and Testing for non-devs
+
+This repository is setup with [Tugboat.qa](https://www.tugboat.qa/), this gives us preview environments for each [pull request](https://github.com/redhataccess/adoc-templates/pulls) and our primary branches (`dev`, `qa`, and `main`). As well as giving us links for customers or QA to see updates, it also gives us visual diffs and some other features.
+
+New PR's will make a preview environment automatically, and it will be removed when the PR is closed.
+
+The below links to environments may change. If they links do not work please file an issue and tag @wesruv.
+
+Here are the preview environments for our main branches, these show off the template output and associated front end assets for each preview environment:
+* [QA Preview](https://qa-bqvgyjdniclupoxgavhruw5dqdfjrrqf.tugboat.qa/)
+* [Stage Preview](https://stage-1cc7xy6fh2crvomrwrrbemgtezvibhxf.tugboat.qa/)
+* [Prod Preview](https://main-xllavqyavo7am6oskahp4xyzozyxal1b.tugboat.qa/)
+
 ## Installing tools for rendering the templates
 
 1. Install Node JS/NPM version 12+, if you have [NVM](https://github.com/nvm-sh/nvm) installed you can type `nvm use` in the command line to use the same version as the repo authors.
