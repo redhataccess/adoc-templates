@@ -16,7 +16,23 @@ services:
         # Link the document root to the expected path. This example links the
         # root of the git repository to the docroot
         - ln -snf "${TUGBOAT_ROOT}" "${DOCROOT}"
+    # Specify a custom config object to use to conduct Lighthouse audits
+    lighthouse:
+      config:
+        extends: lighthouse:default
     urls:
-      - /examples/ascii-doc-styleguide.html
-      - /examples/assembly_access-control-list.html
-      - /examples/code-samples.html
+      - url: /examples/ascii-doc-styleguide.html
+        screenshot:
+          enabled: true
+        visualdiff:
+          threshold: 50
+      - url: /examples/assembly_access-control-list.html
+        screenshot:
+          enabled: true
+        visualdiff:
+          threshold: 50
+      - url: /examples/code-samples.html
+        screenshot:
+          enabled: true
+        visualdiff:
+          threshold: 50
