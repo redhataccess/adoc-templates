@@ -1,28 +1,33 @@
 {
-  "_from": "@patternfly/pfelement@^1.12.2",
+  "_args": [
+    [
+      "@patternfly/pfelement@1.12.2",
+      "/home/wruvalca/dev/adoc-templates"
+    ]
+  ],
+  "_from": "@patternfly/pfelement@1.12.2",
   "_id": "@patternfly/pfelement@1.12.2",
   "_inBundle": false,
   "_integrity": "sha512-oZKpqb0qS4kv1H+4YnSxpg9l5ZAsaWqTPRJ8eTFwBj8jvVPGhT6tj0NXo9O0v6g3ea0i7hw/aAjf9VNlixXp4w==",
   "_location": "/@patternfly/pfelement",
   "_phantomChildren": {},
   "_requested": {
-    "type": "range",
+    "type": "version",
     "registry": true,
-    "raw": "@patternfly/pfelement@^1.12.2",
+    "raw": "@patternfly/pfelement@1.12.2",
     "name": "@patternfly/pfelement",
     "escapedName": "@patternfly%2fpfelement",
     "scope": "@patternfly",
-    "rawSpec": "^1.12.2",
+    "rawSpec": "1.12.2",
     "saveSpec": null,
-    "fetchSpec": "^1.12.2"
+    "fetchSpec": "1.12.2"
   },
   "_requiredBy": [
-    "/@patternfly/pfe-clipboard"
+    "/"
   ],
   "_resolved": "https://registry.npmjs.org/@patternfly/pfelement/-/pfelement-1.12.2.tgz",
-  "_shasum": "dd7f2bc24f1017c306b40da63db82a58b6daef2a",
-  "_spec": "@patternfly/pfelement@^1.12.2",
-  "_where": "/home/wruvalca/dev/adoc-templates/node_modules/@patternfly/pfe-clipboard",
+  "_spec": "1.12.2",
+  "_where": "/home/wruvalca/dev/adoc-templates",
   "browserslist": [
     "last 2 versions",
     "Firefox >= 78",
@@ -32,7 +37,6 @@
   "bugs": {
     "url": "https://github.com/patternfly/patternfly-elements/issues"
   },
-  "bundleDependencies": false,
   "contributors": [
     {
       "name": "Kyle Buchanan",
@@ -47,7 +51,6 @@
       "url": "https://github.com/castastrophe"
     }
   ],
-  "deprecated": false,
   "description": "Base class for PatternFly Elements",
   "devDependencies": {
     "@patternfly/pfe-sass": "^1.12.2"
