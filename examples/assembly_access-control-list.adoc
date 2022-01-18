@@ -47,6 +47,7 @@
 :pantheonproduct: {ProductName}
 :pantheonversion: {dts-ver}
 :pantheonupdateddate: Juluary 42nd, 2020/666
+:pantheonpublisheddate: Juluary 32nd, 2020/666
 :pantheondoctype: assembly
 ifdef::context[:parent-context-of-access-control-list: {context}]
 
