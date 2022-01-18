@@ -1,23 +1,42 @@
 !!! 5
+
+- renderedBy = 'jupiter'
+
+-# Support pantheonenv and rhenv
+- if (@document.attr :rhenv)
+  - rhEnv = @document.attr :rhenv;
+- else
+  - if (@document.attr :pantheonenv)
+    - rhEnv = @document.attr :pantheonenv
+    - renderedBy = 'jupiter'
+
+- if (@document.attr :rhdoctype)
+  - rhDocType = attr :rhdoctype
+- else
+  - if (attr? :pantheondoctype)
+    - rhDocType = attr :pantheondoctype
+
+-# Set assets path
+-# Default to production settings
 - portalUrl = 'access.redhat.com'
-- if (@document.attr :pantheonenv) == 'dev'
-  - portalUrl = 'access.dev.redhat.com'
-- if (@document.attr :pantheonenv) == 'dev2'
-  - portalUrl = 'access.dev.redhat.com'
-- if (@document.attr :pantheonenv) == 'qa'
+- if rhEnv == 'dev'
+  -# We don't have a dev env anymore
   - portalUrl = 'access.qa.redhat.com'
-- if (@document.attr :pantheonenv) == 'stage'
+- if rhEnv == 'dev2'
+  -# We don't have a dev2 env anymore
+  - portalUrl = 'access.qa.redhat.com'
+- if rhEnv == 'qa'
+  - portalUrl = 'access.qa.redhat.com'
+- if rhEnv == 'stage'
   - portalUrl = 'access.stage.redhat.com'
 
-- if (@document.attr :pantheonenv) == 'localdev'
+- if rhEnv == 'localdev'
   - assetsPrefix = "../examples"
+  - renderedBy = 'local'
 - else
   - assetsPrefix = "//#{portalUrl}/webassets/avalon/j/public_modules/node_modules"
 
-
 - rhDocsPath = "#{assetsPrefix}/@cpelements/cp-documentation/dist/rhdocs.min.css"
-
-- wrappingTag = 'cp-documentation'
 
 %html{:lang=>(attr :lang, 'en')}
   %head
@@ -38,11 +57,12 @@
 
     %link(rel="stylesheet" href=rhDocsPath)
 
-    - if (@document.attr :pantheonenv) == 'localdev'
+    - if rhEnv == 'localdev'
       %script(src="#{assetsPrefix}/@cpelements/cp-documentation/dist/cp-documentation.js" type="module")
     - else
       %script(src="#{assetsPrefix}/@cpelements/cp-documentation/dist/cp-documentation.min.js" type="module")
 
+    -# Adds property to cp-documentation so it highlights issues in docs HTML
     :javascript
       window.addEventListener('load', function() {
         var cpDocumentations = document.querySelectorAll('cp-documentation');
@@ -51,98 +71,94 @@
           cpDocumentation.setAttribute('pfe-c-non-prod', '');
         }
       });
-    
     / endinject
-    %title=((doctitle :sanitize => true) || (attr 'untitled-label'))
-  %body{:id => @id, :class=>[doctype, 'pantheon-render', 'rhdocs', ((attr? :toc) && (attr? 'toc-placement', 'auto') ? "has-toc toc-#{attr 'toc-position', 'left'}" : nil)]}
-    / inject:header:html
+
+  %body{:id => @id, :class=>[doctype, 'rhdocs', ((attr? :toc) && (attr? 'toc-placement', 'auto') ? "has-toc toc-#{attr 'toc-position', 'left'}" : nil)]}
+  -# Begin main document
+  / inject:header:html
+  / endinject
+  %cp-documentation#doc-content{:class => ['rhdocs', "#{renderedBy}-render"]}
+    - unless noheader
+      -# Set some simple vars so our if statements aren't gross
+      - hasTitle = !(notitle) && (@header != nil) && (@header&.title != nil)
+      - hasPrimaryHeaderWrapper = hasTitle || (attr? :pantheonproduct)
+      - hasHeaderMetadata = (attr? :pantheonupdateddate) || (attr? :pantheonpublisheddate)
+
+      -# Only print header if we have something to put in it
+      - if hasPrimaryHeaderWrapper || hasHeaderMetadata
+        %header#rhdocs-header.rhdocs__header
+          -if hasPrimaryHeaderWrapper
+            .rhdocs__header__primary-wrapper
+              - if hasTitle
+                %h1=@header.title
+
+              - if rhDocType
+                .rhdocs-content-type
+                  - if rhDocType == "assembly"
+                    Guide
+                  - else
+                    Topic
+
+              -# Product metadata
+              - if (attr? :pantheonproduct)
+                .rhdocs-products
+                  %span.rhdocs-product-name=attr :pantheonproduct
+                  - if (attr? :pantheonversion)
+                    %span.rhdocs-product-version=attr :pantheonversion
+
+
+          - if hasHeaderMetadata
+            -# Wrapper for Metadata
+            %ul.rhdocs__header__secondary-wrapper
+              -# Author list, commented out for now, doesn't appear in this part of the mockup
+              -# - if (attr? :author)
+              -#   %li.rhdocs-details-item
+              -#     %dl.rhdocs-author-details
+              -#       %dt#rhdocs-author.author=attr :author
+              -#       - if attr? :email
+              -#         %dd#rhdocs-email.email=sub_macros(attr :email)
+              -#       - if (authorcount = (attr :authorcount).to_i) > 1
+              -#         - (2..authorcount).each do |idx|
+              -#           %dd{:id=>"author#{idx}", :class=>"author"}=(attr "author_#{idx}")
+              -#           - if attr? "email_#{idx}"
+              -#             %dd{:id=>"email#{idx}", :class=>"email"}= sub_macros(attr "email_#{idx}")
+
+              -# Last Updated metadata
+              - if (attr? :pantheonupdateddate)
+                %li.rh-docs-details-item.rhdocs-updated-date Updated #{attr :pantheonupdateddate}
+              -# Published Date metadata
+              - if (attr? :pantheonpublisheddate)
+                %li.rh-docs-details-item.rhdocs-published-date Published #{attr :pantheonpublisheddate}
+
+    - if (attr? :toc) && (attr? 'toc-placement', 'auto')
+      %nav#rhdocs-toc.rhdocs-toc{:class=>(attr 'toc-class', 'toc'), :aria => {:label => (attr 'toc-title')}}
+        %h2#rhdocs-toctitle.rhdocs-toctitle=attr 'toc-title'
+        =converter.convert self, 'outline'
+
+    %article#rhdocs-content.rhdocs-content
+      =content
+      - unless !footnotes? || attr?(:nofootnotes)
+        #rhdocs-footnotes.rhdocs-footnotes{:aria => {:label => 'Footnotes'}}
+          - if footnotes?
+            %h2#rhdocs-footnotes.visually-hidden Footnotes
+            %ol{:aria => {:labelledby => 'rhdocs-footnotes'}}
+              - footnotes.each do |fn|
+                %li.footnote{:id=>['_footnote', fn.index]}
+                  =(fn.text)
+                  %a(href="#_footnoteref_#{fn.index}"){:title => 'Back to content', :aria => {:label => 'Back to content'}}='&#8617;'
+      %div(class="rh-docs-legal-notice")
+        %a(href="https://access.redhat.com/docs-legal-notice" class="rh-docs-legal-notice__link")Legal Notices for Trademarks
+    / inject:footer:html
+    - unless nofooter
+      %footer#rhdocs-footer.rhdocs-footer
+        #rhdocs-footer-text.rhdocs-footer-text
+          - if rhEnv != 'localdev'
+            - if attr? :revnumber
+              = precede %(#{attr 'version-label'} #{attr :revnumber}) do
+                - if attr? 'last-update-label'
+                  %br
+            - if attr? 'last-update-label'
+              #{attr 'last-update-label'} #{attr :localdatetime}
+          - unless (docinfo_content = (docinfo :footer)).empty?
+            =docinfo_content
     / endinject
-    -# %cp-documentation#rhdocs.rhdocs
-    - haml_tag wrappingTag, id: 'doc-content' do
-      - unless noheader
-        -# Set some simple vars so our if statements aren't gross
-        - hasTitle = !(notitle) && (@header != nil) && (@header&.title != nil)
-        - hasPrimaryHeaderWrapper = hasTitle || (attr? :pantheonproduct)
-        - hasHeaderMetadata = (attr? :pantheonupdateddate) || (attr? :pantheonpublisheddate)
-
-        -# Only print header if we have something to put in it
-        - if hasPrimaryHeaderWrapper || hasHeaderMetadata
-          %header#rhdocs-header.rhdocs__header
-            -if hasPrimaryHeaderWrapper
-              .rhdocs__header__primary-wrapper
-                - if hasTitle
-                  %h1=@header.title
-
-                - if (attr :pantheondoctype)
-                  .rhdocs-content-type
-                    - if (attr :pantheondoctype) == "assembly"
-                      Guide
-                    - else
-                      Topic
-
-                -# Product metadata
-                - if (attr? :pantheonproduct)
-                  .rhdocs-products
-                    %span.rhdocs-product-name=attr :pantheonproduct
-                    - if (attr? :pantheonversion)
-                      %span.rhdocs-product-version=attr :pantheonversion
-
-
-            - if hasHeaderMetadata
-              -# Wrapper for Metadata
-              %ul.rhdocs__header__secondary-wrapper
-                -# Author list, commented out for now, doesn't appear in this part of the mockup
-                -# - if (attr? :author)
-                -#   %li.rhdocs-details-item
-                -#     %dl.rhdocs-author-details
-                -#       %dt#rhdocs-author.author=attr :author
-                -#       - if attr? :email
-                -#         %dd#rhdocs-email.email=sub_macros(attr :email)
-                -#       - if (authorcount = (attr :authorcount).to_i) > 1
-                -#         - (2..authorcount).each do |idx|
-                -#           %dd{:id=>"author#{idx}", :class=>"author"}=(attr "author_#{idx}")
-                -#           - if attr? "email_#{idx}"
-                -#             %dd{:id=>"email#{idx}", :class=>"email"}= sub_macros(attr "email_#{idx}")
-
-                -# Last Updated metadata
-                - if (attr? :pantheonupdateddate)
-                  %li.rh-docs-details-item.rhdocs-updated-date Updated #{attr :pantheonupdateddate}
-                -# Published Date metadata
-                - if (attr? :pantheonpublisheddate)
-                  %li.rh-docs-details-item.rhdocs-published-date Published #{attr :pantheonpublisheddate}
-
-      - if (attr? :toc) && (attr? 'toc-placement', 'auto')
-        %nav#rhdocs-toc.rhdocs-toc{:class=>(attr 'toc-class', 'toc'), :aria => {:label => (attr 'toc-title')}}
-          %h2#rhdocs-toctitle.rhdocs-toctitle=attr 'toc-title'
-          =converter.convert self, 'outline'
-
-      %article#rhdocs-content.rhdocs-content
-        =content
-        - unless !footnotes? || attr?(:nofootnotes)
-          #rhdocs-footnotes.rhdocs-footnotes{:aria => {:label => 'Footnotes'}}
-            - if footnotes?
-              %h2#rhdocs-footnotes.visually-hidden Footnotes
-              %ol{:aria => {:labelledby => 'rhdocs-footnotes'}}
-                - footnotes.each do |fn|
-                  %li.footnote{:id=>['_footnote', fn.index]}
-                    =(fn.text)
-                    %a(href="#_footnoteref_#{fn.index}"){:title => 'Back to content', :aria => {:label => 'Back to content'}}='&#8617;'
-        %div(class="rh-docs-legal-notice")
-          %a(href="https://access.redhat.com/docs-legal-notice" class="rh-docs-legal-notice__link")Legal Notices for Trademarks
-
-      / inject:footer:html
-
-      - unless nofooter
-        %footer#rhdocs-footer.rhdocs-footer
-          #rhdocs-footer-text.rhdocs-footer-text
-            - if (@document.attr :pantheonenv) != 'localdev'
-              - if attr? :revnumber
-                = precede %(#{attr 'version-label'} #{attr :revnumber}) do
-                  - if attr? 'last-update-label'
-                    %br
-              - if attr? 'last-update-label'
-                #{attr 'last-update-label'} #{attr :localdatetime}
-            - unless (docinfo_content = (docinfo :footer)).empty?
-              =docinfo_content
-
-      / endinject

@@ -3201,7 +3201,7 @@ Prism.languages.py = Prism.languages.python;
 });
 
 /*!
- * PatternFly Elements: PfeDocumentation 0.1.60
+ * PatternFly Elements: PfeDocumentation 0.1.61
  * @license
  * Copyright 2020 Red Hat, Inc.
  * 
@@ -3361,7 +3361,7 @@ const lightDomObserverConfig = {
 
 class PfeDocumentation extends PFElement {
   static get version() {
-    return "0.1.60";
+    return "0.1.61";
   }
 
   get html() {

@@ -1,27 +1,27 @@
 {
-  "_from": "@cpelements/cp-documentation@0.1.60",
-  "_id": "@cpelements/cp-documentation@0.1.60",
+  "_from": "@cpelements/cp-documentation@0.1.61",
+  "_id": "@cpelements/cp-documentation@0.1.61",
   "_inBundle": false,
-  "_integrity": "sha512-3Eglj5m5cszh0AKGIJsEa635enF4lbVSVXNIuwAyM9VPRpprZzitxqLRJJBB/gSMigXPlto69R3oN+1zlsFUVA==",
+  "_integrity": "sha512-wQ+/lA9ZppribtJdWGDjQVvWt41AsRojpXoTKIOTx5f1MZOkQntrjwE+a2TMl72id+3NeAGljLO4suRsdJtLyw==",
   "_location": "/@cpelements/cp-documentation",
   "_phantomChildren": {},
   "_requested": {
     "type": "version",
     "registry": true,
-    "raw": "@cpelements/cp-documentation@0.1.60",
+    "raw": "@cpelements/cp-documentation@0.1.61",
     "name": "@cpelements/cp-documentation",
     "escapedName": "@cpelements%2fcp-documentation",
     "scope": "@cpelements",
-    "rawSpec": "0.1.60",
+    "rawSpec": "0.1.61",
     "saveSpec": null,
-    "fetchSpec": "0.1.60"
+    "fetchSpec": "0.1.61"
   },
   "_requiredBy": [
     "/"
   ],
-  "_resolved": "https://registry.npmjs.org/@cpelements/cp-documentation/-/cp-documentation-0.1.60.tgz",
-  "_shasum": "24bd982b893f55767c2a53871fe957b6dcd536ff",
-  "_spec": "@cpelements/cp-documentation@0.1.60",
+  "_resolved": "https://registry.npmjs.org/@cpelements/cp-documentation/-/cp-documentation-0.1.61.tgz",
+  "_shasum": "04f2b86ec08bcce7c5e5ac2ae4e3e774bc50fbbf",
+  "_spec": "@cpelements/cp-documentation@0.1.61",
   "_where": "/home/wruvalca/dev/adoc-templates",
   "bugs": {
     "url": "https://github.com/patternfly/patternfly-elements/issues"
@@ -85,5 +85,5 @@
     "test": "../../node_modules/.bin/wct --configFile ../../wct.conf.json elements/cp-documentation/test/"
   },
   "unpkg": "./dist/cp-documentation.umd.min.js",
-  "version": "0.1.60"
+  "version": "0.1.61"
 }
