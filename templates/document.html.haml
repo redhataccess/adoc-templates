@@ -50,7 +50,7 @@
     - { 'app-name'=>'application-name', 'description'=>nil, 'keywords'=>nil, 'authors'=>'author', 'copyright'=>nil }.each do |key, meta|
       - if attr? key
         %meta{:name=>(meta || key), :content=>(attr key)}
-
+    %title=((doctitle :sanitize => true) || (attr 'untitled-label'))
     %link(rel="preconnect" href="https://fonts.googleapis.com")
     %link(rel="preconnect" href="https://fonts.gstatic.com" crossorigin)
     %link(rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Red+Hat+Display:ital,wght@0,400;0,500;0,700;1,400;1,700&family=Red+Hat+Text:ital,wght@0,400;0,700;1,400;1,700&display=swap")
