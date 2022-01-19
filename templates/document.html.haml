@@ -148,17 +148,16 @@
                   %a(href="#_footnoteref_#{fn.index}"){:title => 'Back to content', :aria => {:label => 'Back to content'}}='&#8617;'
       %div(class="rh-docs-legal-notice")
         %a(href="https://access.redhat.com/docs-legal-notice" class="rh-docs-legal-notice__link")Legal Notices for Trademarks
-    - unless nofooter
-      %footer#rhdocs-footer.rhdocs-footer
-        #rhdocs-footer-text.rhdocs-footer-text
-          - if rhEnv != 'localdev'
-            - if attr? :revnumber
-              = precede %(#{attr 'version-label'} #{attr :revnumber}) do
-                - if attr? 'last-update-label'
-                  %br
-            - if attr? 'last-update-label'
-              #{attr 'last-update-label'} #{attr :localdatetime}
-          - unless (docinfo_content = (docinfo :footer)).empty?
-            =docinfo_content
   / inject:footer:html
+  - unless nofooter
+    %footer#rhdocs-footer.rhdocs-footer
+      #rhdocs-footer-text.rhdocs-footer-text
+        - if attr? :revnumber
+          = precede %(#{attr 'version-label'} #{attr :revnumber}) do
+            - if attr? 'last-update-label'
+              %br
+        - if attr? 'last-update-label'
+          #{attr 'last-update-label'} #{attr :localdatetime}
+      - unless (docinfo_content = (docinfo :footer)).empty?
+        =docinfo_content
   / endinject
