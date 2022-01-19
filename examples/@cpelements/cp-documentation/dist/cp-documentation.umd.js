@@ -2951,7 +2951,7 @@
 	};
 
 	/*!
-	 * PatternFly Elements: PfeDocumentation 0.1.60
+	 * PatternFly Elements: PfeDocumentation 0.1.61
 	 * @license
 	 * Copyright 2020 Red Hat, Inc.
 	 * 
@@ -3125,7 +3125,7 @@
 	  }], [{
 	    key: "version",
 	    get: function get$$1() {
-	      return "0.1.60";
+	      return "0.1.61";
 	    }
 	  }, {
 	    key: "tag",
