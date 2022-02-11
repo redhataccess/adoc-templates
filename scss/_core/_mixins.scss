@@ -1,0 +1,171 @@
+/// Breakpoint helper specific to pfe-navigation
+/// @param {string} $breakpoint Name of a breakpoint
+/// @see $breakpoints
+@mixin breakpoint($breakpoint) {
+  @media (min-width: #{map-get($breakpoints, $breakpoint)}) {
+    @content;
+  }
+}
+
+@mixin related-content-box {
+  margin: 2em 0 4em;
+  padding: 24px;
+  background: #fff;
+  border: 1px solid #d2d2d2;
+  border-radius: 3px;
+
+  &:only-child {
+    grid-column: 1 / -1;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  .heading,
+  .additional-resources__heading {
+    font-size: 20px;
+    line-height: 24px;
+    margin: 0 0 24px;
+    padding: 0;
+  }
+
+  ul {
+    position: relative;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    @include breakpoint(papa) {
+      column-count: 2;
+      column-gap: 2em;
+      @supports (display: grid) {
+        column-count: 1;
+        column-gap: 0;
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        // This property isn't misspelled, sasslint doesn't have the latest and greatest CSS Spec
+        gap: 0 2em; // sass-lint:disable-line no-misspelled-properties
+      }
+    }
+
+    .related-topic-content__wrapper & {
+      display: block;
+    }
+
+    // Hide the bottom most borders
+    // Would be better if I could clip the bottom border, but couldn't figure it out.
+    &:after {
+      content: "";
+      position: absolute;
+      display: block;
+      bottom: 0;
+      width: 100%;
+      height: 2px;
+      background-color: #fff; // Assumes the bg color is white...
+    }
+  }
+
+  li {
+    box-sizing: content-box;
+    margin: 0;
+    padding: 16px 24px 16px 0;
+    border-bottom: 1px solid #d2d2d2;
+    break-inside: avoid;
+
+    &:only-child {
+      grid-column: 1 / -1;
+    }
+
+    &:last-child {
+      border: 0;
+      @include breakpoint(papa) {
+        border-bottom: 1px solid #d2d2d2;
+      }
+    }
+
+    p:only-child {
+      margin: 0;
+      padding: 0;
+    }
+
+    a {
+      text-decoration: none;
+
+      &:hover,
+      &:focus {
+        text-decoration: underline;
+      }
+    }
+  }
+}
+
+// @todo not sure about the history of these styles
+@mixin pullleft() {
+  // role='pullleft'
+  // TODO Tweak widths and breakpoints
+  &.pullleft {
+    float: left;
+    margin-right: 3rem;
+    width: 25rem;
+
+    @include breakpoint(lima) {
+      margin-left: -1rem;
+    }
+  }
+}
+
+@mixin pullright() {
+  // role='pullright'
+  // TODO Tweak widths and breakpoints
+  &.pullright {
+    float: right;
+    margin-left: 3rem;
+    width: 25rem;
+
+    @media (min-width: 768) {
+      margin-right: -2rem;
+    }
+
+    @include breakpoint(papa) {
+      margin-right: -10rem;
+    }
+  }
+}
+
+@mixin interrupter($ismedia: true, $hascaption: true) {
+  // role='interrupter'
+  // TODO Tweak widths and breakpoints
+  &.interrupter {
+    margin: 2rem 0;
+
+    @include breakpoint(lima) {
+      margin-right: -2rem;
+      margin-left: -1rem;
+
+      @if $hascaption {
+        .caption {
+          margin-right: 2rem;
+          margin-left: 1rem;
+        }
+      }
+    }
+
+    @include breakpoint(papa) {
+      margin-right: -10rem;
+
+      @if $hascaption {
+        .caption {
+          margin-right: 10rem;
+        }
+      }
+    }
+
+    @if $ismedia {
+      img {
+        max-width: 100%;
+      }
+    }
+  }
+}

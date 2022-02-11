@@ -1,0 +1,10 @@
+@use 'sass:math';
+
+/// Returns the desired size in em
+/// Both params must be in the same units (px, rem, vw, etc)
+/// @param $desired-size The outcome desired
+/// @param $current-font-size The font size in the current context, defaults to $font-size--base
+/// @returns Size in EM to get desired outcome
+@function em($desired-size, $current-font-size: $font-size--base) {
+  @return math.div($desired-size, $current-font-size) * 1em;
+}

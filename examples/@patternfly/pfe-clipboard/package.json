@@ -1,28 +1,33 @@
 {
-  "_from": "@patternfly/pfe-clipboard@^1.11.2",
+  "_args": [
+    [
+      "@patternfly/pfe-clipboard@1.12.2",
+      "/home/wruvalca/dev/adoc-templates"
+    ]
+  ],
+  "_from": "@patternfly/pfe-clipboard@1.12.2",
   "_id": "@patternfly/pfe-clipboard@1.12.2",
   "_inBundle": false,
   "_integrity": "sha512-p6v/tuRAS7tW5kyowaFHMx90IVN9VPZV/FTjy85KX+BDRLzKsXGiROes4pryXYH8CCNrogmGK7nqeTjQSdowzg==",
   "_location": "/@patternfly/pfe-clipboard",
   "_phantomChildren": {},
   "_requested": {
-    "type": "range",
+    "type": "version",
     "registry": true,
-    "raw": "@patternfly/pfe-clipboard@^1.11.2",
+    "raw": "@patternfly/pfe-clipboard@1.12.2",
     "name": "@patternfly/pfe-clipboard",
     "escapedName": "@patternfly%2fpfe-clipboard",
     "scope": "@patternfly",
-    "rawSpec": "^1.11.2",
+    "rawSpec": "1.12.2",
     "saveSpec": null,
-    "fetchSpec": "^1.11.2"
+    "fetchSpec": "1.12.2"
   },
   "_requiredBy": [
     "/@cpelements/cp-documentation"
   ],
   "_resolved": "https://registry.npmjs.org/@patternfly/pfe-clipboard/-/pfe-clipboard-1.12.2.tgz",
-  "_shasum": "d5f9939d0216f32597e316693dbd662f8659f954",
-  "_spec": "@patternfly/pfe-clipboard@^1.11.2",
-  "_where": "/home/wruvalca/dev/adoc-templates/node_modules/@cpelements/cp-documentation",
+  "_spec": "1.12.2",
+  "_where": "/home/wruvalca/dev/adoc-templates",
   "browserslist": [
     "last 2 versions",
     "Firefox >= 78",
@@ -32,7 +37,6 @@
   "bugs": {
     "url": "https://github.com/patternfly/patternfly-elements/issues"
   },
-  "bundleDependencies": false,
   "contributors": [
     {
       "name": "heymp"
@@ -41,7 +45,6 @@
   "dependencies": {
     "@patternfly/pfelement": "^1.12.2"
   },
-  "deprecated": false,
   "description": "Clipboard element for PatternFly Elements",
   "devDependencies": {
     "@patternfly/pfe-sass": "^1.12.2"

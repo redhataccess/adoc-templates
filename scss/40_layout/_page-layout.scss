@@ -1,0 +1,89 @@
+// @todo Portal Hacks that probably shouldn't be in this stylesheet
+// -----------------------------------------------------
+
+.masthead {
+  position: relative;
+  z-index: 1;
+}
+
+[data-drupal-messages] {
+  position: relative;
+  z-index: 1;
+}
+
+.main-content[class] {
+  padding: 0;
+}
+// -----------------------------------------------------
+// @note End portal hacks
+
+.rhdocs--pantheon-2 {
+  padding: 0;
+}
+
+.rh-docs__content-wrapper {
+  @include breakpoint(papa) {
+    display: flex;
+  }
+}
+
+.rh-docs__sidebar {
+  position: relative;
+  z-index: 2;
+  padding: 1rem 0 0;
+  background: #fff;
+
+  // Side border
+  &:after {
+    .rhdocs__header--assembly ~ .rh-docs__content-wrapper & {
+      top: -24px; // Counteract bottom margin of header
+    }
+
+    @include breakpoint(papa) {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      display: block;
+      width: 0;
+      border-right: 2px solid #d2d2d2;
+    }
+  }
+
+  @include breakpoint(papa) {
+    flex-basis: 30%;
+    flex-grow: 1;
+    width: 30%;
+    min-width: (275 / 18 * 1em);
+    // Converting desired min/max widths from px to em
+    max-width: (350 / 18 * 1em);
+    padding-right: 30px;
+    padding-left: 24px;
+
+    :host & {
+      padding-left: 0;
+    }
+  }
+}
+
+.rh-docs__content,
+cp-documentation {
+
+  .rh-docs__sidebar ~ & {
+    @include breakpoint(papa) {
+      flex-basis: 70%;
+    }
+  }
+
+  @include breakpoint(papa) {
+    flex-grow: 1;
+  }
+}
+
+.rh-docs__content {
+  padding: 0 24px;
+}
+
+// .rh-docs__sidebar--primary {
+// }

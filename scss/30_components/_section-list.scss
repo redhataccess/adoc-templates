@@ -1,0 +1,142 @@
+.rhdocs__section-list__wrapper {
+  margin: 0 0 2em;
+  padding: 0 24px 2em;
+  border-bottom: 1px solid #d2d2d2;
+
+  .toolbar-fixed & {
+    @include breakpoint(papa) {
+      $top-offset: 50px;
+
+      top: $top-offset;
+      max-height: calc(100vh - #{$top-offset});
+    }
+  }
+
+  .tool-bar-tray-open {
+    @include breakpoint(papa) {
+      top: 90px;
+    }
+  }
+
+  @include breakpoint(papa) {
+    position: sticky;
+    top: 0;
+    overflow-y: auto;
+    max-height: calc(100vh);
+    // With padding on section-list__headline this gives white space above headline when list is 'stuck'
+    margin: -40px 0 0;
+    padding: 40px 0 0;
+    border: 0;
+  }
+}
+
+.rhdocs__section-list__headline[class] {
+  margin: 0 0 16px;
+  padding: 0;
+  font-size: 20px;
+  font-weight: 500;
+}
+
+.rhdocs__section-list__jump-headline {
+  margin: 0 0 16px;
+  padding: 0;
+  font-size: 14px;
+  line-height: 17px;
+  text-transform: uppercase;
+}
+
+.rhdocs__section-list {
+  visibility: hidden;
+  opacity: 0;
+  animation: fade-in 0.25s 2.5s 1 forwards;
+
+  :host & {
+    animation: fade-in 0.25s 0s 1 forwards;
+  }
+
+  &[class] {
+    // Removing 2px on left for border
+    padding: 16px 0 16px;
+  }
+
+  &,
+  ul {
+    list-style: none;
+  }
+
+  &[class] ul {
+    margin: 0 0 8px;
+    padding: 0;
+  }
+
+  li {
+    margin: 0;
+    padding: 0;
+  }
+
+  li li {
+    padding: 0 0 0 8px;
+  }
+
+  // The links won't work without JS
+  &[class] a {
+    display: inline-block;
+    padding: 6px 0;
+    // color: #151515;
+    // @todo This is the right color, think it should apply when scrollspy works
+    // color: #6A6E73;
+    // pointer-events: none;
+  }
+
+  &[class][class] code {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font: inherit;
+    color: inherit;
+    background: transparent;
+  }
+}
+
+.rhdocs__section-list--has-scrollspy[class] {
+  $left-padding: 15px;
+
+  padding-left: $left-padding;
+
+  ul {
+    margin: 0;
+    padding: 0;
+  }
+
+  li {
+    padding-left: 0;
+  }
+
+  a {
+    margin-left: ($left-padding * -1);
+    padding-left: $left-padding;
+    color: #6a6e73;
+    box-shadow: inset 2px 0 0 0 #d2d2d2;
+
+    &.is-active {
+      color: #151515;
+      box-shadow: inset 2px 0 0 0 #e00;
+    }
+  }
+
+  li li:last-child > a {
+    padding-bottom: 14px;
+  }
+
+  li li a {
+    padding-left: $left-padding * 2;
+  }
+
+  li li li a {
+    padding-left: $left-padding * 3;
+  }
+
+  li li li li a {
+    padding-left: $left-padding * 4;
+  }
+}

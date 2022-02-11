@@ -1,0 +1,78 @@
+// Base Rhythm
+$base-rhythm: 18px;
+$font-size--base: 18px;
+
+/// Breakpoints
+/// secondary-links-expand and nav-expand are functional breakpoints
+/// Their value should match an existing breakpoint, and be above the breakpoint they're matching
+$breakpoints: (
+  echo: 576px,
+  lima: 768px,
+  november: 950px,
+  papa: 1100px,
+  romeo: 1200px,
+  whiskey: 1368px,
+);
+
+$font-family--base: "Red Hat Text", RedHatText, "Helvetica Neue", Arial,
+  sans-serif;
+$font-family--title: "Red Hat Display", RedHatDisplay, "Helvetica Neue", Arial,
+  sans-serif;
+$font-family--code: "Red Hat Mono", "Consolas", monospace;
+
+// Base heading levels
+$heading--1: 36px;
+$heading--2: 26px;
+$heading--3: 24px;
+$heading--4: 20px;
+$heading--5: 20px;
+$heading--6: 18px;
+
+// Other headings & font sizes
+$heading--toc: 20px;
+$heading--toc--transform: none;
+$heading--toc--style: normal;
+
+$heading--section: 20px;
+$heading--section--transform: uppercase;
+$heading--section--style: normal;
+$heading--section--weight: 600;
+
+$heading--block: 16px;
+$heading--block--transform: none;
+$heading--block--style: normal;
+$heading--block--weight: 700;
+
+$font-size--lead: 20px; // Used preamble and lead paragraphs
+$font-size--sm: 14px;
+$font-size--md: 16px;
+$font-size--monospace: 14px;
+
+// Line heights
+$line-height--lg: 1.3333;
+$line-height--base: 1.6667;
+
+// Colors!
+$color--brand-primary: #e00;
+$color--brand-primary-dark: #c00;
+$color--brand-primary-darker: #a30000;
+$color--bg: #fff;
+$color--text: #252525;
+$color--text--subtle: lighten($color--text, 20%);
+$color--link: #06c;
+
+$color--border: #d2d2d2;
+
+$color--bg--footer: #ededed;
+$color--text--footer: #252525;
+
+$color--bg--code-block: #f5f5f5;
+$color--text--code-block: #151515;
+$color--bg--code-inline: #def3ff;
+$color--text--code-inline: #004368;
+
+$color--table--th--bg: #f5f5f5; //#ededed;
+$color--table--border: #d2d2d2;
+
+$color--mark--bg: #fcf8e3;
+$color--kbd--bg: #252525;

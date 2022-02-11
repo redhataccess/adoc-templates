@@ -1,0 +1,331 @@
+.rhdocs {
+  // Base
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  font-size: $font-size--base;
+  line-height: $line-height--base;
+  font-family: $font-family--base;
+  color: $color--text;
+  tab-size: 4;
+
+  img,
+  object,
+  svg {
+    display: inline-block;
+    vertical-align: middle;
+    max-width: 100%;
+  }
+
+  hr {
+    clear: both;
+    margin: 1rem 0;
+    height: 0;
+    border: 0;
+    border-top: 1px solid $color--border;
+  }
+
+  // UI / Links
+  a {
+    color: $color--link;
+    text-decoration: none;
+
+    &:hover,
+    &:focus {
+      color: darken($color--link, 20%);
+      text-decoration: underline;
+    }
+  }
+
+  // Basic Typography
+  p {
+    margin: ($base-rhythm * 1.333) 0;
+  }
+
+  li > p {
+    margin: 0;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: $font-family--title;
+    margin: 0 0 10px;
+    font-weight: 500;
+    line-height: $line-height--lg;
+  }
+
+  h1 {
+    // margin: 0;
+    font-size: $heading--1;
+    margin: 2rem 0;
+  }
+
+  h2 {
+    font-size: $heading--2;
+    margin: 2rem 0;
+  }
+
+  h3 {
+    font-size: $heading--3;
+    font-weight: 400;
+  }
+
+  h4 {
+    font-size: $heading--4;
+  }
+
+  h5 {
+    font-size: $heading--5;
+    font-weight: 400;
+  }
+
+  h6 {
+    font-size: $heading--6;
+    line-height: $line-height--base;
+    font-weight: 500;
+  }
+
+  .heading {
+    margin: 1rem 0 0;
+    font-size: $heading--block;
+    line-height: $line-height--base;
+    text-transform: $heading--block--transform;
+    font-style: $heading--block--style;
+    font-weight: $heading--block--weight;
+
+    + p,
+    + .content > *:first-child {
+      margin-top: 0;
+    }
+  }
+
+  // Lists
+  ul,
+  ol {
+    margin: 1rem 0;
+    padding: 0 0 0 1.5rem;
+  }
+
+  li {
+    margin: 0;
+    padding: 0;
+
+    > p {
+      margin: 0.5rem 0;
+    }
+
+    > ul,
+    > ol {
+      margin: 0;
+    }
+  }
+
+  dl {
+    margin: 1rem 0;
+
+    dt {
+      margin: 0.5rem 0;
+      font-weight: 600;
+    }
+
+    dd {
+      margin: 0.5rem 0 0.5rem 1rem;
+
+      > p {
+        margin: 0.5rem 0;
+      }
+    }
+  }
+
+  // Tables
+  .table-wrapper {
+    overflow-x: auto;
+  }
+
+  table {
+    margin: 2rem 0;
+    border: 1px solid $color--table--border;
+    border-collapse: collapse;
+    font-size: $font-size--md;
+    line-height: $line-height--base;
+    table-layout: fixed;
+
+    caption {
+      margin-top: 0.5rem;
+      margin-bottom: 0.5rem;
+      color: $color--text--subtle;
+      text-align: left;
+    }
+
+    td,
+    th {
+      padding: 0.5em 1rem;
+      border: 1px solid $color--table--border;
+      // text-align: left;
+      // vertical-align: top;
+
+      &.halign-left {
+        text-align: left;
+      }
+
+      &.halign-center {
+        text-align: center;
+      }
+
+      &.halign-right {
+        text-align: right;
+      }
+
+      &.valign-top {
+        vertical-align: top;
+      }
+
+      &.valign-middle {
+        vertical-align: middle;
+      }
+
+      &.valign-bottom {
+        vertical-align: bottom;
+      }
+    }
+
+    thead {
+      td,
+      th {
+        background: $color--table--th--bg;
+        font-weight: 600;
+      }
+    }
+  }
+
+  // Literal Blocks & Listing Blocks
+  pre {
+    white-space: pre;
+    word-break: normal;
+    overflow-wrap: normal;
+    font-family: $font-family--code;
+    font-size: $font-size--monospace;
+    line-height: $line-height--base;
+    color: $color--text--code-block;
+    background: $color--bg--code-block;
+
+    &.nowrap {
+      white-space: pre;
+      word-break: normal;
+      overflow-wrap: normal;
+      overflow: auto;
+    }
+  }
+
+  code {
+    padding: 0.25em 0.5em;
+    font-family: $font-family--code;
+    background: $color--bg--code-inline;
+    color: $color--text--code-inline;
+    font-size: $font-size--monospace;
+    line-height: $line-height--base;
+  }
+
+  .admonitionblock code {
+    color: inherit;
+    background: #fff;
+    font-weight: bold;
+  }
+
+  &[class] pre code {
+    padding: 0;
+    font-family: inherit;
+    color: inherit;
+    background: inherit;
+    font-size: inherit;
+    line-height: inherit;
+    font-weight: inherit;
+  }
+
+  kbd {
+    padding: 2px 6px;
+    margin: 0 4px;
+    font-family: $font-family--code;
+    font-size: 90%;
+    background-color: #eee;
+    background-image: linear-gradient(to bottom, #ddd, #eee, #fff);
+    border-radius: 3px;
+    box-shadow: 0 -1px 0 0 #fff, 0 1px 0 3px #aaa;
+  }
+
+  kbd.keyseq {
+    padding: 0;
+    background: transparent;
+    border: 0;
+    box-shadow: none;
+
+    kbd {
+      display: inline-block;
+      margin: 0 6px;
+    }
+
+    kbd:first-child {
+      margin-left: 0;
+    }
+  }
+
+  b.button {
+    padding: 3px;
+    font-size: 90%;
+    font-weight: bold;
+
+    &:before {
+      content: "[";
+    }
+
+    &:after {
+      content: "]";
+    }
+  }
+
+  summary::-webkit-details-marker {
+    display: none;
+  }
+
+  summary {
+    position: relative;
+    padding: 1em 2em 0.75em 35px;
+    cursor: pointer;
+    color: $color--link;
+
+    &:before {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 0;
+      display: block;
+      width: 11px;
+      height: 11px;
+      border: 4px solid #151515;
+      border-bottom: 0;
+      border-left: 0;
+      // 4px is to optically center
+      // 0.125em is to counteract the uneven vertical padding on summary
+      transform: translateX(4px) translateY(0.125em) rotate(45deg);
+      transform-origin: right top;
+      transition: transform 0.25s;
+    }
+
+    &:focus {
+      outline-color: #73bcf7;
+    }
+  }
+
+  details[open] > summary:before {
+    // 7px is to optically center
+    // 0.125em is to counteract the uneven vertical padding on summary
+    transform: translateY(7px) translateY(0.125em) rotate(135deg);
+  }
+}

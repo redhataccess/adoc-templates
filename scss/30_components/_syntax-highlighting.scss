@@ -1,0 +1,208 @@
+@import 'rhdocs/_core/variables';
+
+// Define custom colors
+$syntax-pink: #b300b3; // h1, p, body
+$syntax-red: #c9190b; // 'javascript', red, #eee
+$syntax-blue: #06c; // <, </, >, height=''
+$syntax-purple: #40199a; // const, let, null, main, printf, return
+$syntax-white: #f5f5f5; // Background
+$syntax-gray: #6a6e73; // example, text, #include, stdio.h, int
+$syntax-light-gray: #6a6e73; // Numbers and dividers
+$syntax-black: #151515; // example html, some paragraph text
+$syntax-hilight-fg: #263238; // Foreground color :selected
+$syntax-hilight-bg: #cceae7; // Background color :selected
+
+code[class*='language-'],
+pre[class*='language-'] {
+  color: $syntax-black;
+  // background: $syntax-white;
+  tab-size: 4;
+}
+
+code,
+pre {
+  &.language-none,
+  &.language-text,
+  &.language-txt {
+    color: $syntax-black;
+  }
+}
+
+code[class*='language-']::selection,
+pre[class*='language-']::selection,
+code[class*='language-'] ::selection,
+pre[class*='language-'] ::selection {
+  color: $syntax-hilight-fg;
+  background: $syntax-hilight-bg;
+}
+
+:not(pre) > code[class*='language-'] {
+  padding: 0.1em;
+  border-radius: 0.2em;
+  white-space: normal;
+}
+
+pre[class*='language-'] {
+  position: relative;
+  overflow: auto;
+  margin: 0.5em 0;
+  padding: 1.25em 1em;
+}
+
+.language-css > code,
+.language-sass > code,
+.language-scss > code {
+  color: $syntax-pink;
+}
+
+[class*='language-'] .namespace {
+  opacity: 0.7;
+}
+
+.token {
+  &.atrule {
+    color: $syntax-purple;
+  }
+
+  &.attr-name {
+    color: $syntax-blue;
+  }
+
+  &.attr-value {
+    color: $syntax-pink;
+  }
+
+  &.attribute {
+    color: $syntax-pink;
+  }
+
+  &.boolean {
+    color: $syntax-purple;
+  }
+
+  &.builtin {
+    color: $syntax-blue;
+  }
+
+  &.cdata {
+    color: $syntax-blue;
+  }
+
+  &.char {
+    color: $syntax-blue;
+  }
+
+  &.class {
+    color: $syntax-blue;
+  }
+
+  &.class-name {
+    color: $syntax-blue;
+  }
+
+  &.comment {
+    color: $syntax-light-gray;
+  }
+
+  &.constant {
+    color: $syntax-purple;
+  }
+
+  &.deleted {
+    color: $syntax-red;
+  }
+
+  &.doctype {
+    color: $syntax-light-gray;
+  }
+
+  &.entity {
+    color: $syntax-red;
+  }
+
+  &.function {
+    color: $syntax-purple;
+  }
+
+  &.hexcode {
+    color: $syntax-pink;
+  }
+
+  &.id {
+    color: $syntax-purple;
+    font-weight: bold;
+  }
+
+  &.important {
+    color: $syntax-purple;
+    font-weight: bold;
+  }
+
+  &.inserted {
+    color: $syntax-blue;
+  }
+
+  &.keyword {
+    color: $syntax-purple;
+  }
+
+  &.number {
+    color: $syntax-pink;
+  }
+
+  &.operator {
+    color: $syntax-blue;
+  }
+
+  &.prolog {
+    color: $syntax-light-gray;
+  }
+
+  &.property {
+    color: $syntax-blue;
+  }
+
+  &.pseudo-class {
+    color: $syntax-pink;
+  }
+
+  &.pseudo-element {
+    color: $syntax-pink;
+  }
+
+  &.punctuation {
+    color: $syntax-blue;
+  }
+
+  &.regex {
+    color: $syntax-blue;
+  }
+
+  &.selector {
+    color: $syntax-red;
+  }
+
+  &.string {
+    color: $syntax-pink;
+  }
+
+  &.symbol {
+    color: $syntax-purple;
+  }
+
+  &.tag {
+    color: $syntax-red;
+  }
+
+  &.unit {
+    color: $syntax-pink;
+  }
+
+  &.url {
+    color: $syntax-red;
+  }
+
+  &.variable {
+    color: $syntax-red;
+  }
+}

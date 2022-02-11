@@ -1,0 +1,25 @@
+.menuseq {
+  display: inline-flex;
+  // Necessary to hide hardcoded arrow
+  overflow: hidden;
+  text-indent: -9999em;
+
+  .menu,
+  .menuitem,
+  .submenu {
+    position: relative;
+    display: block;
+    text-indent: 0;
+
+    + .menu,
+    + .menuitem,
+    + .submenu {
+      &:before {
+        content: '>';
+        display: inline-block;
+        padding: 0 0.25em;
+        font-weight: bold;
+      }
+    }
+  }
+}
