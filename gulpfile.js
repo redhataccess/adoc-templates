@@ -17,13 +17,11 @@ const
     watch,
   } = require('gulp'),
   gulpIf = require('gulp-if'),
+  rename = require('gulp-rename'),
   sourceMaps = require('gulp-sourcemaps'),
-  sass = require('gulp-sass')(require('sass')),
-  sassGlobbing = require('gulp-sass-globbing'),
+  // sass = require('gulp-sass')(require('sass')),
+  // sassGlobbing = require('gulp-sass-globbing'),
   postCss = require('gulp-postcss'),
-  autoprefixer = require('autoprefixer'),
-  cssNano = require('cssnano'),
-  pxToRem = require('postcss-pxtorem'),
   stylelint = require('gulp-stylelint'),
   shell = require('gulp-shell'),
   browserSync = require('browser-sync').create();;
@@ -89,42 +87,82 @@ const globScss = parallel(
   globLayoutScss
 );
 
+// /**
+//  * Compile an SCSS file to CSS
+//  * @param {String} source File path
+//  * @param {String} output File path
+//  */
+// const processScss = (source) =>
+//   src(source)
+//   // Lint first
+//   .pipe(stylelint({
+//     reporters: [
+//       {
+//         formatter: 'string',
+//         console: true,
+//         failAfterError: false,
+//       }
+//     ]
+//   }))
+//   // Start compiling
+//   .pipe(gulpIf(isDev, sourceMaps.init()))
+//   .pipe(sass().on('error', sass.logError))
+//   .pipe(
+//     postCss([
+
+//       pxToRem({
+//         'propList': ['*',],
+//       }),
+//       autoprefixer(),
+//     ])
+//   )
+//   // Minify if production build
+//   .pipe(gulpIf(!isDev, postCss([cssNano(),])))
+//   .pipe(dest('examples/'))
+//   .pipe(sourceMaps.write())
+//   .pipe(dest('dist/'));
+
 /**
  * Compile an SCSS file to CSS
  * @param {String} source File path
  * @param {String} output File path
  */
-const processScss = (source) =>
+const processPcss = (source) =>
   src(source)
   // Lint first
-  .pipe(stylelint({
-    reporters: [
-      {
-        formatter: 'string',
-        console: true,
-        failAfterError: false,
-      }
-    ]
-  }))
+  // .pipe(stylelint({
+  //   reporters: [
+  //     {
+  //       formatter: 'string',
+  //       console: true,
+  //       failAfterError: false,
+  //     }
+  //   ]
+  // }))
   // Start compiling
   .pipe(gulpIf(isDev, sourceMaps.init()))
-  .pipe(sass().on('error', sass.logError))
   .pipe(
     postCss([
-      pxToRem({
+      require('postcss-simple-vars')({ silent: false }),
+      require('postcss-import-ext-glob')(),
+      require('postcss-import')(),
+      require('postcss-pxtorem')({
         'propList': ['*',],
       }),
-      autoprefixer(),
+      require('autoprefixer')(),
     ])
   )
-  // Minify if production build
-  .pipe(gulpIf(!isDev, postCss([cssNano(),])))
-  .pipe(dest('examples/'))
+  // Compile for local usage
   .pipe(sourceMaps.write())
+  .pipe(rename({ extname: '.css'}))
+  .pipe(dest('examples/'))
+  // Compile for prod
+  .pipe(postCss([require('cssnano')(),]))
+  .pipe(rename({ extname: '.min.css'}))
   .pipe(dest('dist/'));
 
-const compileRhDocs = () => processScss('scss/rhdocs.scss');
-const globAndCompileRhDocs = series(globScss, compileRhDocs);
+// const compileRhDocs = () => processScss('scss/rhdocs.scss');
+// const globAndCompileRhDocs = series(globScss, compileRhDocs);
 
 const compileAsciiDoc = (path, env) =>  {
   return shell.task(`asciidoctor -T ${asciiDocTemplates} -a pantheonenv=${env} ${path}`);
@@ -171,21 +209,23 @@ const watchTasks = () => {
  * Gulp tasks
  */
 // Will use frontend assets from prod
+const compilePostCssTest = () => processPcss('scss/postcss-test.pcss');
 exports.default = series(
-  globAndCompileRhDocs,
-  compileAllAsciiDocs('localdev')
+  compilePostCssTest
+  // globAndCompileRhDocs,
+  // compileAllAsciiDocs('localdev')
 );
 
 // Starts browsersync, watches project for changes and reloads all browsers
-task('watch',
-  series(
-    parallel(
-      compileAllAsciiDocs('localdev'),
-      globAndCompileRhDocs
-    ),
-    parallel(
-      startBrowserSync,
-      watchTasks
-    )
-  )
-);
+// task('watch',
+//   series(
+//     parallel(
+//       compileAllAsciiDocs('localdev'),
+//       globAndCompileRhDocs
+//     ),
+//     parallel(
+//       startBrowserSync,
+//       watchTasks
+//     )
+//   )
+// );
