@@ -29,7 +29,8 @@
   - portalUrl = 'access.qa.redhat.com'
 - if rhEnv == 'stage'
   - portalUrl = 'access.stage.redhat.com'
-
+- if rhEnv == 'juno'
+  - renderedBy = 'juno'
 - if rhEnv == 'localdev'
   - assetsPrefix = "/examples"
   - renderedBy = 'local'
@@ -66,10 +67,17 @@
       %script(src="//access.redhat.com/webassets/avalon/j/public_modules/node_modules/@patternfly/pfe-clipboard/dist/pfe-clipboard.min.js" type="module")
     - else
       %script(src="#{assetsPrefix}/@cpelements/cp-documentation/dist/cp-documentation.min.js" type="module")
+    / endinject
+
+    %link(rel="stylesheet" href=rhDocsPath)
 
     / endinject
 
-  %body{:id => @id, :class=>[doctype, 'rhdocs', ((attr? :toc) && (attr? 'toc-placement', 'auto') ? "has-toc toc-#{attr 'toc-position', 'left'}" : nil)]}
+    - if renderedBy == 'juno'
+      %script(src="/preview.js")
+
+
+  %body{:id => @id, :class=>[doctype, ((attr? :toc) && (attr? 'toc-placement', 'auto') ? "has-toc toc-#{attr 'toc-position', 'left'}" : nil)]}
     -# Begin main document
     / inject:header:html
     / endinject
