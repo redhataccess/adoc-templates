@@ -36,7 +36,7 @@
   - rhDocsPath = "/examples/rhdocs.css"
 - else
   - assetsPrefix = "//#{portalUrl}/webassets/avalon/j/public_modules/node_modules"
-  - rhDocsPath = "#{assetsPrefix}/@cpelements/cp-documentation/dist/rhdocs.min.css"
+  - rhDocsPath = "#{assetsPrefix}/@redhataccess/adoc-templates/dist/rhdocs.min.css"
 
 %html{:lang=>(attr :lang, 'en')}
   %head
@@ -57,7 +57,7 @@
 
     %link(rel="stylesheet" href=rhDocsPath)
 
-    -# Adds property to cp-documentation so it highlights issues in docs HTML
+    -# Instantiating Drupal object
     :javascript
       var Drupal = {};
 
@@ -65,12 +65,12 @@
       %script(src="#{assetsPrefix}/rhdocs-content.js")
       %script(src="//access.redhat.com/webassets/avalon/j/public_modules/node_modules/@patternfly/pfe-clipboard/dist/pfe-clipboard.min.js" type="module")
     - else
-      %script(src="#{assetsPrefix}/@cpelements/cp-documentation/dist/cp-documentation.min.js" type="module")
+      %script(src="#{assetsPrefix}/@redhataccess/adoc-templates/dist/rhdocs-content.js")
+      %script(src="//access.redhat.com/webassets/avalon/j/public_modules/node_modules/@patternfly/pfe-clipboard/dist/pfe-clipboard.min.js" type="module")
 
     / endinject
 
   %body{:id => @id, :class=>[doctype, 'rhdocs', ((attr? :toc) && (attr? 'toc-placement', 'auto') ? "has-toc toc-#{attr 'toc-position', 'left'}" : nil)]}
-    -# Begin main document
     / inject:header:html
     / endinject
     %div#docs-wrapper{:class => ['rhdocs', "#{renderedBy}-render"]}
