@@ -13,12 +13,13 @@
     "gulp": "^4.0.0",
     "gulp-if": "^2.0.2",
     "gulp-postcss": "^8.0.0",
+    "gulp-rename": "^2.0.0",
     "gulp-sass": "^5.1.0",
     "gulp-sass-globbing": "0.0.2",
+    "gulp-shell": "^0.8.0",
     "gulp-sourcemaps": "^3.0.0",
     "gulp-stylelint": "^13.0.0",
     "gulp-uglify": "^3.0.2",
-    "gulp-shell": "^0.8.0",
     "postcss": "^8.4.6",
     "postcss-pxtorem": "^5.0.0",
     "sass": "^1.49.7",
@@ -36,7 +37,7 @@
     "watch": "npm run gulp watch",
     "dev": "npm run gulp watch",
     "start": "npm run watch",
-    "clean": "rm -rf node_modules && rm dev-preview/*.css && rm dev-preview/*.html",
+    "clean": "rm -rf node_modules",
     "postinstall": "cp -R node_modules/@cpelements examples/ && cp -R node_modules/@patternfly examples/ && npm run build"
   },
   "dependencies": {

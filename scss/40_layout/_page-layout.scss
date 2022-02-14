@@ -1,3 +1,5 @@
+@use 'sass:math';
+
 // @todo Portal Hacks that probably shouldn't be in this stylesheet
 // -----------------------------------------------------
 
@@ -55,9 +57,9 @@
     flex-basis: 30%;
     flex-grow: 1;
     width: 30%;
-    min-width: (275 / 18 * 1em);
+    min-width: (math.div(275, 18) * 1em);
     // Converting desired min/max widths from px to em
-    max-width: (350 / 18 * 1em);
+    max-width: (math.div(350, 18) * 1em);
     padding-right: 30px;
     padding-left: 24px;
 

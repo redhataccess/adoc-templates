@@ -1,3 +1,5 @@
+@use 'sass:math';
+
 cp-documentation, // No JS
 .rhdocs,          // No JS
 :host .rhdocs {
@@ -7,7 +9,7 @@ cp-documentation, // No JS
 
 .rhdocs-content {
   // Desired width + padding converted into em
-  max-width: ((686px + 24px) / $font-size--base * 1em);
+  max-width: (math.div((686px + 24px), $font-size--base) * 1em);
   padding-right: 24px;
   padding-bottom: 40px;
 }
@@ -26,7 +28,7 @@ cp-documentation {
  * Scrollbar theming
  */
 :host .rhdocs {
-  $scrollbar-size: (10 / 16 * 1rem);
+  $scrollbar-size: (math.div(10, 16) * 1rem);
   $scrollbar-track-color: #d6d6d6;
   $scrollbar-control-color: #8e8e8e;
 
@@ -129,7 +131,7 @@ cp-documentation {
   margin: 0 0 24px;
   padding: 2.5rem 24px 1px; // Bottom margin is so margin is kept inside this wrapper
   font-size: 14px;
-  line-height: #{(17px / 14px)};
+  line-height: #{math.div(17px, 14px)};
   // Design calls for box-shadow, but that causes issues
   // Using gradient instead
   background: linear-gradient(to bottom, transparent, rgb(0 0 0 / 8%));
@@ -151,7 +153,7 @@ cp-documentation {
     margin: 0 0 4px;
     padding: 0;
     font-size: 31.5px;
-    line-height: (34px / 28px);
+    line-height: math.div(34px, 28px);
     color: #151515;
     font-weight: 500;
   }
@@ -203,13 +205,13 @@ cp-documentation {
 
   li {
     margin: 0;
-    margin-bottom: #{4px / 14px * 1em};
+    margin-bottom: #{math.div(4px, 14px) * 1em};
     padding: 0;
     font-size: inherit;
     line-height: inherit;
 
     @include breakpoint(papa) {
-      margin-bottom: #{8px / 14px * 1em};
+      margin-bottom: #{math.div(8px, 14px) * 1em};
     }
   }
 
@@ -226,7 +228,7 @@ cp-documentation {
 
 .rhdocs-products {
   font-size: 16px;
-  line-height: #{(19px / 16px)}; // Getting unitless line-height
+  line-height: #{math.div(19px, 16px)}; // Getting unitless line-height
 
   &[class] {
     margin: 0 0 16px;
