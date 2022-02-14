@@ -698,9 +698,9 @@ th {
 ._additional-resources[class][class] {
   margin: 2em 0 4em;
   padding: 1.5rem;
-  background: #fff;
   border: 0.0625rem solid #d2d2d2;
   border-radius: 0.1875rem;
+  background: #fff;
 }
 ._additional-resources[class][class]:only-child {
   grid-column: 1/-1;
@@ -713,16 +713,28 @@ th {
 ._additional-resources[class][class] h6,
 ._additional-resources[class][class] .heading,
 ._additional-resources[class][class] .additional-resources__heading {
-  font-size: 1.25rem;
-  line-height: 1.5rem;
   margin: 0 0 1.5rem;
   padding: 0;
+  font-size: 1.25rem;
+  line-height: 1.5rem;
 }
 ._additional-resources[class][class] ul {
   position: relative;
-  list-style: none;
   margin: 0;
   padding: 0;
+  list-style: none;
+}
+.related-topic-content__wrapper ._additional-resources[class][class] ul {
+  display: block;
+}
+._additional-resources[class][class] ul:after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  display: block;
+  width: 100%;
+  height: 0.125rem;
+  background-color: #fff;
 }
 @media (min-width: 1100px) {
   ._additional-resources[class][class] ul {
@@ -733,27 +745,15 @@ th {
   }
   @supports (display: grid) {
     ._additional-resources[class][class] ul {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
       -webkit-column-count: 1;
               column-count: 1;
       -webkit-column-gap: 0;
               column-gap: 0;
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 0 2em;
     }
   }
-}
-.related-topic-content__wrapper ._additional-resources[class][class] ul {
-  display: block;
-}
-._additional-resources[class][class] ul:after {
-  content: "";
-  position: absolute;
-  display: block;
-  bottom: 0;
-  width: 100%;
-  height: 0.125rem;
-  background-color: #fff;
 }
 ._additional-resources[class][class] li {
   box-sizing: content-box;
@@ -904,9 +904,6 @@ th {
   -webkit-transform: translate(0);
           transform: translate(0);
 }
-.admonitionblock .codeblock__wrapper {
-  background: #fff;
-}
 .codeblock__wrapper:after {
   content: "";
   position: fixed;
@@ -917,6 +914,12 @@ th {
   display: block;
   width: 4.0625rem;
   background: linear-gradient(to left, #f8f8f8ff 70%, #f8f8f800);
+}
+.admonitionblock .codeblock__wrapper {
+  background: #fff;
+}
+.admonitionblock .codeblock__wrapper:after {
+  background: linear-gradient(to left, #ffff 70%, #fff0);
 }
 
 .codeblock__inner-wrapper {
@@ -1021,9 +1024,9 @@ th {
 .included-in-guides[class] {
   margin: 2em 0 4em;
   padding: 1.5rem;
-  background: #fff;
   border: 0.0625rem solid #d2d2d2;
   border-radius: 0.1875rem;
+  background: #fff;
 }
 .included-in-guides[class]:only-child {
   grid-column: 1/-1;
@@ -1036,16 +1039,28 @@ th {
 .included-in-guides[class] h6,
 .included-in-guides[class] .heading,
 .included-in-guides[class] .additional-resources__heading {
-  font-size: 1.25rem;
-  line-height: 1.5rem;
   margin: 0 0 1.5rem;
   padding: 0;
+  font-size: 1.25rem;
+  line-height: 1.5rem;
 }
 .included-in-guides[class] ul {
   position: relative;
-  list-style: none;
   margin: 0;
   padding: 0;
+  list-style: none;
+}
+.related-topic-content__wrapper .included-in-guides[class] ul {
+  display: block;
+}
+.included-in-guides[class] ul:after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  display: block;
+  width: 100%;
+  height: 0.125rem;
+  background-color: #fff;
 }
 @media (min-width: 1100px) {
   .included-in-guides[class] ul {
@@ -1056,27 +1071,15 @@ th {
   }
   @supports (display: grid) {
     .included-in-guides[class] ul {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
       -webkit-column-count: 1;
               column-count: 1;
       -webkit-column-gap: 0;
               column-gap: 0;
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 0 2em;
     }
   }
-}
-.related-topic-content__wrapper .included-in-guides[class] ul {
-  display: block;
-}
-.included-in-guides[class] ul:after {
-  content: "";
-  position: absolute;
-  display: block;
-  bottom: 0;
-  width: 100%;
-  height: 0.125rem;
-  background-color: #fff;
 }
 .included-in-guides[class] li {
   box-sizing: content-box;
@@ -1673,8 +1676,9 @@ cp-documentation.PFElement, cp-documentation[pfelement] {
   counter-reset: colist;
 }
 .colist > ol > li {
+  position: relative;
   margin: 0.5rem 0;
-  padding-left: 2rem;
+  padding-left: 1.75rem;
   counter-increment: colist;
   font-size: 1rem;
 }
@@ -1683,7 +1687,9 @@ cp-documentation.PFElement, cp-documentation[pfelement] {
 }
 .colist > ol > li:before {
   content: counter(colist);
-  left: -1em;
+  position: absolute;
+  top: 0.1875rem;
+  left: 0;
 }
 
 .literalblock,
@@ -1700,8 +1706,8 @@ cp-documentation.PFElement, cp-documentation[pfelement] {
 .verseblock.pullleft,
 .quoteblock.pullleft {
   float: left;
-  margin-right: 3rem;
   width: 25rem;
+  margin-right: 3rem;
 }
 @media (min-width: 768px) {
   .verseblock.pullleft,
@@ -1712,8 +1718,8 @@ cp-documentation.PFElement, cp-documentation[pfelement] {
 .verseblock.pullright,
 .quoteblock.pullright {
   float: right;
-  margin-left: 3rem;
   width: 25rem;
+  margin-left: 3rem;
 }
 @media (min-width: 768) {
   .verseblock.pullright,
@@ -1781,8 +1787,8 @@ cp-documentation.PFElement, cp-documentation[pfelement] {
 }
 .imageblock.pullleft {
   float: left;
-  margin-right: 3rem;
   width: 25rem;
+  margin-right: 3rem;
 }
 @media (min-width: 768px) {
   .imageblock.pullleft {
@@ -1791,8 +1797,8 @@ cp-documentation.PFElement, cp-documentation[pfelement] {
 }
 .imageblock.pullright {
   float: right;
-  margin-left: 3rem;
   width: 25rem;
+  margin-left: 3rem;
 }
 @media (min-width: 768) {
   .imageblock.pullright {

@@ -1,9 +1,12 @@
+@use 'sass:color';
+
 .rhdocs {
   font-family: $font-family--base;
   font-size: $font-size--base;
   line-height: $line-height--base;
   color: $color--text;
   tab-size: 4;
+
   // Base
   *,
   *::before,
@@ -34,7 +37,7 @@
 
     &:hover,
     &:focus {
-      color: darken($color--link, 20%);
+      color: color.adjust($color--link, $lightness: -20%);
       text-decoration: underline;
     }
   }

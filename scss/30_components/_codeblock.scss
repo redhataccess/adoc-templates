@@ -7,10 +7,6 @@
   // Make sure fixed child elements position to this element
   transform: translate(0);
 
-  .admonitionblock & {
-    background: #fff;
-  }
-
   &:after {
     content: '';
     position: fixed;
@@ -21,6 +17,14 @@
     display: block;
     width: 65px;
     background: linear-gradient(to left, #f8f8f8ff 70%, #f8f8f800);
+  }
+
+  .admonitionblock & {
+    background: #fff;
+
+    &:after {
+      background: linear-gradient(to left, #ffff 70%, #fff0);
+    }
   }
 }
 
