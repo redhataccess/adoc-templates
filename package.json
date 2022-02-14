@@ -1,7 +1,7 @@
 {
   "name": "@redhataccess/adoc-templates",
   "description": "Templates for Ascii Doc for Red Hat Documentation",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "license": "MIT",
   "engines": {
     "node": ">=12.x.x"
@@ -44,5 +44,13 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/redhataccess/adoc-templates"
-  }
+  },
+  "contributors": [
+    {
+      "name": "wesruv"
+    },
+    {
+      "name": "rlahoda"
+    }
+  ]
 }
