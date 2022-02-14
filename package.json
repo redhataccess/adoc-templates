@@ -11,6 +11,7 @@
     "browser-sync": "^2.26.7",
     "cssnano": "^4.1.7",
     "gulp": "^4.0.0",
+    "gulp-concat": "^2.6.1",
     "gulp-if": "^2.0.2",
     "gulp-postcss": "^8.0.0",
     "gulp-rename": "^2.0.0",
@@ -38,10 +39,7 @@
     "dev": "npm run gulp watch",
     "start": "npm run watch",
     "clean": "rm -rf node_modules",
-    "postinstall": "cp -R node_modules/@cpelements examples/ && cp -R node_modules/@patternfly examples/ && npm run build"
-  },
-  "dependencies": {
-    "@cpelements/cp-documentation": "0.1.61"
+    "postinstall": "npm run build"
   },
   "repository": {
     "type": "git",

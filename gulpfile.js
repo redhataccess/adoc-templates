@@ -2,6 +2,8 @@
 /* global require */
 'use strict';
 
+const { reload } = require('browser-sync');
+
 /**
  * Configuration
  */
@@ -17,6 +19,9 @@ const
     watch,
   } = require('gulp'),
   gulpIf = require('gulp-if'),
+  rename = require('gulp-rename'),
+  uglify = require('gulp-uglify'),
+  concat = require('gulp-concat'),
   sourceMaps = require('gulp-sourcemaps'),
   sass = require('gulp-sass')(require('sass')),
   sassGlobbing = require('gulp-sass-globbing'),
@@ -118,11 +123,34 @@ const processScss = (source) =>
     ])
   )
   // Minify if production build
-  .pipe(gulpIf(!isDev, postCss([cssNano(),])))
-  .pipe(dest('examples/'))
   .pipe(sourceMaps.write())
-  .pipe(dest('dist/'));
+  // Throw a version in examples
+  .pipe(dest('examples/'))
+  .pipe(postCss([cssNano(),]))
+  .pipe(rename({extname: '.min.css'}))
+    // Throw a version in dist
+    .pipe(dest('dist/'));
 
+/**
+ * Compile JS
+ */
+const docsContentSrc = ['js/third-party/prism.js', 'js/rhdocs-content.js',];
+const compileDocContentJs = () =>
+  src(docsContentSrc)
+    .pipe(gulpIf(isDev, sourceMaps.init()))
+    // Combine files
+    .pipe(concat('rhdocs-content.js'))
+    .pipe(gulpIf(isDev, sourceMaps.write()))
+    // Throw a version in examples
+    .pipe(dest('examples/'))
+    .pipe(gulpIf(!isDev, uglify()))
+    .pipe(rename({extname: '.min.js'}))
+    // Throw a version in dist
+    .pipe(dest('dist/'));
+
+/**
+ * Compile adoc to HTML
+ */
 const compileRhDocs = () => processScss('scss/rhdocs.scss');
 const globAndCompileRhDocs = series(globScss, compileRhDocs);
 
@@ -135,6 +163,11 @@ const compileAllAsciiDocs = (env) => series(
   compileAsciiDoc('examples/code-samples.adoc', env),
   compileAsciiDoc('examples/assembly_access-control-list.adoc', env),
   compileAsciiDoc('examples/demo-assembly.adoc', env),
+);
+
+const copyImages = parallel(
+  shell.task('cp -Rp images examples/'),
+  shell.task('cp -Rp images dist/')
 );
 
 const watchTasks = () => {
@@ -150,6 +183,21 @@ const watchTasks = () => {
     'examples/**/*.adoc',
     series(
       compileAllAsciiDocs('localdev'),
+      reloadBrowserSync
+    )
+  );
+
+  watch(
+    docsContentSrc,
+    series(
+      compileDocContentJs,
+      reloadBrowserSync
+    )
+  );
+
+  watch('images/**/*',
+    series(
+      copyImages,
       reloadBrowserSync
     )
   );
@@ -171,21 +219,18 @@ const watchTasks = () => {
  * Gulp tasks
  */
 // Will use frontend assets from prod
-exports.default = series(
+exports.default = parallel(
   globAndCompileRhDocs,
+  compileDocContentJs,
+  copyImages,
   compileAllAsciiDocs('localdev')
 );
 
 // Starts browsersync, watches project for changes and reloads all browsers
-task('watch',
-  series(
-    parallel(
-      compileAllAsciiDocs('localdev'),
-      globAndCompileRhDocs
-    ),
-    parallel(
-      startBrowserSync,
-      watchTasks
-    )
+exports.watch = series(
+  exports.default,
+  parallel(
+    startBrowserSync,
+    watchTasks
   )
 );

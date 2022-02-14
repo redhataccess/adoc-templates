@@ -1,3 +1,3 @@
-._additional-resources[class] { // Extra specificity to beat out rhdocs styles
+._additional-resources[class][class] { // Extra specificity to beat out rhdocs styles
   @include related-content-box;
 }

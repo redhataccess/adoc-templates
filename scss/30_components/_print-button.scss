@@ -4,7 +4,7 @@
   padding: 0 0 0 22px;
   border: 0;
   color: $color--link;
-  background: url('../fa-icons/print-solid.svg') no-repeat left center;
+  background: url('images/fa-icons/print-solid.svg') no-repeat left center;
   background-size: 16px auto;
   appearance: none;
 
@@ -14,7 +14,7 @@
     text-decoration: underline;
   }
 
-  @supports (mask-image: url('../fa-icons/print-solid.svg')) {
+  @supports (mask-image: url('images/fa-icons/print-solid.svg')) {
     background: none;
 
     &:before {
@@ -26,7 +26,7 @@
       display: block;
       width: 16px;
       background: currentcolor;
-      mask: url('../fa-icons/print-solid.svg') no-repeat center center;
+      mask: url('images/fa-icons/print-solid.svg') no-repeat center center;
       mask-size: 100% auto;
     }
   }

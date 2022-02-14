@@ -16,23 +16,18 @@
 <link href="https://fonts.googleapis.com" rel="preconnect">
 <link crossorigin href="https://fonts.gstatic.com" rel="preconnect">
 <link href="https://fonts.googleapis.com/css2?family=Red+Hat+Display:ital,wght@0,400;0,500;0,700;1,400;1,700&family=Red+Hat+Text:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
-<link href="../examples/@cpelements/cp-documentation/dist/rhdocs.min.css" rel="stylesheet">
-<script src="../examples/@cpelements/cp-documentation/dist/cp-documentation.js" type="module"></script>
+<link href="/examples/rhdocs.css" rel="stylesheet">
 <script>
-  window.addEventListener('load', function() {
-    var cpDocumentations = document.querySelectorAll('cp-documentation');
-    for (let index = 0; index < cpDocumentations.length; index++) {
-      const cpDocumentation = cpDocumentations[index];
-      cpDocumentation.setAttribute('pfe-c-non-prod', '');
-    }
-  });
+  var Drupal = {};
 </script>
+<script src="/examples/rhdocs-content.js"></script>
+<script src="//access.redhat.com/webassets/avalon/j/public_modules/node_modules/@patternfly/pfe-clipboard/dist/pfe-clipboard.min.js" type="module"></script>
 <!-- endinject -->
 </head>
 <body class="article rhdocs">
 <!-- inject:header:html -->
 <!-- endinject -->
-<cp-documentation class="rhdocs local-render" id="doc-content">
+<div class="rhdocs local-render" id="docs-wrapper">
 <header class="rhdocs__header" id="rhdocs-header">
 <div class="rhdocs__header__primary-wrapper">
 <h1>AsciiDoc Syntax Quick Reference</h1>
@@ -2385,12 +2380,12 @@ Also, don&#8217;t forget to join the <a href="http://discuss.asciidoctor.org">As
 <a class="rh-docs-legal-notice__link" href="https://access.redhat.com/docs-legal-notice">Legal Notices for Trademarks</a>
 </div>
 </article>
-</cp-documentation>
+</div>
 <!-- inject:footer:html -->
 <footer class="rhdocs-footer" id="rhdocs-footer">
 <div class="rhdocs-footer-text" id="rhdocs-footer-text">
 Version 1.0.3<br>
-Last updated 2022-02-14 10:16:08 -0600
+Last updated 2022-02-14 11:25:45 -0600
 </div>
 </footer>
 <!-- endinject -->

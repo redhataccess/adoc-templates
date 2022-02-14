@@ -31,12 +31,12 @@
   - portalUrl = 'access.stage.redhat.com'
 
 - if rhEnv == 'localdev'
-  - assetsPrefix = "../examples"
+  - assetsPrefix = "/examples"
   - renderedBy = 'local'
+  - rhDocsPath = "/examples/rhdocs.css"
 - else
   - assetsPrefix = "//#{portalUrl}/webassets/avalon/j/public_modules/node_modules"
-
-- rhDocsPath = "#{assetsPrefix}/@cpelements/cp-documentation/dist/rhdocs.min.css"
+  - rhDocsPath = "#{assetsPrefix}/@cpelements/cp-documentation/dist/rhdocs.min.css"
 
 %html{:lang=>(attr :lang, 'en')}
   %head
@@ -57,27 +57,23 @@
 
     %link(rel="stylesheet" href=rhDocsPath)
 
+    -# Adds property to cp-documentation so it highlights issues in docs HTML
+    :javascript
+      var Drupal = {};
+
     - if rhEnv == 'localdev'
-      %script(src="#{assetsPrefix}/@cpelements/cp-documentation/dist/cp-documentation.js" type="module")
+      %script(src="#{assetsPrefix}/rhdocs-content.js")
+      %script(src="//access.redhat.com/webassets/avalon/j/public_modules/node_modules/@patternfly/pfe-clipboard/dist/pfe-clipboard.min.js" type="module")
     - else
       %script(src="#{assetsPrefix}/@cpelements/cp-documentation/dist/cp-documentation.min.js" type="module")
 
-    -# Adds property to cp-documentation so it highlights issues in docs HTML
-    :javascript
-      window.addEventListener('load', function() {
-        var cpDocumentations = document.querySelectorAll('cp-documentation');
-        for (let index = 0; index < cpDocumentations.length; index++) {
-          const cpDocumentation = cpDocumentations[index];
-          cpDocumentation.setAttribute('pfe-c-non-prod', '');
-        }
-      });
     / endinject
 
   %body{:id => @id, :class=>[doctype, 'rhdocs', ((attr? :toc) && (attr? 'toc-placement', 'auto') ? "has-toc toc-#{attr 'toc-position', 'left'}" : nil)]}
     -# Begin main document
     / inject:header:html
     / endinject
-    %cp-documentation#doc-content{:class => ['rhdocs', "#{renderedBy}-render"]}
+    %div#docs-wrapper{:class => ['rhdocs', "#{renderedBy}-render"]}
       - unless noheader
         -# Set some simple vars so our if statements aren't gross
         - hasTitle = !(notitle) && (@header != nil) && (@header&.title != nil)
@@ -110,19 +106,6 @@
             - if hasHeaderMetadata
               -# Wrapper for Metadata
               %ul.rhdocs__header__secondary-wrapper
-                -# Author list, commented out for now, doesn't appear in this part of the mockup
-                -# - if (attr? :author)
-                -#   %li.rhdocs-details-item
-                -#     %dl.rhdocs-author-details
-                -#       %dt#rhdocs-author.author=attr :author
-                -#       - if attr? :email
-                -#         %dd#rhdocs-email.email=sub_macros(attr :email)
-                -#       - if (authorcount = (attr :authorcount).to_i) > 1
-                -#         - (2..authorcount).each do |idx|
-                -#           %dd{:id=>"author#{idx}", :class=>"author"}=(attr "author_#{idx}")
-                -#           - if attr? "email_#{idx}"
-                -#             %dd{:id=>"email#{idx}", :class=>"email"}= sub_macros(attr "email_#{idx}")
-
                 -# Last Updated metadata
                 - if (attr? :pantheonupdateddate)
                   %li.rh-docs-details-item.rhdocs-updated-date Updated #{attr :pantheonupdateddate}

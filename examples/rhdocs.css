@@ -26,9 +26,9 @@
   }
 }
 .rhdocs {
+  font-family: "Red Hat Text", RedHatText, "Helvetica Neue", Arial, sans-serif;
   font-size: 1.125rem;
   line-height: 1.6667;
-  font-family: "Red Hat Text", RedHatText, "Helvetica Neue", Arial, sans-serif;
   color: #252525;
   -o-tab-size: 4;
      tab-size: 4;
@@ -42,13 +42,13 @@
 .rhdocs object,
 .rhdocs svg {
   display: inline-block;
-  vertical-align: middle;
   max-width: 100%;
+  vertical-align: middle;
 }
 .rhdocs hr {
   clear: both;
-  margin: 1rem 0;
   height: 0;
+  margin: 1rem 0;
   border: 0;
   border-top: 0.0625rem solid #d2d2d2;
 }
@@ -72,18 +72,18 @@
 .rhdocs h4,
 .rhdocs h5,
 .rhdocs h6 {
-  font-family: "Red Hat Display", RedHatDisplay, "Helvetica Neue", Arial, sans-serif;
   margin: 0 0 0.625rem;
-  font-weight: 500;
+  font-family: "Red Hat Display", RedHatDisplay, "Helvetica Neue", Arial, sans-serif;
   line-height: 1.3333;
+  font-weight: 500;
 }
 .rhdocs h1 {
-  font-size: 2.25rem;
   margin: 2rem 0;
+  font-size: 2.25rem;
 }
 .rhdocs h2 {
-  font-size: 1.625rem;
   margin: 2rem 0;
+  font-size: 1.625rem;
 }
 .rhdocs h3 {
   font-size: 1.5rem;
@@ -105,9 +105,9 @@
   margin: 1rem 0 0;
   font-size: 1rem;
   line-height: 1.6667;
-  text-transform: none;
-  font-style: normal;
   font-weight: 700;
+  font-style: normal;
+  text-transform: none;
 }
 .rhdocs .heading + p,
 .rhdocs .heading + .content > *:first-child {
@@ -147,11 +147,11 @@
 }
 .rhdocs table {
   margin: 2rem 0;
+  table-layout: fixed;
   border: 0.0625rem solid #d2d2d2;
   border-collapse: collapse;
   font-size: 1rem;
   line-height: 1.6667;
-  table-layout: fixed;
 }
 .rhdocs table caption {
   margin-top: 0.5rem;
@@ -190,61 +190,64 @@
 }
 .rhdocs table thead td,
 .rhdocs table thead th {
-  background: #f5f5f5;
   font-weight: 600;
+  background: #f5f5f5;
 }
 .rhdocs pre {
-  white-space: pre;
-  word-break: normal;
-  overflow-wrap: normal;
   font-family: "Red Hat Mono", "Consolas", monospace;
   font-size: 0.875rem;
   line-height: 1.6667;
   color: #151515;
+  white-space: pre;
+  word-break: normal;
   background: #f5f5f5;
+  overflow-wrap: normal;
 }
 .rhdocs pre.nowrap {
+  overflow: auto;
   white-space: pre;
   word-break: normal;
   overflow-wrap: normal;
-  overflow: auto;
+}
+.rhdocs .codeblock__wrapper pre {
+  background: transparent;
 }
 .rhdocs code {
   padding: 0.25em 0.5em;
   font-family: "Red Hat Mono", "Consolas", monospace;
-  background: #def3ff;
-  color: #004368;
   font-size: 0.875rem;
   line-height: 1.6667;
+  color: #004368;
+  background: #def3ff;
 }
 .rhdocs .admonitionblock code {
   color: inherit;
-  background: #fff;
   font-weight: bold;
+  background: #fff;
 }
 .rhdocs[class] pre code {
   padding: 0;
   font-family: inherit;
-  color: inherit;
-  background: inherit;
   font-size: inherit;
   line-height: inherit;
+  color: inherit;
   font-weight: inherit;
+  background: inherit;
 }
 .rhdocs kbd {
-  padding: 0.125rem 0.375rem;
   margin: 0 0.25rem;
+  padding: 0.125rem 0.375rem;
+  border-radius: 0.1875rem;
   font-family: "Red Hat Mono", "Consolas", monospace;
   font-size: 90%;
   background-color: #eee;
   background-image: linear-gradient(to bottom, #ddd, #eee, #fff);
-  border-radius: 0.1875rem;
   box-shadow: 0 -0.0625rem 0 0 #fff, 0 0.0625rem 0 0.1875rem #aaa;
 }
 .rhdocs kbd.keyseq {
   padding: 0;
-  background: transparent;
   border: 0;
+  background: transparent;
   box-shadow: none;
 }
 .rhdocs kbd.keyseq kbd {
@@ -271,8 +274,8 @@
 .rhdocs summary {
   position: relative;
   padding: 1em 2em 0.75em 2.1875rem;
-  cursor: pointer;
   color: #06c;
+  cursor: pointer;
 }
 .rhdocs summary:before {
   content: "";
@@ -285,13 +288,13 @@
   border: 0.25rem solid #151515;
   border-bottom: 0;
   border-left: 0;
+  transition: -webkit-transform 0.25s;
+  transition: transform 0.25s;
+  transition: transform 0.25s, -webkit-transform 0.25s;
   -webkit-transform: translateX(0.25rem) translateY(0.125em) rotate(45deg);
           transform: translateX(0.25rem) translateY(0.125em) rotate(45deg);
   -webkit-transform-origin: right top;
           transform-origin: right top;
-  transition: -webkit-transform 0.25s;
-  transition: transform 0.25s;
-  transition: transform 0.25s, -webkit-transform 0.25s;
 }
 .rhdocs summary:focus {
   outline-color: #73bcf7;
@@ -692,44 +695,44 @@ th {
   padding: 0;
 }
 
-._additional-resources[class] {
+._additional-resources[class][class] {
   margin: 2em 0 4em;
   padding: 1.5rem;
   background: #fff;
   border: 0.0625rem solid #d2d2d2;
   border-radius: 0.1875rem;
 }
-._additional-resources[class]:only-child {
+._additional-resources[class][class]:only-child {
   grid-column: 1/-1;
 }
-._additional-resources[class] h1,
-._additional-resources[class] h2,
-._additional-resources[class] h3,
-._additional-resources[class] h4,
-._additional-resources[class] h5,
-._additional-resources[class] h6,
-._additional-resources[class] .heading,
-._additional-resources[class] .additional-resources__heading {
+._additional-resources[class][class] h1,
+._additional-resources[class][class] h2,
+._additional-resources[class][class] h3,
+._additional-resources[class][class] h4,
+._additional-resources[class][class] h5,
+._additional-resources[class][class] h6,
+._additional-resources[class][class] .heading,
+._additional-resources[class][class] .additional-resources__heading {
   font-size: 1.25rem;
   line-height: 1.5rem;
   margin: 0 0 1.5rem;
   padding: 0;
 }
-._additional-resources[class] ul {
+._additional-resources[class][class] ul {
   position: relative;
   list-style: none;
   margin: 0;
   padding: 0;
 }
 @media (min-width: 1100px) {
-  ._additional-resources[class] ul {
+  ._additional-resources[class][class] ul {
     -webkit-column-count: 2;
             column-count: 2;
     -webkit-column-gap: 2em;
             column-gap: 2em;
   }
   @supports (display: grid) {
-    ._additional-resources[class] ul {
+    ._additional-resources[class][class] ul {
       -webkit-column-count: 1;
               column-count: 1;
       -webkit-column-gap: 0;
@@ -740,10 +743,10 @@ th {
     }
   }
 }
-.related-topic-content__wrapper ._additional-resources[class] ul {
+.related-topic-content__wrapper ._additional-resources[class][class] ul {
   display: block;
 }
-._additional-resources[class] ul:after {
+._additional-resources[class][class] ul:after {
   content: "";
   position: absolute;
   display: block;
@@ -752,7 +755,7 @@ th {
   height: 0.125rem;
   background-color: #fff;
 }
-._additional-resources[class] li {
+._additional-resources[class][class] li {
   box-sizing: content-box;
   margin: 0;
   padding: 1rem 1.5rem 1rem 0;
@@ -760,25 +763,25 @@ th {
   -webkit-column-break-inside: avoid;
           break-inside: avoid;
 }
-._additional-resources[class] li:only-child {
+._additional-resources[class][class] li:only-child {
   grid-column: 1/-1;
 }
-._additional-resources[class] li:last-child {
+._additional-resources[class][class] li:last-child {
   border: 0;
 }
 @media (min-width: 1100px) {
-  ._additional-resources[class] li:last-child {
+  ._additional-resources[class][class] li:last-child {
     border-bottom: 0.0625rem solid #d2d2d2;
   }
 }
-._additional-resources[class] li p:only-child {
+._additional-resources[class][class] li p:only-child {
   margin: 0;
   padding: 0;
 }
-._additional-resources[class] li a {
+._additional-resources[class][class] li a {
   text-decoration: none;
 }
-._additional-resources[class] li a:hover, ._additional-resources[class] li a:focus {
+._additional-resources[class][class] li a:hover, ._additional-resources[class][class] li a:focus {
   text-decoration: underline;
 }
 
@@ -814,7 +817,7 @@ th {
   left: 1.0833333333em;
   width: 0.6111111111em;
   height: 1.3333333333em;
-  background: url(../fa-icons/thumbtack-solid.svg) no-repeat center center;
+  background: url("images/fa-icons/thumbtack-solid.svg") no-repeat center center;
   background-size: 100% auto;
 }
 .admonitionblock.note:after {
@@ -833,7 +836,7 @@ th {
   top: 0.9444444444em;
   left: 0.7777777778em;
   width: 1.2222222222em;
-  background-image: url(../fa-icons/exclamation-triangle-solid.svg);
+  background-image: url("images/fa-icons/exclamation-triangle-solid.svg");
 }
 .admonitionblock.warning {
   border-left-color: #f0ab00;
@@ -851,7 +854,7 @@ th {
 .admonitionblock.warning:after {
   left: 1.3888888889em;
   width: 0.5em;
-  background-image: url(../fa-icons/exclamation-solid.svg);
+  background-image: url("images/fa-icons/exclamation-solid.svg");
   -webkit-transform: scale(0.5) translateX(-0.25em);
           transform: scale(0.5) translateX(-0.25em);
   -webkit-transform-origin: left center;
@@ -868,7 +871,7 @@ th {
 .admonitionblock.important:after {
   left: 0.75em;
   width: 1.2777777778em;
-  background-image: url(../fa-icons/exclamation-circle-solid.svg);
+  background-image: url("images/fa-icons/exclamation-circle-solid.svg");
 }
 .admonitionblock.tip {
   border-left-color: #2b9af3;
@@ -881,7 +884,7 @@ th {
 .admonitionblock.tip:after {
   left: 1.1111111111em;
   width: 0.5555555556em;
-  background: url(../fa-icons/lightbulb-solid.svg) no-repeat center center;
+  background: url("images/fa-icons/lightbulb-solid.svg") no-repeat center center;
   -webkit-transform: translateY(0.0555555556em);
           transform: translateY(0.0555555556em);
 }
@@ -1138,7 +1141,7 @@ th {
   padding: 0 0 0 1.375rem;
   border: 0;
   color: #06c;
-  background: url("../fa-icons/print-solid.svg") no-repeat left center;
+  background: url("images/fa-icons/print-solid.svg") no-repeat left center;
   background-size: 1rem auto;
   -webkit-appearance: none;
           appearance: none;
@@ -1147,7 +1150,7 @@ th {
   color: #036;
   text-decoration: underline;
 }
-@supports ((-webkit-mask-image: url("../fa-icons/print-solid.svg")) or (mask-image: url("../fa-icons/print-solid.svg"))) {
+@supports ((-webkit-mask-image: url("images/fa-icons/print-solid.svg")) or (mask-image: url("images/fa-icons/print-solid.svg"))) {
   .rhdocs__print-button {
     background: none;
   }
@@ -1160,8 +1163,8 @@ th {
     display: block;
     width: 1rem;
     background: currentcolor;
-    -webkit-mask: url("../fa-icons/print-solid.svg") no-repeat center center;
-            mask: url("../fa-icons/print-solid.svg") no-repeat center center;
+    -webkit-mask: url("images/fa-icons/print-solid.svg") no-repeat center center;
+            mask: url("images/fa-icons/print-solid.svg") no-repeat center center;
     -webkit-mask-size: 100% auto;
             mask-size: 100% auto;
   }

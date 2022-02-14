@@ -46,7 +46,7 @@
     left: ($icon-area--left-offset + math.div($icon-area--size, 2) - math.div($icon-width, 2));
     width: $icon-width;
     height: $icon-area--size;
-    background: url(../fa-icons/thumbtack-solid.svg) no-repeat center center;
+    background: url('images/fa-icons/thumbtack-solid.svg') no-repeat center center;
     background-size: 100% auto;
   }
 
@@ -74,7 +74,7 @@
       left: ($icon-area--left-offset + math.div($icon-area--size, 2) - math.div($icon-width, 2));
       width: $icon-width;
       // height:
-      background-image: url(../fa-icons/exclamation-triangle-solid.svg);
+      background-image: url('images/fa-icons/exclamation-triangle-solid.svg');
     }
   }
 
@@ -97,7 +97,7 @@
 
       left: ($icon-area--left-offset + math.div($icon-area--size, 2));
       width: $icon-width;
-      background-image: url(../fa-icons/exclamation-solid.svg);
+      background-image: url('images/fa-icons/exclamation-solid.svg');
       transform: scale(0.5) translateX(#{math.div($icon-width, -2)});
       transform-origin: left center;
     }
@@ -119,7 +119,7 @@
       left: ($icon-area--left-offset +math.div($icon-area--size, 2) - math.div($icon-width, 2));
       width: $icon-width;
       // height:
-      background-image: url(../fa-icons/exclamation-circle-solid.svg);
+      background-image: url('images/fa-icons/exclamation-circle-solid.svg');
     }
   }
 
@@ -137,7 +137,7 @@
 
       left: ($icon-area--left-offset + math.div($icon-area--size, 2) - math.div($icon-width, 2));
       width: $icon-width;
-      background: url(../fa-icons/lightbulb-solid.svg) no-repeat center center;
+      background: url('images/fa-icons/lightbulb-solid.svg') no-repeat center center;
       // Small nudge to 'optically center' the light bulb
       transform: translateY(#{em(1px)});
     }

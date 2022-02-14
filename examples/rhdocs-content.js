@@ -1,13 +1,3 @@
-import PFElement from '../../../@patternfly/pfelement/dist/pfelement.js';
-import '../../../@patternfly/pfe-clipboard/dist/pfe-clipboard.js';
-
-var commonjsGlobal = typeof globalThis !== 'undefined' ? globalThis : typeof window !== 'undefined' ? window : typeof global !== 'undefined' ? global : typeof self !== 'undefined' ? self : {};
-
-function createCommonjsModule(fn, module) {
-	return module = { exports: {} }, fn(module, module.exports), module.exports;
-}
-
-var prism = createCommonjsModule(function (module) {
 /* PrismJS 1.25.0
 https://prismjs.com/download.html#themes=prism-coy&languages=markup+clike+javascript+asciidoc+bash+c+dns-zone-file+go+java+json+makefile+promql+python+systemd+yaml&plugins=line-numbers+keep-markup */
 /// <reference lib="WebWorker"/>
@@ -1262,13 +1252,13 @@ var Prism = (function (_self) {
   return _;
 })(_self);
 
-if (module.exports) {
+if (typeof module !== "undefined" && module.exports) {
   module.exports = Prism;
 }
 
 // hack for components to work correctly in node.js
-if (typeof commonjsGlobal !== "undefined") {
-  commonjsGlobal.Prism = Prism;
+if (typeof global !== "undefined") {
+  global.Prism = Prism;
 }
 
 // some additional documentation/types
@@ -3198,528 +3188,50 @@ Prism.languages.py = Prism.languages.python;
     }
   });
 })();
-});
-
-/*!
- * PatternFly Elements: PfeDocumentation 0.1.61
- * @license
- * Copyright 2020 Red Hat, Inc.
- * 
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
- * 
- * The above copyright notice and this permission notice shall be included in
- * all copies or substantial portions of the Software.
- * 
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
- * SOFTWARE.
- * 
-*/
-prism.manual = true;
-
-// Closest Polyfill
-// from: https://developer.mozilla.org/en-US/docs/Web/API/Element/closest
-if (!Element.prototype.matches) {
-  Element.prototype.matches =
-    Element.prototype.msMatchesSelector ||
-    Element.prototype.webkitMatchesSelector;
-}
-
-if (!Element.prototype.closest) {
-  Element.prototype.closest = function (s) {
-    var el = this;
-
-    do {
-      if (Element.prototype.matches.call(el, s)) return el;
-      el = el.parentElement || el.parentNode;
-    } while (el !== null && el.nodeType === 1);
-    return null;
-  };
-}
 
 /**
- * ChildNode.append() polyfill
- * https://gomakethings.com/adding-an-element-to-the-end-of-a-set-of-elements-with-vanilla-javascript/
- * @author Chris Ferdinandi
- * @license MIT
+ * Sequesters docs content area into shadow root for style scoping
+ * Updates some HTML for styling/behavior enhancements
  */
-(function (arr) {
-  arr.forEach(function (item) {
-    if (item.hasOwnProperty("prepend")) {
-      return;
-    }
-    Object.defineProperty(item, "prepend", {
-      configurable: true,
-      enumerable: true,
-      writable: true,
-      value: function prepend() {
-        var argArr = Array.prototype.slice.call(arguments),
-          docFrag = document.createDocumentFragment();
-
-        argArr.forEach(function (argItem) {
-          var isNode = argItem instanceof Node;
-          docFrag.appendChild(
-            isNode ? argItem : document.createTextNode(String(argItem))
-          );
-        });
-
-        this.insertBefore(docFrag, this.firstChild);
-      },
-    });
-  });
-})([Element.prototype, Document.prototype, DocumentFragment.prototype]);
-
-/**
- * Prepend Polyfill
- * @see https://vanillajstoolkit.com/polyfills/prepend/
- * ChildNode.prepend() polyfill
- * https://github.com/jserz/js_piece/blob/master/DOM/ParentNode/append()/append().md
- */
-(function (arr) {
-  arr.forEach(function (item) {
-    if (item.hasOwnProperty("prepend")) {
-      return;
-    }
-    Object.defineProperty(item, "prepend", {
-      configurable: true,
-      enumerable: true,
-      writable: true,
-      value: function prepend() {
-        var argArr = Array.prototype.slice.call(arguments),
-          docFrag = document.createDocumentFragment();
-
-        argArr.forEach(function (argItem) {
-          var isNode = argItem instanceof Node;
-          docFrag.appendChild(
-            isNode ? argItem : document.createTextNode(String(argItem))
-          );
-        });
-
-        this.insertBefore(docFrag, this.firstChild);
-      },
-    });
-  });
-})([Element.prototype, Document.prototype, DocumentFragment.prototype]);
-
-/**
- * Includes Polyfill
- * @see https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/includes#polyfill
- */
-if (!String.prototype.includes) {
-  String.prototype.includes = function (search, start) {
-
-    if (search instanceof RegExp) {
-      throw TypeError("first argument must not be a RegExp");
-    }
-    if (start === undefined) {
-      start = 0;
-    }
-    return this.indexOf(search, start) !== -1;
-  };
-}
-
-/**
- * Debounce helper function
- * @see https://davidwalsh.name/javascript-debounce-function
- *
- * @param {function} func Function to be debounced
- * @param {number} delay How long until it will be run
- * @param {boolean} immediate Whether it should be run at the start instead of the end of the debounce
- */
-function debounce(func, delay, immediate = false) {
-  var timeout;
-  return function () {
-    var context = this,
-      args = arguments;
-    var later = function () {
-      timeout = null;
-      if (!immediate) func.apply(context, args);
-    };
-    var callNow = immediate && !timeout;
-    clearTimeout(timeout);
-    timeout = setTimeout(later, delay);
-    if (callNow) func.apply(context, args);
-  };
-}
-
-// Config for mutation observer to see if things change inside of the component
-const lightDomObserverConfig = {
-  characterData: true,
-  // attributes: true,
-  subtree: true,
-  childList: true,
-};
-
-class PfeDocumentation extends PFElement {
-  static get version() {
-    return "0.1.61";
-  }
-
-  get html() {
-    return `<style>code[class*=language-],pre[class*=language-]{color:#151515;-moz-tab-size:4;-o-tab-size:4;tab-size:4}code.language-none,code.language-text,code.language-txt,pre.language-none,pre.language-text,pre.language-txt{color:#151515}code[class*=language-] ::-moz-selection,code[class*=language-]::-moz-selection,pre[class*=language-] ::-moz-selection,pre[class*=language-]::-moz-selection{background:#cceae7;color:#263238}code[class*=language-] ::selection,code[class*=language-]::selection,pre[class*=language-] ::selection,pre[class*=language-]::selection{background:#cceae7;color:#263238}:not(pre)>code[class*=language-]{white-space:normal;border-radius:.2em;padding:.1em}pre[class*=language-]{overflow:auto;position:relative;margin:.5em 0;padding:1.25em 1em}.language-css>code,.language-sass>code,.language-scss>code{color:#b300b3}[class*=language-] .namespace{opacity:.7}.token.atrule{color:#40199a}.token.attr-name{color:#06c}.token.attr-value{color:#b300b3}.token.attribute{color:#b300b3}.token.boolean{color:#40199a}.token.builtin{color:#06c}.token.cdata{color:#06c}.token.char{color:#06c}.token.class{color:#06c}.token.class-name{color:#06c}.token.comment{color:#6a6e73}.token.constant{color:#40199a}.token.deleted{color:#c9190b}.token.doctype{color:#6a6e73}.token.entity{color:#c9190b}.token.function{color:#40199a}.token.hexcode{color:#b300b3}.token.id{color:#40199a;font-weight:700}.token.important{color:#40199a;font-weight:700}.token.inserted{color:#06c}.token.keyword{color:#40199a}.token.number{color:#b300b3}.token.operator{color:#06c}.token.prolog{color:#6a6e73}.token.property{color:#06c}.token.pseudo-class{color:#b300b3}.token.pseudo-element{color:#b300b3}.token.punctuation{color:#06c}.token.regex{color:#06c}.token.selector{color:#c9190b}.token.string{color:#b300b3}.token.symbol{color:#40199a}.token.tag{color:#c9190b}.token.unit{color:#b300b3}.token.url{color:#c9190b}.token.variable{color:#c9190b}:host{display:block}:host([hidden]){display:none}:host([pfe-c-non-prod]) abbr[style],:host([pfe-c-non-prod]) address[style],:host([pfe-c-non-prod]) article[style],:host([pfe-c-non-prod]) aside[style],:host([pfe-c-non-prod]) b[style],:host([pfe-c-non-prod]) blockquote[style],:host([pfe-c-non-prod]) body[style],:host([pfe-c-non-prod]) canvas[style],:host([pfe-c-non-prod]) caption[style],:host([pfe-c-non-prod]) cite[style],:host([pfe-c-non-prod]) code[style],:host([pfe-c-non-prod]) dd[style],:host([pfe-c-non-prod]) del[style],:host([pfe-c-non-prod]) details[style],:host([pfe-c-non-prod]) dfn[style],:host([pfe-c-non-prod]) div[style],:host([pfe-c-non-prod]) dl[style],:host([pfe-c-non-prod]) dt[style],:host([pfe-c-non-prod]) em[style],:host([pfe-c-non-prod]) fieldset[style],:host([pfe-c-non-prod]) figcaption[style],:host([pfe-c-non-prod]) figure[style],:host([pfe-c-non-prod]) footer[style],:host([pfe-c-non-prod]) form[style],:host([pfe-c-non-prod]) h1[style],:host([pfe-c-non-prod]) h2[style],:host([pfe-c-non-prod]) h3[style],:host([pfe-c-non-prod]) h4[style],:host([pfe-c-non-prod]) h5[style],:host([pfe-c-non-prod]) h6[style],:host([pfe-c-non-prod]) header[style],:host([pfe-c-non-prod]) hgroup[style],:host([pfe-c-non-prod]) html[style],:host([pfe-c-non-prod]) i[style],:host([pfe-c-non-prod]) iframe[style],:host([pfe-c-non-prod]) ins[style],:host([pfe-c-non-prod]) kbd[style],:host([pfe-c-non-prod]) label[style],:host([pfe-c-non-prod]) legend[style],:host([pfe-c-non-prod]) li[style],:host([pfe-c-non-prod]) mark[style],:host([pfe-c-non-prod]) menu[style],:host([pfe-c-non-prod]) nav[style],:host([pfe-c-non-prod]) object[style],:host([pfe-c-non-prod]) ol[style],:host([pfe-c-non-prod]) p[style],:host([pfe-c-non-prod]) pre[style],:host([pfe-c-non-prod]) q[style],:host([pfe-c-non-prod]) samp[style],:host([pfe-c-non-prod]) section[style],:host([pfe-c-non-prod]) small[style],:host([pfe-c-non-prod]) span[style],:host([pfe-c-non-prod]) strong[style],:host([pfe-c-non-prod]) sub[style],:host([pfe-c-non-prod]) summary[style],:host([pfe-c-non-prod]) sup[style],:host([pfe-c-non-prod]) table[style],:host([pfe-c-non-prod]) tbody[style],:host([pfe-c-non-prod]) td[style],:host([pfe-c-non-prod]) tfoot[style],:host([pfe-c-non-prod]) th[style],:host([pfe-c-non-prod]) thead[style],:host([pfe-c-non-prod]) time[style],:host([pfe-c-non-prod]) tr[style],:host([pfe-c-non-prod]) ul[style],:host([pfe-c-non-prod]) var[style]{border:2px solid #c9190b}:host([pfe-c-non-prod]) abbr[style]:before,:host([pfe-c-non-prod]) address[style]:before,:host([pfe-c-non-prod]) article[style]:before,:host([pfe-c-non-prod]) aside[style]:before,:host([pfe-c-non-prod]) b[style]:before,:host([pfe-c-non-prod]) blockquote[style]:before,:host([pfe-c-non-prod]) body[style]:before,:host([pfe-c-non-prod]) canvas[style]:before,:host([pfe-c-non-prod]) caption[style]:before,:host([pfe-c-non-prod]) cite[style]:before,:host([pfe-c-non-prod]) code[style]:before,:host([pfe-c-non-prod]) dd[style]:before,:host([pfe-c-non-prod]) del[style]:before,:host([pfe-c-non-prod]) details[style]:before,:host([pfe-c-non-prod]) dfn[style]:before,:host([pfe-c-non-prod]) div[style]:before,:host([pfe-c-non-prod]) dl[style]:before,:host([pfe-c-non-prod]) dt[style]:before,:host([pfe-c-non-prod]) em[style]:before,:host([pfe-c-non-prod]) fieldset[style]:before,:host([pfe-c-non-prod]) figcaption[style]:before,:host([pfe-c-non-prod]) figure[style]:before,:host([pfe-c-non-prod]) footer[style]:before,:host([pfe-c-non-prod]) form[style]:before,:host([pfe-c-non-prod]) h1[style]:before,:host([pfe-c-non-prod]) h2[style]:before,:host([pfe-c-non-prod]) h3[style]:before,:host([pfe-c-non-prod]) h4[style]:before,:host([pfe-c-non-prod]) h5[style]:before,:host([pfe-c-non-prod]) h6[style]:before,:host([pfe-c-non-prod]) header[style]:before,:host([pfe-c-non-prod]) hgroup[style]:before,:host([pfe-c-non-prod]) html[style]:before,:host([pfe-c-non-prod]) i[style]:before,:host([pfe-c-non-prod]) iframe[style]:before,:host([pfe-c-non-prod]) ins[style]:before,:host([pfe-c-non-prod]) kbd[style]:before,:host([pfe-c-non-prod]) label[style]:before,:host([pfe-c-non-prod]) legend[style]:before,:host([pfe-c-non-prod]) li[style]:before,:host([pfe-c-non-prod]) mark[style]:before,:host([pfe-c-non-prod]) menu[style]:before,:host([pfe-c-non-prod]) nav[style]:before,:host([pfe-c-non-prod]) object[style]:before,:host([pfe-c-non-prod]) ol[style]:before,:host([pfe-c-non-prod]) p[style]:before,:host([pfe-c-non-prod]) pre[style]:before,:host([pfe-c-non-prod]) q[style]:before,:host([pfe-c-non-prod]) samp[style]:before,:host([pfe-c-non-prod]) section[style]:before,:host([pfe-c-non-prod]) small[style]:before,:host([pfe-c-non-prod]) span[style]:before,:host([pfe-c-non-prod]) strong[style]:before,:host([pfe-c-non-prod]) sub[style]:before,:host([pfe-c-non-prod]) summary[style]:before,:host([pfe-c-non-prod]) sup[style]:before,:host([pfe-c-non-prod]) table[style]:before,:host([pfe-c-non-prod]) tbody[style]:before,:host([pfe-c-non-prod]) td[style]:before,:host([pfe-c-non-prod]) tfoot[style]:before,:host([pfe-c-non-prod]) th[style]:before,:host([pfe-c-non-prod]) thead[style]:before,:host([pfe-c-non-prod]) time[style]:before,:host([pfe-c-non-prod]) tr[style]:before,:host([pfe-c-non-prod]) ul[style]:before,:host([pfe-c-non-prod]) var[style]:before{display:block;min-width:320px;max-width:100vw;padding:.5em 1em;background:#fee;content:"WARNING: This -moz-element has inline styles which can easily break layout on mobile or other contexts. The inline style is " attr(style);content:"WARNING: This element has inline styles which can easily break layout on mobile or other contexts. The inline style is " attr(style)}.warning-message{display:block;min-width:320px;max-width:100vw;padding:.5em 1em;background:#fee}
-/*# sourceMappingURL=cp-documentation.min.css.map */
-</style><div id="wrapper" class="rhdocs"></div>`;
-  }
-  static get tag() {
-    return "cp-documentation";
-  }
-
-  static get properties() {
-    return {};
-  }
-
-  static get slots() {
-    return {};
-  }
-
-  get templateUrl() {
-    return "cp-documentation.html";
-  }
-
-  get styleUrl() {
-    return "cp-documentation.scss";
-  }
-
-  constructor() {
-    super(PfeDocumentation, { type: PfeDocumentation.PfeType });
-    // Ensure 'this' is tied to the component object in these member functions
-    this._processLightDom = this._processLightDom.bind(this);
-    this._isDevelopment = this._isDevelopment.bind(this);
-    this._addStyleSheet = this._addStyleSheet.bind(this);
-    this._loadCss = this._loadCss.bind(this);
-    this.loadData = this.loadData.bind(this);
-    this.getData = this.getData.bind(this);
-    this._navigationHandler = this._navigationHandler.bind(this);
-    this._loadChildModules = this._loadChildModules.bind(this);
-    this._addIncludedInGuides = this._addIncludedInGuides.bind(this);
-    this._processCodeblock = this._processCodeblock.bind(this);
-    this._setupTableOfContents = this._setupTableOfContents.bind(this);
-    this._updateSectionPositions = this._updateSectionPositions.bind(this);
-    this._highlightVisibleSection = this._highlightVisibleSection.bind(this);
-    this._postResize = this._postResize.bind(this);
-    this._isOneColumnLayout = this._isOneColumnLayout.bind(this);
-
-    // Setup mutation observer to watch for content changes
-    this._observer = new MutationObserver(this._processLightDom);
-
-    // Initialize variables to be used later
-    this._contentData = {};
-    this._plainCodeBlockContent = {};
-    this._contentType = null;
-    this._scrollSpying = false;
-    this._sections = {};
-    this._scrollDebounce = 50;
-    this._resizeDebounce = 250;
-    this._lastOneColumnLayoutCheck = {
-      value: null, // Boolean
-      lastCheck: -1, // Stores the window width last time we checked the layout
-    };
-
-    this._scrollListener = debounce(
-      this._highlightVisibleSection,
-      this._scrollDebounce
+(function (Drupal) {
+  /**
+   * Transforms additional resources
+   * @param {Element} $additionalResource Element with ._additional-resources class, provided by authors
+   */
+   const processAdditionalResource = ($additionalResource) => {
+    // Wrap additional resources in an aside instead of a div
+    const $asideWrapper = document.createElement("aside");
+    $asideWrapper.setAttribute(
+      "class",
+      $additionalResource.getAttribute("class")
     );
-    this._resizeListener = debounce(this._postResize, this._resizeDebounce);
-  }
 
-  connectedCallback() {
-    super.connectedCallback();
-    // Make sure content has default styles, or the stylesheet provided as the pfe-css attribute
-    if (this.hasAttribute("pfe-css")) {
-      this._loadCss();
-    } else {
-      // Default to prod stylesheet path
-      let rhdocsUrl =
-        "/webassets/avalon/j/public_modules/node_modules/@cpelements/cp-documentation/dist/rhdocs.min.css";
-
-      // Find the loadedStylesheet for rhdocs[.min].css and load it in the shadow DOM
-      for (let index = 0; index < document.styleSheets.length; index++) {
-        const styleSheet = document.styleSheets[index];
-        if (styleSheet.href && styleSheet.href.includes("/rhdocs.")) {
-          // Get the exact same href so we get the cached file instead of hitting the network
-          rhdocsUrl = styleSheet.ownerNode.getAttribute("href");
-          break;
-        }
-      }
-
-      // Setting up pointers to commonly used elements
-      this._sidebarPrimary;
-      this._contentWrapper;
-
-      this._addStyleSheet(rhdocsUrl);
-    }
-
-    // Get the content data
-    if (typeof drupalSettings === "object" && drupalSettings.red_hat_fcc) {
-      // We have content data from Drupal
-      if (typeof drupalSettings.red_hat_fcc.content_metadata === "string") {
-        this._contentData = JSON.parse(
-          drupalSettings.red_hat_fcc.content_metadata
-        );
-      } else if (
-        typeof drupalSettings.red_hat_fcc.content_metadata === "object"
-      ) {
-        this._contentData = drupalSettings.red_hat_fcc.content_metadata;
-      }
-      this._contentType = this._contentData.content_type;
-      // if (this._contentData.content_type === "assembly") {
-      //   this._loadChildModules();
-      // }
-    } else if (
-      window.location.host.includes("access.") &&
-      window.location.host.substring(-11) === ".redhat.com"
-    ) {
-      // Get content data by getting the current content's ID and fetching from the API
-      this._contentType = document.querySelector(".rhdocs__header--assembly")
-        ? "assembly"
-        : "module";
-      // const pathArray = window.location.pathname.split("/");
-      // const canonicalId = pathArray[pathArray.length - 1];
-
-      // Get domain for API Call
-      // let portalDomain = null;
-      // if (this._isDevelopment()) {
-      //   portalDomain = "pantheon.corp.qa.redhat.com";
-      // } else if (typeof window.portal === "object") {
-      //   switch (window.portal.host) {
-      //     case "https://access.dev.redhat.com":
-      //       portalDomain = "pantheon.corp.dev.redhat.com";
-      //       break;
-      //     case "https://access.qa.redhat.com":
-      //       portalDomain = "pantheon.corp.qa.redhat.com";
-      //       break;
-      //     case "https://access.stage.redhat.com":
-      //       portalDomain = "pantheon.corp.stage.redhat.com";
-      //       break;
-      //     default:
-      //       portalDomain = "api.docs.redhat.com";
-      //   }
-      // }
-      // if (typeof fetch === 'function' && portalDomain && this._contentType && canonicalId) {
-      //   let fetchUrl = `https://${portalDomain}/api/${this._contentType}/variant.json/${canonicalId}`;
-
-      //   // @todo Remove this when not in dev
-      //   // if (window.location.host.includes('wruvalca')) {
-      //   //   fetchUrl = `/api/${ this._contentType }/variant.json/${ canonicalId }`;
-      //   // }
-
-      //   fetch(fetchUrl)
-      //     .then(response => response.json())
-      //     .then(data => {
-      //       if (
-      //         data.status === 200 &&
-      //         typeof data[this._contentType] === "object"
-      //       ) {
-      //         this._contentData = data[this._contentType];
-      //         if (this._contentType === "assembly") {
-      //           this._loadChildModules();
-      //         }
-      //       }
-      //     })
-      //     .catch(error => console.error(error));
-      // }
-    }
-
-    if (document.querySelector(".rh-docs__sidebar")) {
-      this.classList.add("pfe-documentation--next-to-sidebar");
-    }
-
-    // We're getting empty preambles at the top of documents which causes styling issues
-    // @todo Catch empty pre-ambles in render instead of in client
-    const preamble = this.querySelector("#rhdocs-preamble");
-    // See if preamble is empty
-    if (preamble && !preamble.textContent.trim()) {
-      // Save any anchors
-      const anchors = preamble.querySelectorAll(".pantheon-anchor-div");
-      if (anchors.length) {
-        for (let index = anchors.length - 1; index >= 0; index--) {
-          const anchor = anchors[index];
-          preamble.nextElementSibling.prepend(anchor);
-        }
-      }
-      // Remove the empty preamble
-      preamble.remove();
-    }
-
-    this._processLightDom();
-
-    window.addEventListener("resize", this._resizeListener);
-
-    this._observer.observe(this, lightDomObserverConfig);
-
-    // Make sure anchors are respected (id's in shadow roots don't work automagically)
-    if (window.location.hash) {
-      window.addEventListener("load", this._navigationHandler);
-    }
-
-    // Add class for styling
-    if (
-      this.parentElement.classList.contains("rh-docs__content-wrapper") &&
-      document.getElementById("rhdocs-header-external")
-    ) {
-      this.classList.add("cp-documentation--has-external-header");
-    }
-
-    window.addEventListener("hashchange", this._navigationHandler);
-  }
-
-  disconnectedCallback() {
-    // Clean up after ourselves
-    window.removeEventListener("load", this._navigationHandler);
-    window.removeEventListener("hashchange", this._navigationHandler);
-    this._observer.disconnect();
-    window.removeEventListener("scroll", this._scrollListener);
-    window.removeEventListener("resize", this._resizeListener);
-  }
-
-  attributeChangedCallback(attr, oldVal, newVal) {
-    super.attributeChangedCallback(attr, oldVal, newVal);
-
-    switch (attr) {
-      case "pfe-endpoint":
-        this.loadData();
-        break;
-    }
+    $asideWrapper.innerHTML = $additionalResource.innerHTML;
+    $additionalResource.parentElement.replaceChild(
+      $asideWrapper,
+      $additionalResource
+    );
+    $additionalResource = $asideWrapper;
   }
 
   /**
-   * Feature test for important web component tech
-   * @returns {boolean} Returns true if the browser doesn't support shadow DOM
+   * Adds optimal markup around codeblocks and runs syntax highlighting on it
+   * @param {Element} $codeBlock An element that is a pre, or has a language-* class on it and is in a pre tag
    */
-  _isCrustyBrowser() {
-    return window.ShadyCSS && !window.ShadyCSS.nativeShadow;
-  }
-
-  /**
-   * Takes URL's from the Pantheon API and makes sure they aren't pointing to origin, but instead an akamai enabled environment
-   * @param {string} urlToFix URL
-   * @returns {string} Fixed URL with proper domain
-   */
-  _portalEnvironmentFix(urlToFix) {
-    // @todo Make this regex?
-    urlToFix = urlToFix.replace("http://", "https://");
-
-    urlToFix = urlToFix.replace(
-      "pantheon2-dev.int.us-east.aws.preprod.paas.redhat.com",
-      "pantheon.corp.dev.redhat.com"
-    );
-
-    urlToFix = urlToFix.replace(
-      "pantheon2-qa.int.us-east.aws.preprod.paas.redhat.com",
-      "pantheon.corp.qa.redhat.com"
-    );
-
-    urlToFix = urlToFix.replace(
-      "pantheon2-stage.int.us-east.aws.preprod.paas.redhat.com",
-      "pantheon.corp.stage.redhat.com"
-    );
-
-    urlToFix = urlToFix.replace(
-      "pantheon2-proxy.ext.us-west.aws.prod.paas.redhat.com",
-      "api.docs.redhat.com"
-    );
-
-    // @todo Comment out code when comitted
-    if (
-      window.location.host.includes("wruvalca") ||
-      window.location.host.includes(".foo.")
-    ) {
-      urlToFix = urlToFix.substring(urlToFix.indexOf("/api"));
-    }
-
-    return urlToFix;
-  }
-
-  _isDevelopment() {
-    return this.hasAttribute("debug");
-  }
-
-  /**
-   * Handle any navigation action that points to an element in this element
-   */
-  _navigationHandler() {
-    let anchorLinkTarget = this.shadowRoot.getElementById(
-      window.location.hash.substring(1)
-    );
-    if (anchorLinkTarget) {
-      // Offset top may be an issue, if so see:
-      // https://medium.com/@alexcambose/js-offsettop-property-is-not-great-and-here-is-why-bq9842ef7582
-      window.scrollTo(window.scrollX, anchorLinkTarget.offsetTop);
-    }
-  }
-
-  /**
-   * Create Related Content Wrapper
-   * @param {string} relatedContentType Is this content wrapper attached to a guide or topic
-   * @returns {array} 0 index is outer wrapper DOM Object, 1 is content wrapper DOM Object
-   */
-  _createRelatedContentWrapper(contentType) {
-    if (typeof contentType !== "string") {
-      contentType = "topic";
-    }
-    const wrapper = document.createElement("details");
-    const title = document.createElement("summary");
-    const innerWrapper = document.createElement("div");
-
-    wrapper.classList.add("related-topic-content__wrapper");
-    if (contentType === "guide") {
-      wrapper.classList.add("related-topic-content__wrapper--for-guide");
-      wrapper.setAttribute("open", "");
-    }
-    title.classList.add("related-topic-content__title");
-    innerWrapper.classList.add("related-topic-content__inner-wrapper");
-
-    // @todo Make this string translatable
-    title.innerText = `Content related to this ${contentType}`;
-    wrapper.append(title);
-    wrapper.append(innerWrapper);
-
-    return [wrapper, innerWrapper];
-  }
-
-  /**
-   * Creates Print Button
-   * @returns [object] DOM Object to be inserted into DOM
-   */
-  _createPrintButton() {
-    const printButton = document.createElement("button");
-    // @todo Translate this
-    printButton.innerText = "Print";
-    printButton.classList.add("rhdocs__print-button");
-
-    printButton.addEventListener("click", () => {
-      // @todo Add analytics
-      window.print();
-    });
-
-    return printButton;
-  }
-
-  /**
-   * Add syntax highlighting and features to code blocks
-   * @param {HTMLElement} codeBlock Pre tag or element with language-* class
-   */
-  _processCodeblock(codeBlock) {
+  const processCodeblock = ($codeBlock, $docsContent) => {
     // Quick exit if this has been processed already
-    if (codeBlock.classList.contains("codeblock--processed")) {
+    const $processedParentElements = $codeBlock.closest('pre.codeblock--processed, .codeblock__wrapper');
+    if ($codeBlock.classList.contains("codeblock--processed") || $processedParentElements) {
       return;
     }
+    // debugger;
 
-    const codeBlockClasses = codeBlock.getAttribute("class");
+    const codeBlockClasses = $codeBlock.getAttribute("class");
     const codeBlockClassesArray = codeBlockClasses
       ? codeBlockClasses.split(" ")
       : undefined;
     // Adding a hidden copy of the un-upgraded code content to the DOM, may be unecessary
-    const plainCodeBlock = document.createElement("pre");
+    const $plainCodeBlock = document.createElement("pre");
 
     // Figure out code's language
     let language = "none"; // Default to none
@@ -3741,36 +3253,37 @@ class PfeDocumentation extends PFElement {
     let languageClass = getLanguageClass(codeBlockClassesArray);
 
     // Make sure we're dealing with a pre element, which could be the element or it's parent
-    if (codeBlock.tagName.toLowerCase() !== "pre") {
+    if ($codeBlock.tagName.toLowerCase() !== "pre") {
       if (
-        codeBlock.parentElement &&
-        codeBlock.parentElement.tagName.toLowerCase() === "pre"
+        $codeBlock.parentElement &&
+        $codeBlock.parentElement.tagName.toLowerCase() === "pre"
       ) {
-        codeBlock = codeBlock.parentElement;
+        $codeBlock = $codeBlock.parentElement;
       } else {
         // If the element or it's parent isn't a pre-tag don't format it
         return;
       }
     }
 
-    const codeBlockWrapper = codeBlock.parentElement;
+    const $codeBlockWrapper = $codeBlock.parentElement;
 
     // Create a copy without the syntax highlighting or HTML and annotations removed
     const plainCodeBlockId = `codeblock--plain--${Math.random()
       .toString(36)
-      .substr(2, 9)}`;
+      .substring(2, 9)}`;
 
     // Remove any annotations from the code block for the copy button
     // Users don't want to copy artifacts from the docs, just the code
-    const codeBlockClone = codeBlock.cloneNode(true);
-    const codeBlockAnnotations = codeBlockClone.querySelectorAll(".colist-num");
-    for (let index = 0; index < codeBlockAnnotations.length; index++) {
-      const codeBlockAnnotation = codeBlockAnnotations[index];
+    const $codeBlockClone = $codeBlock.cloneNode(true);
+    const $codeBlockAnnotations = $codeBlockClone.querySelectorAll(".colist-num");
+    for (let index = 0; index < $codeBlockAnnotations.length; index++) {
+      const $codeBlockAnnotation = $codeBlockAnnotations[index];
       // @todo IE
-      codeBlockAnnotation.remove();
+      $codeBlockAnnotation.remove();
     }
+
     // Use this cleaned up code for the copy content
-    let contentToCopy = codeBlockClone.innerText;
+    let contentToCopy = $codeBlockClone.innerText;
 
     // Remove prompt from copy value if we have one
     switch (language) {
@@ -3788,57 +3301,67 @@ class PfeDocumentation extends PFElement {
         }
 
         if (promptIndex > -1) {
-          contentToCopy = contentToCopy.substr(promptIndex + 2);
-          codeBlockClone.innerText = contentToCopy;
+          contentToCopy = contentToCopy.substring(promptIndex + 2);
+          $codeBlockClone.innerText = contentToCopy;
         }
         break;
     }
 
-    this._plainCodeBlockContent[plainCodeBlockId] = contentToCopy;
-    plainCodeBlock.hidden = true;
-    plainCodeBlock.id = plainCodeBlockId;
-    plainCodeBlock.classList.add("codeblock--plain");
+    // Make sure Drupal.jupiterData exists, if it doesn't make it an empty object
+    Drupal.jupiterData = Drupal.jupiterData ? Drupal.jupiterData : {};
+    // Make sure Drupal.jupiterData.plainCodeBlockContent exists, if it doesn't make it an empty object
+    Drupal.jupiterData.plainCodeBlockContent = Drupal.jupiterData.plainCodeBlockContent ? Drupal.jupiterData.plainCodeBlockContent : {};
 
-    // For some reason, sometimes parentElement doesn't exist??
+    // Store the data we should copy in the object by the id of the $plainCodeBlock
+    Drupal.jupiterData.plainCodeBlockContent[plainCodeBlockId] = contentToCopy;
+
+    // Finish setting up the plainCodeblock
+    $plainCodeBlock.hidden = true;
+    $plainCodeBlock.id = plainCodeBlockId;
+    $plainCodeBlock.classList.add("codeblock--plain");
+    $plainCodeBlock.innerText = contentToCopy;
+
     if (
-      codeBlockWrapper &&
-      !codeBlockWrapper.classList.contains("codeblock__wrapper")
+      $codeBlockWrapper
+      && !$codeBlockWrapper.classList.contains("codeblock__wrapper")
+      && !$codeBlockWrapper.querySelector('.codeblock__inner-wrapper')
     ) {
-      const codeBlockInnerWrapper = document.createElement("div");
+      const $codeBlockInnerWrapper = document.createElement("div");
       // Necessary becase of FF bug: https://codepen.io/wesruv/full/dyzxMzW
-      codeBlockInnerWrapper.classList.add("codeblock__inner-wrapper");
-      codeBlockWrapper.classList.add("codeblock__wrapper");
-      codeBlockWrapper.append(codeBlockInnerWrapper);
-      codeBlockInnerWrapper.append(codeBlock);
-      codeBlockWrapper.dataset.plainCodeBlockId = plainCodeBlockId;
-      codeBlock.classList.add("codeblock");
+      $codeBlockInnerWrapper.classList.add("codeblock__inner-wrapper");
+      $codeBlockWrapper.classList.add("codeblock__wrapper");
+      $codeBlockWrapper.append($codeBlockInnerWrapper);
+      $codeBlockInnerWrapper.append($codeBlock);
+      $codeBlockWrapper.dataset.plainCodeBlockId = plainCodeBlockId;
+      $codeBlock.classList.add("codeblock");
 
       // Append the hidden unformatted codeblock
-      codeBlockWrapper.appendChild(plainCodeBlock);
+      $codeBlockWrapper.appendChild($plainCodeBlock);
 
       // Create and add copy button
-      const copyButton = document.createElement("pfe-clipboard");
-      const copyText = document.createElement("span");
-      const copySuccessText = document.createElement("span");
+      const $copyButton = document.createElement("pfe-clipboard");
+      const $copyText = document.createElement("span");
+      const $copySuccessText = document.createElement("span");
 
-      copyText.setAttribute("slot", "text");
+      $copyText.setAttribute("slot", "text");
       // @todo Translate
-      copyText.innerText = "Copy";
+      $copyText.innerText = "Copy";
 
-      copySuccessText.setAttribute("slot", "text--success");
+      $copySuccessText.setAttribute("slot", "text--success");
       // @todo Translate
-      copySuccessText.innerText = "Copied!";
+      $copySuccessText.innerText = "Copied!";
 
-      copyButton.setAttribute("copy-from", "property");
-      copyButton.classList.add("codeblock__copy");
+      $copyButton.setAttribute("copy-from", "property");
+      $copyButton.classList.add("codeblock__copy");
 
-      copyButton.appendChild(copyText);
-      copyButton.appendChild(copySuccessText);
-      codeBlockWrapper.appendChild(copyButton);
+      $copyButton.appendChild($copyText);
+      $copyButton.appendChild($copySuccessText);
+      $codeBlockWrapper.appendChild($copyButton);
 
-      // Set content to be copied once clipboard component is running
+      /**
+       * Sets the content to copy by figuring out which button responded and giving it the correct content
+       */
       document.addEventListener("pfe-clipboard:connected", (event) => {
-        // Needed to get the ID to retrieve the content from the object
         const thisComponent = event.detail.component;
         const thisCodeWrapper = thisComponent.closest(".codeblock__wrapper");
         if (
@@ -3846,9 +3369,9 @@ class PfeDocumentation extends PFElement {
           thisCodeWrapper &&
           thisCodeWrapper.dataset.plainCodeBlockId
         ) {
-          // Set the content to be copied
+          // Set the content to be copied from our object of code data
           thisComponent.contentToCopy =
-            this._plainCodeBlockContent[
+            Drupal.jupiterData.plainCodeBlockContent[
               thisCodeWrapper.dataset.plainCodeBlockId
             ];
         }
@@ -3866,7 +3389,7 @@ class PfeDocumentation extends PFElement {
         break;
       case "terminal":
         language = "shell";
-        codeBlock.classList.add("command-line");
+        $codeBlock.classList.add("command-line");
         break;
       case "golang":
         language = "go";
@@ -3877,599 +3400,183 @@ class PfeDocumentation extends PFElement {
     }
 
     // Make sure correct class exists on wrapper element
-    if (!codeBlock.classList.contains(`language-${language}`)) {
-      codeBlock.classList.remove(languageClass);
-      codeBlock.classList.add(`language-${language}`);
+    if (!$codeBlock.classList.contains(`language-${language}`)) {
+      $codeBlock.classList.remove(languageClass);
+      $codeBlock.classList.add(`language-${language}`);
     }
 
-    const postHighlight = () => {
-      codeBlock.classList.add("codeblock--processed");
-    };
+    $codeBlock.classList.add("codeblock--processed");
 
     // Highlight syntax
-    try {
-      prism.highlightElement(codeBlock, false, postHighlight);
-    } catch (error) {
-      console.error(error);
-    }
-  }
-
-  /**
-   * Updates the Y position of the sections in _sections array
-   */
-  _updateSectionPositions() {
-    if (
-      !this._sections ||
-      !this._sections.order ||
-      !this._sections.order.length
-    ) {
-      return;
-    }
-
-    for (let index = 0; index < this._sections.order.length; index++) {
-      const sectionId = this._sections.order[index];
-      this._sections.data[sectionId].position =
-        this._sections.data[sectionId].anchorLink.offsetTop;
-    }
-  }
-
-  /**
-   * Highlight the section link in the table of contents that's currently on screen
-   */
-  _highlightVisibleSection() {
-    // Quick exit if we don't have everything we need
-    if (
-      !this._sections ||
-      !this._sections.order ||
-      !this._sections.order.length
-    ) {
-      return;
-    }
-
-    // Go through sections in reverse order and look for active one
-    let index = this._sections.order.length - 1;
-    let foundCurrentSection = false;
-    const visibleBoundary = window.scrollY + window.innerHeight / 2;
-
-    // Iterate over sections until we've found the one we're on
-    while (index >= 0 && !foundCurrentSection) {
-      const sectionId = this._sections.order[index];
-      const currentSection = this._sections.data[sectionId];
-
-      if (visibleBoundary >= currentSection.position) {
-        foundCurrentSection = true;
-        // It's already active, nothing to do
-        if (this._sections.activeSection === currentSection.tocLink.id) {
-          break;
+    // Putting in a setTimeout to throw this process in the backburner so we don't hold up the main thread
+    setTimeout(
+      () => {
+        try {
+          Prism.highlightElement($codeBlock, false);
+        } catch (error) {
+          console.error(error);
         }
-
-        // Remove class from previously active tocLink
-        if (
-          this._sections.activeSection &&
-          this._sections.data[this._sections.activeSection]
-        ) {
-          this._sections.data[
-            this._sections.activeSection
-          ].tocLink.classList.remove("is-active");
-        }
-
-        // Add class to new tocLink
-        currentSection.tocLink.classList.add("is-active");
-        this._sections.activeSection = currentSection.anchorLink.id;
-      }
-      index--;
-    }
-
-    if (!this._sections.activeSection) {
-      // If we didn't get an active section, set it to the first if the scroll position is above the first item
-      if (
-        visibleBoundary < this._sections.data[this._sections.order[0]].position
-      ) {
-        // Add class to new tocLink
-        this._sections.data[this._sections.order[0]].tocLink.classList.add(
-          "is-active"
-        );
-        this._sections.activeSection =
-          this._sections.data[this._sections.order[0]].anchorLink.id;
-      }
-    }
+      },
+      0
+    );
   }
 
-  /**
-   * Detect if content area has one column (mobile) layout
-   */
-  _isOneColumnLayout() {
-    if (this._contentWrapper) {
-      // Return the cached value if the window hasn't changed sizes
-      if (window.innerWidth === this._lastOneColumnLayoutCheck.lastCheck) {
-        return this._lastOneColumnLayoutCheck.value;
-      }
-      // Otherwise check and store the new result
-      else {
-        const contentWrapperBoundingRect =
-          this._contentWrapper.getBoundingClientRect();
-        if (contentWrapperBoundingRect && contentWrapperBoundingRect.x) {
-          this._lastOneColumnLayoutCheck = {
-            value: contentWrapperBoundingRect.x < 100,
-            lastCheck: window.innerWidth,
-          };
-          return this._lastOneColumnLayoutCheck.value;
-        }
-      }
-    }
-  }
+
 
   /**
-   * Tasks after a resize has happened
+   * Adds print button to secondary header area
+   * @param {Element} $headerSecondaryWrapper UL list that has the updated and published dates
    */
-  _postResize() {
-    // Check if we _should_ be scrollspying
-    if (this._isOneColumnLayout()) {
-      if (this._scrollSpying) {
-        // If we're mobile and scrollspying, stop
-        this._setupTableOfContents();
-      }
-    } else if (!this._scrollSpying && this._tableOfContents) {
-      // If we're desktop, have a table of contents, and aren't scrollspying, we should be
-      this._setupTableOfContents();
-    }
+  const addPrintButton = ($headerSecondaryWrapper) => {
+    // Create wrapper
+    const $printButtonWrapper = document.createElement("li");
+    $printButtonWrapper.classList.add("rh-docs-details-item");
+    $printButtonWrapper.classList.add("rhdocs-print-button");
 
-    // If we still are scrollSpying update the positions and make sure the highlight is correct
-    if (this._scrollSpying) {
-      this._updateSectionPositions();
-      this._highlightVisibleSection();
-    }
-  }
+    // Create print button
+    const $printButton = document.createElement("button");
+    // @todo Translate this
+    $printButton.innerText = "Print";
+    $printButton.classList.add("rhdocs__print-button");
 
-  /**
-   * Sets up data needed to highlight currently visible section of the table of contents
-   */
-  _setupTableOfContents() {
-    // Quick exit if there isn't a table of contents
-    if (!this._tableOfContents) {
-      return;
-    }
-
-    // Clear any old listeners in case the shadow DOM was rebuilt more than once
-    window.removeEventListener("scroll", this._scrollListener);
-
-    // If we're at mobile layout no need for a scrollspy
-    if (this._isOneColumnLayout()) {
-      this._tableOfContents.classList.remove(
-        "rhdocs__section-list--has-scrollspy"
-      );
-      this._scrollSpying = false;
-      return;
-    }
-
-    this._tableOfContents.classList.add("rhdocs__section-list--has-scrollspy");
-    this._scrollSpying = true;
-
-    // If we don't the sections object setup yet, initialize it
-    if (!this._sections.order || !this._sections.data) {
-      this._sections = {
-        order: [],
-        data: {},
-      };
-
-      // Iterate over table of content links and setup data needed to highlight the current section as user scrolls
-      const tableOfContentLinks =
-        this._tableOfContents.querySelectorAll("a[href]");
-      for (let index = 0; index < tableOfContentLinks.length; index++) {
-        const tocLink = tableOfContentLinks[index];
-        const tocLinkTarget = this.shadowRoot.querySelector(
-          tocLink.getAttribute("href")
-        );
-        if (tocLink && tocLinkTarget) {
-          this._sections.order.push(tocLinkTarget.id);
-          this._sections.data[tocLinkTarget.id] = {
-            tocLink: tocLink,
-            anchorLink: tocLinkTarget,
-            position: tocLinkTarget.offsetTop,
-          };
-        }
-      }
-      this._highlightVisibleSection();
-    }
-
-    window.addEventListener("scroll", this._scrollListener);
-  }
-
-  /**
-   * Handle initialization or changes in light DOM
-   * Clone them into the shadowRoot
-   */
-  _processLightDom(mutationList) {
-    // Preventing issues in IE11 & Edge
-    if (this._isCrustyBrowser()) {
-      this._observer.disconnect();
-    }
-
-    if (this._isDevelopment()) {
-      console.log(`${this.tag}: Processing Light Dom`, mutationList);
-    }
-
-    // Clone light DOM into shadow DOM
-    const shadowWrapper = this.shadowRoot.getElementById("wrapper"),
-      oldContentWrapper = this.shadowRoot.getElementById("content"),
-      // An element that light dom content will be put into and replaces the shadowWrapper at the end
-      newContentWrapper = document.createElement("div");
-
-    this.childNodes.forEach((childNode) => {
-      const cloneNode = childNode.cloneNode(true);
-      newContentWrapper.append(cloneNode);
+    $printButton.addEventListener("click", () => {
+      // @todo Add analytics
+      window.print();
     });
 
-    // --------------------------------------------
-    // Begin best time to do DOM manipulation in Shadow Dom
-    // --------------------------------------------
-    const additionalResourcesWrappers = newContentWrapper.querySelectorAll(
-      "._additional-resources"
-    );
-    for (let index = 0; index < additionalResourcesWrappers.length; index++) {
-      let additionalResourcesWrapper = additionalResourcesWrappers[index];
-      // Wrap additional resources in an aside instead of a div
-      const asideWrapper = document.createElement("aside");
-      asideWrapper.setAttribute(
-        "class",
-        additionalResourcesWrapper.getAttribute("class")
-      );
-      asideWrapper.innerHTML = additionalResourcesWrapper.innerHTML;
-      additionalResourcesWrapper.parentElement.replaceChild(
-        asideWrapper,
-        additionalResourcesWrapper
-      );
-      additionalResourcesWrapper = asideWrapper;
+    $printButtonWrapper.append($printButton);
+    $headerSecondaryWrapper.append($printButtonWrapper);
+  }
 
-      // Assemblies get their additional resources wrapped by a collapsible box Related ${contentType} Content
-      if (this._contentType === "assembly") {
-        const moduleWrapper =
-          additionalResourcesWrapper.closest("section, article");
-        if (moduleWrapper) {
-          const additionalResourcesH2 =
-            additionalResourcesWrapper.querySelector("h2");
-          const isLastItem = index === additionalResourcesWrappers.length - 1;
-          // We should only have one guide additional resources, and it ought to be the last additional resources
-          // Additional resources' title should be an h2, given author's adoc markup `== Title`
-          const relatedTopicContentType =
-            isLastItem && additionalResourcesH2 ? "guide" : "topic";
-          const relatedTopicContentElements = this._createRelatedContentWrapper(
-            relatedTopicContentType
-          );
-          if (relatedTopicContentType === "guide") {
-            relatedTopicContentElements[1].append(additionalResourcesWrapper);
-            moduleWrapper.append(relatedTopicContentElements[0]);
-          } else {
-            additionalResourcesWrapper.replaceWith(
-              relatedTopicContentElements[0]
-            );
-            relatedTopicContentElements[1].append(additionalResourcesWrapper);
-          }
-        }
-      }
+  /**
+   * Transforms content to our ideal state before putting it back into the DOM
+   * @param {Element} $content Docs content that we want to adjust before putting back
+   * @returns Element
+   */
+  const transformDocsHtml = ($content, $docsContent) => {
+    // Process additional resources
+    const $additionalResourcesWrappers = $content.querySelectorAll('._additional-resources');
+    for (let index = 0; index < $additionalResourcesWrappers.length; index++) {
+      let $additionalResource = $additionalResourcesWrappers[index];
+      processAdditionalResource($additionalResource);
     }
 
-    // Create and add print button
-    let headerSecondaryWrapper = newContentWrapper.querySelector(
-      ".rhdocs__header__secondary-wrapper"
-    );
-    // @todo Should retire this extra selector
-    if (
-      !newContentWrapper.querySelector("#rhdocs-header-external") &&
-      document.getElementById("rhdocs-header-external")
-    ) {
-      headerSecondaryWrapper = document.querySelector(
-        "#rhdocs-header-external .rhdocs__header__secondary-wrapper"
-      );
-    }
-    if (
-      headerSecondaryWrapper &&
-      !headerSecondaryWrapper.querySelector(".rhdocs-print-button")
-    ) {
-      const printButtonWrapper = document.createElement("li");
-      printButtonWrapper.classList.add("rh-docs-details-item");
-      printButtonWrapper.classList.add("rhdocs-print-button");
-      printButtonWrapper.append(this._createPrintButton());
-      headerSecondaryWrapper.append(printButtonWrapper);
-    }
-
-    const codeBlocks = newContentWrapper.querySelectorAll(
+    // Process codeblocks with languages
+    // Doing this first since there are some cases where the language class isn't on the pre
+    const $codeBlocks = $content.querySelectorAll(
       "pre[class*='language-'], code[class*='language-']"
     );
-    if (codeBlocks) {
-      for (let index = 0; index < codeBlocks.length; index++) {
-        let codeBlock = codeBlocks[index];
-        this._processCodeblock(codeBlock);
+    for (let index = 0; index < $codeBlocks.length; index++) {
+      const $codeBlock = $codeBlocks[index];
+      processCodeblock($codeBlock, $docsContent);
+    }
+
+    // Process the other codeblocks
+    // processCodeblocks will quick exit for pre's that have been processed because a child element had the language
+    const $allCodeBlocks = $content.querySelectorAll("pre");
+    if ($allCodeBlocks) {
+      for (let index = 0; index < $allCodeBlocks.length; index++) {
+        let $codeBlock = $allCodeBlocks[index];
+        processCodeblock($codeBlock, $docsContent);
       }
     }
 
-    // Have to go over pre tags, some don't have language and need to be
-    // processed seperately. The quick exit on `_processCodeblocks` will
-    // prevent duplicate processing.
-    const noLanguageCodeBlocks = newContentWrapper.querySelectorAll("pre");
-    if (noLanguageCodeBlocks) {
-      for (let index = 0; index < noLanguageCodeBlocks.length; index++) {
-        let codeBlock = noLanguageCodeBlocks[index];
-        this._processCodeblock(codeBlock);
+    // Wrap all tables with rh-table
+    const $tables = $content.querySelectorAll("table");
+    for (let index = 0; index < $tables.length; index++) {
+      const $table = $tables[index];
+
+      if (!$table.parentElement.classList.contains("table-wrapper")) {
+        // @todo RH Table needs to be added to portal for it to do it's fanciness
+        const $tableWrapper = document.createElement("rh-table");
+        $tableWrapper.classList.add("table-wrapper");
+        $table.parentElement.replaceChild($tableWrapper, $table);
+        $tableWrapper.append($table);
       }
     }
 
-    const tables = newContentWrapper.querySelectorAll("table");
-    for (let index = 0; index < tables.length; index++) {
-      const table = tables[index];
-
-      if (!table.parentElement.classList.contains("table-wrapper")) {
-        const tableWrapper = document.createElement("div");
-        tableWrapper.classList.add("table-wrapper");
-        table.parentElement.replaceChild(tableWrapper, table);
-        tableWrapper.append(table);
-      }
-    }
-
-    // --------------------------------------------
-    // End best time to do DOM manipulation in Shadow Dom
-    // --------------------------------------------
-    if (oldContentWrapper) {
-      shadowWrapper.replaceChild(newContentWrapper, oldContentWrapper);
-    } else {
-      shadowWrapper.append(newContentWrapper);
-    }
-    newContentWrapper.setAttribute("id", "content");
-
-    // Certain links need to be handled differently than normal
-    // const validLinks = this.shadowRoot.querySelectorAll('a[href]');
-    // for (let index = 0; index < validLinks.length; index++) {
-    //   const validLink = validLinks[index];
-    //   validLink.addEventListener('click', this._linkClickHandler);
-    // }
-
-    // Setting pointers to commonly used elements
-    this._sidebarPrimary = this.shadowRoot.querySelector(
-      ".rh-docs__sidebar--primary"
-    );
-    this._contentWrapper = this.shadowRoot.getElementById("rhdocs-content");
-    this._tableOfContents = this.shadowRoot.getElementById("guide-topics");
-
-    // Setup the table of contents once the page is ready
-    switch (document.readyState) {
-      case "loading":
-        window.addEventListener("DOMContentLoaded", this._setupTableOfContents);
-      case "interactive":
-        window.addEventListener("load", this._updateSectionPositions);
-        break;
-    }
-
-    if (
-      document.readyState === "interactive" ||
-      document.readyState === "complete"
-    ) {
-      this._setupTableOfContents();
-    }
-
-    // Reconnecting mutationObserver for IE11 & Edge
-    if (this._isCrustyBrowser()) {
-      this._observer.observe(this, lightDomObserverConfig);
-    }
+    return $content;
   }
 
   /**
-   * Add link tag ot
-   * @param {string} styleSheetUrl URL to a stylesheet
-   */
-  _addStyleSheet(styleSheetUrl) {
-    if (!this.shadowRoot.querySelector(`link[href='${styleSheetUrl}']`)) {
-      const linkTag = document.createElement("link");
-      linkTag.setAttribute("id", "pfe-css");
-      linkTag.setAttribute("href", styleSheetUrl);
-      linkTag.setAttribute("rel", "stylesheet");
-      this.shadowRoot.prepend(linkTag);
-    }
-  }
-
-  /**
-   * Load stylesheet from pfe-css property
-   */
-  _loadCss() {
-    // If we have an attribute and the CSS hasn't been loaded yet
-    if (this.hasAttribute("pfe-css")) {
-      this._addStyleSheet(this.getAttribute("pfe-css"));
-    }
-  }
-
-  /**
-   * Get the content from pfe-endpoint attribute
+   * Puts docs content into a shadowroot to avoid style contamination
+   * Due to our massive amount of CSS technical debt
    *
-   * Also loads the body content
+   * @param {Element} $docsContent The content wrapper for documentation
+   * @param {String} styleSheetUrl URL to rhdocs.css to add to the shadow DOM
    */
-  loadData() {
-    const endpointUrl = this.getAttribute("pfe-endpoint");
-    if (endpointUrl) {
-      fetch(this._portalEnvironmentFix(endpointUrl))
-        .then((response) => response.json())
-        .then((data) => {
-          if (typeof data.module === "object") {
-            this.setAttribute("pfe-loaded", "");
-            this._contentData = data.module;
-            if (this._contentData.body) {
-              this.innerHTML = this._contentData.body;
-            }
-          }
-        })
-        // This will throw an error: "Unexpected token < in JSON", it's because Pantheon is sending HTML 404's, not JSON
-        .catch((error) => console.error(`${this.tag}: ${error}`));
-    }
-  }
-
-  /**
-   * Allows parent DOM to access the module data
-   * @return {object} The module data
-   */
-  getData() {
-    if (Object.keys(this._contentData).length) {
-      return this._contentData;
-    }
-
-    return null;
-  }
-
-  /**
-   * For assemblies, add "Included in guides" to bottom of module content
-   * @param {object} moduleData Data from api response
-   */
-  _addIncludedInGuides(moduleData) {
-    let moduleUuid =
-      this._contentData.variantToModuleMap[moduleData.variant_uuid];
-
-    // Make sure there's only one instance of this module
-    if (this._contentData.moduleToVariantMap[moduleUuid].length > 1) {
-      // @todo figure out how to handle the same module with two variants in one assembly
-      console.error(
-        `${this.tag}: The same module is used twice in this assembly, included in guides could not be added.`
-      );
+  const processDocsContent = ($docsContent, styleSheetUrl) => {
+    // Quick exit if we're on a crap browser or this already has a shadowRoot
+    if (typeof $docsContent.attachShadow !== 'function' || $docsContent.shadowRoot) {
       return;
     }
 
-    if (moduleUuid) {
-      // Match outer module wrapper in shadow dom to data we have
-      const moduleWrapper = this.shadowRoot.querySelector(
-        `[pantheon-module-id="${moduleUuid}"]`
-      );
-      if (moduleWrapper) {
-        // Going to use the current path as a template for assemblies
-        const pathArray = window.location.pathname.split("/");
+    // Set the content height while we mess with it
+    if ($docsContent.offsetHeight) {
+      $docsContent.style.height = `${$docsContent.offsetHeight}px`;
+    }
 
-        // Create array of assembly links that this topic is in
-        const guideLinksArray = [];
-        for (
-          let index = 0;
-          index < moduleData.included_in_guides.length;
-          index++
-        ) {
-          const guideData = moduleData.included_in_guides[index];
-          if (guideData.uuid !== this._contentData.uuid) {
-            const guideLink = document.createElement("a");
-            pathArray[pathArray.length - 1] = guideData.uuid;
-            guideLink.setAttribute("href", `/${pathArray.join("/")}`);
-            guideLink.innerText = guideData.title;
-            guideLinksArray.push(guideLink);
-          }
-        }
+    // Create and populate shadow DOM
+    $docsContent.attachShadow({mode: 'open'});
+    let $shadowWrapper = document.createElement('div');
+    $shadowWrapper.id = 'wrapper';
+    $shadowWrapper.classList.add('rhdocs');
 
-        let relatedTopicContentLinks = null;
-        // Create contents of included in guides
-        if (guideLinksArray.length > 1) {
-          relatedTopicContentLinks = document.createElement("ul");
-          for (
-            let index = 0;
-            index < relatedTopicContentLinks.length;
-            index++
-          ) {
-            const relatedTopicContentLink = relatedTopicContentLinks[index];
-            const listItem = document.createElement("li");
-            listItem.append(relatedTopicContentLink);
-            relatedTopicContentLinks.append(listItem);
-          }
-        } else {
-          relatedTopicContentLinks = guideLinksArray[0];
-        }
+    // Add our styles to the shadow DOM
+    const linkTag = document.createElement("link");
+    linkTag.setAttribute("id", "rhdocs");
+    linkTag.setAttribute("href", styleSheetUrl);
+    linkTag.setAttribute("rel", "stylesheet");
+    $docsContent.shadowRoot.prepend(linkTag);
 
-        // Create included in guides wrapper and title
-        // Get the parent elements top heading and get the heading level
-        const parentHeadingLevel = parseInt(
-          moduleWrapper
-            .querySelector("h1, h2, h3, h4, h5, h6")
-            .tagName.substring(1)
-        );
-        let headingLevel = parentHeadingLevel > 5 ? 6 : parentHeadingLevel + 1;
+    for (let index = 0; index < $docsContent.childNodes.length; index++) {
+      const $childNode = $docsContent.childNodes[index];
+      let processNode = true;
 
-        const includedInGuidesWrapper = document.createElement("aside");
-        includedInGuidesWrapper.classList.add("included-in-guides");
-        const includedInGuidesTitle = document.createElement(
-          `h${headingLevel}`
-        );
-        includedInGuidesTitle.classList.add("included-in-guides__title");
+      // Avoid unnecessary whitespace from the DOM
+      if ($childNode.nodeType === Node.TEXT_NODE && $childNode.wholeText.trim().length === 0) {
+        processNode = false;
+      }
 
-        // @todo Make this string translatable
-        includedInGuidesTitle.innerText = "Guides Including this topic";
-
-        includedInGuidesWrapper.append(includedInGuidesTitle);
-        includedInGuidesWrapper.append(relatedTopicContentLinks);
-
-        // Locate or create the 'Related Content to this Topic' dropdown and stick included in guides in it
-        let relatedTopicContentWrapper = moduleWrapper.querySelector(
-          ".related-topic-content__wrapper"
-        );
-        if (!relatedTopicContentWrapper) {
-          const relatedTopicContentElements =
-            this._createRelatedContentWrapper();
-          relatedTopicContentWrapper = relatedTopicContentElements[0];
-          relatedTopicContentElements[1].append(includedInGuidesWrapper);
-          moduleWrapper.append(relatedTopicContentWrapper);
-        } else {
-          relatedTopicContentWrapper
-            .querySelector(".related-topic-content__inner-wrapper")
-            .append(includedInGuidesWrapper);
-        }
+      if (processNode) {
+        $shadowWrapper.append($childNode);
       }
     }
+
+    // Transform the HTML while it's in memory to avoid repaint/layout shift
+    $shadowWrapper = transformDocsHtml($shadowWrapper, $docsContent);
+    // Put the content back into the DOM
+    $docsContent.shadowRoot.append($shadowWrapper);
+    $docsContent.removeAttribute('style');
   }
 
-  /**
-   * If we have an assembly, load children modules to add supplimentary content
-   */
-  _loadChildModules() {
-    // @todo Add back once API is fixed
-    // for (
-    //   let index = 0;
-    //   index < this._contentData.modules_included.length;
-    //   index++
-    // ) {
-    //   const moduleData = this._contentData.modules_included[index];
-    //   // Create reference maps to get module or variant uuid if we only have one
-    //   if (typeof this._contentData.moduleToVariantMap === "undefined") {
-    //     this._contentData.moduleToVariantMap = {};
-    //     this._contentData.variantToModuleMap = {};
-    //   }
-    //   if (
-    //     typeof this._contentData.moduleToVariantMap[moduleData.module_uuid] ===
-    //     "undefined"
-    //   ) {
-    //     this._contentData.moduleToVariantMap[moduleData.module_uuid] = [];
-    //   }
-    //   this._contentData.variantToModuleMap[moduleData.canonical_uuid] =
-    //     moduleData.module_uuid;
-    //   this._contentData.moduleToVariantMap[moduleData.module_uuid].push(
-    //     moduleData
-    //   );
-    //   if (typeof fetch === 'function' && moduleData.url) {
-    //     // Load module data from api
-    //     let fetchUrl = this._portalEnvironmentFix(moduleData.url);
-    //     // @todo Remove when not in dev
-    //     // if (window.location.host.includes('wruvalca')) {
-    //     //   fetchUrl = `/api/module/variant.json/${ moduleData.canonical_uuid }`;
-    //     // }
-    //     fetch(fetchUrl)
-    //       .then(response => response.json())
-    //       .then(data => {
-    //         if (typeof this._contentData.loadedModules === "undefined") {
-    //           this._contentData.loadedModules = {};
-    //         }
-    //         this._contentData.loadedModules[data.module.variant_uuid] =
-    //           data.module;
-    //         if (
-    //           typeof data.module.included_in_guides !== "undefined" &&
-    //           data.module.included_in_guides.length > 1
-    //         ) {
-    //           this._addIncludedInGuides(data.module);
-    //         }
-    //       })
-    //       .catch(error => console.error(error));
-    //   }
-    // }
-  }
-}
+  // Kick off processing
+  window.addEventListener('DOMContentLoaded', () => {
 
-PFElement.create(PfeDocumentation);
+    // See if we can find the loaded stylesheet for rhdocs[.min].css
+    // Otherwise fallback to a root relative link that should work
+    let rhdocsUrl =
+    "/webassets/avalon/j/public_modules/node_modules/@cpelements/cp-documentation/dist/rhdocs.min.css";
+    for (let index = 0; index < document.styleSheets.length; index++) {
+      const styleSheet = document.styleSheets[index];
+      if (styleSheet.href && styleSheet.href.includes("/rhdocs.")) {
+        // Get the exact same href so we get the cached file instead of hitting the network
+        rhdocsUrl = styleSheet.ownerNode.getAttribute("href");
+        break;
+      }
+    }
 
-export default PfeDocumentation;
-//# sourceMappingURL=cp-documentation.js.map
+    // Process docs content
+    const $docsContentElements = document.querySelectorAll('.rhdocs-content');
+    for (let index = 0; index < $docsContentElements.length; index++) {
+      const $docsContent = $docsContentElements[index];
+      processDocsContent($docsContent, rhdocsUrl);
+    }
+
+    // Add print button to header
+    const $headerSecondaryWrapper = document.querySelector('.rhdocs__header__secondary-wrapper');
+    if ($headerSecondaryWrapper) {
+      addPrintButton($headerSecondaryWrapper);
+    }
+  });
+})(Drupal);
