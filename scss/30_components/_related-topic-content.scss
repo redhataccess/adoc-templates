@@ -1,0 +1,40 @@
+.related-topic-content__wrapper {
+  margin: 2em 0;
+}
+
+.related-topic-content__wrapper--for-guide {
+  position: relative;
+  z-index: 1;
+  margin-bottom: -40px; // Be flush with footer
+  padding-bottom: 1px; // So it envelops the margin of children elements
+
+  &:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: -72px;
+    left: -48px;
+    z-index: -1;
+    display: block;
+    width: auto;
+    height: 100%;
+    background: #f0f0f0;
+
+    @include breakpoint(papa) {
+      right: -58px;
+      left: -40px;
+    }
+  }
+
+  summary {
+    padding: 1em 2em 1em 35px;
+  }
+}
+
+.related-topic-content__inner-wrapper {
+  @include breakpoint(november) {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 2em;
+  }
+}

@@ -13,23 +13,20 @@
 <link href="https://fonts.googleapis.com" rel="preconnect">
 <link crossorigin href="https://fonts.gstatic.com" rel="preconnect">
 <link href="https://fonts.googleapis.com/css2?family=Red+Hat+Display:ital,wght@0,400;0,500;0,700;1,400;1,700&family=Red+Hat+Text:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
-<script src="../examples/@cpelements/cp-documentation/dist/cp-documentation.js" type="module"></script>
-<!-- endinject -->
-<link href="../examples/@cpelements/cp-documentation/dist/rhdocs.min.css" rel="stylesheet">
+<link href="/examples/rhdocs.css" rel="stylesheet">
 <script>
-  window.addEventListener('load', function() {
-    var cpDocumentations = document.querySelectorAll('cp-documentation');
-    for (let index = 0; index < cpDocumentations.length; index++) {
-      const cpDocumentation = cpDocumentations[index];
-      cpDocumentation.setAttribute('pfe-c-non-prod', '');
-    }
-  });
+  var Drupal = {};
 </script>
+<script src="/examples/rhdocs-content.js"></script>
+<script src="//access.redhat.com/webassets/avalon/j/public_modules/node_modules/@patternfly/pfe-clipboard/dist/pfe-clipboard.min.js" type="module"></script>
+<!-- endinject -->
+<link href="/examples/rhdocs.css" rel="stylesheet">
+<!-- endinject -->
 </head>
-<body class="article"></body>
+<body class="article">
 <!-- inject:header:html -->
 <!-- endinject -->
-<cp-documentation class="rhdocs local-render" id="doc-content">
+<div class="rhdocs local-render" id="docs-wrapper">
 <header class="rhdocs__header" id="rhdocs-header">
 <div class="rhdocs__header__primary-wrapper">
 <h1>Code Sample Page</h1>
@@ -290,12 +287,13 @@
 <a class="rh-docs-legal-notice__link" href="https://access.redhat.com/docs-legal-notice">Legal Notices for Trademarks</a>
 </div>
 </article>
-</cp-documentation>
+</div>
 <!-- inject:footer:html -->
 <footer class="rhdocs-footer" id="rhdocs-footer">
 <div class="rhdocs-footer-text" id="rhdocs-footer-text">
-Last updated 2022-01-26 16:13:46 -0600
+Last updated 2022-02-14 13:03:57 -0600
 </div>
 </footer>
 <!-- endinject -->
+</body>
 </html>

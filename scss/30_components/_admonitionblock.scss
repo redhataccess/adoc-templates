@@ -1,0 +1,155 @@
+@use 'sass:math';
+
+.admonitionblock {
+  $icon-area--size: em(24px);
+  $icon-area--top-offset: em(16px);
+  $icon-area--left-offset: em(13px);
+
+  // Defaults to presentation for a "note" admonition
+  position: relative;
+  margin: 2rem 0;
+  padding: em(16px);
+  padding-left: 53px;
+  border-left: em(6px) solid #151515;
+  font-size: 1rem;
+  line-height: 1.5; // From design
+  color: #151515;
+  background: #f4f4f4;
+
+  .title--type {
+    &:after {
+      content: ' - ';
+    }
+  }
+
+  // Create icons
+  &:before,
+  &:after {
+    content: '';
+    position: absolute;
+    display: block;
+  }
+
+  &:before {
+    top: $icon-area--top-offset;
+    left: $icon-area--left-offset;
+    width: $icon-area--size;
+    height: $icon-area--size;
+    border-radius: 50%;
+    background: #151515;
+  }
+
+  &:after {
+    $icon-width: em(11px); // Measured from mockup
+
+    top: $icon-area--top-offset;
+    left: ($icon-area--left-offset + math.div($icon-area--size, 2) - math.div($icon-width, 2));
+    width: $icon-width;
+    height: $icon-area--size;
+    background: url('images/fa-icons/thumbtack-solid.svg') no-repeat center center;
+    background-size: 100% auto;
+  }
+
+  &.note {
+    &:after {
+      // Small nudge to 'optically center' the thumbtack
+      transform: translateY(#{em(1px)});
+    }
+  }
+
+  &.caution {
+    border-left-color: #df7409;
+    color: #8f4c09;
+    background: #fff3e7;
+
+    &:before {
+      content: none; // We don't need a bg shape from CSS
+    }
+
+    &:after {
+      $icon-width: em(22px); // Measured from mockup
+      $icon-height: em(20px);
+
+      top: em(17px);
+      left: ($icon-area--left-offset + math.div($icon-area--size, 2) - math.div($icon-width, 2));
+      width: $icon-width;
+      // height:
+      background-image: url('images/fa-icons/exclamation-triangle-solid.svg');
+    }
+  }
+
+  &.warning {
+    border-left-color: #f0ab00;
+    color: #795600;
+    background: #fdf7e7;
+
+    &:before {
+      top: $icon-area--top-offset;
+      left: $icon-area--left-offset;
+      width: $icon-area--size;
+      height: $icon-area--size;
+      border-radius: em(3px);
+      background: #f0ab00;
+    }
+
+    &:after {
+      $icon-width: em(9px); // Want this to be 4.5, scaling down with transform
+
+      left: ($icon-area--left-offset + math.div($icon-area--size, 2));
+      width: $icon-width;
+      background-image: url('images/fa-icons/exclamation-solid.svg');
+      transform: scale(0.5) translateX(#{math.div($icon-width, -2)});
+      transform-origin: left center;
+    }
+  }
+
+  &.important {
+    border-left-color: #c9190b;
+    color: #7d1007;
+    background: #faeae8;
+
+    &:before {
+      content: none; // We don't need a bg shape from CSS
+    }
+
+    &:after {
+      $icon-width: em(23px); // Measured from mockup
+      $icon-height: em(23px);
+
+      left: ($icon-area--left-offset + math.div($icon-area--size, 2) - math.div($icon-width, 2));
+      width: $icon-width;
+      // height:
+      background-image: url('images/fa-icons/exclamation-circle-solid.svg');
+    }
+  }
+
+  &.tip {
+    border-left-color: #2b9af3;
+    color: #002952;
+    background: #e7f1fa;
+
+    &:before {
+      background: #2b9af3;
+    }
+
+    &:after {
+      $icon-width: em(10px); // Measured from mockup
+
+      left: ($icon-area--left-offset + math.div($icon-area--size, 2) - math.div($icon-width, 2));
+      width: $icon-width;
+      background: url('images/fa-icons/lightbulb-solid.svg') no-repeat center center;
+      // Small nudge to 'optically center' the light bulb
+      transform: translateY(#{em(1px)});
+    }
+  }
+
+  .content {
+    > :first-child {
+      margin-top: 0;
+    }
+
+    > :last-child {
+      margin-bottom: 0;
+    }
+  }
+}

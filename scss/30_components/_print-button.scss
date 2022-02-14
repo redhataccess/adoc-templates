@@ -1,0 +1,37 @@
+.rhdocs__print-button {
+  position: relative;
+  margin: 0;
+  padding: 0 0 0 22px;
+  border: 0;
+  color: $color--link;
+  background: url('images/fa-icons/print-solid.svg') no-repeat left center;
+  background-size: 16px auto;
+  appearance: none;
+
+  &:hover,
+  &:focus {
+    color: #036;
+    text-decoration: underline;
+  }
+
+  @supports (mask-image: url('images/fa-icons/print-solid.svg')) {
+    background: none;
+
+    &:before {
+      content: '';
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      display: block;
+      width: 16px;
+      background: currentcolor;
+      mask: url('images/fa-icons/print-solid.svg') no-repeat center center;
+      mask-size: 100% auto;
+    }
+  }
+
+  @media print {
+    display: none;
+  }
+}

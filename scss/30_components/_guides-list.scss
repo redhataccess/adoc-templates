@@ -1,0 +1,62 @@
+.rhdocs__guides-list__wrapper {
+  margin: 0 0 2em;
+  padding: 1.5rem 24px 2em;
+  border-bottom: 1px solid #d2d2d2;
+
+  @include breakpoint(papa) {
+    padding: 1.5rem 0 2em;
+    border: 0;
+  }
+}
+
+.rhdocs__guides-list__headline[class] {
+  margin: 0 0 16px;
+  padding: 0;
+  font-size: 20px;
+  font-weight: 500;
+}
+
+.rhdocs__guides-list {
+  &[class] {
+    padding: 16px 0 16px;
+  }
+
+  &,
+  ul {
+    list-style: none;
+  }
+
+  &[class] ul {
+    margin: 0 0 8px;
+    padding: 0;
+  }
+
+  li {
+    margin: 0;
+    padding: 0;
+  }
+
+  // The links won't work without JS
+  &[class] a {
+    display: inline-block;
+    padding: 6px 0;
+    color: $color--link;
+    // @todo This is the right color, think it should apply when scrollspy works
+    // color: #6A6E73;
+    // pointer-events: none;
+
+    &:hover,
+    &:focus {
+      text-decoration: underline;
+    }
+  }
+
+  &[class][class] code {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font: inherit;
+    color: inherit;
+    background: transparent;
+  }
+}
