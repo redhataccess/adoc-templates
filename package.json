@@ -38,8 +38,7 @@
     "watch": "npm run gulp watch",
     "dev": "npm run gulp watch",
     "start": "npm run watch",
-    "clean": "rm -rf node_modules",
-    "postinstall": "npm run build"
+    "clean": "rm -rf node_modules"
   },
   "repository": {
     "type": "git",
