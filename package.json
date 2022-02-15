@@ -1,7 +1,7 @@
 {
   "name": "@redhataccess/adoc-templates",
   "description": "Templates for Ascii Doc for Red Hat Documentation",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "license": "MIT",
   "engines": {
     "node": ">=12.x.x"
