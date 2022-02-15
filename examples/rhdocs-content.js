@@ -3193,7 +3193,7 @@ Prism.languages.py = Prism.languages.python;
  * Sequesters docs content area into shadow root for style scoping
  * Updates some HTML for styling/behavior enhancements
  */
-(function (Drupal) {
+(function () {
   /**
    * Transforms additional resources
    * @param {Element} $additionalResource Element with ._additional-resources class, provided by authors
@@ -3307,13 +3307,15 @@ Prism.languages.py = Prism.languages.python;
         break;
     }
 
-    // Make sure Drupal.jupiterData exists, if it doesn't make it an empty object
-    Drupal.jupiterData = Drupal.jupiterData ? Drupal.jupiterData : {};
-    // Make sure Drupal.jupiterData.plainCodeBlockContent exists, if it doesn't make it an empty object
-    Drupal.jupiterData.plainCodeBlockContent = Drupal.jupiterData.plainCodeBlockContent ? Drupal.jupiterData.plainCodeBlockContent : {};
-
-    // Store the data we should copy in the object by the id of the $plainCodeBlock
-    Drupal.jupiterData.plainCodeBlockContent[plainCodeBlockId] = contentToCopy;
+    // Store the content that could be copied in an object on the shadowRoot owner
+    if ($docsContent) {
+      // Make sure data structures are instantiated
+      $docsContent.rhData = $docsContent.rhData ? $docsContent.rhData : {};
+      $docsContent.rhData.plainCodeBlockContent = $docsContent.rhData.plainCodeBlockContent
+        ? $docsContent.rhData.plainCodeBlockContent : {};
+      // Store the data we should copy in the object by the id of the $plainCodeBlock
+      $docsContent.rhData.plainCodeBlockContent[plainCodeBlockId] = contentToCopy;
+    }
 
     // Finish setting up the plainCodeblock
     $plainCodeBlock.hidden = true;
@@ -3362,18 +3364,29 @@ Prism.languages.py = Prism.languages.python;
        * Sets the content to copy by figuring out which button responded and giving it the correct content
        */
       document.addEventListener("pfe-clipboard:connected", (event) => {
-        const thisComponent = event.detail.component;
-        const thisCodeWrapper = thisComponent.closest(".codeblock__wrapper");
+        const $thisComponent = event.detail.component;
+        const $thisCodeWrapper = thisComponent.closest(".codeblock__wrapper");
+
+        // Verify that we can find the ID, and we can find the content to copy
         if (
-          thisComponent &&
-          thisCodeWrapper &&
-          thisCodeWrapper.dataset.plainCodeBlockId
+          $thisComponent
+          && $thisCodeWrapper
+          && $thisCodeWrapper.dataset.plainCodeBlockId
+          && $docsContent
+          && $docsContent.rhData
+          && $docsContent.rhData.plainCodeBlockContent
+          && $docsContent.rhData.plainCodeBlockContent[thisCodeWrapper.dataset.plainCodeBlockId]
         ) {
           // Set the content to be copied from our object of code data
-          thisComponent.contentToCopy =
-            Drupal.jupiterData.plainCodeBlockContent[
-              thisCodeWrapper.dataset.plainCodeBlockId
+          $thisComponent.contentToCopy =
+            $docsContent.rhData.plainCodeBlockContent[
+              $thisCodeWrapper.dataset.plainCodeBlockId
             ];
+        }
+        // If something went wrong, hide the copy button since it won't work.
+        else {
+          $thisComponent.hidden = true;
+          console.warn(`Couldn't find content to copy for the below copy button`, $thisComponent);
         }
       });
     }
@@ -3579,4 +3592,4 @@ Prism.languages.py = Prism.languages.python;
       addPrintButton($headerSecondaryWrapper);
     }
   });
-})(Drupal);
+})();
