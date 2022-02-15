@@ -55,12 +55,6 @@
     %link(rel="preconnect" href="https://fonts.gstatic.com" crossorigin)
     %link(rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Red+Hat+Display:ital,wght@0,400;0,500;0,700;1,400;1,700&family=Red+Hat+Text:ital,wght@0,400;0,700;1,400;1,700&display=swap")
 
-    %link(rel="stylesheet" href=rhDocsPath)
-
-    -# Instantiating Drupal object
-    :javascript
-      var Drupal = {};
-
     - if rhEnv == 'localdev'
       %script(src="#{assetsPrefix}/rhdocs-content.js")
       %script(src="//access.redhat.com/webassets/avalon/j/public_modules/node_modules/@patternfly/pfe-clipboard/dist/pfe-clipboard.min.js" type="module")
@@ -70,7 +64,14 @@
 
     / endinject
 
-  %body{:id => @id, :class=>[doctype, 'rhdocs', ((attr? :toc) && (attr? 'toc-placement', 'auto') ? "has-toc toc-#{attr 'toc-position', 'left'}" : nil)]}
+    %link(rel="stylesheet" href=rhDocsPath)
+
+    - if renderedBy == 'juno'
+      %script(src="#{assetsPrefix}/@redhataccess/adoc-templates/dist/rhdocs-content.min.js")
+      %script(src="/preview.js")
+
+
+  %body{:id => @id, :class=>[doctype, ((attr? :toc) && (attr? 'toc-placement', 'auto') ? "has-toc toc-#{attr 'toc-position', 'left'}" : nil)]}
     / inject:header:html
     / endinject
     %div#docs-wrapper{:class => ['rhdocs', "#{renderedBy}-render"]}
