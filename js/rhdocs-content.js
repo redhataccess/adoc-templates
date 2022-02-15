@@ -174,7 +174,7 @@
        */
       document.addEventListener("pfe-clipboard:connected", (event) => {
         const $thisComponent = event.detail.component;
-        const $thisCodeWrapper = thisComponent.closest(".codeblock__wrapper");
+        const $thisCodeWrapper = $thisComponent.closest(".codeblock__wrapper");
 
         // Verify that we can find the ID, and we can find the content to copy
         if (
