@@ -184,7 +184,7 @@
           && $docsContent
           && $docsContent.rhData
           && $docsContent.rhData.plainCodeBlockContent
-          && $docsContent.rhData.plainCodeBlockContent[thisCodeWrapper.dataset.plainCodeBlockId]
+          && $docsContent.rhData.plainCodeBlockContent[$thisCodeWrapper.dataset.plainCodeBlockId]
         ) {
           // Set the content to be copied from our object of code data
           $thisComponent.contentToCopy =
