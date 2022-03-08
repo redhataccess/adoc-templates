@@ -16,23 +16,15 @@
 <link href="https://fonts.googleapis.com" rel="preconnect">
 <link crossorigin href="https://fonts.gstatic.com" rel="preconnect">
 <link href="https://fonts.googleapis.com/css2?family=Red+Hat+Display:ital,wght@0,400;0,500;0,700;1,400;1,700&family=Red+Hat+Text:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
-<link href="../examples/@cpelements/cp-documentation/dist/rhdocs.min.css" rel="stylesheet">
-<script src="../examples/@cpelements/cp-documentation/dist/cp-documentation.js" type="module"></script>
-<script>
-  window.addEventListener('load', function() {
-    var cpDocumentations = document.querySelectorAll('cp-documentation');
-    for (let index = 0; index < cpDocumentations.length; index++) {
-      const cpDocumentation = cpDocumentations[index];
-      cpDocumentation.setAttribute('pfe-c-non-prod', '');
-    }
-  });
-</script>
+<script src="/examples/rhdocs-content.js"></script>
+<script src="//access.redhat.com/webassets/avalon/j/public_modules/node_modules/@patternfly/pfe-clipboard/dist/pfe-clipboard.min.js" type="module"></script>
 <!-- endinject -->
+<link href="/examples/rhdocs.css" rel="stylesheet">
 </head>
-<body class="article rhdocs"></body>
+<body class="article">
 <!-- inject:header:html -->
 <!-- endinject -->
-<cp-documentation class="rhdocs local-render" id="doc-content">
+<div class="rhdocs local-render" id="docs-wrapper">
 <header class="rhdocs__header" id="rhdocs-header">
 <div class="rhdocs__header__primary-wrapper">
 <h1>AsciiDoc Syntax Quick Reference</h1>
@@ -705,28 +697,28 @@ a plus sign (+) on a line by itself
 </colgroup>
 <thead>
 <tr>
-  <th class="tableblock halign-left valign-top" id="table1_th_application" scope="col">
+  <th class="tableblock halign-left valign-top" scope="col">
 Application
   </th>
-  <th class="tableblock halign-left valign-top" id="table1_th_language" scope="col">
+  <th class="tableblock halign-left valign-top" scope="col">
 Language
   </th>
 </tr>
 </thead>
 <tbody>
 <tr>
-  <td class="tableblock halign-left valign-top" headers="table1_th_application">
+  <td class="tableblock halign-left valign-top">
 <p class="tableblock">AsciiDoc</p>
   </td>
-  <td class="tableblock halign-left valign-top" headers="table1_th_language">
+  <td class="tableblock halign-left valign-top">
 <p class="tableblock">Python</p>
   </td>
 </tr>
 <tr>
-  <td class="tableblock halign-left valign-top" headers="table1_th_application">
+  <td class="tableblock halign-left valign-top">
 <p class="tableblock">Asciidoctor</p>
   </td>
-  <td class="tableblock halign-left valign-top" headers="table1_th_language">
+  <td class="tableblock halign-left valign-top">
 <p class="tableblock">Ruby</p>
   </td>
 </tr>
@@ -1270,37 +1262,37 @@ Single-line comments can be used to divide elements, such as two adjacent lists.
 </colgroup>
 <thead>
 <tr>
-  <th class="tableblock halign-left valign-top" id="table2_th_name_of_column_1" scope="col">
+  <th class="tableblock halign-left valign-top" scope="col">
 Name of Column 1
   </th>
-  <th class="tableblock halign-left valign-top" id="table2_th_name_of_column_2" scope="col">
+  <th class="tableblock halign-left valign-top" scope="col">
 Name of Column 2
   </th>
-  <th class="tableblock halign-left valign-top" id="table2_th_name_of_column_3" scope="col">
+  <th class="tableblock halign-left valign-top" scope="col">
 Name of Column 3
   </th>
 </tr>
 </thead>
 <tbody>
 <tr>
-  <td class="tableblock halign-left valign-top" headers="table2_th_name_of_column_1">
+  <td class="tableblock halign-left valign-top">
 <p class="tableblock">Cell in column 1, row 1</p>
   </td>
-  <td class="tableblock halign-left valign-top" headers="table2_th_name_of_column_2">
+  <td class="tableblock halign-left valign-top">
 <p class="tableblock">Cell in column 2, row 1</p>
   </td>
-  <td class="tableblock halign-left valign-top" headers="table2_th_name_of_column_3">
+  <td class="tableblock halign-left valign-top">
 <p class="tableblock">Cell in column 3, row 1</p>
   </td>
 </tr>
 <tr>
-  <td class="tableblock halign-left valign-top" headers="table2_th_name_of_column_1">
+  <td class="tableblock halign-left valign-top">
 <p class="tableblock">Cell in column 1, row 2</p>
   </td>
-  <td class="tableblock halign-left valign-top" headers="table2_th_name_of_column_2">
+  <td class="tableblock halign-left valign-top">
 <p class="tableblock">Cell in column 2, row 2</p>
   </td>
-  <td class="tableblock halign-left valign-top" headers="table2_th_name_of_column_3">
+  <td class="tableblock halign-left valign-top">
 <p class="tableblock">Cell in column 3, row 2</p>
   </td>
 </tr>
@@ -1328,28 +1320,28 @@ Name of Column 3
 </colgroup>
 <thead>
 <tr>
-  <th class="tableblock halign-left valign-top" id="table3_th_name_of_column_1" scope="col">
+  <th class="tableblock halign-left valign-top" scope="col">
 Name of Column 1
   </th>
-  <th class="tableblock halign-left valign-top" id="table3_th_name_of_column_2" scope="col">
+  <th class="tableblock halign-left valign-top" scope="col">
 Name of Column 2
   </th>
 </tr>
 </thead>
 <tbody>
 <tr>
-  <td class="tableblock halign-left valign-top" headers="table3_th_name_of_column_1">
+  <td class="tableblock halign-left valign-top">
 <p class="tableblock">Cell in column 1, row 1</p>
   </td>
-  <td class="tableblock halign-left valign-top" headers="table3_th_name_of_column_2">
+  <td class="tableblock halign-left valign-top">
 <p class="tableblock">Cell in column 2, row 1</p>
   </td>
 </tr>
 <tr>
-  <td class="tableblock halign-left valign-top" headers="table3_th_name_of_column_1">
+  <td class="tableblock halign-left valign-top">
 <p class="tableblock">Cell in column 1, row 2</p>
   </td>
-  <td class="tableblock halign-left valign-top" headers="table3_th_name_of_column_2">
+  <td class="tableblock halign-left valign-top">
 <p class="tableblock">Cell in column 2, row 2</p>
   </td>
 </tr>
@@ -1379,39 +1371,39 @@ Name of Column 2
 </colgroup>
 <thead>
 <tr>
-  <th class="tableblock halign-left valign-top" id="table4_th_name" scope="col">
+  <th class="tableblock halign-left valign-top" scope="col">
 Name
   </th>
-  <th class="tableblock halign-left valign-top" id="table4_th_category" scope="col">
+  <th class="tableblock halign-left valign-top" scope="col">
 Category
   </th>
-  <th class="tableblock halign-left valign-top" id="table4_th_description" scope="col">
+  <th class="tableblock halign-left valign-top" scope="col">
 Description
   </th>
 </tr>
 </thead>
 <tbody>
 <tr>
-  <td class="tableblock halign-left valign-top" headers="table4_th_name">
+  <td class="tableblock halign-left valign-top">
 <p class="tableblock">Firefox</p>
   </td>
-  <td class="tableblock halign-left valign-top" headers="table4_th_category">
+  <td class="tableblock halign-left valign-top">
 <p class="tableblock">Browser</p>
   </td>
-  <td class="tableblock halign-left valign-top" headers="table4_th_description">
+  <td class="tableblock halign-left valign-top">
 <p class="tableblock">Mozilla Firefox is an open-source web browser.
 It&#8217;s designed for standards compliance,
 performance, portability.</p>
   </td>
 </tr>
 <tr>
-  <td class="tableblock halign-left valign-top" headers="table4_th_name">
+  <td class="tableblock halign-left valign-top">
 <p class="tableblock">Arquillian</p>
   </td>
-  <td class="tableblock halign-left valign-top" headers="table4_th_category">
+  <td class="tableblock halign-left valign-top">
 <p class="tableblock">Testing</p>
   </td>
-  <td class="tableblock halign-left valign-top" headers="table4_th_description">
+  <td class="tableblock halign-left valign-top">
 <p class="tableblock">An innovative and highly extensible testing platform.
 Empowers developers to easily create real, automated tests.</p>
   </td>
@@ -1479,37 +1471,37 @@ Empowers developers to easily create real, automated tests.</p>
 </colgroup>
 <thead>
 <tr>
-  <th class="tableblock halign-left valign-top" id="table6_th_artist" scope="col">
+  <th class="tableblock halign-left valign-top" scope="col">
 Artist
   </th>
-  <th class="tableblock halign-left valign-top" id="table6_th_track" scope="col">
+  <th class="tableblock halign-left valign-top" scope="col">
 Track
   </th>
-  <th class="tableblock halign-left valign-top" id="table6_th_genre" scope="col">
+  <th class="tableblock halign-left valign-top" scope="col">
 Genre
   </th>
 </tr>
 </thead>
 <tbody>
 <tr>
-  <td class="tableblock halign-left valign-top" headers="table6_th_artist">
+  <td class="tableblock halign-left valign-top">
 <p class="tableblock">Baauer</p>
   </td>
-  <td class="tableblock halign-left valign-top" headers="table6_th_track">
+  <td class="tableblock halign-left valign-top">
 <p class="tableblock">Harlem Shake</p>
   </td>
-  <td class="tableblock halign-left valign-top" headers="table6_th_genre">
+  <td class="tableblock halign-left valign-top">
 <p class="tableblock">Hip Hop</p>
   </td>
 </tr>
 <tr>
-  <td class="tableblock halign-left valign-top" headers="table6_th_artist">
+  <td class="tableblock halign-left valign-top">
 <p class="tableblock">The Lumineers</p>
   </td>
-  <td class="tableblock halign-left valign-top" headers="table6_th_track">
+  <td class="tableblock halign-left valign-top">
 <p class="tableblock">Ho Hey</p>
   </td>
-  <td class="tableblock halign-left valign-top" headers="table6_th_genre">
+  <td class="tableblock halign-left valign-top">
 <p class="tableblock">Folk Rock</p>
   </td>
 </tr>
@@ -1533,26 +1525,26 @@ Genre
 </colgroup>
 <thead>
 <tr>
-  <th class="tableblock halign-left valign-top" id="table7_th_artist" scope="col">
+  <th class="tableblock halign-left valign-top" scope="col">
 Artist
   </th>
-  <th class="tableblock halign-left valign-top" id="table7_th_track" scope="col">
+  <th class="tableblock halign-left valign-top" scope="col">
 Track
   </th>
-  <th class="tableblock halign-left valign-top" id="table7_th_genre" scope="col">
+  <th class="tableblock halign-left valign-top" scope="col">
 Genre
   </th>
 </tr>
 </thead>
 <tbody>
 <tr>
-  <td class="tableblock halign-left valign-top" headers="table7_th_artist">
+  <td class="tableblock halign-left valign-top">
 <p class="tableblock">Baauer</p>
   </td>
-  <td class="tableblock halign-left valign-top" headers="table7_th_track">
+  <td class="tableblock halign-left valign-top">
 <p class="tableblock">Harlem Shake</p>
   </td>
-  <td class="tableblock halign-left valign-top" headers="table7_th_genre">
+  <td class="tableblock halign-left valign-top">
 <p class="tableblock">Hip Hop</p>
   </td>
 </tr>
@@ -1576,26 +1568,26 @@ Genre
 </colgroup>
 <thead>
 <tr>
-  <th class="tableblock halign-left valign-top" id="table8_th_artist" scope="col">
+  <th class="tableblock halign-left valign-top" scope="col">
 Artist
   </th>
-  <th class="tableblock halign-left valign-top" id="table8_th_track" scope="col">
+  <th class="tableblock halign-left valign-top" scope="col">
 Track
   </th>
-  <th class="tableblock halign-left valign-top" id="table8_th_genre" scope="col">
+  <th class="tableblock halign-left valign-top" scope="col">
 Genre
   </th>
 </tr>
 </thead>
 <tbody>
 <tr>
-  <td class="tableblock halign-left valign-top" headers="table8_th_artist">
+  <td class="tableblock halign-left valign-top">
 <p class="tableblock">Robyn</p>
   </td>
-  <td class="tableblock halign-left valign-top" headers="table8_th_track">
+  <td class="tableblock halign-left valign-top">
 <p class="tableblock">Indestructable</p>
   </td>
-  <td class="tableblock halign-left valign-top" headers="table8_th_genre">
+  <td class="tableblock halign-left valign-top">
 <p class="tableblock">Dance</p>
   </td>
 </tr>
@@ -1688,44 +1680,44 @@ You <strong>must</strong> set the <code>experimental</code> attribute in the doc
 </colgroup>
 <thead>
 <tr>
-  <th class="tableblock halign-left valign-top" id="table10_th_shortcut" scope="col">
+  <th class="tableblock halign-left valign-top" scope="col">
 Shortcut
   </th>
-  <th class="tableblock halign-left valign-top" id="table10_th_purpose" scope="col">
+  <th class="tableblock halign-left valign-top" scope="col">
 Purpose
   </th>
 </tr>
 </thead>
 <tbody>
 <tr>
-  <td class="tableblock halign-left valign-top" headers="table10_th_shortcut">
+  <td class="tableblock halign-left valign-top">
 <p class="tableblock"><kbd>F11</kbd></p>
   </td>
-  <td class="tableblock halign-left valign-top" headers="table10_th_purpose">
+  <td class="tableblock halign-left valign-top">
 <p class="tableblock">Toggle fullscreen</p>
   </td>
 </tr>
 <tr>
-  <td class="tableblock halign-left valign-top" headers="table10_th_shortcut">
+  <td class="tableblock halign-left valign-top">
 <p class="tableblock"><kbd class="keyseq"><kbd>Ctrl</kbd>+<kbd>T</kbd></kbd></p>
   </td>
-  <td class="tableblock halign-left valign-top" headers="table10_th_purpose">
+  <td class="tableblock halign-left valign-top">
 <p class="tableblock">Open a new tab</p>
   </td>
 </tr>
 <tr>
-  <td class="tableblock halign-left valign-top" headers="table10_th_shortcut">
+  <td class="tableblock halign-left valign-top">
 <p class="tableblock"><kbd class="keyseq"><kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>N</kbd></kbd></p>
   </td>
-  <td class="tableblock halign-left valign-top" headers="table10_th_purpose">
+  <td class="tableblock halign-left valign-top">
 <p class="tableblock">New incognito window</p>
   </td>
 </tr>
 <tr>
-  <td class="tableblock halign-left valign-top" headers="table10_th_shortcut">
+  <td class="tableblock halign-left valign-top">
 <p class="tableblock"><kbd class="keyseq"><kbd>Ctrl</kbd>+<kbd>+</kbd></kbd></p>
   </td>
-  <td class="tableblock halign-left valign-top" headers="table10_th_purpose">
+  <td class="tableblock halign-left valign-top">
 <p class="tableblock">Increase zoom</p>
   </td>
 </tr>
@@ -1828,225 +1820,225 @@ To make an attribute value that is passed to the API or CLI have a lower precede
 </colgroup>
 <thead>
 <tr>
-  <th class="tableblock halign-center valign-top" id="table12_th_attribute_reference" scope="col">
+  <th class="tableblock halign-center valign-top" scope="col">
 Attribute reference
   </th>
-  <th class="tableblock halign-center valign-top" id="table12_th_replacement" scope="col">
+  <th class="tableblock halign-center valign-top" scope="col">
 Replacement
   </th>
-  <th class="tableblock halign-center valign-top" id="table12_th_rendered" scope="col">
+  <th class="tableblock halign-center valign-top" scope="col">
 Rendered
   </th>
 </tr>
 </thead>
 <tbody>
 <tr>
-  <td class="tableblock halign-center valign-top" headers="table12_th_attribute_reference">
+  <td class="tableblock halign-center valign-top">
 <div class="literal">
 <pre>\{lt}</pre>
 </div>
   </td>
-  <td class="tableblock halign-center valign-top" headers="table12_th_replacement">
+  <td class="tableblock halign-center valign-top">
 <div class="literal">
 <pre>&lt;</pre>
 </div>
   </td>
-  <td class="tableblock halign-center valign-top" headers="table12_th_rendered">
+  <td class="tableblock halign-center valign-top">
 <p class="tableblock">&lt;</p>
   </td>
 </tr>
 <tr>
-  <td class="tableblock halign-center valign-top" headers="table12_th_attribute_reference">
+  <td class="tableblock halign-center valign-top">
 <div class="literal">
 <pre>\{gt}</pre>
 </div>
   </td>
-  <td class="tableblock halign-center valign-top" headers="table12_th_replacement">
+  <td class="tableblock halign-center valign-top">
 <div class="literal">
 <pre>&gt;</pre>
 </div>
   </td>
-  <td class="tableblock halign-center valign-top" headers="table12_th_rendered">
+  <td class="tableblock halign-center valign-top">
 <p class="tableblock">&gt;</p>
   </td>
 </tr>
 <tr>
-  <td class="tableblock halign-center valign-top" headers="table12_th_attribute_reference">
+  <td class="tableblock halign-center valign-top">
 <div class="literal">
 <pre>\{amp}</pre>
 </div>
   </td>
-  <td class="tableblock halign-center valign-top" headers="table12_th_replacement">
+  <td class="tableblock halign-center valign-top">
 <div class="literal">
 <pre>&amp;</pre>
 </div>
   </td>
-  <td class="tableblock halign-center valign-top" headers="table12_th_rendered">
+  <td class="tableblock halign-center valign-top">
 <p class="tableblock">&amp;</p>
   </td>
 </tr>
 <tr>
-  <td class="tableblock halign-center valign-top" headers="table12_th_attribute_reference">
+  <td class="tableblock halign-center valign-top">
 <div class="literal">
 <pre>\{startsb}</pre>
 </div>
   </td>
-  <td class="tableblock halign-center valign-top" headers="table12_th_replacement">
+  <td class="tableblock halign-center valign-top">
 <div class="literal">
 <pre>[</pre>
 </div>
   </td>
-  <td class="tableblock halign-center valign-top" headers="table12_th_rendered">
+  <td class="tableblock halign-center valign-top">
 <p class="tableblock">[</p>
   </td>
 </tr>
 <tr>
-  <td class="tableblock halign-center valign-top" headers="table12_th_attribute_reference">
+  <td class="tableblock halign-center valign-top">
 <div class="literal">
 <pre>\{endsb}</pre>
 </div>
   </td>
-  <td class="tableblock halign-center valign-top" headers="table12_th_replacement">
+  <td class="tableblock halign-center valign-top">
 <div class="literal">
 <pre>]</pre>
 </div>
   </td>
-  <td class="tableblock halign-center valign-top" headers="table12_th_rendered">
+  <td class="tableblock halign-center valign-top">
 <p class="tableblock">]</p>
   </td>
 </tr>
 <tr>
-  <td class="tableblock halign-center valign-top" headers="table12_th_attribute_reference">
+  <td class="tableblock halign-center valign-top">
 <div class="literal">
 <pre>\{vbar}</pre>
 </div>
   </td>
-  <td class="tableblock halign-center valign-top" headers="table12_th_replacement">
+  <td class="tableblock halign-center valign-top">
 <div class="literal">
 <pre>|</pre>
 </div>
   </td>
-  <td class="tableblock halign-center valign-top" headers="table12_th_rendered">
+  <td class="tableblock halign-center valign-top">
 <p class="tableblock">|</p>
   </td>
 </tr>
 <tr>
-  <td class="tableblock halign-center valign-top" headers="table12_th_attribute_reference">
+  <td class="tableblock halign-center valign-top">
 <div class="literal">
 <pre>\{caret}</pre>
 </div>
   </td>
-  <td class="tableblock halign-center valign-top" headers="table12_th_replacement">
+  <td class="tableblock halign-center valign-top">
 <div class="literal">
 <pre>^</pre>
 </div>
   </td>
-  <td class="tableblock halign-center valign-top" headers="table12_th_rendered">
+  <td class="tableblock halign-center valign-top">
 <p class="tableblock">^</p>
   </td>
 </tr>
 <tr>
-  <td class="tableblock halign-center valign-top" headers="table12_th_attribute_reference">
+  <td class="tableblock halign-center valign-top">
 <div class="literal">
 <pre>\{asterisk}</pre>
 </div>
   </td>
-  <td class="tableblock halign-center valign-top" headers="table12_th_replacement">
+  <td class="tableblock halign-center valign-top">
 <div class="literal">
 <pre>*</pre>
 </div>
   </td>
-  <td class="tableblock halign-center valign-top" headers="table12_th_rendered">
+  <td class="tableblock halign-center valign-top">
 <p class="tableblock">*</p>
   </td>
 </tr>
 <tr>
-  <td class="tableblock halign-center valign-top" headers="table12_th_attribute_reference">
+  <td class="tableblock halign-center valign-top">
 <div class="literal">
 <pre>\{tilde}</pre>
 </div>
   </td>
-  <td class="tableblock halign-center valign-top" headers="table12_th_replacement">
+  <td class="tableblock halign-center valign-top">
 <div class="literal">
 <pre>~</pre>
 </div>
   </td>
-  <td class="tableblock halign-center valign-top" headers="table12_th_rendered">
+  <td class="tableblock halign-center valign-top">
 <p class="tableblock">~</p>
   </td>
 </tr>
 <tr>
-  <td class="tableblock halign-center valign-top" headers="table12_th_attribute_reference">
+  <td class="tableblock halign-center valign-top">
 <div class="literal">
 <pre>\{apostrophe}</pre>
 </div>
   </td>
-  <td class="tableblock halign-center valign-top" headers="table12_th_replacement">
+  <td class="tableblock halign-center valign-top">
 <div class="literal">
 <pre>'</pre>
 </div>
   </td>
-  <td class="tableblock halign-center valign-top" headers="table12_th_rendered">
+  <td class="tableblock halign-center valign-top">
 <p class="tableblock">'</p>
   </td>
 </tr>
 <tr>
-  <td class="tableblock halign-center valign-top" headers="table12_th_attribute_reference">
+  <td class="tableblock halign-center valign-top">
 <div class="literal">
 <pre>\{backslash}</pre>
 </div>
   </td>
-  <td class="tableblock halign-center valign-top" headers="table12_th_replacement">
+  <td class="tableblock halign-center valign-top">
 <div class="literal">
 <pre>\</pre>
 </div>
   </td>
-  <td class="tableblock halign-center valign-top" headers="table12_th_rendered">
+  <td class="tableblock halign-center valign-top">
 <p class="tableblock">\</p>
   </td>
 </tr>
 <tr>
-  <td class="tableblock halign-center valign-top" headers="table12_th_attribute_reference">
+  <td class="tableblock halign-center valign-top">
 <div class="literal">
 <pre>\{backtick}</pre>
 </div>
   </td>
-  <td class="tableblock halign-center valign-top" headers="table12_th_replacement">
+  <td class="tableblock halign-center valign-top">
 <div class="literal">
 <pre>`</pre>
 </div>
   </td>
-  <td class="tableblock halign-center valign-top" headers="table12_th_rendered">
+  <td class="tableblock halign-center valign-top">
 <p class="tableblock">`</p>
   </td>
 </tr>
 <tr>
-  <td class="tableblock halign-center valign-top" headers="table12_th_attribute_reference">
+  <td class="tableblock halign-center valign-top">
 <div class="literal">
 <pre>\{two-colons}</pre>
 </div>
   </td>
-  <td class="tableblock halign-center valign-top" headers="table12_th_replacement">
+  <td class="tableblock halign-center valign-top">
 <div class="literal">
 <pre>::</pre>
 </div>
   </td>
-  <td class="tableblock halign-center valign-top" headers="table12_th_rendered">
+  <td class="tableblock halign-center valign-top">
 <p class="tableblock">::</p>
   </td>
 </tr>
 <tr>
-  <td class="tableblock halign-center valign-top" headers="table12_th_attribute_reference">
+  <td class="tableblock halign-center valign-top">
 <div class="literal">
 <pre>\{two-semicolons}</pre>
 </div>
   </td>
-  <td class="tableblock halign-center valign-top" headers="table12_th_replacement">
+  <td class="tableblock halign-center valign-top">
 <div class="literal">
 <pre>;;</pre>
 </div>
   </td>
-  <td class="tableblock halign-center valign-top" headers="table12_th_rendered">
+  <td class="tableblock halign-center valign-top">
 <p class="tableblock">;;</p>
   </td>
 </tr>
@@ -2385,13 +2377,8 @@ Also, don&#8217;t forget to join the <a href="http://discuss.asciidoctor.org">As
 <a class="rh-docs-legal-notice__link" href="https://access.redhat.com/docs-legal-notice">Legal Notices for Trademarks</a>
 </div>
 </article>
-</cp-documentation>
-<!-- inject:footer:html -->
-<footer class="rhdocs-footer" id="rhdocs-footer">
-<div class="rhdocs-footer-text" id="rhdocs-footer-text">
-Version 1.0.3<br>
-Last updated 2022-01-19 14:09:16 -0600
 </div>
-</footer>
+<!-- inject:footer:html -->
 <!-- endinject -->
+</body>
 </html>

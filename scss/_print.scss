@@ -1,0 +1,12 @@
+@media print {
+  // Force wrap on all pre/code elements
+  pre,
+  code[class*='language-'],
+  pre[class*='language-'],
+  .field code,
+  .field pre {
+    word-wrap: break-word !important;
+    word-break: break-word !important;
+    overflow-wrap: break-word !important;
+  }
+}

@@ -1,0 +1,6 @@
+# Example content
+examples/*
+index.html
+
+# Other stuff
+.tugboat/*
