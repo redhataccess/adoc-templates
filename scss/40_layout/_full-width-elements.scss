@@ -1,44 +1,51 @@
 // Small mixin to avoid having to write duplicate styles for each declaration block
 @mixin full-width-style-wrapper($indentation: 0) {
+  $white-space: 80px;
+  $offset: $white-space + $indentation;
 
-  .pfe-documentation--next-to-sidebar &,
-  :host(.pfe-documentation--next-to-sidebar) & {
+  @include breakpoint(papa) {
+    position: relative;
+    left: 50%;
+    // 144px Measured from the white space between the window border
+    width: calc(100vw - #{$offset});
+    max-width: #{1400px - $white-space};
+    transform: translate(-50%);
+  }
+
+  .rhdocs__content--has-superdoc-nav &,
+  .j-superdoc--has-nav & {
+    $offset: $white-space + $indentation + 296px; // 296 = width of sidebar
+
     @include breakpoint(papa) {
       @include breakpoint(papa) {
-        width: calc(70vw - #{144px + $indentation});
-        max-width: (1400px - $indentation);
+        width: calc(100vw - #{$offset});
+        max-width: (1400px - $white-space);
       }
     }
   }
-
-  @include breakpoint(papa) {
-    // 144px Measured from the white space between the window border
-    width: calc(100vw - #{144px + $indentation});
-    max-width: (1400px - $indentation);
-  }
 }
 
-.rhdocs %full-width-elements {
+%full-width-elements {
   @include full-width-style-wrapper;
 }
 
 // Reduce the width of indented full-width elements by their indent
-.rhdocs li %full-width-elements {
+li %full-width-elements {
   @include full-width-style-wrapper(24px);
 }
 
 // Reduce the width of indented full-width elements by their indent
-.rhdocs li li %full-width-elements {
+li li %full-width-elements {
   @include full-width-style-wrapper(48px);
 }
 
 // Reduce the width of indented full-width elements by their indent
-.rhdocs li li li %full-width-elements {
+li li li %full-width-elements {
   @include full-width-style-wrapper(72px);
 }
 
 // Super indented full width elements shouldn't get this style
-.rhdocs li li li li %full-width-elements,
+li li li li %full-width-elements,
 // Full width elements nested in another should not re-assert the full-width style
 .rhdocs[class][class] %full-width-elements %full-width-elements {
   width: auto;

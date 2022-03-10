@@ -1,14 +1,7 @@
 @use 'sass:math';
 
-cp-documentation, // No JS
-.rhdocs,          // No JS
-:host .rhdocs {
-  // Selector for mounted component wrapper
-  padding: 0 24px;
-}
-
 .rhdocs-content {
-  // Desired width + padding converted into em
+  // Desired width + padding converted, into em
   max-width: (math.div((686px + 24px), $font-size--base) * 1em);
   padding-right: 24px;
   padding-bottom: 40px;
@@ -21,6 +14,18 @@ cp-documentation {
   &.PFElement,
   &[pfelement] {
     padding: 0;
+  }
+}
+
+// These styles may not be necessary when we have the web component
+rh-table {
+  display: block;
+
+  // Center the table without effecting table layout (which being a flex-item seems to do)
+  table {
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
   }
 }
 
@@ -76,48 +81,13 @@ cp-documentation {
       }
     }
   }
+}
 
-  // @note these styles are for Pantheon 1.0
-  .has-toc.toc-left & {
-    @include breakpoint(lima) {
-      display: grid;
-      grid-template-areas:
-        'toc header'
-        'toc main'
-        'toc footer';
-      grid-template-rows: auto;
-      grid-template-columns: 14rem auto;
-      grid-column-gap: 2rem;
-      align-items: start;
-      padding: 0;
-
-      .rhdocs-header {
-        grid-area: header;
-        max-width: 65em;
-        padding: 2rem 2rem 0 0;
-      }
-
-      .rhdocs-content {
-        grid-area: main;
-        max-width: 65em;
-        padding: 0 2rem 0 0;
-      }
-
-      .rhdocs-footer {
-        grid-area: footer;
-        max-width: 65em;
-        padding: 0 0 2rem;
-      }
-
-      .rhdocs-toc {
-        grid-area: toc;
-        margin: 0;
-      }
-    }
-
-    @include breakpoint(papa) {
-      grid-template-columns: 20rem auto;
-    }
+.rhdocs__header__primary-wrapper {
+  h1 {
+    font-size: 36px;
+    line-height: 1.333;
+    font-family: $font-family--title;
   }
 }
 
@@ -125,193 +95,6 @@ cp-documentation {
   margin: 16px 0 48px;
   padding: 0;
   list-style: none;
-}
-
-.rhdocs__header {
-  margin: 0 0 24px;
-  padding: 2.5rem 24px 1px; // Bottom margin is so margin is kept inside this wrapper
-  font-size: 14px;
-  line-height: #{math.div(17px, 14px)};
-  // Design calls for box-shadow, but that causes issues
-  // Using gradient instead
-  background: linear-gradient(to bottom, transparent, rgb(0 0 0 / 8%));
-  background-repeat: no-repeat;
-  background-position: center bottom;
-  background-size: 100% 3px;
-
-  :host & {
-    margin-right: -24px;
-    margin-left: -24px;
-  }
-
-  :host(.cp-documentation--has-external-header) &,
-  .rhdocs__header ~ .rh-docs__content-wrapper & {
-    display: none;
-  }
-
-  h1 {
-    margin: 0 0 4px;
-    padding: 0;
-    font-size: 31.5px;
-    line-height: math.div(34px, 28px);
-    color: #151515;
-    font-weight: 500;
-  }
-
-  &[class] code {
-    margin: 0;
-    padding: 0;
-    border: 0;
-    font: inherit;
-    color: inherit;
-    background: transparent;
-  }
-
-  @include breakpoint(papa) {
-    display: flex;
-    justify-content: space-between;
-  }
-}
-
-.rhdocs__header--assembly {
-  position: relative;
-  z-index: 0;
-  &:before {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    z-index: -1;
-    width: 100%;
-    height: 100%;
-    background: #f0f0f0;
-    transform: translateX(-50%);
-  }
-}
-
-.rhdocs__header__primary-wrapper {
-  max-width: 950px;
-  margin-bottom: 24px;
-
-  @include breakpoint(papa) {
-    flex-grow: 1;
-  }
-}
-
-.rhdocs__header__secondary-wrapper[class] {
-  margin: 0 0 24px;
-  padding: 0;
-  list-style: none;
-
-  li {
-    margin: 0;
-    margin-bottom: #{math.div(4px, 14px) * 1em};
-    padding: 0;
-    font-size: inherit;
-    line-height: inherit;
-
-    @include breakpoint(papa) {
-      margin-bottom: #{math.div(8px, 14px) * 1em};
-    }
-  }
-
-  @include breakpoint(papa) {
-    min-width: 150px;
-    margin-left: 2em;
-  }
-}
-
-.rhdocs-content-type {
-  margin-bottom: 8px;
-  color: #6a6e73;
-}
-
-.rhdocs-products {
-  font-size: 16px;
-  line-height: #{math.div(19px, 16px)}; // Getting unitless line-height
-
-  &[class] {
-    margin: 0 0 16px;
-    padding: 0;
-    list-style: none;
-  }
-
-  li {
-    display: inline-block;
-    margin: 0;
-    padding: 0;
-
-    + li {
-      // @todo Create JS behavior from mockups: https://marvelapp.com/prototype/1iiaai96/screen/64745307
-      &:before {
-        content: ', ';
-        display: inline-block;
-        padding-right: 0.25em;
-      }
-    }
-  }
-
-  @include breakpoint(papa) {
-    margin-bottom: 0;
-  }
-}
-
-// .rhdocs-product-name {}
-
-// .rhdocs-product-version {}
-
-.rhdocs-author-details {
-  display: inline-block;
-  margin: 0;
-  color: $color--text--subtle;
-
-  dt,
-  dd {
-    display: inline-block;
-    margin: 0;
-    padding: 0;
-  }
-
-  dd {
-    &::before {
-      content: '(';
-      display: inline-block;
-    }
-
-    &::after {
-      content: ')';
-      display: inline-block;
-    }
-  }
-}
-
-.rhdocs-revisions {
-  display: inline-block;
-  margin: 0;
-  padding: 0;
-  list-style: none;
-  color: $color--text--subtle;
-
-  li {
-    display: inline-block;
-
-    &:not(:last-child)::after {
-      content: ', ';
-      display: inline-block;
-    }
-  }
-
-  .rhdocs-author-details + & {
-    &::before {
-      content: '—';
-      display: inline-block;
-      margin: 0 0.125rem;
-    }
-  }
-}
-
-.rhdocs-revnumber {
-  text-transform: capitalize;
 }
 
 // TOC

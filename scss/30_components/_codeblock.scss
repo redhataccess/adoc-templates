@@ -33,6 +33,7 @@
 .codeblock__inner-wrapper {
   display: flex;
   overflow: auto;
+  align-items: flex-start;
 
   &:after {
     content: '';
