@@ -3190,6 +3190,7 @@ Prism.languages.py = Prism.languages.python;
 })();
 
 'use strict';
+/* global Prism */
 
 /**
  * Sequesters docs content area into shadow root for style scoping
@@ -3231,7 +3232,7 @@ Prism.languages.py = Prism.languages.python;
     const codeBlockClasses = $codeBlock.getAttribute('class');
     const codeBlockClassesArray = codeBlockClasses
       ? codeBlockClasses.split(' ')
-      : undefined;
+      : false;
     // Adding a hidden copy of the un-upgraded code content to the DOM, may be unecessary
     const $plainCodeBlock = document.createElement('pre');
 

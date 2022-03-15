@@ -17,9 +17,6 @@
     // "Backbone": true,
     // "Modernizr": true,
     // "CKEDITOR": true,
-    "ga": false,
-    "optimizedResize": true,
-    "optimizedScroll": true
   },
   "rules": {
     "block-scoped-var": 2,

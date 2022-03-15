@@ -31,16 +31,14 @@
 // Creates padding on the right for copy button
 // Necessary because of FF bug: https://codepen.io/wesruv/full/dyzxMzW
 .codeblock__inner-wrapper {
-  display: flex;
-  overflow: auto;
-  align-items: flex-start;
+  display: grid;
+  overflow-x: auto;
+  grid-template-columns: 1fr 70px;
 
   &:after {
     content: '';
-    order: 99;
     display: block;
-    flex-basis: 70px;
-    flex-shrink: 0;
+    width: 70px;
     min-height: 10px;
   }
 }

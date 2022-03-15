@@ -925,16 +925,14 @@ th {
 }
 
 .codeblock__inner-wrapper {
-  display: flex;
-  overflow: auto;
-  align-items: flex-start;
+  display: grid;
+  overflow-x: auto;
+  grid-template-columns: 1fr 4.375rem;
 }
 .codeblock__inner-wrapper:after {
   content: "";
-  order: 99;
   display: block;
-  flex-basis: 4.375rem;
-  flex-shrink: 0;
+  width: 4.375rem;
   min-height: 0.625rem;
 }
 
@@ -1343,6 +1341,9 @@ th {
   max-width: 39.4444444444em;
   padding-right: 1.5rem;
   padding-bottom: 2.5rem;
+}
+.local-render .rhdocs-content {
+  margin: 0 auto;
 }
 
 cp-documentation {
@@ -1873,8 +1874,7 @@ pre[class*=language-] {
 }
 
 @media (min-width: 1100px) {
-  .admonitionblock,
-.table-wrapper,
+  .table-wrapper,
 table.wide,
 pre,
 .related-topic-content__wrapper,
@@ -1890,15 +1890,13 @@ rh-table {
   }
 }
 @media (min-width: 1100px) and (min-width: 1100px) {
-  .rhdocs__content--has-superdoc-nav .admonitionblock,
-.rhdocs__content--has-superdoc-nav .table-wrapper,
+  .rhdocs__content--has-superdoc-nav .table-wrapper,
 .rhdocs__content--has-superdoc-nav table.wide,
 .rhdocs__content--has-superdoc-nav pre,
 .rhdocs__content--has-superdoc-nav .related-topic-content__wrapper,
 .rhdocs__content--has-superdoc-nav .codeblock__wrapper,
 .rhdocs__content--has-superdoc-nav ._additional-resources,
-.rhdocs__content--has-superdoc-nav rh-table, .j-superdoc--has-nav .admonitionblock,
-.j-superdoc--has-nav .table-wrapper,
+.rhdocs__content--has-superdoc-nav rh-table, .j-superdoc--has-nav .table-wrapper,
 .j-superdoc--has-nav table.wide,
 .j-superdoc--has-nav pre,
 .j-superdoc--has-nav .related-topic-content__wrapper,
@@ -1911,8 +1909,7 @@ rh-table {
 }
 
 @media (min-width: 1100px) {
-  li .admonitionblock,
-li .table-wrapper,
+  li .table-wrapper,
 li table.wide,
 li pre,
 li .related-topic-content__wrapper,
@@ -1928,15 +1925,13 @@ li rh-table {
   }
 }
 @media (min-width: 1100px) and (min-width: 1100px) {
-  .rhdocs__content--has-superdoc-nav li .admonitionblock,
-.rhdocs__content--has-superdoc-nav li .table-wrapper,
+  .rhdocs__content--has-superdoc-nav li .table-wrapper,
 .rhdocs__content--has-superdoc-nav li table.wide,
 .rhdocs__content--has-superdoc-nav li pre,
 .rhdocs__content--has-superdoc-nav li .related-topic-content__wrapper,
 .rhdocs__content--has-superdoc-nav li .codeblock__wrapper,
 .rhdocs__content--has-superdoc-nav li ._additional-resources,
-.rhdocs__content--has-superdoc-nav li rh-table, .j-superdoc--has-nav li .admonitionblock,
-.j-superdoc--has-nav li .table-wrapper,
+.rhdocs__content--has-superdoc-nav li rh-table, .j-superdoc--has-nav li .table-wrapper,
 .j-superdoc--has-nav li table.wide,
 .j-superdoc--has-nav li pre,
 .j-superdoc--has-nav li .related-topic-content__wrapper,
@@ -1949,8 +1944,7 @@ li rh-table {
 }
 
 @media (min-width: 1100px) {
-  li li .admonitionblock,
-li li .table-wrapper,
+  li li .table-wrapper,
 li li table.wide,
 li li pre,
 li li .related-topic-content__wrapper,
@@ -1966,15 +1960,13 @@ li li rh-table {
   }
 }
 @media (min-width: 1100px) and (min-width: 1100px) {
-  .rhdocs__content--has-superdoc-nav li li .admonitionblock,
-.rhdocs__content--has-superdoc-nav li li .table-wrapper,
+  .rhdocs__content--has-superdoc-nav li li .table-wrapper,
 .rhdocs__content--has-superdoc-nav li li table.wide,
 .rhdocs__content--has-superdoc-nav li li pre,
 .rhdocs__content--has-superdoc-nav li li .related-topic-content__wrapper,
 .rhdocs__content--has-superdoc-nav li li .codeblock__wrapper,
 .rhdocs__content--has-superdoc-nav li li ._additional-resources,
-.rhdocs__content--has-superdoc-nav li li rh-table, .j-superdoc--has-nav li li .admonitionblock,
-.j-superdoc--has-nav li li .table-wrapper,
+.rhdocs__content--has-superdoc-nav li li rh-table, .j-superdoc--has-nav li li .table-wrapper,
 .j-superdoc--has-nav li li table.wide,
 .j-superdoc--has-nav li li pre,
 .j-superdoc--has-nav li li .related-topic-content__wrapper,
@@ -1987,8 +1979,7 @@ li li rh-table {
 }
 
 @media (min-width: 1100px) {
-  li li li .admonitionblock,
-li li li .table-wrapper,
+  li li li .table-wrapper,
 li li li table.wide,
 li li li pre,
 li li li .related-topic-content__wrapper,
@@ -2004,15 +1995,13 @@ li li li rh-table {
   }
 }
 @media (min-width: 1100px) and (min-width: 1100px) {
-  .rhdocs__content--has-superdoc-nav li li li .admonitionblock,
-.rhdocs__content--has-superdoc-nav li li li .table-wrapper,
+  .rhdocs__content--has-superdoc-nav li li li .table-wrapper,
 .rhdocs__content--has-superdoc-nav li li li table.wide,
 .rhdocs__content--has-superdoc-nav li li li pre,
 .rhdocs__content--has-superdoc-nav li li li .related-topic-content__wrapper,
 .rhdocs__content--has-superdoc-nav li li li .codeblock__wrapper,
 .rhdocs__content--has-superdoc-nav li li li ._additional-resources,
-.rhdocs__content--has-superdoc-nav li li li rh-table, .j-superdoc--has-nav li li li .admonitionblock,
-.j-superdoc--has-nav li li li .table-wrapper,
+.rhdocs__content--has-superdoc-nav li li li rh-table, .j-superdoc--has-nav li li li .table-wrapper,
 .j-superdoc--has-nav li li li table.wide,
 .j-superdoc--has-nav li li li pre,
 .j-superdoc--has-nav li li li .related-topic-content__wrapper,
@@ -2024,7 +2013,6 @@ li li li rh-table {
   }
 }
 
-li li li li .admonitionblock,
 li li li li .table-wrapper,
 li li li li table.wide,
 li li li li pre,
@@ -2032,15 +2020,6 @@ li li li li .related-topic-content__wrapper,
 li li li li .codeblock__wrapper,
 li li li li ._additional-resources,
 li li li li rh-table,
-.rhdocs[class][class] .admonitionblock .admonitionblock,
-.rhdocs[class][class] .table-wrapper .admonitionblock,
-.rhdocs[class][class] table.wide .admonitionblock,
-.rhdocs[class][class] pre .admonitionblock,
-.rhdocs[class][class] .related-topic-content__wrapper .admonitionblock,
-.rhdocs[class][class] .codeblock__wrapper .admonitionblock,
-.rhdocs[class][class] ._additional-resources .admonitionblock,
-.rhdocs[class][class] rh-table .admonitionblock,
-.rhdocs[class][class] .admonitionblock .table-wrapper,
 .rhdocs[class][class] .table-wrapper .table-wrapper,
 .rhdocs[class][class] table.wide .table-wrapper,
 .rhdocs[class][class] pre .table-wrapper,
@@ -2048,7 +2027,6 @@ li li li li rh-table,
 .rhdocs[class][class] .codeblock__wrapper .table-wrapper,
 .rhdocs[class][class] ._additional-resources .table-wrapper,
 .rhdocs[class][class] rh-table .table-wrapper,
-.rhdocs[class][class] .admonitionblock table.wide,
 .rhdocs[class][class] .table-wrapper table.wide,
 .rhdocs[class][class] table.wide table.wide,
 .rhdocs[class][class] pre table.wide,
@@ -2056,7 +2034,6 @@ li li li li rh-table,
 .rhdocs[class][class] .codeblock__wrapper table.wide,
 .rhdocs[class][class] ._additional-resources table.wide,
 .rhdocs[class][class] rh-table table.wide,
-.rhdocs[class][class] .admonitionblock pre,
 .rhdocs[class][class] .table-wrapper pre,
 .rhdocs[class][class] table.wide pre,
 .rhdocs[class][class] pre pre,
@@ -2064,7 +2041,6 @@ li li li li rh-table,
 .rhdocs[class][class] .codeblock__wrapper pre,
 .rhdocs[class][class] ._additional-resources pre,
 .rhdocs[class][class] rh-table pre,
-.rhdocs[class][class] .admonitionblock .related-topic-content__wrapper,
 .rhdocs[class][class] .table-wrapper .related-topic-content__wrapper,
 .rhdocs[class][class] table.wide .related-topic-content__wrapper,
 .rhdocs[class][class] pre .related-topic-content__wrapper,
@@ -2072,7 +2048,6 @@ li li li li rh-table,
 .rhdocs[class][class] .codeblock__wrapper .related-topic-content__wrapper,
 .rhdocs[class][class] ._additional-resources .related-topic-content__wrapper,
 .rhdocs[class][class] rh-table .related-topic-content__wrapper,
-.rhdocs[class][class] .admonitionblock .codeblock__wrapper,
 .rhdocs[class][class] .table-wrapper .codeblock__wrapper,
 .rhdocs[class][class] table.wide .codeblock__wrapper,
 .rhdocs[class][class] pre .codeblock__wrapper,
@@ -2080,7 +2055,6 @@ li li li li rh-table,
 .rhdocs[class][class] .codeblock__wrapper .codeblock__wrapper,
 .rhdocs[class][class] ._additional-resources .codeblock__wrapper,
 .rhdocs[class][class] rh-table .codeblock__wrapper,
-.rhdocs[class][class] .admonitionblock ._additional-resources,
 .rhdocs[class][class] .table-wrapper ._additional-resources,
 .rhdocs[class][class] table.wide ._additional-resources,
 .rhdocs[class][class] pre ._additional-resources,
@@ -2088,7 +2062,6 @@ li li li li rh-table,
 .rhdocs[class][class] .codeblock__wrapper ._additional-resources,
 .rhdocs[class][class] ._additional-resources ._additional-resources,
 .rhdocs[class][class] rh-table ._additional-resources,
-.rhdocs[class][class] .admonitionblock rh-table,
 .rhdocs[class][class] .table-wrapper rh-table,
 .rhdocs[class][class] table.wide rh-table,
 .rhdocs[class][class] pre rh-table,
