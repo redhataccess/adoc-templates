@@ -41,7 +41,7 @@
 
 %html{:lang=>(attr :lang, 'en')}
   %head
-    / inject:head:html
+    / SPA_HEAD
     %meta(charset="#{attr :encoding, 'UTF-8'}")
     /[if IE]
       %meta(http-equiv="X-UA-Compatible" content="IE=edge")
@@ -63,8 +63,6 @@
       %script(src="#{assetsPrefix}/@redhataccess/adoc-templates/dist/rhdocs-content.js")
       %script(src="//access.redhat.com/webassets/avalon/j/public_modules/node_modules/@patternfly/pfe-clipboard/dist/pfe-clipboard.min.js" type="module")
 
-    / endinject
-
     %link(rel="stylesheet" href=rhDocsPath)
 
     - if renderedBy == 'juno'
@@ -73,8 +71,8 @@
 
 
   %body{:id => @id, :class=>[doctype, ((attr? :toc) && (attr? 'toc-placement', 'auto') ? "has-toc toc-#{attr 'toc-position', 'left'}" : nil)]}
-    / inject:header:html
-    / endinject
+    / SPA_HEADER
+
     %div#docs-wrapper{:class => ['rhdocs', "#{renderedBy}-render"]}
       - unless noheader
         -# Set some simple vars so our if statements aren't gross
@@ -133,7 +131,7 @@
                     %a(href="#_footnoteref_#{fn.index}"){:title => 'Back to content', :aria => {:label => 'Back to content'}}='&#8617;'
         %div(class="rh-docs-legal-notice")
           %a(href="https://access.redhat.com/docs-legal-notice" class="rh-docs-legal-notice__link")Legal Notices for Trademarks
-    / inject:footer:html
+    / SPA_FOOTER
     - unless nofooter
       %footer#rhdocs-footer.rhdocs-footer
         #rhdocs-footer-text.rhdocs-footer-text
@@ -145,4 +143,3 @@
             #{attr 'last-update-label'} #{attr :localdatetime}
         - unless (docinfo_content = (docinfo :footer)).empty?
           =docinfo_content
-    / endinject
