@@ -54,19 +54,19 @@
       background-color: #fff; // Assumes the bg color is white...
     }
 
-    @include breakpoint(papa) {
-      column-count: 2;
-      column-gap: 2em;
+    // @include breakpoint(papa) {
+    //   column-count: 2;
+    //   column-gap: 2em;
 
-      @supports (display: grid) {
-        display: grid;
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        column-count: 1;
-        column-gap: 0;
-        // This property isn't misspelled, sasslint doesn't have the latest and greatest CSS Spec
-        gap: 0 2em; // sass-lint:disable-line no-misspelled-properties
-      }
-    }
+    //   @supports (display: grid) {
+    //     display: grid;
+    //     grid-template-columns: repeat(2, minmax(0, 1fr));
+    //     column-count: 1;
+    //     column-gap: 0;
+    //     // This property isn't misspelled, sasslint doesn't have the latest and greatest CSS Spec
+    //     gap: 0 2em; // sass-lint:disable-line no-misspelled-properties
+    //   }
+    // }
   }
 
   li {

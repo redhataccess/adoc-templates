@@ -738,25 +738,6 @@ th {
   height: 0.125rem;
   background-color: #fff;
 }
-@media (min-width: 1100px) {
-  ._additional-resources[class][class] ul {
-    -webkit-column-count: 2;
-            column-count: 2;
-    -webkit-column-gap: 2em;
-            column-gap: 2em;
-  }
-  @supports (display: grid) {
-    ._additional-resources[class][class] ul {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      -webkit-column-count: 1;
-              column-count: 1;
-      -webkit-column-gap: 0;
-              column-gap: 0;
-      gap: 0 2em;
-    }
-  }
-}
 ._additional-resources[class][class] li {
   box-sizing: content-box;
   margin: 0;
@@ -1063,25 +1044,6 @@ th {
   height: 0.125rem;
   background-color: #fff;
 }
-@media (min-width: 1100px) {
-  .included-in-guides[class] ul {
-    -webkit-column-count: 2;
-            column-count: 2;
-    -webkit-column-gap: 2em;
-            column-gap: 2em;
-  }
-  @supports (display: grid) {
-    .included-in-guides[class] ul {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      -webkit-column-count: 1;
-              column-count: 1;
-      -webkit-column-gap: 0;
-              column-gap: 0;
-      gap: 0 2em;
-    }
-  }
-}
 .included-in-guides[class] li {
   box-sizing: content-box;
   margin: 0;
@@ -1337,11 +1299,6 @@ th {
   padding-left: 3.75rem;
 }
 
-.rhdocs-content {
-  max-width: 39.4444444444em;
-  padding-right: 1.5rem;
-  padding-bottom: 2.5rem;
-}
 .local-render .rhdocs-content {
   margin: 0 auto;
 }
@@ -1871,210 +1828,6 @@ pre[class*=language-] {
 }
 .token.variable {
   color: #c9190b;
-}
-
-@media (min-width: 1100px) {
-  .table-wrapper,
-table.wide,
-pre,
-.related-topic-content__wrapper,
-.codeblock__wrapper,
-._additional-resources,
-rh-table {
-    position: relative;
-    left: 50%;
-    width: calc(100vw - 5rem);
-    max-width: 82.5rem;
-    -webkit-transform: translate(-50%);
-            transform: translate(-50%);
-  }
-}
-@media (min-width: 1100px) and (min-width: 1100px) {
-  .rhdocs__content--has-superdoc-nav .table-wrapper,
-.rhdocs__content--has-superdoc-nav table.wide,
-.rhdocs__content--has-superdoc-nav pre,
-.rhdocs__content--has-superdoc-nav .related-topic-content__wrapper,
-.rhdocs__content--has-superdoc-nav .codeblock__wrapper,
-.rhdocs__content--has-superdoc-nav ._additional-resources,
-.rhdocs__content--has-superdoc-nav rh-table, .j-superdoc--has-nav .table-wrapper,
-.j-superdoc--has-nav table.wide,
-.j-superdoc--has-nav pre,
-.j-superdoc--has-nav .related-topic-content__wrapper,
-.j-superdoc--has-nav .codeblock__wrapper,
-.j-superdoc--has-nav ._additional-resources,
-.j-superdoc--has-nav rh-table {
-    width: calc(100vw - 23.5rem);
-    max-width: 82.5rem;
-  }
-}
-
-@media (min-width: 1100px) {
-  li .table-wrapper,
-li table.wide,
-li pre,
-li .related-topic-content__wrapper,
-li .codeblock__wrapper,
-li ._additional-resources,
-li rh-table {
-    position: relative;
-    left: 50%;
-    width: calc(100vw - 6.5rem);
-    max-width: 82.5rem;
-    -webkit-transform: translate(-50%);
-            transform: translate(-50%);
-  }
-}
-@media (min-width: 1100px) and (min-width: 1100px) {
-  .rhdocs__content--has-superdoc-nav li .table-wrapper,
-.rhdocs__content--has-superdoc-nav li table.wide,
-.rhdocs__content--has-superdoc-nav li pre,
-.rhdocs__content--has-superdoc-nav li .related-topic-content__wrapper,
-.rhdocs__content--has-superdoc-nav li .codeblock__wrapper,
-.rhdocs__content--has-superdoc-nav li ._additional-resources,
-.rhdocs__content--has-superdoc-nav li rh-table, .j-superdoc--has-nav li .table-wrapper,
-.j-superdoc--has-nav li table.wide,
-.j-superdoc--has-nav li pre,
-.j-superdoc--has-nav li .related-topic-content__wrapper,
-.j-superdoc--has-nav li .codeblock__wrapper,
-.j-superdoc--has-nav li ._additional-resources,
-.j-superdoc--has-nav li rh-table {
-    width: calc(100vw - 25rem);
-    max-width: 82.5rem;
-  }
-}
-
-@media (min-width: 1100px) {
-  li li .table-wrapper,
-li li table.wide,
-li li pre,
-li li .related-topic-content__wrapper,
-li li .codeblock__wrapper,
-li li ._additional-resources,
-li li rh-table {
-    position: relative;
-    left: 50%;
-    width: calc(100vw - 8rem);
-    max-width: 82.5rem;
-    -webkit-transform: translate(-50%);
-            transform: translate(-50%);
-  }
-}
-@media (min-width: 1100px) and (min-width: 1100px) {
-  .rhdocs__content--has-superdoc-nav li li .table-wrapper,
-.rhdocs__content--has-superdoc-nav li li table.wide,
-.rhdocs__content--has-superdoc-nav li li pre,
-.rhdocs__content--has-superdoc-nav li li .related-topic-content__wrapper,
-.rhdocs__content--has-superdoc-nav li li .codeblock__wrapper,
-.rhdocs__content--has-superdoc-nav li li ._additional-resources,
-.rhdocs__content--has-superdoc-nav li li rh-table, .j-superdoc--has-nav li li .table-wrapper,
-.j-superdoc--has-nav li li table.wide,
-.j-superdoc--has-nav li li pre,
-.j-superdoc--has-nav li li .related-topic-content__wrapper,
-.j-superdoc--has-nav li li .codeblock__wrapper,
-.j-superdoc--has-nav li li ._additional-resources,
-.j-superdoc--has-nav li li rh-table {
-    width: calc(100vw - 26.5rem);
-    max-width: 82.5rem;
-  }
-}
-
-@media (min-width: 1100px) {
-  li li li .table-wrapper,
-li li li table.wide,
-li li li pre,
-li li li .related-topic-content__wrapper,
-li li li .codeblock__wrapper,
-li li li ._additional-resources,
-li li li rh-table {
-    position: relative;
-    left: 50%;
-    width: calc(100vw - 9.5rem);
-    max-width: 82.5rem;
-    -webkit-transform: translate(-50%);
-            transform: translate(-50%);
-  }
-}
-@media (min-width: 1100px) and (min-width: 1100px) {
-  .rhdocs__content--has-superdoc-nav li li li .table-wrapper,
-.rhdocs__content--has-superdoc-nav li li li table.wide,
-.rhdocs__content--has-superdoc-nav li li li pre,
-.rhdocs__content--has-superdoc-nav li li li .related-topic-content__wrapper,
-.rhdocs__content--has-superdoc-nav li li li .codeblock__wrapper,
-.rhdocs__content--has-superdoc-nav li li li ._additional-resources,
-.rhdocs__content--has-superdoc-nav li li li rh-table, .j-superdoc--has-nav li li li .table-wrapper,
-.j-superdoc--has-nav li li li table.wide,
-.j-superdoc--has-nav li li li pre,
-.j-superdoc--has-nav li li li .related-topic-content__wrapper,
-.j-superdoc--has-nav li li li .codeblock__wrapper,
-.j-superdoc--has-nav li li li ._additional-resources,
-.j-superdoc--has-nav li li li rh-table {
-    width: calc(100vw - 28rem);
-    max-width: 82.5rem;
-  }
-}
-
-li li li li .table-wrapper,
-li li li li table.wide,
-li li li li pre,
-li li li li .related-topic-content__wrapper,
-li li li li .codeblock__wrapper,
-li li li li ._additional-resources,
-li li li li rh-table,
-.rhdocs[class][class] .table-wrapper .table-wrapper,
-.rhdocs[class][class] table.wide .table-wrapper,
-.rhdocs[class][class] pre .table-wrapper,
-.rhdocs[class][class] .related-topic-content__wrapper .table-wrapper,
-.rhdocs[class][class] .codeblock__wrapper .table-wrapper,
-.rhdocs[class][class] ._additional-resources .table-wrapper,
-.rhdocs[class][class] rh-table .table-wrapper,
-.rhdocs[class][class] .table-wrapper table.wide,
-.rhdocs[class][class] table.wide table.wide,
-.rhdocs[class][class] pre table.wide,
-.rhdocs[class][class] .related-topic-content__wrapper table.wide,
-.rhdocs[class][class] .codeblock__wrapper table.wide,
-.rhdocs[class][class] ._additional-resources table.wide,
-.rhdocs[class][class] rh-table table.wide,
-.rhdocs[class][class] .table-wrapper pre,
-.rhdocs[class][class] table.wide pre,
-.rhdocs[class][class] pre pre,
-.rhdocs[class][class] .related-topic-content__wrapper pre,
-.rhdocs[class][class] .codeblock__wrapper pre,
-.rhdocs[class][class] ._additional-resources pre,
-.rhdocs[class][class] rh-table pre,
-.rhdocs[class][class] .table-wrapper .related-topic-content__wrapper,
-.rhdocs[class][class] table.wide .related-topic-content__wrapper,
-.rhdocs[class][class] pre .related-topic-content__wrapper,
-.rhdocs[class][class] .related-topic-content__wrapper .related-topic-content__wrapper,
-.rhdocs[class][class] .codeblock__wrapper .related-topic-content__wrapper,
-.rhdocs[class][class] ._additional-resources .related-topic-content__wrapper,
-.rhdocs[class][class] rh-table .related-topic-content__wrapper,
-.rhdocs[class][class] .table-wrapper .codeblock__wrapper,
-.rhdocs[class][class] table.wide .codeblock__wrapper,
-.rhdocs[class][class] pre .codeblock__wrapper,
-.rhdocs[class][class] .related-topic-content__wrapper .codeblock__wrapper,
-.rhdocs[class][class] .codeblock__wrapper .codeblock__wrapper,
-.rhdocs[class][class] ._additional-resources .codeblock__wrapper,
-.rhdocs[class][class] rh-table .codeblock__wrapper,
-.rhdocs[class][class] .table-wrapper ._additional-resources,
-.rhdocs[class][class] table.wide ._additional-resources,
-.rhdocs[class][class] pre ._additional-resources,
-.rhdocs[class][class] .related-topic-content__wrapper ._additional-resources,
-.rhdocs[class][class] .codeblock__wrapper ._additional-resources,
-.rhdocs[class][class] ._additional-resources ._additional-resources,
-.rhdocs[class][class] rh-table ._additional-resources,
-.rhdocs[class][class] .table-wrapper rh-table,
-.rhdocs[class][class] table.wide rh-table,
-.rhdocs[class][class] pre rh-table,
-.rhdocs[class][class] .related-topic-content__wrapper rh-table,
-.rhdocs[class][class] .codeblock__wrapper rh-table,
-.rhdocs[class][class] ._additional-resources rh-table,
-.rhdocs[class][class] rh-table rh-table {
-  width: auto;
-  max-width: 100%;
-}
-
-.codeblock__wrapper pre {
-  width: auto;
 }
 
 .masthead {

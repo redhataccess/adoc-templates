@@ -1,68 +1,70 @@
-// Small mixin to avoid having to write duplicate styles for each declaration block
-@mixin full-width-style-wrapper($indentation: 0) {
-  $white-space: 80px;
-  $offset: $white-space + $indentation;
+// Removing per Adela, leaving in until we're sure it's gone for good.
 
-  @include breakpoint(papa) {
-    position: relative;
-    left: 50%;
-    // 144px Measured from the white space between the window border
-    width: calc(100vw - #{$offset});
-    max-width: #{1400px - $white-space};
-    transform: translate(-50%);
-  }
+// // Small mixin to avoid having to write duplicate styles for each declaration block
+// @mixin full-width-style-wrapper($indentation: 0) {
+//   $white-space: 80px;
+//   $offset: $white-space + $indentation;
 
-  .rhdocs__content--has-superdoc-nav &,
-  .j-superdoc--has-nav & {
-    $offset: $white-space + $indentation + 296px; // 296 = width of sidebar
+//   @include breakpoint(papa) {
+//     position: relative;
+//     left: 50%;
+//     // 144px Measured from the white space between the window border
+//     width: calc(100vw - #{$offset});
+//     max-width: #{1400px - $white-space};
+//     transform: translate(-50%);
+//   }
 
-    @include breakpoint(papa) {
-      @include breakpoint(papa) {
-        width: calc(100vw - #{$offset});
-        max-width: (1400px - $white-space);
-      }
-    }
-  }
-}
+//   .rhdocs__content--has-superdoc-nav &,
+//   .j-superdoc--has-nav & {
+//     $offset: $white-space + $indentation + 296px; // 296 = width of sidebar
 
-%full-width-elements {
-  @include full-width-style-wrapper;
-}
+//     @include breakpoint(papa) {
+//       @include breakpoint(papa) {
+//         width: calc(100vw - #{$offset});
+//         max-width: (1400px - $white-space);
+//       }
+//     }
+//   }
+// }
 
-// Reduce the width of indented full-width elements by their indent
-li %full-width-elements {
-  @include full-width-style-wrapper(24px);
-}
+// %full-width-elements {
+//   @include full-width-style-wrapper;
+// }
 
-// Reduce the width of indented full-width elements by their indent
-li li %full-width-elements {
-  @include full-width-style-wrapper(48px);
-}
+// // Reduce the width of indented full-width elements by their indent
+// li %full-width-elements {
+//   @include full-width-style-wrapper(24px);
+// }
 
-// Reduce the width of indented full-width elements by their indent
-li li li %full-width-elements {
-  @include full-width-style-wrapper(72px);
-}
+// // Reduce the width of indented full-width elements by their indent
+// li li %full-width-elements {
+//   @include full-width-style-wrapper(48px);
+// }
 
-// Super indented full width elements shouldn't get this style
-li li li li %full-width-elements,
-// Full width elements nested in another should not re-assert the full-width style
-.rhdocs[class][class] %full-width-elements %full-width-elements {
-  width: auto;
-  max-width: 100%;
-}
+// // Reduce the width of indented full-width elements by their indent
+// li li li %full-width-elements {
+//   @include full-width-style-wrapper(72px);
+// }
 
-// .admonitionblock,
-.table-wrapper,
-table.wide,
-pre,
-.related-topic-content__wrapper,
-.codeblock__wrapper,
-._additional-resources,
-rh-table {
-  @extend %full-width-elements;
-}
+// // Super indented full width elements shouldn't get this style
+// li li li li %full-width-elements,
+// // Full width elements nested in another should not re-assert the full-width style
+// .rhdocs[class][class] %full-width-elements %full-width-elements {
+//   width: auto;
+//   max-width: 100%;
+// }
 
-.codeblock__wrapper pre {
-  width: auto;
-}
+// // .admonitionblock,
+// .table-wrapper,
+// table.wide,
+// pre,
+// .related-topic-content__wrapper,
+// .codeblock__wrapper,
+// ._additional-resources,
+// rh-table {
+//   @extend %full-width-elements;
+// }
+
+// .codeblock__wrapper pre {
+//   width: auto;
+// }

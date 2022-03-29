@@ -1,11 +1,6 @@
 @use 'sass:math';
 
 .rhdocs-content {
-  // Desired width + padding converted, into em
-  max-width: (math.div((686px + 24px), $font-size--base) * 1em);
-  padding-right: 24px;
-  padding-bottom: 40px;
-
   .local-render & {
     margin: 0 auto;
   }
