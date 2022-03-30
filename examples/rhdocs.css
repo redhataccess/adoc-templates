@@ -27,7 +27,8 @@
     opacity: 1;
   }
 }
-.rhdocs {
+.rhdocs,
+.pvof-doc__wrapper {
   font-family: RedHatText, "Red Hat Text", "Helvetica Neue", Arial, sans-serif;
   font-size: 1.125rem;
   line-height: 1.6667;
@@ -37,35 +38,47 @@
 }
 .rhdocs *,
 .rhdocs *::before,
-.rhdocs *::after {
+.rhdocs *::after,
+.pvof-doc__wrapper *,
+.pvof-doc__wrapper *::before,
+.pvof-doc__wrapper *::after {
   box-sizing: border-box;
 }
 .rhdocs img,
 .rhdocs object,
-.rhdocs svg {
+.rhdocs svg,
+.pvof-doc__wrapper img,
+.pvof-doc__wrapper object,
+.pvof-doc__wrapper svg {
   display: inline-block;
   max-width: 100%;
   vertical-align: middle;
 }
-.rhdocs hr {
+.rhdocs hr,
+.pvof-doc__wrapper hr {
   clear: both;
   height: 0;
   margin: 1rem 0;
   border: 0;
   border-top: 0.0625rem solid #d2d2d2;
 }
-.rhdocs a {
+.rhdocs a,
+.pvof-doc__wrapper a {
   color: #06c;
   text-decoration: none;
 }
-.rhdocs a:hover, .rhdocs a:focus {
+.rhdocs a:hover, .rhdocs a:focus,
+.pvof-doc__wrapper a:hover,
+.pvof-doc__wrapper a:focus {
   color: #003366;
   text-decoration: underline;
 }
-.rhdocs p {
+.rhdocs p,
+.pvof-doc__wrapper p {
   margin: 1.49963rem 0;
 }
-.rhdocs li > p {
+.rhdocs li > p,
+.pvof-doc__wrapper li > p {
   margin: 0;
 }
 .rhdocs h1,
@@ -73,37 +86,50 @@
 .rhdocs h3,
 .rhdocs h4,
 .rhdocs h5,
-.rhdocs h6 {
+.rhdocs h6,
+.pvof-doc__wrapper h1,
+.pvof-doc__wrapper h2,
+.pvof-doc__wrapper h3,
+.pvof-doc__wrapper h4,
+.pvof-doc__wrapper h5,
+.pvof-doc__wrapper h6 {
   margin: 0 0 0.625rem;
   font-family: RedHatDisplay, "Red Hat Display", "Helvetica Neue", Arial, sans-serif;
   line-height: 1.3333;
   font-weight: 500;
 }
-.rhdocs h1 {
+.rhdocs h1,
+.pvof-doc__wrapper h1 {
   margin: 2rem 0;
   font-size: 2.25rem;
 }
-.rhdocs h2 {
+.rhdocs h2,
+.pvof-doc__wrapper h2 {
   margin: 2rem 0;
   font-size: 1.625rem;
 }
-.rhdocs h3 {
+.rhdocs h3,
+.pvof-doc__wrapper h3 {
   font-size: 1.5rem;
   font-weight: 400;
 }
-.rhdocs h4 {
+.rhdocs h4,
+.pvof-doc__wrapper h4 {
   font-size: 1.25rem;
 }
-.rhdocs h5 {
+.rhdocs h5,
+.pvof-doc__wrapper h5 {
   font-size: 1.25rem;
   font-weight: 400;
 }
-.rhdocs h6 {
+.rhdocs h6,
+.pvof-doc__wrapper h6 {
   font-size: 1.125rem;
   line-height: 1.6667;
   font-weight: 500;
 }
-.rhdocs .heading {
+.rhdocs .heading,
+.pvof-doc__wrapper .heading {
   margin: 1rem 0 0;
   font-size: 1rem;
   line-height: 1.6667;
@@ -112,42 +138,56 @@
   text-transform: none;
 }
 .rhdocs .heading + p,
-.rhdocs .heading + .content > *:first-child {
+.rhdocs .heading + .content > *:first-child,
+.pvof-doc__wrapper .heading + p,
+.pvof-doc__wrapper .heading + .content > *:first-child {
   margin-top: 0;
 }
 .rhdocs ul,
-.rhdocs ol {
+.rhdocs ol,
+.pvof-doc__wrapper ul,
+.pvof-doc__wrapper ol {
   margin: 1rem 0;
   padding: 0 0 0 1.5rem;
 }
-.rhdocs li {
+.rhdocs li,
+.pvof-doc__wrapper li {
   margin: 0;
   padding: 0;
 }
-.rhdocs li > p {
+.rhdocs li > p,
+.pvof-doc__wrapper li > p {
   margin: 0.5rem 0;
 }
 .rhdocs li > ul,
-.rhdocs li > ol {
+.rhdocs li > ol,
+.pvof-doc__wrapper li > ul,
+.pvof-doc__wrapper li > ol {
   margin: 0;
 }
-.rhdocs dl {
+.rhdocs dl,
+.pvof-doc__wrapper dl {
   margin: 1rem 0;
 }
-.rhdocs dl dt {
+.rhdocs dl dt,
+.pvof-doc__wrapper dl dt {
   margin: 0.5rem 0;
   font-weight: 600;
 }
-.rhdocs dl dd {
+.rhdocs dl dd,
+.pvof-doc__wrapper dl dd {
   margin: 0.5rem 0 0.5rem 1rem;
 }
-.rhdocs dl dd > p {
+.rhdocs dl dd > p,
+.pvof-doc__wrapper dl dd > p {
   margin: 0.5rem 0;
 }
-.rhdocs .table-wrapper {
+.rhdocs .table-wrapper,
+.pvof-doc__wrapper .table-wrapper {
   overflow-x: auto;
 }
-.rhdocs table {
+.rhdocs table,
+.pvof-doc__wrapper table {
   margin: 2rem 0;
   table-layout: fixed;
   border: 0.0625rem solid #d2d2d2;
@@ -155,47 +195,65 @@
   font-size: 1rem;
   line-height: 1.6667;
 }
-.rhdocs table caption {
+.rhdocs table caption,
+.pvof-doc__wrapper table caption {
   margin-top: 0.5rem;
   margin-bottom: 0.5rem;
   color: #585858;
   text-align: left;
 }
 .rhdocs table td,
-.rhdocs table th {
+.rhdocs table th,
+.pvof-doc__wrapper table td,
+.pvof-doc__wrapper table th {
   padding: 0.5em 1rem;
   border: 0.0625rem solid #d2d2d2;
 }
 .rhdocs table td.halign-left,
-.rhdocs table th.halign-left {
+.rhdocs table th.halign-left,
+.pvof-doc__wrapper table td.halign-left,
+.pvof-doc__wrapper table th.halign-left {
   text-align: left;
 }
 .rhdocs table td.halign-center,
-.rhdocs table th.halign-center {
+.rhdocs table th.halign-center,
+.pvof-doc__wrapper table td.halign-center,
+.pvof-doc__wrapper table th.halign-center {
   text-align: center;
 }
 .rhdocs table td.halign-right,
-.rhdocs table th.halign-right {
+.rhdocs table th.halign-right,
+.pvof-doc__wrapper table td.halign-right,
+.pvof-doc__wrapper table th.halign-right {
   text-align: right;
 }
 .rhdocs table td.valign-top,
-.rhdocs table th.valign-top {
+.rhdocs table th.valign-top,
+.pvof-doc__wrapper table td.valign-top,
+.pvof-doc__wrapper table th.valign-top {
   vertical-align: top;
 }
 .rhdocs table td.valign-middle,
-.rhdocs table th.valign-middle {
+.rhdocs table th.valign-middle,
+.pvof-doc__wrapper table td.valign-middle,
+.pvof-doc__wrapper table th.valign-middle {
   vertical-align: middle;
 }
 .rhdocs table td.valign-bottom,
-.rhdocs table th.valign-bottom {
+.rhdocs table th.valign-bottom,
+.pvof-doc__wrapper table td.valign-bottom,
+.pvof-doc__wrapper table th.valign-bottom {
   vertical-align: bottom;
 }
 .rhdocs table thead td,
-.rhdocs table thead th {
+.rhdocs table thead th,
+.pvof-doc__wrapper table thead td,
+.pvof-doc__wrapper table thead th {
   font-weight: 600;
   background: #f5f5f5;
 }
-.rhdocs pre {
+.rhdocs pre,
+.pvof-doc__wrapper pre {
   font-family: RedHatMono, "Red Hat Mono", "Consolas", monospace;
   font-size: 0.875rem;
   line-height: 1.6667;
@@ -205,16 +263,19 @@
   background: #f5f5f5;
   overflow-wrap: normal;
 }
-.rhdocs pre.nowrap {
+.rhdocs pre.nowrap,
+.pvof-doc__wrapper pre.nowrap {
   overflow: auto;
   white-space: pre;
   word-break: normal;
   overflow-wrap: normal;
 }
-.rhdocs .codeblock__wrapper pre {
+.rhdocs .codeblock__wrapper pre,
+.pvof-doc__wrapper .codeblock__wrapper pre {
   background: transparent;
 }
-.rhdocs code {
+.rhdocs code,
+.pvof-doc__wrapper code {
   padding: 0.25em 0.5em;
   font-family: RedHatMono, "Red Hat Mono", "Consolas", monospace;
   font-size: 0.875rem;
@@ -222,12 +283,14 @@
   color: #004368;
   background: #def3ff;
 }
-.rhdocs .admonitionblock code {
+.rhdocs .admonitionblock code,
+.pvof-doc__wrapper .admonitionblock code {
   color: inherit;
   font-weight: bold;
   background: #fff;
 }
-.rhdocs[class] pre code {
+.rhdocs[class] pre code,
+.pvof-doc__wrapper[class] pre code {
   padding: 0;
   font-family: inherit;
   font-size: inherit;
@@ -236,7 +299,8 @@
   font-weight: inherit;
   background: inherit;
 }
-.rhdocs kbd {
+.rhdocs kbd,
+.pvof-doc__wrapper kbd {
   margin: 0 0.25rem;
   padding: 0.125rem 0.375rem;
   border-radius: 0.1875rem;
@@ -246,40 +310,49 @@
   background-image: linear-gradient(to bottom, #ddd, #eee, #fff);
   box-shadow: 0 -0.0625rem 0 0 #fff, 0 0.0625rem 0 0.1875rem #aaa;
 }
-.rhdocs kbd.keyseq {
+.rhdocs kbd.keyseq,
+.pvof-doc__wrapper kbd.keyseq {
   padding: 0;
   border: 0;
   background: transparent;
   box-shadow: none;
 }
-.rhdocs kbd.keyseq kbd {
+.rhdocs kbd.keyseq kbd,
+.pvof-doc__wrapper kbd.keyseq kbd {
   display: inline-block;
   margin: 0 0.375rem;
 }
-.rhdocs kbd.keyseq kbd:first-child {
+.rhdocs kbd.keyseq kbd:first-child,
+.pvof-doc__wrapper kbd.keyseq kbd:first-child {
   margin-left: 0;
 }
-.rhdocs b.button {
+.rhdocs b.button,
+.pvof-doc__wrapper b.button {
   padding: 0.1875rem;
   font-size: 90%;
   font-weight: bold;
 }
-.rhdocs b.button:before {
+.rhdocs b.button:before,
+.pvof-doc__wrapper b.button:before {
   content: "[";
 }
-.rhdocs b.button:after {
+.rhdocs b.button:after,
+.pvof-doc__wrapper b.button:after {
   content: "]";
 }
-.rhdocs summary::-webkit-details-marker {
+.rhdocs summary::-webkit-details-marker,
+.pvof-doc__wrapper summary::-webkit-details-marker {
   display: none;
 }
-.rhdocs summary {
+.rhdocs summary,
+.pvof-doc__wrapper summary {
   position: relative;
   padding: 1em 2em 0.75em 2.1875rem;
   color: #06c;
   cursor: pointer;
 }
-.rhdocs summary:before {
+.rhdocs summary:before,
+.pvof-doc__wrapper summary:before {
   content: "";
   position: absolute;
   top: 50%;
@@ -298,10 +371,12 @@
   -webkit-transform-origin: right top;
           transform-origin: right top;
 }
-.rhdocs summary:focus {
+.rhdocs summary:focus,
+.pvof-doc__wrapper summary:focus {
   outline-color: #73bcf7;
 }
-.rhdocs details[open] > summary:before {
+.rhdocs details[open] > summary:before,
+.pvof-doc__wrapper details[open] > summary:before {
   -webkit-transform: translateY(0.4375rem) translateY(0.125em) rotate(135deg);
           transform: translateY(0.4375rem) translateY(0.125em) rotate(135deg);
 }
@@ -1324,22 +1399,28 @@ rh-table table {
 /**
  * Scrollbar theming
  */
-:host .rhdocs *::-webkit-scrollbar {
+:host .rhdocs *::-webkit-scrollbar,
+.pvof-doc__wrapper *::-webkit-scrollbar {
   width: 0.625rem;
   height: 0.625rem;
 }
 :host .rhdocs *::-webkit-scrollbar,
-:host .rhdocs *::-webkit-scrollbar-track {
+:host .rhdocs *::-webkit-scrollbar-track,
+.pvof-doc__wrapper *::-webkit-scrollbar,
+.pvof-doc__wrapper *::-webkit-scrollbar-track {
   background-color: #d6d6d6;
 }
-:host .rhdocs *::-webkit-scrollbar-thumb {
+:host .rhdocs *::-webkit-scrollbar-thumb,
+.pvof-doc__wrapper *::-webkit-scrollbar-thumb {
   background-color: #8e8e8e;
 }
-:host .rhdocs * {
+:host .rhdocs *,
+.pvof-doc__wrapper * {
   scrollbar-color: #8e8e8e #d6d6d6;
 }
 
-.rhdocs p:empty {
+.rhdocs p:empty,
+.pvof-doc__wrapper p:empty {
   display: none;
 }
 .rhdocs[class] h1 code,
@@ -1347,7 +1428,13 @@ rh-table table {
 .rhdocs[class] h3 code,
 .rhdocs[class] h4 code,
 .rhdocs[class] h5 code,
-.rhdocs[class] h6 code {
+.rhdocs[class] h6 code,
+.pvof-doc__wrapper[class] h1 code,
+.pvof-doc__wrapper[class] h2 code,
+.pvof-doc__wrapper[class] h3 code,
+.pvof-doc__wrapper[class] h4 code,
+.pvof-doc__wrapper[class] h5 code,
+.pvof-doc__wrapper[class] h6 code {
   margin: 0;
   padding: 0;
   border: 0;
@@ -1356,7 +1443,8 @@ rh-table table {
   background: transparent;
 }
 
-.rhdocs__header__primary-wrapper h1 {
+.rhdocs__header__primary-wrapper h1,
+.pvof-doc__wrapper .pane-page-title h1 {
   font-size: 2.25rem;
   line-height: 1.333;
   font-family: RedHatDisplay, "Red Hat Display", "Helvetica Neue", Arial, sans-serif;
@@ -1404,22 +1492,6 @@ rh-table table {
   margin-top: 0;
 }
 
-.pantheon-anchor-div {
-  position: relative;
-  top: -4.375rem;
-}
-.toolbar-fixed .pantheon-anchor-div {
-  top: -3.125rem;
-}
-.pantheon-anchor-div .tool-bar-tray-open {
-  top: -5.625rem;
-}
-@media (min-width: 768px) {
-  .pantheon-anchor-div {
-    top: -0.625rem;
-  }
-}
-
 .conum,
 .colist > ol > li:before {
   position: relative;
@@ -1429,9 +1501,9 @@ rh-table table {
   height: 1.25rem;
   padding: 0;
   border-radius: 50%;
-  font-family: RedHatText, "Red Hat Text", "Helvetica Neue", Arial, sans-serif;
   font-size: 0.75rem;
   line-height: 1.35rem;
+  font-family: RedHatText, "Red Hat Text", "Helvetica Neue", Arial, sans-serif;
   color: #fff;
   font-weight: 600;
   font-style: normal;
@@ -1510,9 +1582,9 @@ rh-table table {
 }
 .verseblock .content,
 .quoteblock .content {
-  font-family: RedHatText, "Red Hat Text", "Helvetica Neue", Arial, sans-serif;
   font-size: 1.25rem;
   line-height: 1.6667;
+  font-family: RedHatText, "Red Hat Text", "Helvetica Neue", Arial, sans-serif;
 }
 .verseblock .attribution,
 .quoteblock .attribution {
