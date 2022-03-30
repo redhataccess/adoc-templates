@@ -41,32 +41,32 @@
 
 %html{:lang=>(attr :lang, 'en')}
   %head
-    / SPA_HEAD
-    %meta(charset="#{attr :encoding, 'UTF-8'}")
-    /[if IE]
-      %meta(http-equiv="X-UA-Compatible" content="IE=edge")
-    %meta(name='viewport' content='width=device-width, initial-scale=1.0')
-    %meta(name='robots' content='noindex')
-    %meta(name='generator' content="Asciidoctor #{attr 'asciidoctor-version'}")
-    - { 'app-name'=>'application-name', 'description'=>nil, 'keywords'=>nil, 'authors'=>'author', 'copyright'=>nil }.each do |key, meta|
-      - if attr? key
-        %meta{:name=>(meta || key), :content=>(attr key)}
-    %title=((doctitle :sanitize => true) || (attr 'untitled-label'))
-    %link(rel="preconnect" href="https://fonts.googleapis.com")
-    %link(rel="preconnect" href="https://fonts.gstatic.com" crossorigin)
-    %link(rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Red+Hat+Display:ital,wght@0,400;0,500;0,700;1,400;1,700&family=Red+Hat+Text:ital,wght@0,400;0,700;1,400;1,700&display=swap")
+    - if renderedBy != 'juno'
+      %meta(charset="#{attr :encoding, 'UTF-8'}")
+      /[if IE]
+        %meta(http-equiv="X-UA-Compatible" content="IE=edge")
+      %meta(name='viewport' content='width=device-width, initial-scale=1.0')
+      %meta(name='robots' content='noindex')
+      %meta(name='generator' content="Asciidoctor #{attr 'asciidoctor-version'}")
+      - { 'app-name'=>'application-name', 'description'=>nil, 'keywords'=>nil, 'authors'=>'author', 'copyright'=>nil }.each do |key, meta|
+        - if attr? key
+          %meta{:name=>(meta || key), :content=>(attr key)}
+      %title=((doctitle :sanitize => true) || (attr 'untitled-label'))
+      %link(rel="preconnect" href="https://fonts.googleapis.com")
+      %link(rel="preconnect" href="https://fonts.gstatic.com" crossorigin)
+      %link(rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Red+Hat+Display:ital,wght@0,400;0,500;0,700;1,400;1,700&family=Red+Hat+Text:ital,wght@0,400;0,700;1,400;1,700&display=swap")
 
-    - if rhEnv == 'localdev'
-      %script(src="#{assetsPrefix}/rhdocs-content.js")
-      %script(src="//access.redhat.com/webassets/avalon/j/public_modules/node_modules/@patternfly/pfe-clipboard/dist/pfe-clipboard.min.js" type="module")
-    - else
-      %script(src="#{assetsPrefix}/@redhataccess/adoc-templates/dist/rhdocs-content.js")
-      %script(src="//access.redhat.com/webassets/avalon/j/public_modules/node_modules/@patternfly/pfe-clipboard/dist/pfe-clipboard.min.js" type="module")
+      - if rhEnv == 'localdev'
+        %script(src="#{assetsPrefix}/rhdocs-content.js")
+        %script(src="//access.redhat.com/webassets/avalon/j/public_modules/node_modules/@patternfly/pfe-clipboard/dist/pfe-clipboard.min.js" type="module")
+      - else
+        %script(src="#{assetsPrefix}/@redhataccess/adoc-templates/dist/rhdocs-content.js")
+        %script(src="//access.redhat.com/webassets/avalon/j/public_modules/node_modules/@patternfly/pfe-clipboard/dist/pfe-clipboard.min.js" type="module")
 
     %link(rel="stylesheet" href=rhDocsPath)
 
     - if renderedBy == 'juno'
-      %script(src="#{assetsPrefix}/@redhataccess/adoc-templates/dist/rhdocs-content.min.js")
+      -# %script(src="#{assetsPrefix}/@redhataccess/adoc-templates/dist/rhdocs-content.min.js")
       %script(src="/preview.js")
 
 
@@ -131,15 +131,15 @@
                     %a(href="#_footnoteref_#{fn.index}"){:title => 'Back to content', :aria => {:label => 'Back to content'}}='&#8617;'
         %div(class="rh-docs-legal-notice")
           %a(href="https://access.redhat.com/docs-legal-notice" class="rh-docs-legal-notice__link")Legal Notices for Trademarks
-    / SPA_FOOTER
-    - unless nofooter
-      %footer#rhdocs-footer.rhdocs-footer
-        #rhdocs-footer-text.rhdocs-footer-text
-          - if attr? :revnumber
-            = precede %(#{attr 'version-label'} #{attr :revnumber}) do
-              - if attr? 'last-update-label'
-                %br
-          - if attr? 'last-update-label'
-            #{attr 'last-update-label'} #{attr :localdatetime}
-        - unless (docinfo_content = (docinfo :footer)).empty?
-          =docinfo_content
+    - if renderedBy != 'juno'
+      - unless nofooter
+        %footer#rhdocs-footer.rhdocs-footer
+          #rhdocs-footer-text.rhdocs-footer-text
+            - if attr? :revnumber
+              = precede %(#{attr 'version-label'} #{attr :revnumber}) do
+                - if attr? 'last-update-label'
+                  %br
+            - if attr? 'last-update-label'
+              #{attr 'last-update-label'} #{attr :localdatetime}
+          - unless (docinfo_content = (docinfo :footer)).empty?
+            =docinfo_content
