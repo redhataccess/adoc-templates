@@ -19,7 +19,8 @@
     background: linear-gradient(to left, #f8f8f8ff 70%, #f8f8f800);
   }
 
-  .admonitionblock & {
+  .admonitionblock &,
+  .admonition & {
     background: #fff;
 
     &:after {

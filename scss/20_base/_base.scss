@@ -240,7 +240,8 @@
     background: $color--bg--code-inline;
   }
 
-  .admonitionblock code {
+  .admonitionblock code,
+  .admonition code {
     color: inherit;
     font-weight: bold;
     background: #fff;
