@@ -1,7 +1,7 @@
 @use 'sass:math';
 
 .admonitionblock,
-.admonition {
+.admonition { // PV1 class
   $icon-area--size: em(24px);
   $icon-area--top-offset: em(16px);
   $icon-area--left-offset: em(13px);
