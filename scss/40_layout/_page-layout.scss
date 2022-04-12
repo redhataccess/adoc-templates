@@ -1,26 +1,11 @@
 @use 'sass:math';
 
-// @todo Portal Hacks that probably shouldn't be in this stylesheet
-// -----------------------------------------------------
+$content__max-width: 685px;
 
-.masthead {
-  position: relative;
-  z-index: 1;
-}
-
-[data-drupal-messages] {
-  position: relative;
-  z-index: 1;
-}
-
-.main-content[class] {
-  padding: 0;
-}
-// -----------------------------------------------------
-// @note End portal hacks
-
-.rhdocs--pantheon-2 {
-  padding: 0;
+.rhdocs.local-render {
+  max-width: ($content__max-width + 48px);
+  margin: 0 auto;
+  padding: 0 24px;
 }
 
 .rh-docs__content-wrapper {

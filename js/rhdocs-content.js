@@ -66,13 +66,10 @@
 
     // Make sure we're dealing with a pre element, which could be the element or it's parent
     if ($codeBlock.tagName.toLowerCase() !== 'pre') {
-      if (
-        $codeBlock.parentElement &&
-        $codeBlock.parentElement.tagName.toLowerCase() === 'pre'
-      ) {
+      if ($codeBlock.parentElement && $codeBlock.parentElement.tagName.toLowerCase() === 'pre') {
         $codeBlock = $codeBlock.parentElement;
       }
- else {
+      else {
         // If the element or it's parent isn't a pre-tag don't format it
         return;
       }
