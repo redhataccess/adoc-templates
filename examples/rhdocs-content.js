@@ -3459,7 +3459,6 @@ Prism.languages.py = Prism.languages.python;
     $printButton.classList.add('rhdocs__print-button');
 
     $printButton.addEventListener('click', () => {
-      // @todo Add analytics
       window.print();
     });
 
