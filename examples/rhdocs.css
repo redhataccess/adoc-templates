@@ -302,15 +302,22 @@
   background: inherit;
 }
 .rhdocs kbd,
-.pvof-doc__wrapper kbd {
+.rhdocs .keycap,
+.pvof-doc__wrapper kbd,
+.pvof-doc__wrapper .keycap {
   margin: 0 0.25rem;
   padding: 0.125rem 0.375rem;
   border-radius: 0.1875rem;
-  font-family: RedHatMono, "Red Hat Mono", "Consolas", monospace;
   font-size: 90%;
+  font-family: RedHatMono, "Red Hat Mono", "Consolas", monospace;
+  font-weight: 400;
   background-color: #eee;
   background-image: linear-gradient(to bottom, #ddd, #eee, #fff);
   box-shadow: 0 -0.0625rem 0 0 #fff, 0 0.0625rem 0 0.1875rem #aaa;
+}
+.rhdocs .keycap strong,
+.pvof-doc__wrapper .keycap strong {
+  font-weight: inherit;
 }
 .rhdocs kbd.keyseq,
 .pvof-doc__wrapper kbd.keyseq {
@@ -776,7 +783,7 @@ th {
 
 ._additional-resources[class][class] {
   margin: 2em 0 4em;
-  padding: 1.5rem;
+  padding: 2rem 2rem 1rem;
   border: 0.0625rem solid #d2d2d2;
   border-radius: 0.1875rem;
   background: #fff;
@@ -791,17 +798,23 @@ th {
 ._additional-resources[class][class] h5,
 ._additional-resources[class][class] h6,
 ._additional-resources[class][class] .heading,
+._additional-resources[class][class] p.title,
 ._additional-resources[class][class] .additional-resources__heading {
-  margin: 0 0 1.5rem;
+  display: block;
+  margin: 0 0 0.5rem;
   padding: 0;
-  font-size: 1.25rem;
+  font-size: 1.125rem;
   line-height: 1.5rem;
+  font-family: RedHatDisplay, "Red Hat Display", "Helvetica Neue", Arial, sans-serif;
+  font-weight: 400;
+  text-transform: uppercase;
 }
 ._additional-resources[class][class] ul {
   position: relative;
   margin: 0;
   padding: 0;
   list-style: none;
+  border: 0;
 }
 .related-topic-content__wrapper ._additional-resources[class][class] ul {
   display: block;
@@ -1058,6 +1071,64 @@ th {
   height: 1rem;
 }
 
+/**
+ * These are the styles for line numbers that are highlighted/annotated
+ */
+.conum,
+.colist > ol > li:before,
+.pvof-doc__wrapper .callout {
+  position: relative;
+  top: -0.125em;
+  display: inline-block;
+  width: 1.25rem;
+  height: 1.25rem;
+  padding: 0;
+  border-radius: 50%;
+  font-size: 0.75rem;
+  line-height: 1.35rem;
+  font-family: RedHatText, "Red Hat Text", "Helvetica Neue", Arial, sans-serif;
+  color: #fff;
+  font-weight: 600;
+  font-style: normal;
+  text-align: center;
+  vertical-align: middle;
+  background: #06c;
+}
+
+.colist > ol,
+.pvof-doc__wrapper .calloutlist > ol {
+  margin: 1rem 0 2rem;
+  padding: 0;
+  list-style: none;
+  counter-reset: colist;
+}
+.colist > ol > li,
+.pvof-doc__wrapper .calloutlist > ol > li {
+  position: relative;
+  margin: 0.5rem 0;
+  padding-left: 1.75rem;
+  counter-increment: colist;
+  font-size: 1rem;
+}
+.colist > ol > li .colist-num,
+.pvof-doc__wrapper .calloutlist > ol > li .colist-num {
+  display: none;
+}
+.colist > ol > li:before,
+.pvof-doc__wrapper .calloutlist > ol > li:before {
+  content: counter(colist);
+  position: absolute;
+  top: 0.1875rem;
+  left: 0;
+}
+
+.pvof-doc__wrapper .calloutlist dt {
+  float: left;
+  clear: left;
+  margin: 0;
+  padding: 0 0.5rem 0 0;
+}
+
 .rhdocs__guides-list__wrapper {
   margin: 0 0 2em;
   padding: 1.5rem 1.5rem 2em;
@@ -1111,7 +1182,7 @@ th {
 
 .included-in-guides[class] {
   margin: 2em 0 4em;
-  padding: 1.5rem;
+  padding: 2rem 2rem 1rem;
   border: 0.0625rem solid #d2d2d2;
   border-radius: 0.1875rem;
   background: #fff;
@@ -1126,17 +1197,23 @@ th {
 .included-in-guides[class] h5,
 .included-in-guides[class] h6,
 .included-in-guides[class] .heading,
+.included-in-guides[class] p.title,
 .included-in-guides[class] .additional-resources__heading {
-  margin: 0 0 1.5rem;
+  display: block;
+  margin: 0 0 0.5rem;
   padding: 0;
-  font-size: 1.25rem;
+  font-size: 1.125rem;
   line-height: 1.5rem;
+  font-family: RedHatDisplay, "Red Hat Display", "Helvetica Neue", Arial, sans-serif;
+  font-weight: 400;
+  text-transform: uppercase;
 }
 .included-in-guides[class] ul {
   position: relative;
   margin: 0;
   padding: 0;
   list-style: none;
+  border: 0;
 }
 .related-topic-content__wrapper .included-in-guides[class] ul {
   display: block;
@@ -1523,49 +1600,6 @@ rh-table table {
   margin-top: 0;
 }
 
-.conum,
-.colist > ol > li:before {
-  position: relative;
-  top: -0.125em;
-  display: inline-block;
-  width: 1.25rem;
-  height: 1.25rem;
-  padding: 0;
-  border-radius: 50%;
-  font-size: 0.75rem;
-  line-height: 1.35rem;
-  font-family: RedHatText, "Red Hat Text", "Helvetica Neue", Arial, sans-serif;
-  color: #fff;
-  font-weight: 600;
-  font-style: normal;
-  text-align: center;
-  vertical-align: middle;
-  background: #06c;
-}
-
-.colist > ol {
-  margin: 1rem 0 2rem;
-  padding: 0;
-  list-style: none;
-  counter-reset: colist;
-}
-.colist > ol > li {
-  position: relative;
-  margin: 0.5rem 0;
-  padding-left: 1.75rem;
-  counter-increment: colist;
-  font-size: 1rem;
-}
-.colist > ol > li .colist-num {
-  display: none;
-}
-.colist > ol > li:before {
-  content: counter(colist);
-  position: absolute;
-  top: 0.1875rem;
-  left: 0;
-}
-
 .literalblock,
 .listingblock {
   margin: 1rem 0;
@@ -1933,22 +1967,10 @@ pre[class*=language-] {
   color: #c9190b;
 }
 
-.masthead {
-  position: relative;
-  z-index: 1;
-}
-
-[data-drupal-messages] {
-  position: relative;
-  z-index: 1;
-}
-
-.main-content[class] {
-  padding: 0;
-}
-
-.rhdocs--pantheon-2 {
-  padding: 0;
+.rhdocs.local-render {
+  max-width: 45.8125rem;
+  margin: 0 auto;
+  padding: 0 1.5rem;
 }
 
 @media (min-width: 1100px) {
