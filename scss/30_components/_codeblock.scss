@@ -19,7 +19,8 @@
     background: linear-gradient(to left, #f8f8f8ff 70%, #f8f8f800);
   }
 
-  .admonitionblock & {
+  .admonitionblock &,
+  .admonition & {
     background: #fff;
 
     &:after {
@@ -31,15 +32,14 @@
 // Creates padding on the right for copy button
 // Necessary because of FF bug: https://codepen.io/wesruv/full/dyzxMzW
 .codeblock__inner-wrapper {
-  display: flex;
-  overflow: auto;
+  display: grid;
+  overflow-x: auto;
+  grid-template-columns: 1fr 70px;
 
   &:after {
     content: '';
-    order: 99;
     display: block;
-    flex-basis: 70px;
-    flex-shrink: 0;
+    width: 70px;
     min-height: 10px;
   }
 }
@@ -85,5 +85,72 @@
   svg#icon--copy {
     width: 16px;
     height: 16px;
+  }
+}
+
+/**
+ * These are the styles for line numbers that are highlighted/annotated
+ */
+.conum,
+.colist > ol > li:before,
+.pvof-doc__wrapper .callout { // PV1
+  position: relative;
+  top: -0.125em;
+  display: inline-block;
+  width: 1.25rem;
+  height: 1.25rem;
+  padding: 0;
+  border-radius: 50%;
+  font-size: 0.75rem;
+  line-height: 1.35rem; // For some reason, with Overpass, this looks better.
+  font-family: $font-family--base;
+  color: #fff;
+  font-weight: 600;
+  font-style: normal;
+  text-align: center;
+  vertical-align: middle;
+  background: $color--link;
+}
+
+.colist,
+%colist {
+  > ol,
+  %colist-list-wrapper {
+    margin: 1rem 0 2rem;
+    padding: 0;
+    list-style: none;
+    counter-reset: colist;
+
+    > li,
+    %colist-list-item {
+      position: relative;
+      margin: 0.5rem 0;
+      padding-left: 1.75rem;
+      counter-increment: colist;
+      font-size: 1rem;
+
+      .colist-num {
+        display: none;
+      }
+
+      &:before {
+        content: counter(colist);
+        position: absolute;
+        top: 3px;
+        left: 0;
+      }
+    }
+  }
+}
+
+// PV1
+.pvof-doc__wrapper .calloutlist {
+  @extend %colist;
+
+  dt {
+    float: left;
+    clear: left;
+    margin: 0;
+    padding: 0 8px 0 0;
   }
 }

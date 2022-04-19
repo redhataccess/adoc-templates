@@ -1,3 +1,6 @@
+'use strict';
+/* global Prism */
+
 /**
  * Sequesters docs content area into shadow root for style scoping
  * Updates some HTML for styling/behavior enhancements
@@ -9,10 +12,10 @@
    */
    const processAdditionalResource = ($additionalResource) => {
     // Wrap additional resources in an aside instead of a div
-    const $asideWrapper = document.createElement("aside");
+    const $asideWrapper = document.createElement('aside');
     $asideWrapper.setAttribute(
-      "class",
-      $additionalResource.getAttribute("class")
+      'class',
+      $additionalResource.getAttribute('class')
     );
 
     $asideWrapper.innerHTML = $additionalResource.innerHTML;
@@ -21,7 +24,7 @@
       $additionalResource
     );
     $additionalResource = $asideWrapper;
-  }
+  };
 
   /**
    * Adds optimal markup around codeblocks and runs syntax highlighting on it
@@ -30,27 +33,27 @@
   const processCodeblock = ($codeBlock, $docsContent) => {
     // Quick exit if this has been processed already
     const $processedParentElements = $codeBlock.closest('pre.codeblock--processed, .codeblock__wrapper');
-    if ($codeBlock.classList.contains("codeblock--processed") || $processedParentElements) {
+    if ($codeBlock.classList.contains('codeblock--processed') || $processedParentElements) {
       return;
     }
     // debugger;
 
-    const codeBlockClasses = $codeBlock.getAttribute("class");
+    const codeBlockClasses = $codeBlock.getAttribute('class');
     const codeBlockClassesArray = codeBlockClasses
-      ? codeBlockClasses.split(" ")
-      : undefined;
+      ? codeBlockClasses.split(' ')
+      : false;
     // Adding a hidden copy of the un-upgraded code content to the DOM, may be unecessary
-    const $plainCodeBlock = document.createElement("pre");
+    const $plainCodeBlock = document.createElement('pre');
 
     // Figure out code's language
-    let language = "none"; // Default to none
+    let language = 'none'; // Default to none
 
     // Iterate over class names and find code language
     const getLanguageClass = (classesArray) => {
       if (classesArray) {
         for (let index = 0; index < classesArray.length; index++) {
           const className = classesArray[index];
-          if (className.substring(0, 9) === "language-") {
+          if (className.substring(0, 9) === 'language-') {
             language = className.substring(9).toLowerCase();
             return className;
           }
@@ -62,13 +65,11 @@
     let languageClass = getLanguageClass(codeBlockClassesArray);
 
     // Make sure we're dealing with a pre element, which could be the element or it's parent
-    if ($codeBlock.tagName.toLowerCase() !== "pre") {
-      if (
-        $codeBlock.parentElement &&
-        $codeBlock.parentElement.tagName.toLowerCase() === "pre"
-      ) {
+    if ($codeBlock.tagName.toLowerCase() !== 'pre') {
+      if ($codeBlock.parentElement && $codeBlock.parentElement.tagName.toLowerCase() === 'pre') {
         $codeBlock = $codeBlock.parentElement;
-      } else {
+      }
+      else {
         // If the element or it's parent isn't a pre-tag don't format it
         return;
       }
@@ -84,7 +85,7 @@
     // Remove any annotations from the code block for the copy button
     // Users don't want to copy artifacts from the docs, just the code
     const $codeBlockClone = $codeBlock.cloneNode(true);
-    const $codeBlockAnnotations = $codeBlockClone.querySelectorAll(".colist-num");
+    const $codeBlockAnnotations = $codeBlockClone.querySelectorAll('.colist-num');
     for (let index = 0; index < $codeBlockAnnotations.length; index++) {
       const $codeBlockAnnotation = $codeBlockAnnotations[index];
       // @todo IE
@@ -96,17 +97,18 @@
 
     // Remove prompt from copy value if we have one
     switch (language) {
-      case "none":
-      case "terminal":
-      case "shell":
+      case 'none':
+      case 'terminal':
+      case 'shell':
         const contentToCopyTrimmed = contentToCopy.trim();
         let promptIndex = -1;
-        if (contentToCopyTrimmed.indexOf("# ") === 0) {
+        if (contentToCopyTrimmed.indexOf('# ') === 0) {
           // Get non-trimmed index
-          promptIndex = contentToCopy.indexOf("# ");
-        } else if (contentToCopyTrimmed.indexOf("$ ") === 0) {
+          promptIndex = contentToCopy.indexOf('# ');
+        }
+ else if (contentToCopyTrimmed.indexOf('$ ') === 0) {
           // Get non-trimmed index
-          promptIndex = contentToCopy.indexOf("$ ");
+          promptIndex = contentToCopy.indexOf('$ ');
         }
 
         if (promptIndex > -1) {
@@ -129,41 +131,41 @@
     // Finish setting up the plainCodeblock
     $plainCodeBlock.hidden = true;
     $plainCodeBlock.id = plainCodeBlockId;
-    $plainCodeBlock.classList.add("codeblock--plain");
+    $plainCodeBlock.classList.add('codeblock--plain');
     $plainCodeBlock.innerText = contentToCopy;
 
     if (
       $codeBlockWrapper
-      && !$codeBlockWrapper.classList.contains("codeblock__wrapper")
+      && !$codeBlockWrapper.classList.contains('codeblock__wrapper')
       && !$codeBlockWrapper.querySelector('.codeblock__inner-wrapper')
     ) {
-      const $codeBlockInnerWrapper = document.createElement("div");
+      const $codeBlockInnerWrapper = document.createElement('div');
       // Necessary becase of FF bug: https://codepen.io/wesruv/full/dyzxMzW
-      $codeBlockInnerWrapper.classList.add("codeblock__inner-wrapper");
-      $codeBlockWrapper.classList.add("codeblock__wrapper");
+      $codeBlockInnerWrapper.classList.add('codeblock__inner-wrapper');
+      $codeBlockWrapper.classList.add('codeblock__wrapper');
       $codeBlockWrapper.append($codeBlockInnerWrapper);
       $codeBlockInnerWrapper.append($codeBlock);
       $codeBlockWrapper.dataset.plainCodeBlockId = plainCodeBlockId;
-      $codeBlock.classList.add("codeblock");
+      $codeBlock.classList.add('codeblock');
 
       // Append the hidden unformatted codeblock
       $codeBlockWrapper.appendChild($plainCodeBlock);
 
       // Create and add copy button
-      const $copyButton = document.createElement("pfe-clipboard");
-      const $copyText = document.createElement("span");
-      const $copySuccessText = document.createElement("span");
+      const $copyButton = document.createElement('pfe-clipboard');
+      const $copyText = document.createElement('span');
+      const $copySuccessText = document.createElement('span');
 
-      $copyText.setAttribute("slot", "text");
+      $copyText.setAttribute('slot', 'text');
       // @todo Translate
-      $copyText.innerText = "Copy";
+      $copyText.innerText = 'Copy';
 
-      $copySuccessText.setAttribute("slot", "text--success");
+      $copySuccessText.setAttribute('slot', 'text--success');
       // @todo Translate
-      $copySuccessText.innerText = "Copied!";
+      $copySuccessText.innerText = 'Copied!';
 
-      $copyButton.setAttribute("copy-from", "property");
-      $copyButton.classList.add("codeblock__copy");
+      $copyButton.setAttribute('copy-from', 'property');
+      $copyButton.classList.add('codeblock__copy');
 
       $copyButton.appendChild($copyText);
       $copyButton.appendChild($copySuccessText);
@@ -172,9 +174,9 @@
       /**
        * Sets the content to copy by figuring out which button responded and giving it the correct content
        */
-      document.addEventListener("pfe-clipboard:connected", (event) => {
+      document.addEventListener('pfe-clipboard:connected', (event) => {
         const $thisComponent = event.detail.component;
-        const $thisCodeWrapper = $thisComponent.closest(".codeblock__wrapper");
+        const $thisCodeWrapper = $thisComponent.closest('.codeblock__wrapper');
 
         // Verify that we can find the ID, and we can find the content to copy
         if (
@@ -195,7 +197,7 @@
         // If something went wrong, hide the copy button since it won't work.
         else {
           $thisComponent.hidden = true;
-          console.warn(`Couldn't find content to copy for the below copy button`, $thisComponent);
+          console.warn('Couldn\'t find content to copy for the below copy button', $thisComponent);
         }
       });
     }
@@ -203,21 +205,21 @@
     // Alias languages as described by https://docs.google.com/spreadsheets/d/1T2_Hc3Pi4Phu2R4S9OBLv7kGx790FJfFkCMNSKLvMwI/edit#gid=0
     // This is covering for our enormous backlog of content
     switch (language) {
-      case "config":
-        language = "text";
+      case 'config':
+        language = 'text';
         break;
-      case "dns":
-        language = "dns-zone";
+      case 'dns':
+        language = 'dns-zone';
         break;
-      case "terminal":
-        language = "shell";
-        $codeBlock.classList.add("command-line");
+      case 'terminal':
+        language = 'shell';
+        $codeBlock.classList.add('command-line');
         break;
-      case "golang":
-        language = "go";
+      case 'golang':
+        language = 'go';
         break;
-      case "make":
-        language = "makefile";
+      case 'make':
+        language = 'makefile';
         break;
     }
 
@@ -227,7 +229,7 @@
       $codeBlock.classList.add(`language-${language}`);
     }
 
-    $codeBlock.classList.add("codeblock--processed");
+    $codeBlock.classList.add('codeblock--processed');
 
     // Highlight syntax
     // Putting in a setTimeout to throw this process in the backburner so we don't hold up the main thread
@@ -235,13 +237,14 @@
       () => {
         try {
           Prism.highlightElement($codeBlock, false);
-        } catch (error) {
+        }
+ catch (error) {
           console.error(error);
         }
       },
       0
     );
-  }
+  };
 
 
 
@@ -251,24 +254,23 @@
    */
   const addPrintButton = ($headerSecondaryWrapper) => {
     // Create wrapper
-    const $printButtonWrapper = document.createElement("li");
-    $printButtonWrapper.classList.add("rh-docs-details-item");
-    $printButtonWrapper.classList.add("rhdocs-print-button");
+    const $printButtonWrapper = document.createElement('li');
+    $printButtonWrapper.classList.add('rh-docs-details-item');
+    $printButtonWrapper.classList.add('rhdocs-print-button');
 
     // Create print button
-    const $printButton = document.createElement("button");
+    const $printButton = document.createElement('button');
     // @todo Translate this
-    $printButton.innerText = "Print";
-    $printButton.classList.add("rhdocs__print-button");
+    $printButton.innerText = 'Print';
+    $printButton.classList.add('rhdocs__print-button');
 
-    $printButton.addEventListener("click", () => {
-      // @todo Add analytics
+    $printButton.addEventListener('click', () => {
       window.print();
     });
 
     $printButtonWrapper.append($printButton);
     $headerSecondaryWrapper.append($printButtonWrapper);
-  }
+  };
 
   /**
    * Transforms content to our ideal state before putting it back into the DOM
@@ -286,7 +288,7 @@
     // Process codeblocks with languages
     // Doing this first since there are some cases where the language class isn't on the pre
     const $codeBlocks = $content.querySelectorAll(
-      "pre[class*='language-'], code[class*='language-']"
+      'pre[class*=\'language-\'], code[class*=\'language-\']'
     );
     for (let index = 0; index < $codeBlocks.length; index++) {
       const $codeBlock = $codeBlocks[index];
@@ -295,7 +297,7 @@
 
     // Process the other codeblocks
     // processCodeblocks will quick exit for pre's that have been processed because a child element had the language
-    const $allCodeBlocks = $content.querySelectorAll("pre");
+    const $allCodeBlocks = $content.querySelectorAll('pre');
     if ($allCodeBlocks) {
       for (let index = 0; index < $allCodeBlocks.length; index++) {
         let $codeBlock = $allCodeBlocks[index];
@@ -304,21 +306,21 @@
     }
 
     // Wrap all tables with rh-table
-    const $tables = $content.querySelectorAll("table");
+    const $tables = $content.querySelectorAll('table');
     for (let index = 0; index < $tables.length; index++) {
       const $table = $tables[index];
 
-      if (!$table.parentElement.classList.contains("table-wrapper")) {
+      if (!$table.parentElement.classList.contains('table-wrapper')) {
         // @todo RH Table needs to be added to portal for it to do it's fanciness
-        const $tableWrapper = document.createElement("rh-table");
-        $tableWrapper.classList.add("table-wrapper");
+        const $tableWrapper = document.createElement('rh-table');
+        $tableWrapper.classList.add('table-wrapper');
         $table.parentElement.replaceChild($tableWrapper, $table);
         $tableWrapper.append($table);
       }
     }
 
     return $content;
-  }
+  };
 
   /**
    * Puts docs content into a shadowroot to avoid style contamination
@@ -339,16 +341,21 @@
     }
 
     // Create and populate shadow DOM
-    $docsContent.attachShadow({mode: 'open'});
+    $docsContent.attachShadow({'mode': 'open',});
     let $shadowWrapper = document.createElement('div');
     $shadowWrapper.id = 'wrapper';
-    $shadowWrapper.classList.add('rhdocs');
+    $shadowWrapper.classList.add('rhdocs', 'rhdocs__content');
+
+    // Add a class if there's a superdoc sidebar
+    if (document.querySelector('.j-superdoc__nav')) {
+      $shadowWrapper.classList.add('rhdocs__content--has-superdoc-nav');
+    }
 
     // Add our styles to the shadow DOM
-    const linkTag = document.createElement("link");
-    linkTag.setAttribute("id", "rhdocs");
-    linkTag.setAttribute("href", styleSheetUrl);
-    linkTag.setAttribute("rel", "stylesheet");
+    const linkTag = document.createElement('link');
+    linkTag.setAttribute('id', 'rhdocs');
+    linkTag.setAttribute('href', styleSheetUrl);
+    linkTag.setAttribute('rel', 'stylesheet');
     $docsContent.shadowRoot.prepend(linkTag);
 
     for (let index = 0; index < $docsContent.childNodes.length; index++) {
@@ -370,7 +377,7 @@
     // Put the content back into the DOM
     $docsContent.shadowRoot.append($shadowWrapper);
     $docsContent.removeAttribute('style');
-  }
+  };
 
   // Kick off processing
   window.addEventListener('DOMContentLoaded', () => {
@@ -378,12 +385,12 @@
     // See if we can find the loaded stylesheet for rhdocs[.min].css
     // Otherwise fallback to a root relative link that should work
     let rhdocsUrl =
-    "/webassets/avalon/j/public_modules/node_modules/@cpelements/cp-documentation/dist/rhdocs.min.css";
+    '/webassets/avalon/j/public_modules/node_modules/@cpelements/cp-documentation/dist/rhdocs.min.css';
     for (let index = 0; index < document.styleSheets.length; index++) {
       const styleSheet = document.styleSheets[index];
-      if (styleSheet.href && styleSheet.href.includes("/rhdocs.")) {
+      if (styleSheet.href && styleSheet.href.includes('/rhdocs.')) {
         // Get the exact same href so we get the cached file instead of hitting the network
-        rhdocsUrl = styleSheet.ownerNode.getAttribute("href");
+        rhdocsUrl = styleSheet.ownerNode.getAttribute('href');
         break;
       }
     }

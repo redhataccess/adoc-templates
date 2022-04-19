@@ -1,6 +1,7 @@
 @use 'sass:color';
 
-.rhdocs {
+.rhdocs,
+.pvof-doc__wrapper {
   font-family: $font-family--base;
   font-size: $font-size--base;
   line-height: $line-height--base;
@@ -239,7 +240,8 @@
     background: $color--bg--code-inline;
   }
 
-  .admonitionblock code {
+  .admonitionblock code,
+  .admonition code {
     color: inherit;
     font-weight: bold;
     background: #fff;
@@ -255,15 +257,21 @@
     background: inherit;
   }
 
-  kbd {
+  kbd,
+  .keycap { // PV1
     margin: 0 4px;
     padding: 2px 6px;
     border-radius: 3px;
-    font-family: $font-family--code;
     font-size: 90%;
+    font-family: $font-family--code;
+    font-weight: 400;
     background-color: #eee;
     background-image: linear-gradient(to bottom, #ddd, #eee, #fff);
     box-shadow: 0 -1px 0 0 #fff, 0 1px 0 3px #aaa;
+  }
+
+  .keycap strong { // PV1
+    font-weight: inherit;
   }
 
   kbd.keyseq {

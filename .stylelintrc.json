@@ -13,6 +13,7 @@
     "scss/double-slash-comment-empty-line-before": null,
 
     "no-unknown-animations": null,
+    "value-keyword-case": null,
 
     "comment-empty-line-before": null,
     "function-linear-gradient-no-nonstandard-direction": null,
@@ -29,17 +30,7 @@
     "number-leading-zero": "always",
     "order/order": [
       "custom-properties",
-      "dollar-variables",
-      {
-        "type": "at-rule",
-        "hasBlock": false
-      },
-      "declarations",
-      "rules",
-      {
-        "type": "at-rule",
-        "hasBlock": true
-      }
+      "dollar-variables"
     ],
     "order/properties-order": [
       "content",
@@ -287,6 +278,8 @@
       "outline-color",
       "outline-offset",
 
+      "font-size",
+      "line-height",
       "$font-face",
       "font",
       "font-family",
@@ -299,8 +292,6 @@
       "$styleset",
       "$character-variant",
       "font-variant-alternates",
-      "font-size",
-      "line-height",
       "color",
       "font-weight",
       "font-style",
@@ -465,13 +456,7 @@
     "selector-pseudo-element-colon-notation": null,
     "shorthand-property-no-redundant-values": null,
     "string-quotes": "single",
-    "unit-allowed-list": ["ch", "deg", "em", "ex", "fr", "ms", "rem", "%", "s", "px", "vw", "vh"],
-    "value-keyword-case": ["lower", {
-      "ignoreProperties": [
-        "--font-family",
-        "font-family"
-      ]
-    }]
+    "unit-allowed-list": ["ch", "deg", "em", "ex", "fr", "ms", "rem", "%", "s", "px", "vw", "vh"]
   },
   "ignoreFiles": [
     "assets/vendor/**/*.css",
