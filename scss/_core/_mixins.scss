@@ -9,7 +9,7 @@
 
 @mixin related-content-box {
   margin: 2em 0 4em;
-  padding: 24px;
+  padding: 32px 32px 16px;
   border: 1px solid #d2d2d2;
   border-radius: 3px;
   background: #fff;
@@ -25,11 +25,16 @@
   h5,
   h6,
   .heading,
+  p.title, // PV1
   .additional-resources__heading {
-    margin: 0 0 24px;
+    display: block;
+    margin: 0 0 8px;
     padding: 0;
-    font-size: 20px;
+    font-size: 18px;
     line-height: 24px;
+    font-family: $font-family--title;
+    font-weight: 400;
+    text-transform: uppercase;
   }
 
   ul {
@@ -37,6 +42,7 @@
     margin: 0;
     padding: 0;
     list-style: none;
+    border: 0; // Seen the ul with _additional-resources class
 
     .related-topic-content__wrapper & {
       display: block;
@@ -54,19 +60,19 @@
       background-color: #fff; // Assumes the bg color is white...
     }
 
-    @include breakpoint(papa) {
-      column-count: 2;
-      column-gap: 2em;
+    // @include breakpoint(papa) {
+    //   column-count: 2;
+    //   column-gap: 2em;
 
-      @supports (display: grid) {
-        display: grid;
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        column-count: 1;
-        column-gap: 0;
-        // This property isn't misspelled, sasslint doesn't have the latest and greatest CSS Spec
-        gap: 0 2em; // sass-lint:disable-line no-misspelled-properties
-      }
-    }
+    //   @supports (display: grid) {
+    //     display: grid;
+    //     grid-template-columns: repeat(2, minmax(0, 1fr));
+    //     column-count: 1;
+    //     column-gap: 0;
+    //     // This property isn't misspelled, sasslint doesn't have the latest and greatest CSS Spec
+    //     gap: 0 2em; // sass-lint:disable-line no-misspelled-properties
+    //   }
+    // }
   }
 
   li {

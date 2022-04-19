@@ -1,6 +1,7 @@
 @use 'sass:math';
 
-.admonitionblock {
+.admonitionblock,
+.admonition { // PV1 class
   $icon-area--size: em(24px);
   $icon-area--top-offset: em(16px);
   $icon-area--left-offset: em(13px);
@@ -16,7 +17,10 @@
   color: #151515;
   background: #f4f4f4;
 
-  .title--type {
+  .title--type,
+  .admonition_header { // PV1 Class
+    font-weight: bold;
+
     &:after {
       content: ' - ';
     }

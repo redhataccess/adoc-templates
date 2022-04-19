@@ -466,10 +466,9 @@ When they are enabled, you must quote the link text if it contains a comma.
 
 anchor:bookmark-b[]Use a cross reference to link to this location.
 
-.Internal cross references
-See <<paragraphs>> to learn how to write paragraphs.
-
-Learn how to organize the document into <<section-titles,sections>>.
+// .Internal cross references
+// See <<paragraphs>> to learn how to write paragraphs.
+// Learn how to organize the document into <<section-titles,sections>>.
 
 .Inter-document cross references (Asciidoctor only)
 ----
