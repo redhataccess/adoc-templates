@@ -29,9 +29,9 @@
 }
 .rhdocs,
 .pvof-doc__wrapper {
-  font-family: RedHatText, "Red Hat Text", "Helvetica Neue", Arial, sans-serif;
   font-size: 1.125rem;
   line-height: 1.6667;
+  font-family: RedHatText, "Red Hat Text", "Helvetica Neue", Arial, sans-serif;
   color: #252525;
   -o-tab-size: 4;
      tab-size: 4;
@@ -94,8 +94,8 @@
 .pvof-doc__wrapper h5,
 .pvof-doc__wrapper h6 {
   margin: 0 0 0.625rem;
-  font-family: RedHatDisplay, "Red Hat Display", "Helvetica Neue", Arial, sans-serif;
   line-height: 1.3333;
+  font-family: RedHatDisplay, "Red Hat Display", "Helvetica Neue", Arial, sans-serif;
   font-weight: 500;
 }
 .rhdocs h1,
@@ -254,9 +254,9 @@
 }
 .rhdocs pre,
 .pvof-doc__wrapper pre {
-  font-family: RedHatMono, "Red Hat Mono", "Consolas", monospace;
   font-size: 0.875rem;
   line-height: 1.6667;
+  font-family: RedHatMono, "Red Hat Mono", "Consolas", monospace;
   color: #151515;
   white-space: pre;
   word-break: normal;
@@ -276,10 +276,12 @@
 }
 .rhdocs code,
 .pvof-doc__wrapper code {
+  display: inline-flex;
+  align-items: baseline;
   padding: 0.25em 0.5em;
-  font-family: RedHatMono, "Red Hat Mono", "Consolas", monospace;
   font-size: 0.875rem;
   line-height: 1.6667;
+  font-family: RedHatMono, "Red Hat Mono", "Consolas", monospace;
   color: #004368;
   background: #def3ff;
 }
@@ -294,9 +296,9 @@
 .rhdocs[class] pre code,
 .pvof-doc__wrapper[class] pre code {
   padding: 0;
-  font-family: inherit;
   font-size: inherit;
   line-height: inherit;
+  font-family: inherit;
   color: inherit;
   font-weight: inherit;
   background: inherit;
@@ -1496,12 +1498,6 @@ cp-documentation.PFElement, cp-documentation[pfelement] {
 
 rh-table {
   display: block;
-}
-rh-table table {
-  position: relative;
-  left: 50%;
-  -webkit-transform: translateX(-50%);
-          transform: translateX(-50%);
 }
 
 /**

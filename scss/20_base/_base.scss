@@ -2,9 +2,9 @@
 
 .rhdocs,
 .pvof-doc__wrapper {
-  font-family: $font-family--base;
   font-size: $font-size--base;
   line-height: $line-height--base;
+  font-family: $font-family--base;
   color: $color--text;
   tab-size: 4;
 
@@ -59,8 +59,8 @@
   h5,
   h6 {
     margin: 0 0 10px;
-    font-family: $font-family--title;
     line-height: $line-height--lg;
+    font-family: $font-family--title;
     font-weight: 500;
   }
 
@@ -210,9 +210,9 @@
 
   // Literal Blocks & Listing Blocks
   pre {
-    font-family: $font-family--code;
     font-size: $font-size--monospace;
     line-height: $line-height--base;
+    font-family: $font-family--code;
     color: $color--text--code-block;
     white-space: pre;
     word-break: normal;
@@ -232,10 +232,12 @@
   }
 
   code {
+    display: inline-flex;
+    align-items: baseline;
     padding: 0.25em 0.5em;
-    font-family: $font-family--code;
     font-size: $font-size--monospace;
     line-height: $line-height--base;
+    font-family: $font-family--code;
     color: $color--text--code-inline;
     background: $color--bg--code-inline;
   }
@@ -249,9 +251,9 @@
 
   &[class] pre code {
     padding: 0;
-    font-family: inherit;
     font-size: inherit;
     line-height: inherit;
+    font-family: inherit;
     color: inherit;
     font-weight: inherit;
     background: inherit;

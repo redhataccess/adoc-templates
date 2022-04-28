@@ -19,13 +19,6 @@ cp-documentation {
 // These styles may not be necessary when we have the web component
 rh-table {
   display: block;
-
-  // Center the table without effecting table layout (which being a flex-item seems to do)
-  table {
-    position: relative;
-    left: 50%;
-    transform: translateX(-50%);
-  }
 }
 
 /**
