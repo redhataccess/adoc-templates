@@ -990,7 +990,7 @@ th {
 .pvof-doc__wrapper .important.warning,
 .pvof-doc__wrapper .caution.warning {
   border-left-color: #f0ab00;
-  color: #795600;
+  color: #7d643f;
   background: #fdf7e7;
 }
 .admonitionblock.warning:before,
@@ -2120,6 +2120,7 @@ code[class*=language-],
 pre[class*=language-],
 .field code,
 .field pre {
+    white-space: pre-wrap !important;
     word-wrap: break-word !important;
     word-break: break-word !important;
     overflow-wrap: break-word !important;
