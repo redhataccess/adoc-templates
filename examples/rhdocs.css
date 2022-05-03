@@ -29,9 +29,9 @@
 }
 .rhdocs,
 .pvof-doc__wrapper {
-  font-family: RedHatText, "Red Hat Text", "Helvetica Neue", Arial, sans-serif;
   font-size: 1.125rem;
   line-height: 1.6667;
+  font-family: RedHatText, "Red Hat Text", "Helvetica Neue", Arial, sans-serif;
   color: #252525;
   -o-tab-size: 4;
      tab-size: 4;
@@ -94,8 +94,8 @@
 .pvof-doc__wrapper h5,
 .pvof-doc__wrapper h6 {
   margin: 0 0 0.625rem;
-  font-family: RedHatDisplay, "Red Hat Display", "Helvetica Neue", Arial, sans-serif;
   line-height: 1.3333;
+  font-family: RedHatDisplay, "Red Hat Display", "Helvetica Neue", Arial, sans-serif;
   font-weight: 500;
 }
 .rhdocs h1,
@@ -254,9 +254,9 @@
 }
 .rhdocs pre,
 .pvof-doc__wrapper pre {
-  font-family: RedHatMono, "Red Hat Mono", "Consolas", monospace;
   font-size: 0.875rem;
   line-height: 1.6667;
+  font-family: RedHatMono, "Red Hat Mono", "Consolas", monospace;
   color: #151515;
   white-space: pre;
   word-break: normal;
@@ -276,10 +276,12 @@
 }
 .rhdocs code,
 .pvof-doc__wrapper code {
+  display: inline-flex;
+  align-items: baseline;
   padding: 0.25em 0.5em;
-  font-family: RedHatMono, "Red Hat Mono", "Consolas", monospace;
   font-size: 0.875rem;
   line-height: 1.6667;
+  font-family: RedHatMono, "Red Hat Mono", "Consolas", monospace;
   color: #004368;
   background: #def3ff;
 }
@@ -294,9 +296,9 @@
 .rhdocs[class] pre code,
 .pvof-doc__wrapper[class] pre code {
   padding: 0;
-  font-family: inherit;
   font-size: inherit;
   line-height: inherit;
+  font-family: inherit;
   color: inherit;
   font-weight: inherit;
   background: inherit;
@@ -859,7 +861,10 @@ th {
 }
 
 .admonitionblock,
-.admonition {
+.pvof-doc__wrapper .warning,
+.pvof-doc__wrapper .tip,
+.pvof-doc__wrapper .important,
+.pvof-doc__wrapper .caution {
   position: relative;
   margin: 2rem 0;
   padding: 0.8888888889em;
@@ -872,25 +877,60 @@ th {
 }
 .admonitionblock .title--type,
 .admonitionblock .admonition_header,
-.admonition .title--type,
-.admonition .admonition_header {
+.pvof-doc__wrapper .warning .title--type,
+.pvof-doc__wrapper .warning .admonition_header,
+.pvof-doc__wrapper .tip .title--type,
+.pvof-doc__wrapper .tip .admonition_header,
+.pvof-doc__wrapper .important .title--type,
+.pvof-doc__wrapper .important .admonition_header,
+.pvof-doc__wrapper .caution .title--type,
+.pvof-doc__wrapper .caution .admonition_header {
   font-weight: bold;
 }
 .admonitionblock .title--type:after,
 .admonitionblock .admonition_header:after,
-.admonition .title--type:after,
-.admonition .admonition_header:after {
+.pvof-doc__wrapper .warning .title--type:after,
+.pvof-doc__wrapper .warning .admonition_header:after,
+.pvof-doc__wrapper .tip .title--type:after,
+.pvof-doc__wrapper .tip .admonition_header:after,
+.pvof-doc__wrapper .important .title--type:after,
+.pvof-doc__wrapper .important .admonition_header:after,
+.pvof-doc__wrapper .caution .title--type:after,
+.pvof-doc__wrapper .caution .admonition_header:after {
   content: " - ";
 }
+.admonitionblock .title--type p,
+.admonitionblock .admonition_header p,
+.pvof-doc__wrapper .warning .title--type p,
+.pvof-doc__wrapper .warning .admonition_header p,
+.pvof-doc__wrapper .tip .title--type p,
+.pvof-doc__wrapper .tip .admonition_header p,
+.pvof-doc__wrapper .important .title--type p,
+.pvof-doc__wrapper .important .admonition_header p,
+.pvof-doc__wrapper .caution .title--type p,
+.pvof-doc__wrapper .caution .admonition_header p {
+  display: inline-block;
+  margin: 0;
+  padding: 0;
+}
 .admonitionblock:before, .admonitionblock:after,
-.admonition:before,
-.admonition:after {
+.pvof-doc__wrapper .warning:before,
+.pvof-doc__wrapper .warning:after,
+.pvof-doc__wrapper .tip:before,
+.pvof-doc__wrapper .tip:after,
+.pvof-doc__wrapper .important:before,
+.pvof-doc__wrapper .important:after,
+.pvof-doc__wrapper .caution:before,
+.pvof-doc__wrapper .caution:after {
   content: "";
   position: absolute;
   display: block;
 }
 .admonitionblock:before,
-.admonition:before {
+.pvof-doc__wrapper .warning:before,
+.pvof-doc__wrapper .tip:before,
+.pvof-doc__wrapper .important:before,
+.pvof-doc__wrapper .caution:before {
   top: 0.8888888889em;
   left: 0.7222222222em;
   width: 1.3333333333em;
@@ -899,7 +939,10 @@ th {
   background: #151515;
 }
 .admonitionblock:after,
-.admonition:after {
+.pvof-doc__wrapper .warning:after,
+.pvof-doc__wrapper .tip:after,
+.pvof-doc__wrapper .important:after,
+.pvof-doc__wrapper .caution:after {
   top: 0.8888888889em;
   left: 1.0833333333em;
   width: 0.6111111111em;
@@ -908,35 +951,53 @@ th {
   background-size: 100% auto;
 }
 .admonitionblock.note:after,
-.admonition.note:after {
+.pvof-doc__wrapper .warning.note:after,
+.pvof-doc__wrapper .tip.note:after,
+.pvof-doc__wrapper .important.note:after,
+.pvof-doc__wrapper .caution.note:after {
   -webkit-transform: translateY(0.0555555556em);
           transform: translateY(0.0555555556em);
 }
 .admonitionblock.caution,
-.admonition.caution {
+.pvof-doc__wrapper .warning.caution,
+.pvof-doc__wrapper .tip.caution,
+.pvof-doc__wrapper .important.caution,
+.pvof-doc__wrapper .caution.caution {
   border-left-color: #df7409;
   color: #8f4c09;
   background: #fff3e7;
 }
 .admonitionblock.caution:before,
-.admonition.caution:before {
+.pvof-doc__wrapper .warning.caution:before,
+.pvof-doc__wrapper .tip.caution:before,
+.pvof-doc__wrapper .important.caution:before,
+.pvof-doc__wrapper .caution.caution:before {
   content: none;
 }
 .admonitionblock.caution:after,
-.admonition.caution:after {
+.pvof-doc__wrapper .warning.caution:after,
+.pvof-doc__wrapper .tip.caution:after,
+.pvof-doc__wrapper .important.caution:after,
+.pvof-doc__wrapper .caution.caution:after {
   top: 0.9444444444em;
   left: 0.7777777778em;
   width: 1.2222222222em;
   background-image: url("images/fa-icons/exclamation-triangle-solid.svg");
 }
 .admonitionblock.warning,
-.admonition.warning {
+.pvof-doc__wrapper .warning.warning,
+.pvof-doc__wrapper .tip.warning,
+.pvof-doc__wrapper .important.warning,
+.pvof-doc__wrapper .caution.warning {
   border-left-color: #f0ab00;
-  color: #795600;
+  color: #7d643f;
   background: #fdf7e7;
 }
 .admonitionblock.warning:before,
-.admonition.warning:before {
+.pvof-doc__wrapper .warning.warning:before,
+.pvof-doc__wrapper .tip.warning:before,
+.pvof-doc__wrapper .important.warning:before,
+.pvof-doc__wrapper .caution.warning:before {
   top: 0.8888888889em;
   left: 0.7222222222em;
   width: 1.3333333333em;
@@ -945,7 +1006,10 @@ th {
   background: #f0ab00;
 }
 .admonitionblock.warning:after,
-.admonition.warning:after {
+.pvof-doc__wrapper .warning.warning:after,
+.pvof-doc__wrapper .tip.warning:after,
+.pvof-doc__wrapper .important.warning:after,
+.pvof-doc__wrapper .caution.warning:after {
   left: 1.3888888889em;
   width: 0.5em;
   background-image: url("images/fa-icons/exclamation-solid.svg");
@@ -955,33 +1019,51 @@ th {
           transform-origin: left center;
 }
 .admonitionblock.important,
-.admonition.important {
+.pvof-doc__wrapper .warning.important,
+.pvof-doc__wrapper .tip.important,
+.pvof-doc__wrapper .important.important,
+.pvof-doc__wrapper .caution.important {
   border-left-color: #c9190b;
   color: #7d1007;
   background: #faeae8;
 }
 .admonitionblock.important:before,
-.admonition.important:before {
+.pvof-doc__wrapper .warning.important:before,
+.pvof-doc__wrapper .tip.important:before,
+.pvof-doc__wrapper .important.important:before,
+.pvof-doc__wrapper .caution.important:before {
   content: none;
 }
 .admonitionblock.important:after,
-.admonition.important:after {
+.pvof-doc__wrapper .warning.important:after,
+.pvof-doc__wrapper .tip.important:after,
+.pvof-doc__wrapper .important.important:after,
+.pvof-doc__wrapper .caution.important:after {
   left: 0.75em;
   width: 1.2777777778em;
   background-image: url("images/fa-icons/exclamation-circle-solid.svg");
 }
 .admonitionblock.tip,
-.admonition.tip {
+.pvof-doc__wrapper .warning.tip,
+.pvof-doc__wrapper .tip.tip,
+.pvof-doc__wrapper .important.tip,
+.pvof-doc__wrapper .caution.tip {
   border-left-color: #2b9af3;
   color: #002952;
   background: #e7f1fa;
 }
 .admonitionblock.tip:before,
-.admonition.tip:before {
+.pvof-doc__wrapper .warning.tip:before,
+.pvof-doc__wrapper .tip.tip:before,
+.pvof-doc__wrapper .important.tip:before,
+.pvof-doc__wrapper .caution.tip:before {
   background: #2b9af3;
 }
 .admonitionblock.tip:after,
-.admonition.tip:after {
+.pvof-doc__wrapper .warning.tip:after,
+.pvof-doc__wrapper .tip.tip:after,
+.pvof-doc__wrapper .important.tip:after,
+.pvof-doc__wrapper .caution.tip:after {
   left: 1.1111111111em;
   width: 0.5555555556em;
   background: url("images/fa-icons/lightbulb-solid.svg") no-repeat center center;
@@ -989,11 +1071,17 @@ th {
           transform: translateY(0.0555555556em);
 }
 .admonitionblock .content > :first-child,
-.admonition .content > :first-child {
+.pvof-doc__wrapper .warning .content > :first-child,
+.pvof-doc__wrapper .tip .content > :first-child,
+.pvof-doc__wrapper .important .content > :first-child,
+.pvof-doc__wrapper .caution .content > :first-child {
   margin-top: 0;
 }
 .admonitionblock .content > :last-child,
-.admonition .content > :last-child {
+.pvof-doc__wrapper .warning .content > :last-child,
+.pvof-doc__wrapper .tip .content > :last-child,
+.pvof-doc__wrapper .important .content > :last-child,
+.pvof-doc__wrapper .caution .content > :last-child {
   margin-bottom: 0;
 }
 
@@ -1496,12 +1584,6 @@ cp-documentation.PFElement, cp-documentation[pfelement] {
 
 rh-table {
   display: block;
-}
-rh-table table {
-  position: relative;
-  left: 50%;
-  -webkit-transform: translateX(-50%);
-          transform: translateX(-50%);
 }
 
 /**
@@ -2038,6 +2120,7 @@ code[class*=language-],
 pre[class*=language-],
 .field code,
 .field pre {
+    white-space: pre-wrap !important;
     word-wrap: break-word !important;
     word-break: break-word !important;
     overflow-wrap: break-word !important;
