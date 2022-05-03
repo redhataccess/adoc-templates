@@ -5,6 +5,7 @@
   pre[class*='language-'],
   .field code,
   .field pre {
+    white-space: pre-wrap !important;
     word-wrap: break-word !important;
     word-break: break-word !important;
     overflow-wrap: break-word !important;

@@ -466,10 +466,9 @@ When they are enabled, you must quote the link text if it contains a comma.
 
 anchor:bookmark-b[]Use a cross reference to link to this location.
 
-.Internal cross references
-See <<paragraphs>> to learn how to write paragraphs.
-
-Learn how to organize the document into <<section-titles,sections>>.
+// .Internal cross references
+// See <<paragraphs>> to learn how to write paragraphs.
+// Learn how to organize the document into <<section-titles,sections>>.
 
 .Inter-document cross references (Asciidoctor only)
 ----
@@ -661,6 +660,20 @@ Syntax highlighting is enabled by setting the `source-highlighter` attribute in 
 
 The valid options for are `coderay`, `highlight.js`, `prettify`, and `pygments`.
 ====
+
+== Example block
+
+.Optional title
+[example]
+This is an example of an example block.
+
+.Onomatopoeia
+====
+The book hit the floor with a *thud*.
+
+He could hear doves *cooing* in the pine trees`' branches.
+====
+
 
 == More Delimited Blocks
 

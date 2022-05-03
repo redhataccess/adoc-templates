@@ -1,6 +1,11 @@
 @use 'sass:math';
 
-.admonitionblock {
+.admonitionblock,
+// PV1 support
+.pvof-doc__wrapper .warning,
+.pvof-doc__wrapper .tip,
+.pvof-doc__wrapper .important,
+.pvof-doc__wrapper .caution {
   $icon-area--size: em(24px);
   $icon-area--top-offset: em(16px);
   $icon-area--left-offset: em(13px);
@@ -16,9 +21,18 @@
   color: #151515;
   background: #f4f4f4;
 
-  .title--type {
+  .title--type,
+  .admonition_header { // PV1 Class
+    font-weight: bold;
+
     &:after {
       content: ' - ';
+    }
+
+    p {
+      display: inline-block;
+      margin: 0;
+      padding: 0;
     }
   }
 
@@ -80,7 +94,7 @@
 
   &.warning {
     border-left-color: #f0ab00;
-    color: #795600;
+    color: #7d643f;
     background: #fdf7e7;
 
     &:before {
