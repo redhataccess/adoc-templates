@@ -5,7 +5,8 @@
 .pvof-doc__wrapper .warning,
 .pvof-doc__wrapper .tip,
 .pvof-doc__wrapper .important,
-.pvof-doc__wrapper .caution {
+.pvof-doc__wrapper .caution,
+.pvof-doc__wrapper .note {
   $icon-area--size: em(24px);
   $icon-area--top-offset: em(16px);
   $icon-area--left-offset: em(13px);

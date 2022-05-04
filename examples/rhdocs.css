@@ -864,7 +864,8 @@ th {
 .pvof-doc__wrapper .warning,
 .pvof-doc__wrapper .tip,
 .pvof-doc__wrapper .important,
-.pvof-doc__wrapper .caution {
+.pvof-doc__wrapper .caution,
+.pvof-doc__wrapper .note {
   position: relative;
   margin: 2rem 0;
   padding: 0.8888888889em;
@@ -884,7 +885,9 @@ th {
 .pvof-doc__wrapper .important .title--type,
 .pvof-doc__wrapper .important .admonition_header,
 .pvof-doc__wrapper .caution .title--type,
-.pvof-doc__wrapper .caution .admonition_header {
+.pvof-doc__wrapper .caution .admonition_header,
+.pvof-doc__wrapper .note .title--type,
+.pvof-doc__wrapper .note .admonition_header {
   font-weight: bold;
 }
 .admonitionblock .title--type:after,
@@ -896,7 +899,9 @@ th {
 .pvof-doc__wrapper .important .title--type:after,
 .pvof-doc__wrapper .important .admonition_header:after,
 .pvof-doc__wrapper .caution .title--type:after,
-.pvof-doc__wrapper .caution .admonition_header:after {
+.pvof-doc__wrapper .caution .admonition_header:after,
+.pvof-doc__wrapper .note .title--type:after,
+.pvof-doc__wrapper .note .admonition_header:after {
   content: " - ";
 }
 .admonitionblock .title--type p,
@@ -908,7 +913,9 @@ th {
 .pvof-doc__wrapper .important .title--type p,
 .pvof-doc__wrapper .important .admonition_header p,
 .pvof-doc__wrapper .caution .title--type p,
-.pvof-doc__wrapper .caution .admonition_header p {
+.pvof-doc__wrapper .caution .admonition_header p,
+.pvof-doc__wrapper .note .title--type p,
+.pvof-doc__wrapper .note .admonition_header p {
   display: inline-block;
   margin: 0;
   padding: 0;
@@ -921,7 +928,9 @@ th {
 .pvof-doc__wrapper .important:before,
 .pvof-doc__wrapper .important:after,
 .pvof-doc__wrapper .caution:before,
-.pvof-doc__wrapper .caution:after {
+.pvof-doc__wrapper .caution:after,
+.pvof-doc__wrapper .note:before,
+.pvof-doc__wrapper .note:after {
   content: "";
   position: absolute;
   display: block;
@@ -930,7 +939,8 @@ th {
 .pvof-doc__wrapper .warning:before,
 .pvof-doc__wrapper .tip:before,
 .pvof-doc__wrapper .important:before,
-.pvof-doc__wrapper .caution:before {
+.pvof-doc__wrapper .caution:before,
+.pvof-doc__wrapper .note:before {
   top: 0.8888888889em;
   left: 0.7222222222em;
   width: 1.3333333333em;
@@ -942,7 +952,8 @@ th {
 .pvof-doc__wrapper .warning:after,
 .pvof-doc__wrapper .tip:after,
 .pvof-doc__wrapper .important:after,
-.pvof-doc__wrapper .caution:after {
+.pvof-doc__wrapper .caution:after,
+.pvof-doc__wrapper .note:after {
   top: 0.8888888889em;
   left: 1.0833333333em;
   width: 0.6111111111em;
@@ -954,7 +965,8 @@ th {
 .pvof-doc__wrapper .warning.note:after,
 .pvof-doc__wrapper .tip.note:after,
 .pvof-doc__wrapper .important.note:after,
-.pvof-doc__wrapper .caution.note:after {
+.pvof-doc__wrapper .caution.note:after,
+.pvof-doc__wrapper .note.note:after {
   -webkit-transform: translateY(0.0555555556em);
           transform: translateY(0.0555555556em);
 }
@@ -962,7 +974,8 @@ th {
 .pvof-doc__wrapper .warning.caution,
 .pvof-doc__wrapper .tip.caution,
 .pvof-doc__wrapper .important.caution,
-.pvof-doc__wrapper .caution.caution {
+.pvof-doc__wrapper .caution.caution,
+.pvof-doc__wrapper .note.caution {
   border-left-color: #df7409;
   color: #8f4c09;
   background: #fff3e7;
@@ -971,14 +984,16 @@ th {
 .pvof-doc__wrapper .warning.caution:before,
 .pvof-doc__wrapper .tip.caution:before,
 .pvof-doc__wrapper .important.caution:before,
-.pvof-doc__wrapper .caution.caution:before {
+.pvof-doc__wrapper .caution.caution:before,
+.pvof-doc__wrapper .note.caution:before {
   content: none;
 }
 .admonitionblock.caution:after,
 .pvof-doc__wrapper .warning.caution:after,
 .pvof-doc__wrapper .tip.caution:after,
 .pvof-doc__wrapper .important.caution:after,
-.pvof-doc__wrapper .caution.caution:after {
+.pvof-doc__wrapper .caution.caution:after,
+.pvof-doc__wrapper .note.caution:after {
   top: 0.9444444444em;
   left: 0.7777777778em;
   width: 1.2222222222em;
@@ -988,7 +1003,8 @@ th {
 .pvof-doc__wrapper .warning.warning,
 .pvof-doc__wrapper .tip.warning,
 .pvof-doc__wrapper .important.warning,
-.pvof-doc__wrapper .caution.warning {
+.pvof-doc__wrapper .caution.warning,
+.pvof-doc__wrapper .note.warning {
   border-left-color: #f0ab00;
   color: #7d643f;
   background: #fdf7e7;
@@ -997,7 +1013,8 @@ th {
 .pvof-doc__wrapper .warning.warning:before,
 .pvof-doc__wrapper .tip.warning:before,
 .pvof-doc__wrapper .important.warning:before,
-.pvof-doc__wrapper .caution.warning:before {
+.pvof-doc__wrapper .caution.warning:before,
+.pvof-doc__wrapper .note.warning:before {
   top: 0.8888888889em;
   left: 0.7222222222em;
   width: 1.3333333333em;
@@ -1009,7 +1026,8 @@ th {
 .pvof-doc__wrapper .warning.warning:after,
 .pvof-doc__wrapper .tip.warning:after,
 .pvof-doc__wrapper .important.warning:after,
-.pvof-doc__wrapper .caution.warning:after {
+.pvof-doc__wrapper .caution.warning:after,
+.pvof-doc__wrapper .note.warning:after {
   left: 1.3888888889em;
   width: 0.5em;
   background-image: url("images/fa-icons/exclamation-solid.svg");
@@ -1022,7 +1040,8 @@ th {
 .pvof-doc__wrapper .warning.important,
 .pvof-doc__wrapper .tip.important,
 .pvof-doc__wrapper .important.important,
-.pvof-doc__wrapper .caution.important {
+.pvof-doc__wrapper .caution.important,
+.pvof-doc__wrapper .note.important {
   border-left-color: #c9190b;
   color: #7d1007;
   background: #faeae8;
@@ -1031,14 +1050,16 @@ th {
 .pvof-doc__wrapper .warning.important:before,
 .pvof-doc__wrapper .tip.important:before,
 .pvof-doc__wrapper .important.important:before,
-.pvof-doc__wrapper .caution.important:before {
+.pvof-doc__wrapper .caution.important:before,
+.pvof-doc__wrapper .note.important:before {
   content: none;
 }
 .admonitionblock.important:after,
 .pvof-doc__wrapper .warning.important:after,
 .pvof-doc__wrapper .tip.important:after,
 .pvof-doc__wrapper .important.important:after,
-.pvof-doc__wrapper .caution.important:after {
+.pvof-doc__wrapper .caution.important:after,
+.pvof-doc__wrapper .note.important:after {
   left: 0.75em;
   width: 1.2777777778em;
   background-image: url("images/fa-icons/exclamation-circle-solid.svg");
@@ -1047,7 +1068,8 @@ th {
 .pvof-doc__wrapper .warning.tip,
 .pvof-doc__wrapper .tip.tip,
 .pvof-doc__wrapper .important.tip,
-.pvof-doc__wrapper .caution.tip {
+.pvof-doc__wrapper .caution.tip,
+.pvof-doc__wrapper .note.tip {
   border-left-color: #2b9af3;
   color: #002952;
   background: #e7f1fa;
@@ -1056,14 +1078,16 @@ th {
 .pvof-doc__wrapper .warning.tip:before,
 .pvof-doc__wrapper .tip.tip:before,
 .pvof-doc__wrapper .important.tip:before,
-.pvof-doc__wrapper .caution.tip:before {
+.pvof-doc__wrapper .caution.tip:before,
+.pvof-doc__wrapper .note.tip:before {
   background: #2b9af3;
 }
 .admonitionblock.tip:after,
 .pvof-doc__wrapper .warning.tip:after,
 .pvof-doc__wrapper .tip.tip:after,
 .pvof-doc__wrapper .important.tip:after,
-.pvof-doc__wrapper .caution.tip:after {
+.pvof-doc__wrapper .caution.tip:after,
+.pvof-doc__wrapper .note.tip:after {
   left: 1.1111111111em;
   width: 0.5555555556em;
   background: url("images/fa-icons/lightbulb-solid.svg") no-repeat center center;
@@ -1074,14 +1098,16 @@ th {
 .pvof-doc__wrapper .warning .content > :first-child,
 .pvof-doc__wrapper .tip .content > :first-child,
 .pvof-doc__wrapper .important .content > :first-child,
-.pvof-doc__wrapper .caution .content > :first-child {
+.pvof-doc__wrapper .caution .content > :first-child,
+.pvof-doc__wrapper .note .content > :first-child {
   margin-top: 0;
 }
 .admonitionblock .content > :last-child,
 .pvof-doc__wrapper .warning .content > :last-child,
 .pvof-doc__wrapper .tip .content > :last-child,
 .pvof-doc__wrapper .important .content > :last-child,
-.pvof-doc__wrapper .caution .content > :last-child {
+.pvof-doc__wrapper .caution .content > :last-child,
+.pvof-doc__wrapper .note .content > :last-child {
   margin-bottom: 0;
 }
 
