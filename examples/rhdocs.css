@@ -279,6 +279,7 @@
   display: inline-flex;
   align-items: baseline;
   padding: 0.25em 0.5em;
+  gap: 0.6429em;
   font-size: 0.875rem;
   line-height: 1.6667;
   font-family: RedHatMono, "Red Hat Mono", "Consolas", monospace;
@@ -290,7 +291,6 @@
 .pvof-doc__wrapper .admonitionblock code,
 .pvof-doc__wrapper .admonition code {
   color: inherit;
-  font-weight: bold;
   background: #fff;
 }
 .rhdocs[class] pre code,
@@ -889,20 +889,6 @@ th {
 .pvof-doc__wrapper .note .title--type,
 .pvof-doc__wrapper .note .admonition_header {
   font-weight: bold;
-}
-.admonitionblock .title--type:after,
-.admonitionblock .admonition_header:after,
-.pvof-doc__wrapper .warning .title--type:after,
-.pvof-doc__wrapper .warning .admonition_header:after,
-.pvof-doc__wrapper .tip .title--type:after,
-.pvof-doc__wrapper .tip .admonition_header:after,
-.pvof-doc__wrapper .important .title--type:after,
-.pvof-doc__wrapper .important .admonition_header:after,
-.pvof-doc__wrapper .caution .title--type:after,
-.pvof-doc__wrapper .caution .admonition_header:after,
-.pvof-doc__wrapper .note .title--type:after,
-.pvof-doc__wrapper .note .admonition_header:after {
-  content: " - ";
 }
 .admonitionblock .title--type p,
 .admonitionblock .admonition_header p,

@@ -132,7 +132,7 @@ rh-table {
 
 // Sections
 .sect1 {
-  margin: 2rem 0 1rem; // @todo deprecate style
+  margin: 2rem 0 1rem; // @todo deprecate style // But why?? Why did I write this
 
   :host &,
   cp-documentation & {

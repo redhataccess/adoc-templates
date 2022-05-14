@@ -26,10 +26,6 @@
   .admonition_header { // PV1 Class
     font-weight: bold;
 
-    &:after {
-      content: ' - ';
-    }
-
     p {
       display: inline-block;
       margin: 0;
