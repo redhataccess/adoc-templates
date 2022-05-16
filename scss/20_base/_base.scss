@@ -238,6 +238,7 @@
   code {
     // Fixes issue where safari has a differnet baseline for RH Text vs Mono
     display: inline-flex;
+    flex-wrap: wrap;
     align-items: baseline;
     padding: 0.25em 0.5em;
     // Adds a space between elements, see https://issues.redhat.com/browse/CCS-6018
