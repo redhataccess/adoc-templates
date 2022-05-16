@@ -282,10 +282,7 @@
 }
 .rhdocs code,
 .pvof-doc__wrapper code {
-  display: inline-flex;
-  align-items: baseline;
   padding: 0.25em 0.5em;
-  gap: 0.6429em;
   font-size: 0.875rem;
   line-height: 1.6667;
   font-family: RedHatMono, "Red Hat Mono", "Consolas", monospace;
