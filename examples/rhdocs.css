@@ -150,6 +150,12 @@
   margin: 1rem 0;
   padding: 0 0 0 1.5rem;
 }
+.rhdocs ul ::marker,
+.rhdocs ol ::marker,
+.pvof-doc__wrapper ul ::marker,
+.pvof-doc__wrapper ol ::marker {
+  font: inherit;
+}
 .rhdocs li,
 .pvof-doc__wrapper li {
   margin: 0;
