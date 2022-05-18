@@ -19,7 +19,9 @@ $breakpoints: (
 $font-family--base: RedHatText, 'Red Hat Text', 'Helvetica Neue', Arial, sans-serif;
 $font-family--title: RedHatDisplay, 'Red Hat Display', 'Helvetica Neue', Arial,
   sans-serif;
-$font-family--code: RedHatMono, 'Red Hat Mono', 'Consolas', monospace;
+// $font-family--code: RedHatMono, 'Red Hat Mono', 'Consolas', monospace;
+$font-family--code: Consolas,Monaco,Andale Mono,monospace;
+
 /* stylelint-enable */
 
 // Base heading levels

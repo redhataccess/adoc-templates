@@ -114,6 +114,10 @@
   ol {
     margin: 1rem 0;
     padding: 0 0 0 1.5rem;
+
+    ::marker {
+      font: inherit;
+    }
   }
 
   li {
@@ -232,9 +236,13 @@
   }
 
   code {
-    display: inline-flex;
-    align-items: baseline;
+    // Fixes issue where safari has a differnet baseline for RH Text vs Mono
+    // display: inline-flex;
+    // flex-wrap: wrap;
+    // align-items: baseline;
     padding: 0.25em 0.5em;
+    // Adds a space between elements, see https://issues.redhat.com/browse/CCS-6018
+    // gap: 0.6429em; // A 'space' was measured at 9px at 14px font size.
     font-size: $font-size--monospace;
     line-height: $line-height--base;
     font-family: $font-family--code;
@@ -245,7 +253,6 @@
   .admonitionblock code,
   .admonition code {
     color: inherit;
-    font-weight: bold;
     background: #fff;
   }
 
