@@ -261,6 +261,9 @@
     // Create print button
     const $printButton = document.createElement('button');
     // @todo Translate this
+    // Korean: 인쇄
+    // Japanese: 印刷
+    // Chinese (Simplified): 打印
     $printButton.innerText = 'Print';
     $printButton.classList.add('rhdocs__print-button');
 
@@ -311,7 +314,6 @@
       const $table = $tables[index];
 
       if (!$table.parentElement.classList.contains('table-wrapper')) {
-        // @todo RH Table needs to be added to portal for it to do it's fanciness
         const $tableWrapper = document.createElement('rh-table');
         $tableWrapper.classList.add('table-wrapper');
         $table.parentElement.replaceChild($tableWrapper, $table);
