@@ -18,7 +18,12 @@ Here are the preview environments for our main branches, these show off the temp
 ## Installing tools for rendering the templates
 
 1. Install Node JS/NPM version 12+, if you have [NVM](https://github.com/nvm-sh/nvm) installed you can type `nvm use` in the command line to use the same version as the repo authors.
-2. [Install AsciiDoctor CLI](https://asciidoctor.org/docs/install-toolchain/), so `which asciidoctor` should give a response
+2. [Install AsciiDoctor CLI](https://asciidoctor.org/docs/install-toolchain/), so `which asciidoctor` should give a response.
+
+Once Ruby is installed, it's recommended to install these packages:
+```
+gem install asciidoctor tilt concurrent-ruby haml
+```
 
 Run:
 ```shell
